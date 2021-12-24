@@ -1,5 +1,6 @@
 from pydriller import Repository
 
+from collections import Counter
 from datetime import datetime
 import pytz
 from typing import Any, List
@@ -41,8 +42,10 @@ class RepoInfo:
 
     def _round_single_commit_by_time(self, commit, interval = 5):
         """
-        takes a commit time and rounds it to the nearest 5 minutes so we can align it with the 5min crypto prices, 
+        Takes a commit time and rounds it to the nearest 5 minutes so we can align it with the 5min crypto prices, 
         stores back in commit object
+
+        creates .rounded_commit_time property for commit object
         """
         dt = commit.committer_date
         rounded_to_nearest_5min = int(interval * round(dt.minute / interval))
@@ -50,5 +53,18 @@ class RepoInfo:
         return commit
 
     def round_commits(self, commits):
+        """
+        Round all the commits in the list of commits
+        """
         return [self._round_single_commit_by_time(c) for c in commits]
+
+    def show_n_most_common_commit_messages(self, commits: List[Any], n: int = 10):
+        """
+        Shows the n most common commit messages,
+        not used for anything other than utility
+        """
+
+        commit_messages = [c.msg for c in commits]
+        print("{} most common commit messages for {} are:\n".format(n, self.githubRepoUrl))
+        print(*list(Counter(commit_messages).most_common(n)), sep="\n")
         
