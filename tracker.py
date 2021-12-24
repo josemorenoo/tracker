@@ -46,8 +46,8 @@ def gather_project_commits(repos_commit_dictionary):
 if __name__ == "__main__":
     # setup
     token="LRC"
-    startDate = datetime(2021, 8, 23, 12, 00, 00)
-    endDate = datetime(2021, 12, 23, 12, 00, 00)
+    startDate = datetime(2021, 12, 20, 12, 00, 00)
+    endDate = datetime(2021, 8, 23, 13, 00, 00)
 
     project_repos = [
         'https://github.com/Loopring/loopring-web-v2',
