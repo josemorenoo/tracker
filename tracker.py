@@ -6,7 +6,7 @@ from matplotlib import pyplot as plt
 
 from datetime import datetime
 import pandas as pd
-from typing import Any, Dict, List
+from typing import Any, Optional, List
 
 from CryptoOracle import CryptoOracle
 from RepoInfo import RepoInfo
@@ -17,22 +17,29 @@ import pickle
 def show_commmit_plot(token_data: pd.DataFrame, commits: List[Any]):
     p = token_data.plot(y='close', use_index=True)
     for commit in commits:
-        p.axvline(x=commit.rounded_commit_time, color='g', linestyle='--', linewidth=0.1)
+        p.axvline(x=commit.rounded_commit_time_5min, color='g', linestyle='--', linewidth=0.1)
     plt.show()
 
-def get_commits_from_all_repos(project_repos: List[str]):
+def get_commits_from_all_repos(
+    project_repos: List[str],
+    startDate: Optional[datetime] = None,
+    endDate: Optional[datetime] = None):
+
     repos_commit_dictionary = defaultdict(list)
 
     for repo_url in project_repos:
-        repo_info = RepoInfo(repo_url)
+        if startDate and endDate:
+            # faster, doesn't load EVERY commit:
+            repo_info = RepoInfo(repo_url, startDate, endDate)
+        else:
+            # slower, load every commit
+            repo_info = RepoInfo(repo_url)
+
         commits: List[Any] = repo_info.get_commits_by_date(startDate, endDate)
         #repo_info.show_n_most_common_commit_messages(commits, n = 10)
-
-        # round the time of each commit to the nearest 5 min interval
-        time_rounded_commits: List[Any] = repo_info.round_commits(commits)
         
         # store commits for this given repo in the dictionary
-        repos_commit_dictionary[repo_url] = time_rounded_commits
+        repos_commit_dictionary[repo_url] = commits
     return repos_commit_dictionary
 
 def gather_project_commits(repos_commit_dictionary):
@@ -59,7 +66,13 @@ if __name__ == "__main__":
         'https://github.com/Loopring/dexwebapp',
         'https://github.com/Loopring/whitepaper'
     ]
-    repos_commit_dictionary = get_commits_from_all_repos(project_repos)
+
+    # load every single commit
+    #repos_commit_dictionary = get_commits_from_all_repos(project_repos)
+
+    # only load commits within time range
+    repos_commit_dictionary = get_commits_from_all_repos(project_repos, startDate, endDate)
+
     project_commits: List[Any] = gather_project_commits(repos_commit_dictionary)
 
     # get the crypto token price data as a dataframe
@@ -73,3 +86,8 @@ if __name__ == "__main__":
     directory = os.getcwd() + "/"
     with (directory + 'one_day_project_commits_pickle', 'wb') as f:
         pickle.dump(project_commits, f)
+        
+    with (directory + 'one_day_token_data_pickle', 'wb') as f:
+        pickle.dump(token_data, f)
+        
+    print("the end. \n\n")

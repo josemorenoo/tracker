@@ -31,13 +31,25 @@ class Commit:
     dmm_unit_size: float
     dmm_unit_complexity: float
     dmm_unit_interfacing: float
+    rounded_commit_time_5min: str # custom
 
 class CommitHandler:
-    def create_commit(commit):
+
+    def _round_single_commit_by_time(self, commit, interval = 5):
+        """
+        Takes a commit time and rounds it to the nearest 5 minutes so we can align it with the 5min crypto prices
+        """
+        dt = commit.committer_date
+        nearest_5min = int(interval * round(dt.minute / interval))
+        rounded_commit_time = datetime(dt.year, dt.month, dt.day, dt.hour, nearest_5min if nearest_5min != 60 else 0)
+        return rounded_commit_time
+
+    def create_commit(self, commit):
         '''
         Takes in a raw pydriller commit object and extracts the relevant fields into a new
         Commit dataclass object
         '''
+        print(" loading commit")
         return Commit(
             msg = commit.msg,
             author = commit.author ,
@@ -57,7 +69,10 @@ class CommitHandler:
             files = commit.files,
             dmm_unit_size = commit.dmm_unit_size,
             dmm_unit_complexity = commit.dmm_unit_complexity,
-            dmm_unit_interfacing = commit.dmm_unit_interfacing
+            dmm_unit_interfacing = commit.dmm_unit_interfacing,
+            rounded_commit_time_5min = self._round_single_commit_by_time(commit, interval = 5)
         )
+
+        
         
 
