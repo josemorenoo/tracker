@@ -4,6 +4,7 @@ matplotlib.use('Qt5Agg')
 from matplotlib import pyplot as plt
 
 from datetime import datetime
+import pandas as pd
 from typing import Any, List
 
 from CryptoOracle import CryptoOracle
@@ -19,21 +20,21 @@ def show_commmit_plot(token_data, time_rounded_commits: List[Any]):
 if __name__ == "__main__":
     # setup
     token="LRC"
-    startDate = datetime(2020, 12, 1, 23, 25, 00)
-    endDate = datetime(2021, 12, 23, 23, 54, 00)
+    startDate = datetime(2021, 8, 23, 12, 00, 00)
+    endDate = datetime(2021, 12, 23, 12, 00, 00)
     repo_url = 'https://github.com/Loopring/loopring-web-v2'
 
     # parse the repo for commits
     repo_info = RepoInfo(repo_url)
-    commits = repo_info.get_commits_by_date(startDate, endDate)
+    commits: List[Any] = repo_info.get_commits_by_date(startDate, endDate)
 
     # round the time of each commit to the nearest 5 min interval,
     # creates .rounded_commit_time property for commit object
-    time_rounded_commits = repo_info.round_commits(commits)
+    time_rounded_commits: List[Any] = repo_info.round_commits(commits)
 
     # get the crypto token price data
     crypto_oracle = CryptoOracle(token)
-    token_data = crypto_oracle.get_token_price_df(startDate, endDate)
+    token_data: pd.DataFrame = crypto_oracle.get_token_price_df(startDate, endDate)
 
 
     # visualize
