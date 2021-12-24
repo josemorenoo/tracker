@@ -2,8 +2,7 @@
 
 ## setup
 ```
-pip install pydriller
-pip install Historic-Crypto
+pip install -r requirements.txt
 ```
 
 ## run
