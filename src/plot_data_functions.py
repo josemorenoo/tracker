@@ -4,6 +4,7 @@ import matplotlib
 matplotlib.use('Qt5Agg')
 from matplotlib import pyplot as plt
 
+from statistics_functions import *
 import pickle
 import pandas as pd
 import os
@@ -15,9 +16,9 @@ def main():
     # load pickle files
     directory = os.getcwd() + "/"
     
-    with open(directory + 'one_day_project_commits_pickle' , 'rb') as pickle_file:
+    with open(directory + 'one_week_project_commits_pickle' , 'rb') as pickle_file:
         project_commits = pickle.load(pickle_file)
-    with open(directory + 'one_day_token_data_pickle' , 'rb') as pickle_file:
+    with open(directory + 'one_week_token_data_pickle' , 'rb') as pickle_file:
         token_data = pickle.load(pickle_file)
 
 
@@ -33,18 +34,31 @@ def main():
     print("Time in commits")
     print(*[c.rounded_commit_time_5min for c in project_commits], sep="\n")
 
-    show_commmit_plot(token_data, project_commits)
+    plot_daily_count(project_commits)
+    #show_commmit_plot(token_data, project_commits)
 
 
     ############ end of code #########
+    plt.show()
     print("the end. \n\n")    
     
     
     
-def show_histogram_commit_count(token_data: pd.DataFrame, commits: List[Any]):
-    #p = token_data.plot(y='close', use_index=True)
-
+#def show_histogram_commit_count(token_data: pd.DataFrame, commits: List[Any]):
+#    #p = token_data.plot(y='close', use_index=True)
+#    num_bins = 100
+#    plt.hist()
     
+    
+def plot_daily_count(commits: List[Any]):
+       daily_count = calculate_daily_count(commits)
+       
+       date_array = list(daily_count.keys())
+       count_array = list(daily_count.values())
+       #print(date_array)
+       #print(count_array)
+       
+       plt.plot(date_array, count_array)
     
 def show_commmit_plot(token_data: pd.DataFrame, commits: List[Any]):
     p = token_data.plot(y='close', use_index=True)
