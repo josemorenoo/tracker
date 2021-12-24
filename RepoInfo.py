@@ -38,3 +38,17 @@ class RepoInfo:
             return filtered
         else:
             return self.commits
+
+    def _round_single_commit_by_time(self, commit, interval = 5):
+        """
+        takes a commit time and rounds it to the nearest 5 minutes so we can align it with the 5min crypto prices, 
+        stores back in commit object
+        """
+        dt = commit.committer_date
+        rounded_to_nearest_5min = int(interval * round(dt.minute / interval))
+        commit.rounded_commit_time = datetime(dt.year, dt.month, dt.day, dt.hour, rounded_to_nearest_5min if rounded_to_nearest_5min != 60 else 0)
+        return commit
+
+    def round_commits(self, commits):
+        return [self._round_single_commit_by_time(c) for c in commits]
+        
