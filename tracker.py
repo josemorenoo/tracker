@@ -10,9 +10,9 @@ from typing import Any, List
 from CryptoOracle import CryptoOracle
 from RepoInfo import RepoInfo
 
-def show_commmit_plot(token_data, time_rounded_commits: List[Any]):
+def show_commmit_plot(token_data: pd.DataFrame, commits: List[Any]):
     p = token_data.plot(y='close', use_index=True)
-    for commit in time_rounded_commits:
+    for commit in commits:
         p.axvline(x=commit.rounded_commit_time, color='g', linestyle='--', linewidth=0.1)
     plt.show()
 
