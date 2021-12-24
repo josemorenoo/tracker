@@ -5,11 +5,13 @@ from datetime import datetime
 import pytz
 from typing import Any, List
 
+from CommitHandler import CommitHandler
+
 class RepoInfo:
 
     def __init__(self, githubRepoUrl: str):
         self.githubRepoUrl = githubRepoUrl
-        self.commits = [commit for commit in Repository(self.githubRepoUrl).traverse_commits()]
+        self.commits = [CommitHandler.create_commit(commit) for commit in Repository(self.githubRepoUrl).traverse_commits()]
 
     def get_commits(self) -> List[Any]:
         return self.commits
