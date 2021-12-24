@@ -3,15 +3,21 @@ from pydriller import Repository
 from collections import Counter
 from datetime import datetime
 import pytz
-from typing import Any, List
+from tqdm import tqdm
+from typing import Any, List, Optional
 
-from CommitHandler import CommitHandler
+from CommitHandler import Commit, CommitHandler
 
 class RepoInfo:
 
-    def __init__(self, githubRepoUrl: str):
+    def __init__(self, githubRepoUrl: str, startDate: Optional[datetime] = None, endDate: Optional[datetime] = None):
         self.githubRepoUrl = githubRepoUrl
-        self.commits = [CommitHandler.create_commit(commit) for commit in Repository(self.githubRepoUrl).traverse_commits()]
+        
+        ch = CommitHandler()
+        if startDate and endDate:
+            self.commits = [ch.create_commit(commit) for commit in tqdm(Repository(self.githubRepoUrl, since=startDate, to=endDate).traverse_commits())]
+        else:
+            self.commits = [ch.create_commit(commit) for commit in tqdm(Repository(self.githubRepoUrl).traverse_commits())]
 
     def get_commits(self) -> List[Any]:
         return self.commits
@@ -41,24 +47,6 @@ class RepoInfo:
             return filtered
         else:
             return self.commits
-
-    def _round_single_commit_by_time(self, commit, interval = 5):
-        """
-        Takes a commit time and rounds it to the nearest 5 minutes so we can align it with the 5min crypto prices, 
-        stores back in commit object
-
-        creates .rounded_commit_time property for commit object
-        """
-        dt = commit.committer_date
-        rounded_to_nearest_5min = int(interval * round(dt.minute / interval))
-        commit.rounded_commit_time = datetime(dt.year, dt.month, dt.day, dt.hour, rounded_to_nearest_5min if rounded_to_nearest_5min != 60 else 0)
-        return commit
-
-    def round_commits(self, commits):
-        """
-        Round all the commits in the list of commits
-        """
-        return [self._round_single_commit_by_time(c) for c in commits]
 
     def show_n_most_common_commit_messages(self, commits: List[Any], n: int = 10):
         """
