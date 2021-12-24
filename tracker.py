@@ -14,11 +14,7 @@ from RepoInfo import RepoInfo
 import os
 import pickle
 
-def show_commmit_plot(token_data: pd.DataFrame, commits: List[Any]):
-    p = token_data.plot(y='close', use_index=True)
-    for commit in commits:
-        p.axvline(x=commit.rounded_commit_time_5min, color='g', linestyle='--', linewidth=0.1)
-    plt.show()
+from plot_data_functions import *
 
 def get_commits_from_all_repos(
     project_repos: List[str],
@@ -62,7 +58,7 @@ if __name__ == "__main__":
     project_repos = [
         'https://github.com/Loopring/loopring-web-v2',
         'https://github.com/Loopring/loopring_sdk',
-        'https://github.com/Loopring/protocols',
+        #'https://github.com/Loopring/protocols', # windows can't handle a file named aux.
         'https://github.com/Loopring/dexwebapp',
         'https://github.com/Loopring/whitepaper'
     ]
@@ -84,10 +80,10 @@ if __name__ == "__main__":
     
     # load pickle files
     directory = os.getcwd() + "/"
-    with (directory + 'one_day_project_commits_pickle', 'wb') as f:
+    with  open(directory + 'one_day_project_commits_pickle', 'wb') as f:
         pickle.dump(project_commits, f)
         
-    with (directory + 'one_day_token_data_pickle', 'wb') as f:
+    with open(directory + 'one_day_token_data_pickle', 'wb') as f:
         pickle.dump(token_data, f)
         
     print("the end. \n\n")
