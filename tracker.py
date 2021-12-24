@@ -11,6 +11,9 @@ from typing import Any, Optional, List
 from CryptoOracle import CryptoOracle
 from RepoInfo import RepoInfo
 
+import os
+import pickle
+
 def show_commmit_plot(token_data: pd.DataFrame, commits: List[Any]):
     p = token_data.plot(y='close', use_index=True)
     for commit in commits:
@@ -53,8 +56,8 @@ def gather_project_commits(repos_commit_dictionary):
 if __name__ == "__main__":
     # setup
     token="LRC"
-    startDate = datetime(2021, 12, 20, 12, 00, 00)
-    endDate = datetime(2021, 12, 23, 13, 00, 00)
+    startDate = datetime(2021, 12, 23, 12, 00, 00)
+    endDate = datetime(2021, 12, 24, 13, 00, 00)
 
     project_repos = [
         'https://github.com/Loopring/loopring-web-v2',
@@ -77,4 +80,14 @@ if __name__ == "__main__":
     token_data: pd.DataFrame = crypto_oracle.get_token_price_df(startDate, endDate)
 
     # visualize
-    show_commmit_plot(token_data, project_commits)
+    #show_commmit_plot(token_data, project_commits)
+    
+    # load pickle files
+    directory = os.getcwd() + "/"
+    with (directory + 'one_day_project_commits_pickle', 'wb') as f:
+        pickle.dump(project_commits, f)
+        
+    with (directory + 'one_day_token_data_pickle', 'wb') as f:
+        pickle.dump(token_data, f)
+        
+    print("the end. \n\n")
