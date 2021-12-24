@@ -19,5 +19,5 @@ if __name__ == "__main__":
     print(endDate)
 
     five_minute_interval = 300
-    lrc_usd = HistoricalData('LRC-USD', five_minute_interval, startDate).retrieve_data()
+    lrc_usd = HistoricalData('LRC-USD', five_minute_interval, startDate, endDate).retrieve_data()
     print(lrc_usd)
