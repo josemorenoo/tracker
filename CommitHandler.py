@@ -49,7 +49,7 @@ class CommitHandler:
         Takes in a raw pydriller commit object and extracts the relevant fields into a new
         Commit dataclass object
         '''
-        print(" loading commit")
+        print(" loading commit from {}".format(commit.project_name))
         return Commit(
             msg = commit.msg,
             author = commit.author ,

@@ -80,7 +80,7 @@ if __name__ == "__main__":
     token_data: pd.DataFrame = crypto_oracle.get_token_price_df(startDate, endDate)
 
     # visualize
-    #show_commmit_plot(token_data, project_commits)
+    show_commmit_plot(token_data, project_commits)
     
     # load pickle files
     directory = os.getcwd() + "/"
