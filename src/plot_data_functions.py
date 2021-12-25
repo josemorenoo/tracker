@@ -1,4 +1,11 @@
 # functions useful for plotting data
+
+# example on plotting dates in x axis:
+# https://www.tutorialspoint.com/plotting-dates-on-the-x-axis-with-python-s-matplotlib
+
+
+
+
 import matplotlib  
 # needed on mac otherwise crashes
 matplotlib.use('Qt5Agg')
@@ -9,6 +16,8 @@ import pickle
 import pandas as pd
 import os
 from typing import List,Any
+
+
 
 def main():
     print("\n\nTesting plots")
@@ -22,17 +31,17 @@ def main():
         token_data = pickle.load(pickle_file)
 
 
-    print("Time in token_data")
+    #print("Time in token_data")
     #print(*token_data.index.tolist(), sep="\n")
     
-    print(token_data.describe())
+    #print(token_data.describe())
     
-    print("\n\n")
+    #print("\n\n")
     #print(*token_data['close'].tolist(), sep="\n")
-    print(token_data.head(3))
+    #print(token_data.head(3))
 
-    print("Time in commits")
-    print(*[c.rounded_commit_time_5min for c in project_commits], sep="\n")
+    #print("Time in commits")
+    #print(*[c.rounded_commit_time_5min for c in project_commits], sep="\n")
 
     plot_daily_count(project_commits)
     #show_commmit_plot(token_data, project_commits)
@@ -51,14 +60,8 @@ def main():
     
     
 def plot_daily_count(commits: List[Any]):
-       daily_count = calculate_daily_count(commits)
-       
-       date_array = list(daily_count.keys())
-       count_array = list(daily_count.values())
-       #print(date_array)
-       #print(count_array)
-       
-       plt.plot(date_array, count_array)
+       sorted_days, sorted_commit_counts = calculate_daily_count(commits)
+       plt.plot(sorted_days, sorted_commit_counts)
     
 def show_commmit_plot(token_data: pd.DataFrame, commits: List[Any]):
     p = token_data.plot(y='close', use_index=True)
