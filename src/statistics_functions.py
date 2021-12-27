@@ -9,30 +9,62 @@ from matplotlib import pyplot as plt
 import pickle
 import pandas as pd
 import os
-from typing import Counter, List,Any
-
-
- 
-
-
-
-
-# functions for statistics
+from typing import List, Any
+from setup import load_data
 
 def main():
     print("\n\nTesting statistics functions")
-    # load pickle files
-    directory = os.getcwd() + "/"
-    
-    with open(directory + 'one_week_project_commits_pickle' , 'rb') as pickle_file:
-        project_commits = pickle.load(pickle_file)
-    with open(directory + 'one_week_token_data_pickle' , 'rb') as pickle_file:
-        token_data = pickle.load(pickle_file)
 
+    project_repos = [
+        'https://github.com/Loopring/loopring-web-v2',
+        'https://github.com/Loopring/loopring_sdk',
+        'https://github.com/Loopring/dexwebapp',
+        'https://github.com/Loopring/whitepaper'
+    ]
+    
+    token_data, _ = load_data(
+        'LRC',
+        project_repos,
+        start_date=datetime(2021, 12, 10, 12, 0, 0),
+        end_date = datetime(2021, 12, 17, 12, 0, 0),
+        pickle_data_interval='week',
+        read_from_pickle=True,
+        write_to_pickle=True
+    )
+
+    distinct_days_closing_price = calculate_day_token_close(token_data)
+    #print(distinct_days_closing_price)
     print("The end")
     
 def calculate_day_token_close(token_data: pd.DataFrame):
-    pass
+    """
+    Gets the closing price for each unique day, returns list of tuples.
+    Example: 
+    [
+        ('2021-12-10', 2.3026),
+        ('2021-12-11', 2.4234),
+        ('2021-12-12', 2.4562),
+        ('2021-12-13', 2.0972)
+    ]
+    """
+
+    # unpack all (datetime, closing_price) from dataframe into a list of tuples
+    all_closing_prices = [(str(r['datetime']).split(' ')[0], r['close']) for _, r in token_data.iterrows()]
+    
+    # create a dictionary of 'seen' days
+    days_seen = defaultdict(str)
+    days_seen[all_closing_prices[0][0]] = 'seen'
+
+    # iterate over each day, if you see a new one get the price from the previous day
+    distinct_days_closing_price = []
+    for index, day_and_price in enumerate(all_closing_prices):
+        day = day_and_price[0]
+        if day not in days_seen:
+            distinct_days_closing_price.append(all_closing_prices[index-1])
+            days_seen[day] = 'seen'
+    
+    return distinct_days_closing_price
+            
 
     
 def calculate_daily_commit_count(commits: List[Any]):
