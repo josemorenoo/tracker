@@ -47,6 +47,7 @@ def load_data(
             with open(price_pickle, 'wb') as pp:
                 pickle.dump(token_data, pp)
 
+    token_data['time'] = token_data.index
     return token_data, project_commits
 
 

@@ -1,6 +1,6 @@
-# functions useful for plotting data
-from dataclasses import dataclass
-import dataclasses
+from collections import defaultdict
+from datetime import date, timedelta, datetime
+
 import matplotlib  
 # needed on mac otherwise crashes
 matplotlib.use('Qt5Agg')
@@ -11,10 +11,9 @@ import pandas as pd
 import os
 from typing import Counter, List,Any
 
-from collections import defaultdict
+
  
-# time date things
-from datetime import date, timedelta, datetime
+
 
 
 
@@ -32,6 +31,9 @@ def main():
 
     print("The end")
     
+def calculate_day_token_close(token_data: pd.DataFrame):
+    pass
+
     
 def calculate_daily_commit_count(commits: List[Any]):
     """
