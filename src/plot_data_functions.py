@@ -11,7 +11,7 @@ import matplotlib
 matplotlib.use('Qt5Agg')
 from matplotlib import pyplot as plt
 
-from statistics_functions import *
+from statistics_functions import calculate_daily_commit_count
 import pickle
 import pandas as pd
 import os
@@ -62,6 +62,8 @@ def main():
     
 def generate_price_plot(token_data: pd.DataFrame):
     return token_data.plot(y='close', use_index=True)
+
+    
 def show_commmit_plot(token_data: pd.DataFrame, commits: List[Any]):
     price_plot = generate_price_plot(token_data)
     for commit in commits:
@@ -74,32 +76,9 @@ def plot_daily_count(token_data: pd.DataFrame, commits: List[Any], plot_price=Fa
     
     # first, calculate the daily price
     fig, ax1 = plt.subplots()
-    sorted_days, sorted_commit_counts = calculate_daily_count(commits)
+    sorted_days, sorted_commit_counts = calculate_daily_commit_count(commits)
     
-    ax1.plot(sorted_days, sorted_commit_counts)
-    
-    # if we want, we can plot the price of the token with the daily count
-    #print(token_data['close'])
-    time_stamp_token_data = token_data.index.tolist()
-    datetime_token_data = []
-    for ts in time_stamp_token_data:
-        #print("ts: ", ts, "type: ", type(ts))
-        dt = pd.Timestamp.to_pydatetime(ts)
-        #print("dt: ", dt, "type: ", type(dt))
-        datetime_token_data.append(dt)
-    print(type(datetime_token_data[0]))
-    #print(type(sorted_days))
-    #print(sorted_days)
-    
-    #ax2.plot(datetime_token_data, token_data['close'].tolist)
-    #print(token_data['close'].tolist())
-    #print(token_data.index.tolist())
-    #if plot_price:
-    #    ax2 = ax1.twinx()
-    #    ax2.plot(sorted_days, token_data['close'].tolist)
-        
-    
-
+    ax1.plot(sorted_days, sorted_commit_counts)  
 
 
 if __name__ == "__main__":

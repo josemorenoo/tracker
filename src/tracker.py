@@ -1,15 +1,68 @@
 from collections import defaultdict
 from datetime import datetime
 import pandas as pd
+import pickle
+import os
 from typing import Any, Optional, List
 
 from CryptoOracle import CryptoOracle
+import plot_data_functions as hairyPlotter
 from RepoInfo import RepoInfo
 
-import os
-import pickle
 
-from plot_data_functions import *
+def load_data(
+    token: str,
+    project_repos: List[str], 
+    start_date: datetime,
+    end_date: datetime,
+    pickle_data_interval: str,
+    read_from_pickle: bool = False,
+    write_to_pickle: bool = True
+):
+    """
+    write_to_pickle only matters when you're loading data from the internet.
+    If you set read_from_pickle, no data is loaded from the internet, so write_to_pickle doesn't matter
+    """
+    pickle_basepath = os.getcwd() + f"/data/{token}/" + f"{pickle_data_interval}"
+    commits_pickle = pickle_basepath + '_commits.pickle'
+    price_pickle = pickle_basepath + '_price.pickle'
+
+    if read_from_pickle:
+        with open(commits_pickle, 'rb') as cp:
+            project_commits = pickle.load(cp)
+        with open(price_pickle, 'rb') as pp:
+            token_data = pickle.load(pp)
+    else:
+        repos_commit_dictionary = get_commits_from_all_repos(project_repos, start_date, end_date)
+        project_commits: List[Any] = gather_project_commits(repos_commit_dictionary)
+        
+        # get the crypto token price data as a dataframe
+        crypto_oracle = CryptoOracle(token)
+        token_data: pd.DataFrame = crypto_oracle.get_token_price_df(start_date, end_date)
+        
+        # add a column with datetime format
+        token_data = get_datetime_column(token_data)
+
+        # write to pickle files
+        if write_to_pickle:
+            with open(commits_pickle, 'wb') as cp:
+                pickle.dump(project_commits, cp)
+            with open(price_pickle, 'wb') as pp:
+                pickle.dump(token_data, pp)
+
+
+        
+    return token_data, project_commits
+
+def get_datetime_column(token_data: pd.DataFrame):
+    # toke data comes in Timestamp type, but commits come in datetime, so we'll make a column
+    # called datetime in token_data so that they have equivalent types.
+
+    # make list of datetime objects    
+    datetime_token_data = [pd.Timestamp.to_pydatetime(ts) for ts in token_data.index.tolist() ]
+    token_data['datetime'] = datetime_token_data
+    return token_data
+    
 
 def get_commits_from_all_repos(
     project_repos: List[str],
@@ -47,35 +100,25 @@ def gather_project_commits(repos_commit_dictionary):
 if __name__ == "__main__":
     # setup
     token="LRC"
-    startDate = datetime(2021, 12, 20, 12, 00, 00)
-    endDate = datetime(2021, 12, 27, 13, 00, 00)
+    start_date = datetime(2021, 12, 20, 12, 00, 00)
+    end_date = datetime(2021, 12, 27, 13, 00, 00)
 
     project_repos = [
         'https://github.com/Loopring/loopring-web-v2',
         'https://github.com/Loopring/loopring_sdk',
-        #'https://github.com/Loopring/protocols', # doesn't work on windows
         'https://github.com/Loopring/dexwebapp',
         'https://github.com/Loopring/whitepaper'
     ]
 
-    # load every single commit
-    #repos_commit_dictionary = get_commits_from_all_repos(project_repos)
+    token_data, project_commits = load_data(
+        token,
+        project_repos,
+        start_date,
+        end_date,
+        pickle_data_interval = 'week',
+        read_from_pickle = False,
+        write_to_pickle = False
+    )
 
-    # only load commits within time range
-    repos_commit_dictionary = get_commits_from_all_repos(project_repos, startDate, endDate)
-
-    project_commits: List[Any] = gather_project_commits(repos_commit_dictionary)
-
-    # get the crypto token price data as a dataframe
-    crypto_oracle = CryptoOracle(token)
-    token_data: pd.DataFrame = crypto_oracle.get_token_price_df(startDate, endDate)
-    
-    # load pickle files
-    #directory = os.getcwd() + "/"
-    #with open(directory + 'one_week_project_commits_pickle', 'wb') as f:
-    #    pickle.dump(project_commits, f)
-        
-    #with open(directory + 'one_week_token_data_pickle', 'wb') as f:
-    #    pickle.dump(token_data, f)
-        
-    #print("the end. \n\n")
+    # it's levioSA
+    hairyPlotter.show_commmit_plot(token_data, project_commits)
