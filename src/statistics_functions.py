@@ -71,7 +71,7 @@ def calculate_daily_count(commits: List[Any]):
     # unpack list of tuples into two separate lists
     # so [(1, a), (2, b)] becomes [1, 2] and [a, b]
     sorted_days, sorted_values = zip(*daily_count_sorted_list)
-    return sorted_days, sorted_values
+    return list(sorted_days), sorted_values
 
 
         
