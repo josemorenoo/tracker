@@ -35,21 +35,32 @@ def load_data(
     else:
         repos_commit_dictionary = get_commits_from_all_repos(project_repos, start_date, end_date)
         project_commits: List[Any] = gather_project_commits(repos_commit_dictionary)
-
+        
         # get the crypto token price data as a dataframe
         crypto_oracle = CryptoOracle(token)
         token_data: pd.DataFrame = crypto_oracle.get_token_price_df(start_date, end_date)
         
+        # add a column with datetime format
+        token_data = get_datetime_column(token_data)
+
         # write to pickle files
         if write_to_pickle:
             with open(commits_pickle, 'wb') as cp:
                 pickle.dump(project_commits, cp)
             with open(price_pickle, 'wb') as pp:
                 pickle.dump(token_data, pp)
-
-    token_data['time'] = token_data.index
+        
     return token_data, project_commits
 
+def get_datetime_column(token_data: pd.DataFrame):
+    # toke data comes in Timestamp type, but commits come in datetime, so we'll make a column
+    # called datetime in token_data so that they have equivalent types.
+
+    # make list of datetime objects    
+    datetime_token_data = [pd.Timestamp.to_pydatetime(ts) for ts in token_data.index.tolist() ]
+    token_data['datetime'] = datetime_token_data
+    return token_data
+    
 
 def get_commits_from_all_repos(
     project_repos: List[str],

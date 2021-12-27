@@ -11,12 +11,12 @@ import matplotlib
 matplotlib.use('Qt5Agg')
 from matplotlib import pyplot as plt
 
-from statistics_functions import *
+from statistics_functions import calculate_daily_commit_count
 import pickle
 import pandas as pd
 import os
 from typing import List,Any
-
+from datetime import datetime
 
 
 def main():
@@ -43,8 +43,10 @@ def main():
     #print("Time in commits")
     #print(*[c.rounded_commit_time_5min for c in project_commits], sep="\n")
 
-    plot_daily_count(project_commits)
+    plot_daily_count(token_data, project_commits, plot_price=True)
     #show_commmit_plot(token_data, project_commits)
+
+
 
 
     ############ end of code #########
@@ -58,16 +60,25 @@ def main():
 #    num_bins = 100
 #    plt.hist()
     
-    
-def plot_daily_count(commits: List[Any]):
-       sorted_days, sorted_commit_counts = calculate_daily_commit_count(commits)
-       plt.plot(sorted_days, sorted_commit_counts)
+def generate_price_plot(token_data: pd.DataFrame):
+    return token_data.plot(y='close', use_index=True)
+
     
 def show_commmit_plot(token_data: pd.DataFrame, commits: List[Any]):
-    p = token_data.plot(y='close', use_index=True)
+    price_plot = generate_price_plot(token_data)
     for commit in commits:
-        p.axvline(x=commit.rounded_commit_time_5min, color='g', linestyle='--', linewidth=0.1)
+        price_plot.axvline(x=commit.rounded_commit_time_5min, color='g', linestyle='--', linewidth=0.1)
     plt.show()
+
+    
+def plot_daily_count(token_data: pd.DataFrame, commits: List[Any], plot_price=False):
+    # plot the daily count of commits over time
+    
+    # first, calculate the daily price
+    fig, ax1 = plt.subplots()
+    sorted_days, sorted_commit_counts = calculate_daily_commit_count(commits)
+    
+    ax1.plot(sorted_days, sorted_commit_counts)  
 
 
 if __name__ == "__main__":
