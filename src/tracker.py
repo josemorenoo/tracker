@@ -1,15 +1,14 @@
 from collections import defaultdict
 from datetime import datetime
 import pandas as pd
+import pickle
+import os
 from typing import Any, Optional, List
 
 from CryptoOracle import CryptoOracle
+import plot_data_functions as hairyPlotter
 from RepoInfo import RepoInfo
 
-import os
-import pickle
-
-from plot_data_functions import *
 
 def load_data(
     token: str,
@@ -97,12 +96,15 @@ if __name__ == "__main__":
         'https://github.com/Loopring/whitepaper'
     ]
 
-    load_data(
+    token_data, project_commits = load_data(
         token,
         project_repos,
         start_date,
         end_date,
         pickle_data_interval = 'week',
-        read_from_pickle = True,
+        read_from_pickle = False,
         write_to_pickle = False
     )
+
+    # it's levioSA
+    hairyPlotter.show_commmit_plot(token_data, project_commits)
