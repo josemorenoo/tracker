@@ -60,7 +60,7 @@ def main():
     
     
 def plot_daily_count(commits: List[Any]):
-       sorted_days, sorted_commit_counts = calculate_daily_count(commits)
+       sorted_days, sorted_commit_counts = calculate_daily_commit_count(commits)
        plt.plot(sorted_days, sorted_commit_counts)
     
 def show_commmit_plot(token_data: pd.DataFrame, commits: List[Any]):

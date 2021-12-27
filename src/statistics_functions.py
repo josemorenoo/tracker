@@ -33,8 +33,10 @@ def main():
     print("The end")
     
     
-def calculate_daily_count(commits: List[Any]):
-    # calculates the number of commits per day
+def calculate_daily_commit_count(commits: List[Any]):
+    """
+    Returns a list of sorted days, and a list of corresponding commits per day
+    """
     
     # make list of days
     daily_count = defaultdict(int)
