@@ -11,11 +11,12 @@ import matplotlib
 matplotlib.use('Qt5Agg')
 from matplotlib import pyplot as plt
 
-from statistics_functions import calculate_daily_commit_count
 import pickle
 import pandas as pd
 import os
-from typing import List,Any
+from typing import List, Any
+
+import Stats
 
 
 def main():
@@ -75,7 +76,7 @@ def plot_daily_count(token_data: pd.DataFrame, commits: List[Any], plot_price=Fa
     
     # first, calculate the daily price
     fig, ax1 = plt.subplots()
-    sorted_days, sorted_commit_counts = calculate_daily_commit_count(commits)
+    sorted_days, sorted_commit_counts = Stats.calculate_daily_commit_count(commits)
     
     ax1.plot(sorted_days, sorted_commit_counts)  
 
