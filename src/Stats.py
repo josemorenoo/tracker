@@ -9,6 +9,11 @@ from matplotlib import pyplot as plt
 import pandas as pd
 from typing import List, Any
 from setup import load_data
+import sys
+
+from timeUtil import datetime_to_ms_timestamp, round_single_commit_by_time
+
+GRANULARITY_MIN = {"5min": 5, "15min": 15, "1hour": 60, "1day": 24*60, "1week": 24*60*7}
 
 class Stats:
 
@@ -40,9 +45,38 @@ class Stats:
                 days_seen[day] = 'seen'
         
         return distinct_days_closing_price
+
+
+    def calculate_commit_count_in_range(commits: List[Any], granularity: str):
+        if granularity not in GRANULARITY_MIN.keys():
+            print("eedeeot")
+            sys.exit("provided {granularity} not in {GRANULARITY_MIN}")
+
+        # keeps track of how many commits show up during each x min interval (bucket)
+        #commit_count_dict = defaultdict(int)
+        
+
+        first_commit_ts = commits[0].ms_timestamp
+        interval_step = GRANULARITY_MIN[granularity] * 60000
+        end_commits_ts = commits[-1].ms_timestamp
+
+        ts_bucket_list = range(first_commit_ts, end_commits_ts, interval_step)
+        bucket_counts_list = []
+
+        for bucket_interval_start in ts_bucket_list:
+            bucket_count = 0
+            for commit in commits:
+                commit_ts = commit.ms_timestamp
+                if commit_ts < bucket_interval_start + interval_step:
+                    bucket_count += 1
+                else:
+                    bucket_counts_list.append(bucket_count)
+                    break
+
+        return ts_bucket_list, bucket_counts_list
                 
 
-        
+
     def calculate_daily_commit_count(commits: List[Any]):
         """
         Returns a list of sorted days, and a list of corresponding commits per day
@@ -83,7 +117,7 @@ class Stats:
         # unpack list of tuples into two separate lists
         # so [(1, a), (2, b)] becomes [1, 2] and [a, b]
         sorted_days, sorted_values = zip(*daily_count_sorted_list)
-        return list(sorted_days), sorted_values
+        return list(sorted_days), list(sorted_values)
 
 
         

@@ -1,13 +1,14 @@
 from datetime import datetime
 from setup import load_data
-import plot_data_functions as hairyPlotter
+from HairyPlotter import HairyPlotter
 
 
 if __name__ == "__main__":
     # setup
+    read_from_pickle = False
     token="LRC"
-    start_date = datetime(2021, 12, 20, 12, 00, 00)
-    end_date = datetime(2021, 12, 27, 13, 00, 00)
+    start_date = datetime(2021, 12, 1, 12, 00, 00)
+    end_date = datetime(2021, 12, 2, 12, 00, 00)
 
     project_repos = [
         'https://github.com/Loopring/loopring-web-v2',
@@ -21,10 +22,11 @@ if __name__ == "__main__":
         project_repos,
         start_date,
         end_date,
-        pickle_data_interval = 'week',
-        read_from_pickle = False,
-        write_to_pickle = False
+        pickle_data_interval = 'day',
+        read_from_pickle = read_from_pickle,
+        write_to_pickle = not read_from_pickle
     )
 
     # it's levioSA
-    hairyPlotter.show_commmit_plot(token_data, project_commits)
+    hp = HairyPlotter()
+    hp.show_commmit_plot(token_data, project_commits)

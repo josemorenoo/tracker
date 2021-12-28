@@ -7,6 +7,7 @@ from typing import Any, List, Optional
 
 from CryptoOracle import CryptoOracle
 from RepoInfo import RepoInfo
+from timeUtil import datetime_to_ms_timestamp
 
 
 def load_data(
@@ -40,7 +41,7 @@ def load_data(
         token_data: pd.DataFrame = crypto_oracle.get_token_price_df(start_date, end_date)
         
         # add a column with datetime format
-        token_data = create_datetime_column(token_data)
+        token_data = create_datetime_and_ts_column(token_data)
 
         # write to pickle files
         if write_to_pickle:
@@ -51,13 +52,14 @@ def load_data(
         
     return token_data, project_commits
 
-def create_datetime_column(token_data: pd.DataFrame):
+def create_datetime_and_ts_column(token_data: pd.DataFrame):
     # toke data comes in Timestamp type, but commits come in datetime, so we'll make a column
     # called datetime in token_data so that they have equivalent types.
 
     # make list of datetime objects    
     datetime_token_data = [pd.Timestamp.to_pydatetime(ts) for ts in token_data.index.tolist() ]
     token_data['datetime'] = datetime_token_data
+    token_data['ms_timestamp'] = [datetime_to_ms_timestamp(dt) for dt in token_data['datetime'].to_list()]
     return token_data
     
 

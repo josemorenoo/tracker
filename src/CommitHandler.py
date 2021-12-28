@@ -2,6 +2,8 @@ from dataclasses import dataclass
 from datetime import datetime
 from typing import Any, List
 
+from timeUtil import datetime_to_ms_timestamp, round_single_commit_by_time
+
 @dataclass
 class Commit:
     """
@@ -18,6 +20,7 @@ class Commit:
     author_date: datetime
     author_timezone: int
     committer_date: datetime
+    ms_timestamp: int
     committer_timezone: int
     in_main_branch: bool
     merge: bool
@@ -34,15 +37,6 @@ class Commit:
 
 class CommitHandler:
 
-    def _round_single_commit_by_time(self, commit, interval = 5):
-        """
-        Takes a commit time and rounds it to the nearest 5 minutes so we can align it with the 5min crypto prices
-        """
-        dt = commit.committer_date
-        nearest_5min = int(interval * round(dt.minute / interval))
-        rounded_commit_time = datetime(dt.year, dt.month, dt.day, dt.hour, nearest_5min if nearest_5min != 60 else 0)
-        return rounded_commit_time
-
     def create_commit(self, commit):
         '''
         Takes in a raw pydriller commit object and extracts the relevant fields into a new
@@ -56,6 +50,7 @@ class CommitHandler:
             author_date = commit.author_date,
             author_timezone = commit.author_timezone,
             committer_date = commit.committer_date,
+            ms_timestamp = datetime_to_ms_timestamp(commit.committer_date),
             committer_timezone = commit.committer_timezone,
             in_main_branch = commit.in_main_branch,
             merge = commit.merge,
@@ -68,7 +63,7 @@ class CommitHandler:
             dmm_unit_size = commit.dmm_unit_size,
             dmm_unit_complexity = commit.dmm_unit_complexity,
             dmm_unit_interfacing = commit.dmm_unit_interfacing,
-            rounded_commit_time_5min = self._round_single_commit_by_time(commit, interval = 5)
+            rounded_commit_time_5min = round_single_commit_by_time(commit.committer_date, granularity_min = 5)
         )
 
         
