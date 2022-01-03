@@ -1,3 +1,5 @@
+dash
+matplotlib
 tqdm
 pydriller
 Historic-Crypto
