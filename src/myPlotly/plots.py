@@ -10,39 +10,13 @@ from Stats import Stats
 def create_price_fig(token, token_data_df):
     """Used by most of the plots below, just a utility function to create the token price fig"""
     fig = px.line(token_data_df, x='ms_timestamp', y="close")
-    fig.layout.update(yaxis = go.YAxis(title=f"{token} price in USD", side="left"))
+    fig.layout.update(yaxis = go.layout.YAxis(title=f"{token} price in USD", side="left"))
+    fig.update_layout(yaxis_tickformat = '$')
     return fig
 
-def create_commits_plot(token: str, token_data_df, project_commits_list):
+def create_commits_plot(token: str, token_data_df, project_commits_list, commits_df):
     # add price plot
     fig = create_price_fig(token, token_data_df)
-
-    # place raw commit fields of interest into a dataframe 
-    # this is so that we can create a Hover Text item 
-    msg_list = []
-    author_list = []
-    ms_timestamp_list = []
-    in_main_branch_list = []
-    files_changed_list = []
-    deletions_list = []
-    insertions_list = []
-    for commit in project_commits_list:
-        msg_list.append(commit.msg)
-        author_list.append(commit.author.name)
-        ms_timestamp_list.append(commit.ms_timestamp)
-        in_main_branch_list.append(commit.in_main_branch)
-        files_changed_list.append(commit.files)
-        deletions_list.append(commit.deletions)
-        insertions_list.append(commit.insertions)
-    commits_df = pd.DataFrame({
-        'msg': msg_list,
-        'author': author_list,
-        'ms_timestamp': ms_timestamp_list,
-        'in_main_branch': in_main_branch_list,
-        'files_changed': files_changed_list,
-        'deletions': deletions_list,
-        'insertions': insertions_list
-    })
 
     # Add each commit to the plot, creating a tooltip that you can hover over which displays info about the commit
     # to do this, we have to use a hovertemplate, which is kind of nasty.
@@ -53,12 +27,12 @@ def create_commits_plot(token: str, token_data_df, project_commits_list):
         return wrapped_msg.replace('\n', '<br>')
             
     # add each commit as a point on a scatter plot
-    # y-axis for now will be lines of code inserted per commit
+    # y-axis for now will be number of files modified per commit
     fig.add_trace(go.Scatter(
         name = "commits",
         mode = "markers",
         x = commits_df['ms_timestamp'],
-        y = commits_df['insertions'],
+        y = commits_df['files_changed'],
         hovertemplate = 
         #format_commit_msg(wrapped_commit_lines) + 
         '<br><b>Msg:</b> <%{customdata[0]}<br>'+
@@ -72,7 +46,7 @@ def create_commits_plot(token: str, token_data_df, project_commits_list):
         customdata = [[format_commit_msg(c.msg), c.author.name, c.files, c.insertions, c.deletions, c.in_main_branch, c.ms_timestamp] for c in project_commits_list],
         yaxis='y2'
     ))
-    fig.layout.update(yaxis2 = go.YAxis(title="Lines Inserted", overlaying='y', side='right', type='log'))
+    fig.layout.update(yaxis2 = go.layout.YAxis(title="# Files Modified Per Commit", overlaying='y', side='right', type='linear'))
     fig.update_layout(hoverlabel_align='left')
     return fig
 
@@ -96,6 +70,6 @@ def create_aggregate_commit_count_plot(token: str, token_data_df, project_commit
         yaxis='y2'))
 
     # put the secondary y-axis on the right
-    fig.layout.update(yaxis2 = go.YAxis(title="Total # Commits", overlaying='y', side='right'))
+    fig.layout.update(yaxis2 = go.layout.YAxis(title="Total # Commits", overlaying='y', side='right'))
 
     return fig

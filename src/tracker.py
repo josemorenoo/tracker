@@ -23,7 +23,7 @@ if __name__ == "__main__":
         'https://github.com/Loopring/whitepaper'
     ]
 
-    token_data_df, project_commits_list = load_data(
+    token_data_df, project_commits_list, project_commits_df = load_data(
         token,
         project_repos,
         start_date,
@@ -36,7 +36,7 @@ if __name__ == "__main__":
 
     # generate plotly figs
     #agg_commits_fig = create_aggregate_commit_count_plot(token, token_data_df, project_commits_list)
-    commits_fig = create_commits_plot(token, token_data_df, project_commits_list)
+    commits_fig = create_commits_plot(token, token_data_df, project_commits_list, project_commits_df)
     
     # plot them
     dash_app = create_dash()

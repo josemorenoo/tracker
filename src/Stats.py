@@ -131,7 +131,7 @@ if __name__ == "__main__":
         'https://github.com/Loopring/whitepaper'
     ]
     
-    token_data, _ = load_data(
+    token_data, _, _ = load_data(
         'LRC',
         project_repos,
         start_date=datetime(2021, 12, 10, 12, 0, 0),

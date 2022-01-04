@@ -29,12 +29,12 @@ def load_data(
 
     if read_from_pickle:
         with open(commits_pickle, 'rb') as cp:
-            project_commits = pickle.load(cp)
+            project_commits_list = pickle.load(cp)
         with open(price_pickle, 'rb') as pp:
             token_data = pickle.load(pp)
     else:
         repos_commit_dictionary = get_commits_from_all_repos(project_repos, start_date, end_date)
-        project_commits: List[Any] = gather_project_commits(repos_commit_dictionary)
+        project_commits_list: List[Any] = gather_project_commits(repos_commit_dictionary)
         
         # get the crypto token price data as a dataframe
         crypto_oracle = CryptoOracle(token)
@@ -46,11 +46,13 @@ def load_data(
         # write to pickle files
         if write_to_pickle:
             with open(commits_pickle, 'wb') as cp:
-                pickle.dump(project_commits, cp)
+                pickle.dump(project_commits_list, cp)
             with open(price_pickle, 'wb') as pp:
                 pickle.dump(token_data, pp)
+
+    project_commits_df = create_commits_df(project_commits_list)
         
-    return token_data, project_commits
+    return token_data, project_commits_list, project_commits_df
 
 def create_datetime_and_ts_column(token_data: pd.DataFrame):
     # toke data comes in Timestamp type, but commits come in datetime, so we'll make a column
@@ -61,6 +63,38 @@ def create_datetime_and_ts_column(token_data: pd.DataFrame):
     token_data['datetime'] = datetime_token_data
     token_data['ms_timestamp'] = [datetime_to_ms_timestamp(dt) for dt in token_data['datetime'].to_list()]
     return token_data
+
+def create_commits_df(project_commits_list: List[Any]):
+    """
+    Takes fields of interest in each Commit object and stores them all as a dataframe instead of a list of objects.
+    This is mainly for plotting since plotly hovertemplate is easier to work with using a dataframe
+    """
+    msg_list = []
+    author_list = []
+    ms_timestamp_list = []
+    in_main_branch_list = []
+    files_changed_list = []
+    deletions_list = []
+    insertions_list = []
+    for commit in project_commits_list:
+        msg_list.append(commit.msg)
+        author_list.append(commit.author.name)
+        ms_timestamp_list.append(commit.ms_timestamp)
+        in_main_branch_list.append(commit.in_main_branch)
+        files_changed_list.append(commit.files)
+        deletions_list.append(commit.deletions)
+        insertions_list.append(commit.insertions)
+    commits_df = pd.DataFrame({
+        'msg': msg_list,
+        'author': author_list,
+        'ms_timestamp': ms_timestamp_list,
+        'in_main_branch': in_main_branch_list,
+        'files_changed': files_changed_list,
+        'deletions': deletions_list,
+        'insertions': insertions_list
+    })
+    return commits_df
+
     
 
 def get_commits_from_all_repos(
