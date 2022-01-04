@@ -3,7 +3,7 @@ from datetime import timedelta, datetime
 
 import matplotlib  
 # needed on mac otherwise crashes
-matplotlib.use('Qt5Agg')
+#matplotlib.use('Qt5Agg')
 from matplotlib import pyplot as plt
 
 import pandas as pd
@@ -52,27 +52,29 @@ class Stats:
             print("eedeeot")
             sys.exit("provided {granularity} not in {GRANULARITY_MIN}")
 
-        # keeps track of how many commits show up during each x min interval (bucket)
-        #commit_count_dict = defaultdict(int)
-        
+        commits = sorted(commits, key=lambda c: c.ms_timestamp)
 
-        first_commit_ts = commits[0].ms_timestamp
-        interval_step = GRANULARITY_MIN[granularity] * 60000
-        end_commits_ts = commits[-1].ms_timestamp
+        first_commit_ts = int(commits[0].ms_timestamp)
+        ms_interval_step = int(GRANULARITY_MIN[granularity] * 60000) # convert to milliseconds
+        end_commits_ts = int(commits[-1].ms_timestamp)
+        print(f"first commit ts: {first_commit_ts}\tend commit ts:{end_commits_ts}")
 
-        ts_bucket_list = range(first_commit_ts, end_commits_ts, interval_step)
+        ts_bucket_list = list(range(first_commit_ts, end_commits_ts, ms_interval_step))
+        ts_bucket_list.pop() # remove the last bucket so that we get the same size
+
         bucket_counts_list = []
-
         for bucket_interval_start in ts_bucket_list:
             bucket_count = 0
             for commit in commits:
                 commit_ts = commit.ms_timestamp
-                if commit_ts < bucket_interval_start + interval_step:
+                if commit_ts < bucket_interval_start + ms_interval_step:
                     bucket_count += 1
                 else:
                     bucket_counts_list.append(bucket_count)
                     break
 
+        if (len(ts_bucket_list) != len(bucket_counts_list)):
+            sys.exit(f"number of buckets {len(ts_bucket_list)} does not equal counts of each bucket: {len(bucket_counts_list)}")
         return ts_bucket_list, bucket_counts_list
                 
 
