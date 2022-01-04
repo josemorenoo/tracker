@@ -12,9 +12,9 @@ if __name__ == "__main__":
     # setup
     read_from_pickle = True
     token="LRC"
-    start_date = datetime(2021, 11, 1, 12, 00, 00)
-    end_date = datetime(2021, 12, 1, 12, 00, 00)
-    timeframe = "month"
+    start_date = datetime(2021, 1, 1, 12, 00, 00)
+    end_date = datetime(2022, 1, 1, 12, 00, 00)
+    timeframe = "year"
 
     project_repos = [
         'https://github.com/Loopring/loopring-web-v2',
@@ -35,12 +35,13 @@ if __name__ == "__main__":
 
 
     # generate plotly figs
-    #agg_commits_fig = create_aggregate_commit_count_plot(token, token_data_df, project_commits_list)
+    agg_commits_fig = create_aggregate_commit_count_plot(token, token_data_df, project_commits_list)
     commits_fig = create_commits_plot(token, token_data_df, project_commits_list, project_commits_df)
+    figures = [agg_commits_fig, commits_fig]
     
     # plot them
     dash_app = create_dash()
-    add_layout(dash_app, commits_fig)
+    add_layout(dash_app, figures)
     run_dash(dash_app)
     
 
