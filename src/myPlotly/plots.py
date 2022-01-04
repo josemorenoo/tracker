@@ -55,6 +55,7 @@ def create_commits_plot(token: str, token_data_df, project_commits_list):
     # add each commit as a point on a scatter plot
     # y-axis for now will be lines of code inserted per commit
     fig.add_trace(go.Scatter(
+        name = "commits",
         mode = "markers",
         x = commits_df['ms_timestamp'],
         y = commits_df['insertions'],
