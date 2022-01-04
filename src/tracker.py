@@ -3,8 +3,8 @@
 from datetime import datetime
 
 from setup import load_data
-from myPlotly.plotly_util import *
-from myPlotly.aggregate_commit_count import create_aggregate_commit_count_plot
+from myPlotly.dash_util import *
+from myPlotly.plots import *
 #from HairyPlotter import HairyPlotter
 
 
