@@ -15,7 +15,7 @@ def create_commits_plot(token: str, token_data_df, project_commits_list, commits
     # y-axis for now will be number of files modified per commit
     customdata = create_commit_custom_data_for_hover_template(project_commits_list)
     fig.add_trace(go.Scatter(
-        name = "commits",
+        name = "Commits",
         mode = "markers",
         x = commits_df['ms_timestamp'],
         y = commits_df['files_changed'],
@@ -39,7 +39,7 @@ def create_aggregate_commit_count_plot(token: str, token_data_df, project_commit
 
     # add number of commits for each 5min window
     fig.add_trace(go.Scatter(
-        name="commits",
+        name="Aggregate # of Commits",
         mode="markers",
         x=commits_df["ms_timestamp"],
         y=commits_df["commits_per_5min_range"],
