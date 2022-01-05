@@ -35,9 +35,10 @@ if __name__ == "__main__":
 
 
     # generate plotly figs
-    agg_commits_fig = create_aggregate_commit_count_plot(token, token_data_df, project_commits_list)
     commits_fig = create_commits_plot(token, token_data_df, project_commits_list, project_commits_df)
-    figures = [agg_commits_fig, commits_fig]
+    agg_commits_fig = create_aggregate_commit_count_plot(token, token_data_df, project_commits_list)
+    agg_loc_fig = create_lines_of_code_plot(token, token_data_df, project_commits_list)
+    figures = [commits_fig, agg_loc_fig, agg_commits_fig]
     
     # plot them
     dash_app = create_dash()

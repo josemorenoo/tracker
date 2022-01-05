@@ -23,7 +23,7 @@ def create_commits_plot(token: str, token_data_df, project_commits_list, commits
         customdata = customdata,
         yaxis='y2'
     ))
-    fig.layout.update(yaxis2 = go.layout.YAxis(title="# Files Modified Per Commit", overlaying='y', side='right', type='linear'))
+    fig.layout.update(yaxis2 = go.layout.YAxis(title="# Files Modified Per Commit", overlaying='y', side='right', type='log'))
     fig.update_layout(hoverlabel_align='left')
     return fig
 
@@ -50,6 +50,21 @@ def create_aggregate_commit_count_plot(token: str, token_data_df, project_commit
     fig.layout.update(yaxis2 = go.layout.YAxis(title="Total # Commits", overlaying='y', side='right'))
     return fig
 
+def create_lines_of_code_plot(token: str, token_data_df, project_commits_list):
+    fig = create_price_fig(token, token_data_df)
+
+    lines_of_code, commit_ms_timestamp = Stats.calculate_lines_of_code_count(project_commits_list)
+    fig.add_trace(go.Scatter(
+        name = "Lines of Code",
+        mode = "lines+markers",
+        x = commit_ms_timestamp,
+        y = lines_of_code,
+        hovertemplate = '<br><b>Lines of Code: </b> %{y}<br>'+'<extra></extra>',
+        yaxis='y2'
+    ))
+    fig.layout.update(yaxis2 = go.layout.YAxis(title=f"Lines of Code", overlaying='y', side='right', type='log'))
+    fig.update_layout(hoverlabel_align='left')
+    return fig
 
 
 
@@ -62,7 +77,7 @@ def create_price_fig(token, token_data_df):
         mode="lines",
         x=token_data_df["ms_timestamp"],
         y=token_data_df["close"],
-        hovertemplate='<br><b>Price:</b> %{y}<br>'+'<extra></extra>'
+        hovertemplate='<br><b>Price: </b> %{y}<br>'+'<extra></extra>'
     ))
     fig.layout.update(yaxis = go.layout.YAxis(title=f"{token} price in USD", side="left"))
     fig.update_layout(yaxis_tickformat = '$')
@@ -82,7 +97,8 @@ def create_commit_hover_template(customdata):
 def create_commit_custom_data_for_hover_template(project_commits_list):
     # If commit msg is short add as-is, otherwise wrap text and add break line tag (<br>)
     def format_commit_msg(msg: str):
-        wrapped_msg = textwrap.fill(msg, 30)
+        max_msg_width = 30
+        wrapped_msg = textwrap.fill(msg, max_msg_width)
         return wrapped_msg.replace('\n', '<br>') # html uses line breaks <br> instead of newline
 
     return [[

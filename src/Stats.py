@@ -77,7 +77,39 @@ class Stats:
             sys.exit(f"number of buckets {len(ts_bucket_list)} does not equal counts of each bucket: {len(bucket_counts_list)}")
         return ts_bucket_list, bucket_counts_list
                 
+    def calculate_lines_of_code_count(commits: List[Any]):
+        """
+        Returns a list containing the absolute count of lines of code after each commit.
 
+        Note that if you pass in a range starting after the project count the exact 
+        count of line of code will be incorrect (probably way less than real life)
+        """
+        sorted_commits = sorted(commits, key=lambda c: c.ms_timestamp)
+        LOC_by_timestamp = [[int(sorted_commits[0].insertions - sorted_commits[0].deletions), int(sorted_commits[0].ms_timestamp)],]
+
+        prev_index = 0
+        for c in sorted_commits[1:]:
+            # commits can be made at the exact same time because we are looking at multiple repos, aggregate LOCs for commits made at the exact same time
+            previous_timestamp = LOC_by_timestamp[prev_index][1]
+            if c.ms_timestamp == previous_timestamp:
+                LOC_by_timestamp[prev_index][0] += int(c.insertions - c.deletions)
+
+            # if the timestamp is new, create a new LOCs entry
+            else:
+                existing_LOC = LOC_by_timestamp[prev_index][0]
+                LOC_by_timestamp.append([ int(c.insertions - c.deletions + existing_LOC), int(c.ms_timestamp)])
+                prev_index += 1
+
+        # unpack
+        lines_of_code, commit_ms_timestamp = zip(*LOC_by_timestamp)
+
+        # find the smallest negative LOC value and increase all LOC counts by that value since you can't have negative LOCs
+        # this will happen if you pick a range starting after the first project commit, which is likely
+        min_LOC = min(lines_of_code)
+        if min_LOC < 0:
+            lines_of_code = [loc + abs(min_LOC) for loc in lines_of_code]
+
+        return lines_of_code, commit_ms_timestamp
 
     def calculate_daily_commit_count(commits: List[Any]):
         """
