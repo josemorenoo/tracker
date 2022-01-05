@@ -127,4 +127,8 @@ def gather_project_commits(repos_commit_dictionary):
     project_commits = []
     for list_of_repo_commits in repos_commit_dictionary.values():
         project_commits.extend(list_of_repo_commits)
-    return project_commits
+
+    # sort chronologically
+    sorted_commits = sorted(project_commits, key=lambda c: c.ms_timestamp)
+    print(f"project has {len(sorted_commits)} commits available")
+    return sorted_commits

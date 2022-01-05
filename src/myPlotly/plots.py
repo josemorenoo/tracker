@@ -19,7 +19,7 @@ def create_commits_plot(token: str, token_data_df, project_commits_list, commits
         mode = "markers",
         x = commits_df['ms_timestamp'],
         y = commits_df['files_changed'],
-        hovertemplate = create_commit_hover_template(customdata),
+        hovertemplate = create_commit_hover_template(),
         customdata = customdata,
         yaxis='y2'
     ))
@@ -43,6 +43,7 @@ def create_aggregate_commit_count_plot(token: str, token_data_df, project_commit
         mode="markers",
         x=commits_df["ms_timestamp"],
         y=commits_df["commits_per_5min_range"],
+        marker = {'color': "cyan"},
         hovertemplate = '<br><b>Project Commit Count:</b> %{y}<br>'+'<extra></extra>',
         yaxis='y2'))
 
@@ -59,10 +60,34 @@ def create_lines_of_code_plot(token: str, token_data_df, project_commits_list):
         mode = "lines+markers",
         x = commit_ms_timestamp,
         y = lines_of_code,
+        marker = {'color': "blueviolet"},
+        line = {'color': "blueviolet"},
         hovertemplate = '<br><b>Lines of Code: </b> %{y}<br>'+'<extra></extra>',
         yaxis='y2'
     ))
     fig.layout.update(yaxis2 = go.layout.YAxis(title=f"Lines of Code", overlaying='y', side='right', type='log'))
+    fig.update_layout(hoverlabel_align='left')
+    return fig
+
+def create_number_of_authors_plot(token: str, token_data_df, project_commits_list):
+    fig = create_price_fig(token, token_data_df)
+
+    authors_count, author_names_list, new_author_timestamps = Stats.calculate_running_number_of_authors(project_commits_list)
+    fig.add_trace(go.Scatter(
+        name = "Number of Authors",
+        mode = "lines+markers",
+        x = new_author_timestamps,
+        y = authors_count,
+        line = {'color': "aqua"},
+        marker = {'color': "aqua"},
+        hovertemplate = '<br><b>Number of Authors:</b> %{y}<br>'+\
+        '<br><b>New Author:</b> %{customdata}<br>'+\
+        '<extra></extra>',
+        customdata=author_names_list,
+        yaxis='y2'
+    ))
+
+    fig.layout.update(yaxis2 = go.layout.YAxis(title=f"Number of Authors", overlaying='y', side='right', type='linear'))
     fig.update_layout(hoverlabel_align='left')
     return fig
 
@@ -83,7 +108,7 @@ def create_price_fig(token, token_data_df):
     fig.update_layout(yaxis_tickformat = '$')
     return fig
 
-def create_commit_hover_template(customdata):
+def create_commit_hover_template():
     """creates a template for what shows up when you hover over a commit. Needs custom data, see function below"""
     return '<br><b>Msg:</b> <%{customdata[0]}<br>'+\
         '<br><b>Author:</b> %{customdata[1]}<br>'+\

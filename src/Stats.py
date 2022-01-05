@@ -46,13 +46,32 @@ class Stats:
         
         return distinct_days_closing_price
 
+    def calculate_running_number_of_authors(commits: List[Any]):
+        """
+        returns a list containing the number of authors,
+        and a list of the timestamp whenever there is an increase in the number of authors in the project
+        """
+        authors = []
+        authors_count = [0]
+        prev_count_idx = 0
+        new_author_timestamps = []
+        for c in commits:
+            author_name = c.author.name
+            if author_name not in authors:
+                authors.append(author_name)
+                authors_count.append(authors_count[prev_count_idx]  + 1)
+                prev_count_idx += 1
+                new_author_timestamps.append(c.ms_timestamp)
+        return authors_count, authors, new_author_timestamps
+
+
+
+
 
     def calculate_commit_count_in_range(commits: List[Any], granularity: str):
         if granularity not in GRANULARITY_MIN.keys():
             print("eedeeot")
             sys.exit("provided {granularity} not in {GRANULARITY_MIN}")
-
-        commits = sorted(commits, key=lambda c: c.ms_timestamp)
 
         first_commit_ts = int(commits[0].ms_timestamp)
         ms_interval_step = int(GRANULARITY_MIN[granularity] * 60000) # convert to milliseconds
@@ -84,11 +103,10 @@ class Stats:
         Note that if you pass in a range starting after the project count the exact 
         count of line of code will be incorrect (probably way less than real life)
         """
-        sorted_commits = sorted(commits, key=lambda c: c.ms_timestamp)
-        LOC_by_timestamp = [[int(sorted_commits[0].insertions - sorted_commits[0].deletions), int(sorted_commits[0].ms_timestamp)],]
+        LOC_by_timestamp = [[int(commits[0].insertions - commits[0].deletions), int(commits[0].ms_timestamp)],]
 
         prev_index = 0
-        for c in sorted_commits[1:]:
+        for c in commits[1:]:
             # commits can be made at the exact same time because we are looking at multiple repos, aggregate LOCs for commits made at the exact same time
             previous_timestamp = LOC_by_timestamp[prev_index][1]
             if c.ms_timestamp == previous_timestamp:

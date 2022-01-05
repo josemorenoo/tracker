@@ -34,11 +34,19 @@ if __name__ == "__main__":
     )
 
 
-    # generate plotly figs
-    commits_fig = create_commits_plot(token, token_data_df, project_commits_list, project_commits_df)
-    agg_commits_fig = create_aggregate_commit_count_plot(token, token_data_df, project_commits_list)
-    agg_loc_fig = create_lines_of_code_plot(token, token_data_df, project_commits_list)
-    figures = [commits_fig, agg_loc_fig, agg_commits_fig]
+    # this is a list of FUNCTIONS, each one takes in the same three parameters and outputs a fig
+    # they are called below in a loop, this makes it easier to add and remove plots to show on the dashboard
+    plotting_functions = [
+        #create_aggregate_commit_count_plot,
+        #create_lines_of_code_plot,
+        create_number_of_authors_plot
+    ]
+
+    # initialize the figures list with the commits function, which takes an extra parameter
+    figures = [create_commits_plot(token, token_data_df, project_commits_list, project_commits_df)]
+
+    # all the other functions take the same three parameters so just call them in a loop and figs to list
+    figures.extend([f(token, token_data_df, project_commits_list) for f in plotting_functions])
     
     # plot them
     dash_app = create_dash()
