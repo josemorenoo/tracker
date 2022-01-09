@@ -10,7 +10,7 @@ from myPlotly.plots import *
 
 if __name__ == "__main__":
     # setup
-    read_from_pickle = False
+    read_from_pickle = True
     token="BTC"
     start_date = datetime(2020, 1, 1, 12, 00, 00)
     end_date = datetime(2021, 1, 1, 12, 00, 00)
@@ -44,8 +44,8 @@ if __name__ == "__main__":
     # this is a list of FUNCTIONS, each one takes in the same three parameters and outputs a fig
     # they are called below in a loop, this makes it easier to add and remove plots to show on the dashboard
     plotting_functions = [
-        #create_aggregate_commit_count_plot,
-        #create_lines_of_code_plot,
+        create_aggregate_commit_count_plot,
+        create_lines_of_code_plot,
         create_number_of_authors_plot
     ]
 
