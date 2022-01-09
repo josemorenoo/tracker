@@ -2,9 +2,9 @@
 
 from datetime import datetime
 
-from setup import load_data
-from myPlotly.dash_util import *
-from myPlotly.plots import *
+from src.setup import load_data
+from src.myPlotly.dash_util import *
+from src.myPlotly.plots import *
 #from HairyPlotter import HairyPlotter
 
 
