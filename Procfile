@@ -1,1 +1,1 @@
-web: gunicorn src/tracker:server
+web: gunicorn src.tracker:server
