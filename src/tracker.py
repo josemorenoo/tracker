@@ -11,24 +11,25 @@ from myPlotly.plots import *
 if __name__ == "__main__":
     # setup
     read_from_pickle = True
-    token="BTC"
+    token="LRC"
     start_date = datetime(2020, 1, 1, 12, 00, 00)
     end_date = datetime(2021, 1, 1, 12, 00, 00)
-    timeframe = "year"
+    timeframe = "month"
 
+    '''
     project_repos = [
         'https://github.com/bitcoin/bitcoin',
         'https://github.com/bitcoin/bips'
     ]
-
     '''
+    
+
     project_repos = [
         'https://github.com/Loopring/loopring-web-v2',
         'https://github.com/Loopring/loopring_sdk',
         'https://github.com/Loopring/dexwebapp',
         'https://github.com/Loopring/whitepaper'
     ]
-    '''
 
     token_data_df, project_commits_list, project_commits_df = load_data(
         token,
