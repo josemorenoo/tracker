@@ -8,10 +8,10 @@ from matplotlib import pyplot as plt
 
 import pandas as pd
 from typing import List, Any
-from setup import load_data
+from src.setup_data import load_data
 import sys
 
-from timeUtil import datetime_to_ms_timestamp, round_single_commit_by_time
+from src.timeUtil import datetime_to_ms_timestamp, round_single_commit_by_time
 
 GRANULARITY_MIN = {"5min": 5, "15min": 15, "1hour": 60, "1day": 24*60, "1week": 24*60*7}
 

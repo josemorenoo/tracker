@@ -7,7 +7,7 @@ pip install -r requirements.txt
 
 ## run
 ```
-python3 src/tracker.py
+python3 tracker.py
 ```
 
 ## documentation

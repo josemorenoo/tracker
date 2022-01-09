@@ -6,7 +6,7 @@ import pytz
 from tqdm import tqdm
 from typing import Any, List, Optional
 
-from CommitHandler import CommitHandler
+from src.CommitHandler import CommitHandler
 
 class RepoInfo:
 

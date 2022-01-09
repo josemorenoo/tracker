@@ -3,7 +3,7 @@ import plotly.graph_objects as go
 import pandas as pd
 import textwrap
 
-from Stats import Stats
+from src.Stats import Stats
 
 def create_commits_plot(token: str, token_data_df, project_commits_list, commits_df):
     fig = create_price_fig(token, token_data_df)

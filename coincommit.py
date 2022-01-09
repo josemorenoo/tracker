@@ -2,7 +2,7 @@
 
 from datetime import datetime
 
-from src.setup import load_data
+from src.setup_data import load_data
 from src.myPlotly.dash_util import *
 from src.myPlotly.plots import *
 #from HairyPlotter import HairyPlotter
@@ -14,7 +14,7 @@ if __name__ == "__main__":
     token="LRC"
     start_date = datetime(2020, 1, 1, 12, 00, 00)
     end_date = datetime(2021, 1, 1, 12, 00, 00)
-    timeframe = "month"
+    timeframe = "week"
 
     '''
     project_repos = [
