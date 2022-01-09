@@ -5,7 +5,8 @@ from dash import html
 def create_dash():
     # create dash instance
     dash_app = dash.Dash(__name__)
-    return dash_app
+    server = dash_app.server
+    return dash_app, server
 
 def add_layout(dash_app, figures):
     plot_divs = []

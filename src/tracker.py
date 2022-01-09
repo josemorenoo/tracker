@@ -57,7 +57,7 @@ if __name__ == "__main__":
     figures.extend([f(token, token_data_df, project_commits_list) for f in plotting_functions])
     
     # plot them
-    dash_app = create_dash()
+    dash_app, server = create_dash()
     add_layout(dash_app, figures)
     run_dash(dash_app)
     
