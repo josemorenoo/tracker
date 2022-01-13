@@ -7,7 +7,6 @@ from dash import dcc
 from dash import html
 
 from coincommit.setup_data import load_data
-from coincommit.myplotly.dash_util import *
 from coincommit.myplotly.plots import *
 #from hairy_plotter import HairyPlotter
 
