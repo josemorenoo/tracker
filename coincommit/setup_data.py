@@ -5,9 +5,9 @@ import pandas as pd
 import pickle
 from typing import Any, List, Optional
 
-from coincommit.CryptoOracle import CryptoOracle
-from coincommit.RepoInfo import RepoInfo
-from coincommit.timeUtil import datetime_to_ms_timestamp
+from coincommit.crypto_oracle import CryptoOracle
+from coincommit.repo_info import RepoInfo
+from coincommit.time_util import datetime_to_ms_timestamp
 
 
 def load_data(
