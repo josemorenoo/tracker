@@ -2,9 +2,9 @@
 
 from datetime import datetime
 
-from setup_data import load_data
-from myPlotly.dash_util import *
-from myPlotly.plots import *
+from coincommit.setup_data import load_data
+from coincommit.myPlotly.dash_util import *
+from coincommit.myPlotly.plots import *
 #from HairyPlotter import HairyPlotter
 
 
