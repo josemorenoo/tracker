@@ -3,9 +3,9 @@
 from datetime import datetime
 
 from coincommit.setup_data import load_data
-from coincommit.myPlotly.dash_util import *
-from coincommit.myPlotly.plots import *
-#from HairyPlotter import HairyPlotter
+from coincommit.myplotly.dash_util import *
+from coincommit.myplotly.plots import *
+#from hairy_plotter import HairyPlotter
 
 
 if __name__ == "__main__":
