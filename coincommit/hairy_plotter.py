@@ -16,7 +16,7 @@ import pandas as pd
 import os
 from typing import List, Any
 
-from stats_utils import Stats
+from .stats_util import Stats
 
 class HairyPlotter:
     def __init__(self):
