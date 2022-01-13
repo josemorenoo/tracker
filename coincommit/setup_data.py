@@ -5,9 +5,9 @@ import pandas as pd
 import pickle
 from typing import Any, List, Optional
 
-from src.CryptoOracle import CryptoOracle
-from src.RepoInfo import RepoInfo
-from src.timeUtil import datetime_to_ms_timestamp
+from CryptoOracle import CryptoOracle
+from RepoInfo import RepoInfo
+from timeUtil import datetime_to_ms_timestamp
 
 
 def load_data(
@@ -30,6 +30,7 @@ def load_data(
     if read_from_pickle:
         with open(commits_pickle, 'rb') as cp:
             project_commits_list = pickle.load(cp)
+
         with open(price_pickle, 'rb') as pp:
             token_data = pickle.load(pp)
     else:

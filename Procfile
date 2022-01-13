@@ -1,1 +1,1 @@
-web: gunicorn coincommit:server
+web: gunicorn coincommit.run:server

@@ -2,19 +2,19 @@
 
 from datetime import datetime
 
-from src.setup_data import load_data
-from src.myPlotly.dash_util import *
-from src.myPlotly.plots import *
+from setup_data import load_data
+from myPlotly.dash_util import *
+from myPlotly.plots import *
 #from HairyPlotter import HairyPlotter
 
 
 if __name__ == "__main__":
     # setup
-    read_from_pickle = True
+    read_from_pickle = False
     token="LRC"
-    start_date = datetime(2020, 1, 1, 12, 00, 00)
-    end_date = datetime(2021, 1, 1, 12, 00, 00)
-    timeframe = "week"
+    start_date = datetime(2022, 1, 11, 12, 00, 00)
+    end_date = datetime(2022, 1, 12, 12, 00, 00)
+    timeframe = "day"
 
     '''
     project_repos = [
@@ -25,10 +25,11 @@ if __name__ == "__main__":
     
 
     project_repos = [
-        'https://github.com/Loopring/loopring-web-v2',
-        'https://github.com/Loopring/loopring_sdk',
-        'https://github.com/Loopring/dexwebapp',
-        'https://github.com/Loopring/whitepaper'
+        'https://github.com/Loopring/loopring-explorer',
+        #'https://github.com/Loopring/loopring-web-v2',
+        #'https://github.com/Loopring/loopring_sdk',
+        #'https://github.com/Loopring/dexwebapp',
+        #'https://github.com/Loopring/whitepaper'
     ]
 
     token_data_df, project_commits_list, project_commits_df = load_data(
@@ -40,6 +41,8 @@ if __name__ == "__main__":
         read_from_pickle = read_from_pickle,
         write_to_pickle = not read_from_pickle
     )
+
+    print(f"commits found for {start_date} through {end_date}: {len(project_commits_list)}")
 
 
     # this is a list of FUNCTIONS, each one takes in the same three parameters and outputs a fig

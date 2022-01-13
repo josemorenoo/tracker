@@ -6,13 +6,13 @@ import pytz
 from tqdm import tqdm
 from typing import Any, List, Optional
 
-from src.CommitHandler import CommitHandler
+from CommitHandler import CommitHandler
 
 class RepoInfo:
 
     def __init__(self, githubRepoUrl: str, startDate: Optional[datetime] = None, endDate: Optional[datetime] = None):
         self.githubRepoUrl = githubRepoUrl
-        
+
         ch = CommitHandler()
         if startDate and endDate:
             self.commits = [ch.create_commit(commit) for commit in tqdm(Repository(self.githubRepoUrl, since=startDate, to=endDate).traverse_commits())]

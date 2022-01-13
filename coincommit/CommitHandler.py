@@ -2,7 +2,7 @@ from dataclasses import dataclass
 from datetime import datetime
 from typing import Any, List
 
-from src.timeUtil import datetime_to_ms_timestamp, round_single_commit_by_time
+from timeUtil import datetime_to_ms_timestamp, round_single_commit_by_time
 
 @dataclass
 class Commit:
