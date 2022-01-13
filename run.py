@@ -6,8 +6,8 @@ import dash
 from dash import dcc
 from dash import html
 
-from .coincommit.setup_data import load_data
-from .coincommit.myplotly.plots import *
+from coincommit.setup_data import load_data
+from coincommit.myplotly.plots import Plots
 #from hairy_plotter import HairyPlotter
 
 def create_dash():
@@ -76,13 +76,13 @@ if __name__ == "__main__":
     # this is a list of FUNCTIONS, each one takes in the same three parameters and outputs a fig
     # they are called below in a loop, this makes it easier to add and remove plots to show on the dashboard
     plotting_functions = [
-        create_aggregate_commit_count_plot,
-        create_lines_of_code_plot,
-        create_number_of_authors_plot
+        Plots.create_aggregate_commit_count_plot,
+        Plots.create_lines_of_code_plot,
+        Plots.create_number_of_authors_plot
     ]
 
     # initialize the figures list with the commits function, which takes an extra parameter
-    figures = [create_commits_plot(token, token_data_df, project_commits_list, project_commits_df)]
+    figures = [Plots.create_commits_plot(token, token_data_df, project_commits_list, project_commits_df)]
 
     # all the other functions take the same three parameters so just call them in a loop and figs to list
     figures.extend([f(token, token_data_df, project_commits_list) for f in plotting_functions])
