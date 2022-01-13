@@ -91,9 +91,6 @@ def create_number_of_authors_plot(token: str, token_data_df, project_commits_lis
     fig.update_layout(hoverlabel_align='left')
     return fig
 
-
-
-
 def create_price_fig(token, token_data_df):
     """Used by most of the plots below, just a utility function to create the token price fig"""
     fig = go.Figure()
