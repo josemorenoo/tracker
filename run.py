@@ -11,7 +11,7 @@ from coincommit.myplotly.plots import Plots
 #from hairy_plotter import HairyPlotter
     
 # setup
-read_from_pickle = True
+read_from_pickle = False
 token="LRC"
 start_date = datetime(2022, 1, 11, 12, 00, 00)
 end_date = datetime(2022, 1, 12, 12, 00, 00)
