@@ -9,6 +9,7 @@ if response.status_code in [200, 201, 202, 203, 204]:
     response_data = pd.json_normalize(json.loads(response.text))
 
 pairs_available = response_data['id']
+
 tickers = []
 for pair in pairs_available:
     a, b = pair.split('-')
