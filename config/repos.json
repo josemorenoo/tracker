@@ -1,13 +1,13 @@
 {
   "AMP": {
-    "name": "",
+    "name": "AmpToken",
     "repos": [
       "https://github.com/amptoken/snapshot-strategies",
       "https://github.com/amptoken/amp-token-contracts"
     ]
   },
   "LRC": {
-    "name": "",
+    "name": "Loopring",
     "repos": [
       "https://github.com/Loopring/loopring-explorer",
       "https://github.com/Loopring/loopring-web-v2",
@@ -17,15 +17,20 @@
     ]
   },
   "BTC": {
-    "name": "",
+    "name": "Bitcoin",
     "repos": [
       "https://github.com/bitcoin/bitcoin",
       "https://github.com/bitcoin/bips"
     ]
   },
   "CGLD": {
-    "name": "",
-    "repos": []
+    "name": "Celo",
+    "repos": [
+      "https://github.com/celo-org/celo-blockchain",
+      "https://github.com/celo-org/celo-monorepo",
+      "https://github.com/celo-org/website",
+      "https://github.com/celo-org/docs"
+    ]
   },
   "RAD": {
     "name": "",

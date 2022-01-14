@@ -13,11 +13,11 @@ from coincommit.setup_data import load_data
 from coincommit.myplotly.plots import Plots
     
 # setup
-read_from_pickle = False
-token="AMP"
-start_date = datetime(2021, 9, 16, 12, 00, 00)
-end_date = datetime(2021, 9, 17, 12, 00, 00)
-timeframe = "day"
+read_from_pickle = True
+token="CGLD"
+start_date = datetime(2021, 1, 1, 12, 00, 00)
+end_date = datetime(2021, 2, 1, 12, 00, 00)
+timeframe = "month"
 
 # get repo list
 repos = json.load(open('config/repos.json'))
