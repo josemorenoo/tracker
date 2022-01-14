@@ -1,26 +1,606 @@
 {
-    "AMP": {
-        "name": "Amptoken",
-        "repos": [
-            "https://github.com/amptoken/snapshot-strategies",
-            "https://github.com/amptoken/amp-token-contracts"
-        ]
-    },
-    "LRC": {
-        "name": "Loopring",
-        "repos": [
-            "https://github.com/Loopring/loopring-explorer",
-            "https://github.com/Loopring/loopring-web-v2",
-            "https://github.com/Loopring/loopring_sdk",
-            "https://github.com/Loopring/dexwebapp",
-            "https://github.com/Loopring/whitepaper"
-        ]
-    },
-    "BTC": {
-        "name": "Bitcoin",
-        "repos": [
-            "https://github.com/bitcoin/bitcoin",
-            "https://github.com/bitcoin/bips"
-        ]
-    }
+  "AMP": {
+    "name": "",
+    "repos": [
+      "https://github.com/amptoken/snapshot-strategies",
+      "https://github.com/amptoken/amp-token-contracts"
+    ]
+  },
+  "LRC": {
+    "name": "",
+    "repos": [
+      "https://github.com/Loopring/loopring-explorer",
+      "https://github.com/Loopring/loopring-web-v2",
+      "https://github.com/Loopring/loopring_sdk",
+      "https://github.com/Loopring/dexwebapp",
+      "https://github.com/Loopring/whitepaper"
+    ]
+  },
+  "BTC": {
+    "name": "",
+    "repos": [
+      "https://github.com/bitcoin/bitcoin",
+      "https://github.com/bitcoin/bips"
+    ]
+  },
+  "CGLD": {
+    "name": "",
+    "repos": []
+  },
+  "RAD": {
+    "name": "",
+    "repos": []
+  },
+  "GBP": {
+    "name": "",
+    "repos": []
+  },
+  "ALGO": {
+    "name": "",
+    "repos": []
+  },
+  "MASK": {
+    "name": "",
+    "repos": []
+  },
+  "QUICK": {
+    "name": "",
+    "repos": []
+  },
+  "DDX": {
+    "name": "",
+    "repos": []
+  },
+  "MIR": {
+    "name": "",
+    "repos": []
+  },
+  "DASH": {
+    "name": "",
+    "repos": []
+  },
+  "JASMY": {
+    "name": "",
+    "repos": []
+  },
+  "REQ": {
+    "name": "",
+    "repos": []
+  },
+  "FARM": {
+    "name": "",
+    "repos": []
+  },
+  "TRAC": {
+    "name": "",
+    "repos": []
+  },
+  "TRIBE": {
+    "name": "",
+    "repos": []
+  },
+  "MLN": {
+    "name": "",
+    "repos": []
+  },
+  "NMR": {
+    "name": "",
+    "repos": []
+  },
+  "BAL": {
+    "name": "",
+    "repos": []
+  },
+  "TRB": {
+    "name": "",
+    "repos": []
+  },
+  "SOL": {
+    "name": "",
+    "repos": []
+  },
+  "IDEX": {
+    "name": "",
+    "repos": []
+  },
+  "USDT": {
+    "name": "",
+    "repos": []
+  },
+  "IOTX": {
+    "name": "",
+    "repos": []
+  },
+  "CHZ": {
+    "name": "",
+    "repos": []
+  },
+  "AXS": {
+    "name": "",
+    "repos": []
+  },
+  "ALCX": {
+    "name": "",
+    "repos": []
+  },
+  "RGT": {
+    "name": "",
+    "repos": []
+  },
+  "SHIB": {
+    "name": "",
+    "repos": []
+  },
+  "ATOM": {
+    "name": "",
+    "repos": []
+  },
+  "FORTH": {
+    "name": "",
+    "repos": []
+  },
+  "SUSHI": {
+    "name": "",
+    "repos": []
+  },
+  "GYEN": {
+    "name": "",
+    "repos": []
+  },
+  "API3": {
+    "name": "",
+    "repos": []
+  },
+  "MANA": {
+    "name": "",
+    "repos": []
+  },
+  "XRP": {
+    "name": "",
+    "repos": []
+  },
+  "BAT": {
+    "name": "",
+    "repos": []
+  },
+  "BTRST": {
+    "name": "",
+    "repos": []
+  },
+  "NKN": {
+    "name": "",
+    "repos": []
+  },
+  "DNT": {
+    "name": "",
+    "repos": []
+  },
+  "AGLD": {
+    "name": "",
+    "repos": []
+  },
+  "KRL": {
+    "name": "",
+    "repos": []
+  },
+  "BOND": {
+    "name": "",
+    "repos": []
+  },
+  "CLV": {
+    "name": "",
+    "repos": []
+  },
+  "LQTY": {
+    "name": "",
+    "repos": []
+  },
+  "KEEP": {
+    "name": "",
+    "repos": []
+  },
+  "VGX": {
+    "name": "",
+    "repos": []
+  },
+  "ENS": {
+    "name": "",
+    "repos": []
+  },
+  "RBN": {
+    "name": "",
+    "repos": []
+  },
+  "PERP": {
+    "name": "",
+    "repos": []
+  },
+  "ZEC": {
+    "name": "",
+    "repos": []
+  },
+  "BNT": {
+    "name": "",
+    "repos": []
+  },
+  "REN": {
+    "name": "",
+    "repos": []
+  },
+  "RLC": {
+    "name": "",
+    "repos": []
+  },
+  "XLM": {
+    "name": "",
+    "repos": []
+  },
+  "WBTC": {
+    "name": "",
+    "repos": []
+  },
+  "LTC": {
+    "name": "",
+    "repos": []
+  },
+  "EOS": {
+    "name": "",
+    "repos": []
+  },
+  "KNC": {
+    "name": "",
+    "repos": []
+  },
+  "MCO2": {
+    "name": "",
+    "repos": []
+  },
+  "IMX": {
+    "name": "",
+    "repos": []
+  },
+  "LCX": {
+    "name": "",
+    "repos": []
+  },
+  "UMA": {
+    "name": "",
+    "repos": []
+  },
+  "ADA": {
+    "name": "",
+    "repos": []
+  },
+  "EUR": {
+    "name": "",
+    "repos": []
+  },
+  "ANKR": {
+    "name": "",
+    "repos": []
+  },
+  "ASM": {
+    "name": "",
+    "repos": []
+  },
+  "ZRX": {
+    "name": "",
+    "repos": []
+  },
+  "CTSI": {
+    "name": "",
+    "repos": []
+  },
+  "GTC": {
+    "name": "",
+    "repos": []
+  },
+  "UST": {
+    "name": "",
+    "repos": []
+  },
+  "GNT": {
+    "name": "",
+    "repos": []
+  },
+  "GRT": {
+    "name": "",
+    "repos": []
+  },
+  "FOX": {
+    "name": "",
+    "repos": []
+  },
+  "BLZ": {
+    "name": "",
+    "repos": []
+  },
+  "PLA": {
+    "name": "",
+    "repos": []
+  },
+  "FET": {
+    "name": "",
+    "repos": []
+  },
+  "BADGER": {
+    "name": "",
+    "repos": []
+  },
+  "ORN": {
+    "name": "",
+    "repos": []
+  },
+  "SUKU": {
+    "name": "",
+    "repos": []
+  },
+  "COMP": {
+    "name": "",
+    "repos": []
+  },
+  "WLUNA": {
+    "name": "",
+    "repos": []
+  },
+  "MATIC": {
+    "name": "",
+    "repos": []
+  },
+  "STORJ": {
+    "name": "",
+    "repos": []
+  },
+  "1INCH": {
+    "name": "",
+    "repos": []
+  },
+  "ZEN": {
+    "name": "",
+    "repos": []
+  },
+  "GALA": {
+    "name": "",
+    "repos": []
+  },
+  "OGN": {
+    "name": "",
+    "repos": []
+  },
+  "CVC": {
+    "name": "",
+    "repos": []
+  },
+  "AVAX": {
+    "name": "",
+    "repos": []
+  },
+  "ETC": {
+    "name": "",
+    "repos": []
+  },
+  "NU": {
+    "name": "",
+    "repos": []
+  },
+  "USDC": {
+    "name": "",
+    "repos": []
+  },
+  "POLS": {
+    "name": "",
+    "repos": []
+  },
+  "BICO": {
+    "name": "",
+    "repos": []
+  },
+  "OMG": {
+    "name": "",
+    "repos": []
+  },
+  "ICP": {
+    "name": "",
+    "repos": []
+  },
+  "POWR": {
+    "name": "",
+    "repos": []
+  },
+  "LINK": {
+    "name": "",
+    "repos": []
+  },
+  "DOT": {
+    "name": "",
+    "repos": []
+  },
+  "ACH": {
+    "name": "",
+    "repos": []
+  },
+  "ARPA": {
+    "name": "",
+    "repos": []
+  },
+  "LPT": {
+    "name": "",
+    "repos": []
+  },
+  "AAVE": {
+    "name": "",
+    "repos": []
+  },
+  "ENJ": {
+    "name": "",
+    "repos": []
+  },
+  "QNT": {
+    "name": "",
+    "repos": []
+  },
+  "GODS": {
+    "name": "",
+    "repos": []
+  },
+  "COTI": {
+    "name": "",
+    "repos": []
+  },
+  "NCT": {
+    "name": "",
+    "repos": []
+  },
+  "DESO": {
+    "name": "",
+    "repos": []
+  },
+  "MKR": {
+    "name": "",
+    "repos": []
+  },
+  "RLY": {
+    "name": "",
+    "repos": []
+  },
+  "COVAL": {
+    "name": "",
+    "repos": []
+  },
+  "FX": {
+    "name": "",
+    "repos": []
+  },
+  "DAI": {
+    "name": "",
+    "repos": []
+  },
+  "YFII": {
+    "name": "",
+    "repos": []
+  },
+  "SKL": {
+    "name": "",
+    "repos": []
+  },
+  "PRO": {
+    "name": "",
+    "repos": []
+  },
+  "TRU": {
+    "name": "",
+    "repos": []
+  },
+  "SNX": {
+    "name": "",
+    "repos": []
+  },
+  "LOOM": {
+    "name": "",
+    "repos": []
+  },
+  "AUCTION": {
+    "name": "",
+    "repos": []
+  },
+  "RAI": {
+    "name": "",
+    "repos": []
+  },
+  "OXT": {
+    "name": "",
+    "repos": []
+  },
+  "USD": {
+    "name": "",
+    "repos": []
+  },
+  "BAND": {
+    "name": "",
+    "repos": []
+  },
+  "DOGE": {
+    "name": "",
+    "repos": []
+  },
+  "REP": {
+    "name": "",
+    "repos": []
+  },
+  "XTZ": {
+    "name": "",
+    "repos": []
+  },
+  "PAX": {
+    "name": "",
+    "repos": []
+  },
+  "MDT": {
+    "name": "",
+    "repos": []
+  },
+  "ETH": {
+    "name": "",
+    "repos": []
+  },
+  "SPELL": {
+    "name": "",
+    "repos": []
+  },
+  "SUPER": {
+    "name": "",
+    "repos": []
+  },
+  "WCFG": {
+    "name": "",
+    "repos": []
+  },
+  "BCH": {
+    "name": "",
+    "repos": []
+  },
+  "CRO": {
+    "name": "",
+    "repos": []
+  },
+  "POLY": {
+    "name": "",
+    "repos": []
+  },
+  "YFI": {
+    "name": "",
+    "repos": []
+  },
+  "MUSD": {
+    "name": "",
+    "repos": []
+  },
+  "XYO": {
+    "name": "",
+    "repos": []
+  },
+  "UNI": {
+    "name": "",
+    "repos": []
+  },
+  "FIL": {
+    "name": "",
+    "repos": []
+  },
+  "CRV": {
+    "name": "",
+    "repos": []
+  },
+  "INV": {
+    "name": "",
+    "repos": []
+  },
+  "GFI": {
+    "name": "",
+    "repos": []
+  },
+  "RARI": {
+    "name": "",
+    "repos": []
+  }
 }
