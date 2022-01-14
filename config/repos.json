@@ -1,0 +1,26 @@
+{
+    "AMP": {
+        "name": "Amptoken",
+        "repos": [
+            "https://github.com/amptoken/snapshot-strategies",
+            "https://github.com/amptoken/amp-token-contracts"
+        ]
+    },
+    "LRC": {
+        "name": "Loopring",
+        "repos": [
+            "https://github.com/Loopring/loopring-explorer",
+            "https://github.com/Loopring/loopring-web-v2",
+            "https://github.com/Loopring/loopring_sdk",
+            "https://github.com/Loopring/dexwebapp",
+            "https://github.com/Loopring/whitepaper"
+        ]
+    },
+    "BTC": {
+        "name": "Bitcoin",
+        "repos": [
+            "https://github.com/bitcoin/bitcoin",
+            "https://github.com/bitcoin/bips"
+        ]
+    }
+}

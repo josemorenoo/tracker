@@ -1,6 +1,9 @@
 # visit http://127.0.0.1:8050/ in your web browser.
 
 from datetime import datetime
+import json
+
+from numpy.lib.mixins import _reflected_binary_method
 
 import dash
 from dash import dcc
@@ -8,30 +11,18 @@ from dash import html
 
 from coincommit.setup_data import load_data
 from coincommit.myplotly.plots import Plots
-#from hairy_plotter import HairyPlotter
     
 # setup
 read_from_pickle = False
-token="LRC"
-start_date = datetime(2022, 1, 11, 12, 00, 00)
-end_date = datetime(2022, 1, 12, 12, 00, 00)
+token="AMP"
+start_date = datetime(2021, 9, 16, 12, 00, 00)
+end_date = datetime(2021, 9, 17, 12, 00, 00)
 timeframe = "day"
 
-'''
-project_repos = [
-    'https://github.com/bitcoin/bitcoin',
-    'https://github.com/bitcoin/bips'
-]
-'''
+# get repo list
+repos = json.load(open('config/repos.json'))
+project_repos = repos[token]['repos']
 
-
-project_repos = [
-    'https://github.com/Loopring/loopring-explorer',
-    #'https://github.com/Loopring/loopring-web-v2',
-    #'https://github.com/Loopring/loopring_sdk',
-    #'https://github.com/Loopring/dexwebapp',
-    #'https://github.com/Loopring/whitepaper'
-]
 
 token_data_df, project_commits_list, project_commits_df = load_data(
     token,

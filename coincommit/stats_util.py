@@ -66,12 +66,12 @@ class Stats:
 
 
     def calculate_commit_count_in_range(commits: List[Any], granularity: str):
+        if len(commits) == 0:
+            return [], []
+
         if granularity not in GRANULARITY_MIN.keys():
             print("eedeeot")
             sys.exit("provided {granularity} not in {GRANULARITY_MIN}")
-
-        if len(commits) == 0:
-            return [], []
 
         first_commit_ts = int(commits[0].ms_timestamp)
         ms_interval_step = int(GRANULARITY_MIN[granularity] * 60000) # convert to milliseconds
@@ -103,6 +103,9 @@ class Stats:
         Note that if you pass in a range starting after the project count the exact 
         count of line of code will be incorrect (probably way less than real life)
         """
+        if len(commits) == 0:
+            return [], []
+            
         LOC_by_timestamp = [[int(commits[0].insertions - commits[0].deletions), int(commits[0].ms_timestamp)],]
 
         prev_index = 0

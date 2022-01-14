@@ -10,7 +10,6 @@ if __name__ == "__main__":
     endDate = datetime(2021, 12, 20, 23, 30, 00)
 
     def _stringify_datetime(dt):
-        """gross"""
         return "{}-{}-{}-{}-{}".format(dt.year, dt.month, dt.day, dt.hour, dt.minute)
     
     startDate = _stringify_datetime(startDate)

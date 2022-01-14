@@ -9,6 +9,9 @@ from .crypto_oracle import CryptoOracle
 from .repo_info import RepoInfo
 from .time_util import datetime_to_ms_timestamp
 
+def create_token_data_directory(token):
+    if not os.path.exists(f"data/{token}"):
+        os.mkdir(f'data/{token}')
 
 def load_data(
     token: str,
@@ -45,10 +48,11 @@ def load_data(
         token_data = create_datetime_and_ts_column(token_data)
 
         # write to pickle files
+        create_token_data_directory(token)
         if write_to_pickle:
-            with open(commits_pickle, 'wb') as cp:
+            with open(commits_pickle, 'wb+') as cp:
                 pickle.dump(project_commits_list, cp)
-            with open(price_pickle, 'wb') as pp:
+            with open(price_pickle, 'wb+') as pp:
                 pickle.dump(token_data, pp)
 
     project_commits_df = create_commits_df(project_commits_list)
