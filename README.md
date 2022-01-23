@@ -7,7 +7,9 @@ pip install -r requirements.txt
 
 ## run
 ```
-python3 tracker.py
+python3 run.py
+
+Then go to: http://127.0.0.1:8050/
 ```
 
 ## documentation

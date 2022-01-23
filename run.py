@@ -3,24 +3,22 @@
 from datetime import datetime
 import json
 
-from numpy.lib.mixins import _reflected_binary_method
-
 import dash
 from dash import dcc
 from dash import html
 
-from coincommit.setup_data import load_data
-from coincommit.myplotly.plots import Plots
+from src.setup_data import load_data
+from src.myplotly.plots import Plots
     
 # setup
-read_from_pickle = True
+read_from_pickle = False
 token="CGLD"
 start_date = datetime(2021, 1, 1, 12, 00, 00)
-end_date = datetime(2021, 2, 1, 12, 00, 00)
+end_date = datetime(2021, 1, 2, 12, 00, 00)
 timeframe = "month"
 
 # get repo list
-repos = json.load(open('config/repos.json'))
+repos = json.load(open('src/config/repos.json'))
 project_repos = repos[token]['repos']
 
 

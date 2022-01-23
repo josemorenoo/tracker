@@ -1,0 +1,806 @@
+{
+  "AMP": {
+    "name": "AmpToken",
+    "description": "",
+    "repos": [
+      "https://github.com/amptoken/snapshot-strategies",
+      "https://github.com/amptoken/amp-token-contracts"
+    ]
+  },
+  "LRC": {
+    "name": "Loopring",
+    "description": "",
+    "repos": [
+      "https://github.com/Loopring/loopring-explorer",
+      "https://github.com/Loopring/loopring-web-v2",
+      "https://github.com/Loopring/loopring_sdk",
+      "https://github.com/Loopring/dexwebapp",
+      "https://github.com/Loopring/whitepaper"
+    ]
+  },
+  "BTC": {
+    "name": "Bitcoin",
+    "description": "",
+    "repos": [
+      "https://github.com/bitcoin/bitcoin",
+      "https://github.com/bitcoin/bips"
+    ]
+  },
+  "CGLD": {
+    "name": "Celo",
+    "description": "",
+    "repos": [
+      "https://github.com/celo-org/celo-blockchain",
+      "https://github.com/celo-org/celo-monorepo",
+      "https://github.com/celo-org/website",
+      "https://github.com/celo-org/docs"
+    ]
+  },
+  "RAD": {
+    "name": "Radicle",
+    "description": "",
+    "repos": [
+      "https://github.com/radicle-dev/radicle-interface",
+      "https://github.com/radicle-dev/radicle-grants",
+      "https://github.com/radicle-dev/workstreams-app",
+      "https://github.com/radicle-dev/radicle-upstream"
+    ]
+  },
+  "ALGO": {
+    "name": "Algorand",
+    "description": "",
+    "repos": [
+      "https://github.com/algorand/algorand-wallet",
+      "https://github.com/algorand/docs",
+      "https://github.com/algorand/go-algorand",
+      "https://github.com/algorand/indexer",
+      "https://github.com/algorand/py-algorand-sdk"
+    ]
+  },
+  "MASK": {
+    "name": "Mask",
+    "description": "",
+    "repos": ["https://github.com/DimensionDev/Maskbook",
+    "https://github.com/DimensionDev/Holoflows-Kit"]
+  },
+  "QUICK": {
+    "name": "Quick",
+    "description": "",
+    "repos": ["https://github.com/QuickSwap/quickswap-core",
+      "https://github.com/QuickSwap/QuickSwap-subgraph",
+      "https://github.com/QuickSwap/quickswap-docs",
+      "https://github.com/QuickSwap/QuickSwap-sdk",
+      "https://github.com/QuickSwap/QuickSwap-periphery",
+      "https://github.com/QuickSwap/megapool"
+    ]
+  },
+  "MIR": {
+    "name": "Mirror",
+    "description": "",
+    "repos": [
+      "https://github.com/Mirror-Protocol/mirror.js",
+      "https://github.com/Mirror-Protocol/mirrorcli",
+      "https://github.com/Mirror-Protocol/docs",
+      "https://github.com/Mirror-Protocol/mirror-contracts"
+    ]
+  },
+  "DASH": {
+    "name": "Dash",
+    "description": "",
+    "repos": ["https://github.com/dashpay/dash",
+    "https://github.com/dashpay/dash-roadmap",
+    "https://github.com/dashpay/docs"
+  ]
+  },
+  "JASMY": {
+    "name": "JasmyCoin",
+    "description": "",
+    "repos": ["https://github.com/JasmyCoin/JasmyCoin"]
+  },
+  "REQ": {
+    "name": "RequestNetwork",
+    "description": "",
+    "repos": [
+      "https://github.com/RequestNetwork/requestNetwork",
+      "https://github.com/RequestNetwork/request-apps",
+      "https://github.com/RequestNetwork/onboard-extra"
+    ]
+  },
+  "TRAC": {
+    "name": "OriginTrail",
+    "description": "",
+    "repos": [
+      "https://github.com/OriginTrail/ot-node",
+      "https://github.com/OriginTrail/dkg-client",
+      "https://github.com/OriginTrail/OT-RFC-repository"
+
+    ]
+  },
+  "TRIBE": {
+    "name": "TRIBE",
+    "description": "",
+    "repos": [
+      "https://github.com/TribeBsc/Tribe-Core",
+      "https://github.com/TribeBsc/Tribe-Token"
+    ]
+  },
+  "MLN": {
+    "name": "Enzyme Finance",
+    "description": "",
+    "repos": [
+      "https://github.com/enzymefinance/aip",
+      "https://github.com/enzymefinance/protocol",
+      "https://github.com/enzymefinance/enzyme-subgraph"
+    ]
+  },
+  "NMR": {
+    "name": "Numerai",
+    "description": "A global artificial intelligence tournament to predict the stock market.",
+    "repos": [
+      "https://github.com/numerai/numerapi",
+      "https://github.com/numerai/docs",
+      "https://github.com/numerai/example-scripts"
+    ]
+  },
+  "BAL": {
+    "name": "Balancer Labs",
+    "description": "Balancer is a protocol for programmable liquidity",
+    "repos": [
+      "https://github.com/balancer-labs/balancer-core",
+      "https://github.com/balancer-labs/balancer-sor",
+      "https://github.com/balancer-labs/balancer-v2-monorepo",
+      "https://github.com/balancer-labs/frontend-v2",
+      "https://github.com/balancer-labs/balancer-subgraph-v2"
+    ]
+  },
+  "TRB": {
+    "name": "Tellor",
+    "description": "The decentralized oracle",
+    "repos": [
+      "https://github.com/tellor-io/usingtellor",
+      "https://github.com/tellor-io/tellorX",
+      "https://github.com/tellor-io/dataSpecs",
+      "https://github.com/tellor-io/sampleUsingTellor",
+      "https://github.com/tellor-io/telliot-core"
+    ]
+  },
+  "SOL": {
+    "name": "Solano",
+    "description": "Solana is a decentralized blockchain built to enable scalable, user-friendly apps for the world.",
+    "repos": [
+      "https://github.com/solana-labs/solana",
+      "https://github.com/solana-labs/solana-program-library",
+      "https://github.com/solana-labs/dapp-scaffold",
+      "https://github.com/solana-labs/token-list",
+      "https://github.com/solana-labs/solana-web3.js"
+    ]
+  },
+  "IDEX": {
+    "name": "IDEX",
+    "description": "Hybrid Liquidity DEX: Order Book + AMM",
+    "repos": [
+      "https://github.com/idexio/idex-sdk-js",
+      "https://github.com/idexio/idex-contracts-silverton",
+      "https://github.com/idexio/idex-farm"
+    ]
+  },
+  "IOTX": {
+    "name": "IoTeX Network",
+    "description": "A Decentralized Network for Internet of Trusted Things",
+    "repos": [
+      "https://github.com/iotexproject/iotex-core",
+      "https://github.com/iotexproject/halogrants",
+      "https://github.com/iotexproject/iotex-dapp-sample",
+      "https://github.com/iotexproject/iotex-bootstrap"
+    ]
+  },
+  "CHZ": {
+    "name": "Chiliz",
+    "description": "The world’s leading blockchain fintech provider for sports & entertainment",
+    "repos": [
+      "https://github.com/chiliz/nativescript-wikitude",
+      "https://github.com/chiliz/dist",
+      "https://github.com/chiliz/nativescript-jumio"
+    ]
+  },
+  "ALCX": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "RGT": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "SHIB": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "ATOM": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "FORTH": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "SUSHI": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "GYEN": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "API3": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "MANA": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "XRP": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "BAT": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "BTRST": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "NKN": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "DNT": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "AGLD": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "KRL": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "BOND": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "CLV": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "LQTY": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "KEEP": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "VGX": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "ENS": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "RBN": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "PERP": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "ZEC": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "BNT": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "REN": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "RLC": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "XLM": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "WBTC": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "LTC": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "EOS": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "KNC": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "MCO2": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "IMX": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "LCX": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "UMA": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "ADA": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "EUR": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "ANKR": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "ASM": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "ZRX": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "CTSI": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "GTC": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "UST": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "GNT": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "GRT": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "FOX": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "BLZ": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "PLA": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "FET": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "BADGER": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "ORN": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "SUKU": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "COMP": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "WLUNA": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "MATIC": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "STORJ": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "1INCH": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "ZEN": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "GALA": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "OGN": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "CVC": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "AVAX": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "ETC": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "NU": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "USDC": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "POLS": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "BICO": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "OMG": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "ICP": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "POWR": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "LINK": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "DOT": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "ACH": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "ARPA": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "LPT": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "AAVE": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "ENJ": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "QNT": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "GODS": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "COTI": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "NCT": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "DESO": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "MKR": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "RLY": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "COVAL": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "FX": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "DAI": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "YFII": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "SKL": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "PRO": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "TRU": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "SNX": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "LOOM": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "AUCTION": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "RAI": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "OXT": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "BAND": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "DOGE": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "REP": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "XTZ": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "PAX": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "MDT": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "ETH": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "SPELL": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "SUPER": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "WCFG": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "BCH": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "CRO": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "POLY": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "YFI": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "MUSD": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "XYO": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "UNI": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "FIL": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "CRV": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "INV": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "GFI": {
+    "name": "",
+    "description": "",
+    "repos": []
+  },
+  "RARI": {
+    "name": "",
+    "description": "",
+    "repos": []
+  }
+}
