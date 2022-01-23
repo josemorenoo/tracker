@@ -204,9 +204,14 @@
     ]
   },
   "ALCX": {
-    "name": "",
-    "description": "",
-    "repos": []
+    "name": "Alchemix",
+    "description": "SELF-REPAYING LOANS",
+    "repos": [
+      "https://github.com/alchemix-finance/alchemix-protocol",
+      "https://github.com/alchemix-finance/alkeeper-v1",
+      "https://github.com/alchemix-finance/contract-addresses",
+      "https://github.com/alchemix-finance/alchemix-newsletter"
+    ]
   },
   "RGT": {
     "name": "",
