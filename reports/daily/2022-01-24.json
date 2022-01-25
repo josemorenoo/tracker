@@ -1,0 +1,32 @@
+{
+  "AMP": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "LRC": {
+    "commit_count": 6,
+    "lines_of_code": 38162,
+    "commit_messages": [
+      "331 Hebao security",
+      "Merge branch 'master' of github.com:Loopring/loopring-web-v2",
+      "remove beta",
+      "remove beta",
+      "remove beta",
+      "remove beta"
+    ],
+    "distinct_authors": [
+      "windatang"
+    ],
+    "commit_urls": [
+      "https://github.com/Loopring/loopring-web-v2/commit/679f66452ac6b05714b343d2ce41649fb7e74ee9",
+      "https://github.com/Loopring/loopring-web-v2/commit/f31cf351f32584e47ee348561054ce492a6622a4",
+      "https://github.com/Loopring/loopring-web-v2/commit/ab4a4f2c9e5f06d73137bafea61e9c4b334f2464",
+      "https://github.com/Loopring/loopring-web-v2/commit/f1f0a91184b6cb79f96f61b73116b44ba8435ea7",
+      "https://github.com/Loopring/loopring-web-v2/commit/2678c1adf17cae2028277a2d4edcd4360adee409",
+      "https://github.com/Loopring/loopring-web-v2/commit/97d0978f2715942a34f90b664b9d251869de3d0b"
+    ]
+  }
+}

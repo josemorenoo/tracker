@@ -14,6 +14,7 @@ class Commit:
     print(c.msg + c.author)
     >>> 'hello nini'
     """
+    hash: str
     msg: str
     author: str
     committer: str
@@ -26,6 +27,7 @@ class Commit:
     merge: bool
     modified_files: List[Any]
     project_name: str
+    project_path: str
     deletions: int
     insertions: int
     lines: int
@@ -44,6 +46,7 @@ class CommitHandler:
         '''
         print(" loading commit from {}".format(commit.project_name))
         return Commit(
+            hash = commit.hash,
             msg = commit.msg,
             author = commit.author ,
             committer = commit.committer,
@@ -56,6 +59,7 @@ class CommitHandler:
             merge = commit.merge,
             modified_files = commit.modified_files,
             project_name = commit.project_name,
+            project_path = commit.project_path,
             deletions = commit.deletions,
             insertions = commit.insertions,
             lines = commit.lines,
