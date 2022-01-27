@@ -5,3 +5,4 @@ tqdm
 pydriller
 gunicorn
 Historic-Crypto
+tweepy

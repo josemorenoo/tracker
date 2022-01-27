@@ -53,9 +53,9 @@ figures.extend([f(token, token_data_df, project_commits_list) for f in plotting_
 app = dash.Dash(__name__)
 server = app.server
 
-plot_divs = []
 
 # add each figure provided as its own div
+plot_divs = []
 for fig_id, fig in enumerate(figures):
     plot_divs.append(html.Div([
         dcc.Graph(
@@ -63,6 +63,7 @@ for fig_id, fig in enumerate(figures):
             figure=fig
         )
     ]))
+
 
 # create the dashboard page
 app.layout = html.Div(children=plot_divs)
