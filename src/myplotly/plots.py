@@ -1,3 +1,4 @@
+from datetime import datetime
 import plotly.express as px
 import plotly.graph_objects as go
 import pandas as pd
@@ -9,6 +10,12 @@ from ..stats_util import Stats
 # https://stackoverflow.com/questions/52339903/plotly-how-to-plot-just-month-and-day-on-x-axis-ignore-year
 
 class Plots:
+
+    # monthname DD linebreak YYYY
+    XAXIS_TICKFORMAT = '%B %d<br>%Y'
+
+    def float_epoch_ts_to_datetime(ms_timestamps):
+        return [datetime.fromtimestamp(int(str(ms)[:10])) for ms in ms_timestamps]
 
     def create_commits_plot(token: str, token_data_df, project_commits_list, commits_df):
         fig = Plots.create_price_fig(token, token_data_df)
@@ -22,14 +29,19 @@ class Plots:
         fig.add_trace(go.Scatter(
             name = "Commits",
             mode = "markers",
-            x = commits_df['ms_timestamp'],
+            x = Plots.float_epoch_ts_to_datetime(commits_df['ms_timestamp']),
             y = commits_df['files_changed'],
             hovertemplate = Plots.create_commit_hover_template(),
             customdata = customdata,
             yaxis='y2'
         ))
-        fig.layout.update(yaxis2 = go.layout.YAxis(title="# Files Modified Per Commit", overlaying='y', side='right', type='log'))
-        fig.update_layout(hoverlabel_align='left', xaxis=dict(tickformat="%b-%d-%Y"))
+        fig.layout.update(
+            yaxis2 = go.layout.YAxis(title="# Files Modified Per Commit",
+            overlaying='y',
+            side='right',
+            type='log'))
+        fig.update_layout(
+            hoverlabel_align='left')
         return fig
 
     def create_aggregate_commit_count_plot(token: str, token_data_df, project_commits_list):
@@ -46,14 +58,17 @@ class Plots:
         fig.add_trace(go.Scatter(
             name="Aggregate # of Commits",
             mode="markers",
-            x=commits_df["ms_timestamp"],
+            x=Plots.float_epoch_ts_to_datetime(commits_df["ms_timestamp"]),
             y=commits_df["commits_per_5min_range"],
             marker = {'color': "cyan"},
             hovertemplate = '<br><b>Project Commit Count:</b> %{y}<br>'+'<extra></extra>',
             yaxis='y2'))
 
         # put the secondary y-axis on the right
-        fig.layout.update(yaxis2 = go.layout.YAxis(title="Total # Commits", overlaying='y', side='right'))
+        fig.layout.update(
+            yaxis2 = go.layout.YAxis(title="Total # Commits",
+            overlaying='y',
+            side='right'))
         return fig
 
     def create_lines_of_code_plot(token: str, token_data_df, project_commits_list):
@@ -63,15 +78,20 @@ class Plots:
         fig.add_trace(go.Scatter(
             name = "Lines of Code",
             mode = "lines+markers",
-            x = commit_ms_timestamp,
+            x = Plots.float_epoch_ts_to_datetime(commit_ms_timestamp),
             y = lines_of_code,
             marker = {'color': "blueviolet"},
             line = {'color': "blueviolet"},
             hovertemplate = '<br><b>Lines of Code: </b> %{y}<br>'+'<extra></extra>',
             yaxis='y2'
         ))
-        fig.layout.update(yaxis2 = go.layout.YAxis(title=f"Lines of Code", overlaying='y', side='right', type='log'))
-        fig.update_layout(hoverlabel_align='left', xaxis=dict(tickformat="%b-%d-%Y"))
+        fig.layout.update(
+            yaxis2 = go.layout.YAxis(title=f"Lines of Code",
+            overlaying='y',
+            side='right',
+            type='log'))
+        fig.update_layout(
+            hoverlabel_align='left')
         return fig
 
     def create_number_of_authors_plot(token: str, token_data_df, project_commits_list):
@@ -81,7 +101,7 @@ class Plots:
         fig.add_trace(go.Scatter(
             name = "Number of Authors",
             mode = "lines+markers",
-            x = new_author_timestamps,
+            x = Plots.float_epoch_ts_to_datetime(new_author_timestamps),
             y = authors_count,
             line = {'color': "aqua"},
             marker = {'color': "aqua"},
@@ -93,7 +113,9 @@ class Plots:
         ))
 
         fig.layout.update(yaxis2 = go.layout.YAxis(title=f"Number of Authors", overlaying='y', side='right', type='linear'))
-        fig.update_layout(hoverlabel_align='left', xaxis=dict(tickformat="%b-%d-%Y"))
+        fig.update_layout(
+            hoverlabel_align='left'
+        )
         return fig
 
     def create_price_fig(token, token_data_df):
@@ -102,12 +124,12 @@ class Plots:
         fig.add_trace(go.Scatter(
             name=f"{token} Price",
             mode="lines",
-            x=token_data_df["ms_timestamp"],
+            x=Plots.float_epoch_ts_to_datetime(token_data_df["ms_timestamp"]),
             y=token_data_df["close"],
             hovertemplate='<br><b>Price: </b> %{y}<br>'+'<extra></extra>'
         ))
         fig.layout.update(yaxis = go.layout.YAxis(title=f"{token} price in USD", side="left"))
-        fig.update_layout(yaxis_tickformat = '$', xaxis=dict(tickformat="%b-%d-%Y"))
+        fig.update_layout(yaxis_tickformat = '$', xaxis_tickformat=Plots.XAXIS_TICKFORMAT)
         return fig
 
     def create_commit_hover_template():
