@@ -28,5 +28,1750 @@
       "https://github.com/Loopring/loopring-web-v2/commit/2678c1adf17cae2028277a2d4edcd4360adee409",
       "https://github.com/Loopring/loopring-web-v2/commit/97d0978f2715942a34f90b664b9d251869de3d0b"
     ]
+  },
+  "BTC": {
+    "commit_count": 5,
+    "lines_of_code": 58,
+    "commit_messages": [
+      "Merge bitcoin/bitcoin#24078: net, refactor: Rename CNetMessage::m_command with CNetMessage::m_type\n\n224d87855ec38cc15866d9673e1b19942a82c1cd net, refactor: Drop tautological local variables (Hennadii Stepanov)\n3073a9917b31d15ba958ea8148585633ba905f8b scripted-diff: Rename CNetMessage::m_command with CNetMessage::m_type (Hennadii Stepanov)\n\nPull request description:\n\n  https://github.com/bitcoin/bitcoin/pull/18533#issue-594592488:\n  > a message is not a command, but simply a message of some type\n\n  Continuation of bitcoin/bitcoin#18533 and bitcoin/bitcoin#18937.\n\nACKs for top commit:\n  theStack:\n    Concept and code-review ACK 224d87855ec38cc15866d9673e1b19942a82c1cd\n  shaavan:\n    Code Review ACK 224d87855ec38cc15866d9673e1b19942a82c1cd\n  w0xlt:\n    crACK 224d878\n\nTree-SHA512: 898cafb44708dae1413fcc1533d809d75878891354f1b5edaaec1287f4921c31adc9330f4d42d82544a39689886bc17fee71ea587f9199fd5cc849d376f82176",
+      "Merge bitcoin/bitcoin#23543: test: Prevent non-compatible sed binary for scripted-diffs\n\nd8dfc403f74858b79c87f650b5d609aa60a4dc3b script: redirecting stderr to stdout before pipelining into grep (anouar kappitou)\n30df5c3dd4d39d9027b0341d01d3233400104893 script: preventing non-compatible sed binary. (anouar kappitou)\n\nPull request description:\n\n  This Pull request improve scripted diff by checking for non-compatible sed binary. Fixes #19815\n\nACKs for top commit:\n  shaavan:\n    reACK d8dfc403f74858b79c87f650b5d609aa60a4dc3b\n  theStack:\n    Tested ACK d8dfc403f74858b79c87f650b5d609aa60a4dc3b\n\nTree-SHA512: 4813abb02195e04b8953662e51cba4599789e6185a6d384f56255e2d37c2b16be46c7c8861e44ba1a13d42573a58eb708901472925cb308dba2f602020e9f0f6",
+      "Merge bitcoin/bitcoin#24108: Replace RecursiveMutex `cs_addrLocal` with Mutex, and rename it\n\ndec787d8ac2e8fb42db87431dd622bf44897bc4e refactor: replace RecursiveMutex `m_addr_local_mutex` with Mutex (w0xlt)\n93609c1dfad70961697d0d12bf01cd34b8ceb6c8 p2p: add assertions and negative TS annotations for m_addr_local_mutex (w0xlt)\nc4a31ca267f74bff76a43878177d05d22825a203 scripted-diff: rename cs_addrLocal -> m_addr_local_mutex (w0xlt)\n\nPull request description:\n\n  This PR is related to #19303 and gets rid of the `RecursiveMutex cs_addrLocal`.\n\nACKs for top commit:\n  hebasto:\n    ACK dec787d8ac2e8fb42db87431dd622bf44897bc4e, I have reviewed the code and it looks OK, I agree it can be merged.\n  shaavan:\n    reACK dec787d8ac2e8fb42db87431dd622bf44897bc4e\n\nTree-SHA512: b7a043bfd4e2ccbe313bff21ad815169db6ad215ca96daf358ce960c496a548b4a9e90be9e4357430ca59652b96df87c097450118996c6d4703cbaabde2072d0",
+      "Merge bitcoin/bitcoin#24102: mempool: Run coin.IsSpent only once in a row\n\nfa2bcc4e42e7fed61727b3de4019e9702d4090ce Run coin.IsSpent only once in a row (MarcoFalke)\n\nPull request description:\n\n  Follow-up to commit 64e4963c635ec3a73a5fa3f32f6ec08e70609f60 and https://github.com/bitcoin/bitcoin/pull/23976#discussion_r787758193\n\nACKs for top commit:\n  glozow:\n    utACK fa2bcc4e42e7fed61727b3de4019e9702d4090ce, agree the assertion is sufficient\n  theStack:\n    Code-review ACK fa2bcc4e42e7fed61727b3de4019e9702d4090ce\n  w0xlt:\n    crACK https://github.com/bitcoin/bitcoin/pull/24102/commits/fa2bcc4e42e7fed61727b3de4019e9702d4090ce\n  shaavan:\n    Code Review ACK fa2bcc4e42e7fed61727b3de4019e9702d4090ce\n  brunoerg:\n    crACK fa2bcc4e42e7fed61727b3de4019e9702d4090ce\n\nTree-SHA512: 3be9d6b313bf6bb835f031826c81777b4659118d839001d084e72462391cb64ba81d06a5e07fd21fcfb709a71b08892b23212a98604ce8481da489476b72f072",
+      "Merge bitcoin/bitcoin#24057: guix: point to recent commit on the master branch\n\n85885919656a3f606f3d7f208378aabe95f3f62d guix: ignore additioanl failing certvalidator test (fanquake)\ne8a6c888e46ec6afd408feac92cd81e2be6af490 build: point to latest commit on the master branch (fanquake)\n\nPull request description:\n\n  Guix recently force pushed to their `version-1.4.0` branch, causing #24040. At the time #24042 pointed to the newest commit on that branch, fixing #24040, but it didn't actually build. Guix have now [temporarily removed](https://lists.gnu.org/archive/html/guix-devel/2022-01/msg00313.html) their `version-1.4.0` branch, while they incorporate additional fixes.\n\n  This PR updates our guix time-machine to point to a recent commit on the guix master branch, so that builds can resume for all hosts apart from Windows. Windows builds are broken due to what looks like an upstream issue, which  results in e failure to build the [`mingw-w64-x86_64-winpthreads package`](https://git.savannah.gnu.org/cgit/guix.git/tree/gnu/packages/mingw.scm#n137). The build fails with:\n  ```bash\n  /gnu/store/4y5m9lb8k3qkb1y9m02sw9w9a6hacd16-bash-minimal-5.1.8/bin/bash ./libtool  --tag=CC   --mode=link x86_64-w64-mingw32-gcc -Wall -DWIN32_LEAN_AND_MEAN -g -O2 -no-undefined -version-info 1:0:0 -L./fakelib -Wc,-no-pthread  -o libwinpthread.la -rpath /gnu/store/2bglap5gk4db8lajaahg4d7361myw5qw-mingw-w64-x86_64-winpthreads-8.0.0/lib src/libwinpthread_la-barrier.lo src/libwinpthread_la-cond.lo src/libwinpthread_la-misc.lo src/libwinpthread_la-mutex.lo src/libwinpthread_la-rwlock.lo src/libwinpthread_la-spinlock.lo src/libwinpthread_la-thread.lo src/libwinpthread_la-ref.lo src/libwinpthread_la-sem.lo src/libwinpthread_la-sched.lo src/libwinpthread_la-clock.lo src/libwinpthread_la-nanosleep.lo src/version.lo\n  libtool: link: x86_64-w64-mingw32-gcc -shared  src/.libs/libwinpthread_la-barrier.o src/.libs/libwinpthread_la-cond.o src/.libs/libwinpthread_la-misc.o src/.libs/libwinpthread_la-mutex.o src/.libs/libwinpthread_la-rwlock.o src/.libs/libwinpthread_la-spinlock.o src/.libs/libwinpthread_la-thread.o src/.libs/libwinpthread_la-ref.o src/.libs/libwinpthread_la-sem.o src/.libs/libwinpthread_la-sched.o src/.libs/libwinpthread_la-clock.o src/.libs/libwinpthread_la-nanosleep.o src/.libs/version.o   -L./fakelib  -g -O2 -no-pthread   -o .libs/libwinpthread-1.dll -Wl,--enable-auto-image-base -Xlinker --out-implib -Xlinker .libs/libwinpthread.dll.a\n  x86_64-w64-mingw32-ld: final link failed: bad value\n  collect2: error: ld returned 1 exit status\n  ```\n\n  This info will be sent upstream. You can likely recreate the failure with `guix build mingw-w64-x86_64-winpthreads`.\n\n  Once Guix is at a point of tagging a 1.4.0 release commit (after re-branching and RCs), we can shift our time-machine to point to it. If a change is made upstream in relation to the Windows issue we are seeing, we will adjust our time-machine commit earlier.\n\n  Guix builds:\n  ```bash\n  bash-5.1# find guix-build-$(git rev-parse --short=12 HEAD)/output/ -type f -print0 | env LC_ALL=C sort -z | xargs -r0 sha256sum\n  9bbaba7be551f871d940346dd8896908968e5403cdbaa9a990b98a5ef5d8a2c8  guix-build-85885919656a/output/aarch64-linux-gnu/SHA256SUMS.part\n  4da3c6589afb383e689c1569d9d0379dba3e6e18039f331c91da180b937b6b68  guix-build-85885919656a/output/aarch64-linux-gnu/bitcoin-85885919656a-aarch64-linux-gnu-debug.tar.gz\n  089c83b739149ea22809a6594aaec5b1df648d770e1086f17ab901e998b54dfd  guix-build-85885919656a/output/aarch64-linux-gnu/bitcoin-85885919656a-aarch64-linux-gnu.tar.gz\n  71db39d3e84f50a4146300271077bf9687ede8a15ee450d1b62270f362c6fa98  guix-build-85885919656a/output/arm-linux-gnueabihf/SHA256SUMS.part\n  6b6528e6077f403a53a12199a5dc98d5ea829380295aa768232d619417615465  guix-build-85885919656a/output/arm-linux-gnueabihf/bitcoin-85885919656a-arm-linux-gnueabihf-debug.tar.gz\n  4ce4d0c28d09bfd46492cd14f8d0a93c58ca827c2e5dcb7aadf74147b8aff7ea  guix-build-85885919656a/output/arm-linux-gnueabihf/bitcoin-85885919656a-arm-linux-gnueabihf.tar.gz\n  971b85090756ec9557792bfc7f47a013434d30ef41a19b6284c6efc425ce36bf  guix-build-85885919656a/output/dist-archive/bitcoin-85885919656a.tar.gz\n  64b9757d597f4665dc7b71f6ff3e52671ca2783a8834ef212dd795ff98350919  guix-build-85885919656a/output/powerpc64-linux-gnu/SHA256SUMS.part\n  5009332c4b7a23263a99e5f39a635d1193c7300672916abd6528112ba56c71c5  guix-build-85885919656a/output/powerpc64-linux-gnu/bitcoin-85885919656a-powerpc64-linux-gnu-debug.tar.gz\n  84f0e74abe3cf499480c16b371522c6ab958e5c234514c720e7b8915be4dc62d  guix-build-85885919656a/output/powerpc64-linux-gnu/bitcoin-85885919656a-powerpc64-linux-gnu.tar.gz\n  f73d0fe614caaa617aa2e65f59ccf689ddd2c484878ebd0649dd2e14b31b0329  guix-build-85885919656a/output/powerpc64le-linux-gnu/SHA256SUMS.part\n  0985d12c3aa1b7625a7369a4d4a8c7f92e1eaf4276c4457610f90d3c057a843e  guix-build-85885919656a/output/powerpc64le-linux-gnu/bitcoin-85885919656a-powerpc64le-linux-gnu-debug.tar.gz\n  e35a34bc9bf9bc8b9e760b7b9da897ed9bf669dc2a36cd3d5395dbb25683d057  guix-build-85885919656a/output/powerpc64le-linux-gnu/bitcoin-85885919656a-powerpc64le-linux-gnu.tar.gz\n  c1800ea2353feb984f05ea6f6faa6421b5f3764a036d335fbb18c6d313176e8b  guix-build-85885919656a/output/riscv64-linux-gnu/SHA256SUMS.part\n  17012337bfc124970dcb26fe0bef0eb0ec57eabaafdd0533828732e407199941  guix-build-85885919656a/output/riscv64-linux-gnu/bitcoin-85885919656a-riscv64-linux-gnu-debug.tar.gz\n  c9528178e2266ef7d2f49b6b6f65233c58c8f71d196d9347421f988ba4b662bd  guix-build-85885919656a/output/riscv64-linux-gnu/bitcoin-85885919656a-riscv64-linux-gnu.tar.gz\n  2e6c4fc18b866648e35ebece7c7c8f625833c4f37c1aae8b7d0bc0d5caca6f69  guix-build-85885919656a/output/x86_64-apple-darwin/SHA256SUMS.part\n  dcee189ad0b8dad71df9053db9c0e2f308c1742cb1638d60d515dafcf4cca8be  guix-build-85885919656a/output/x86_64-apple-darwin/bitcoin-85885919656a-osx-unsigned.dmg\n  d9366875d36c1993831548ca94de859cbdecca26b77877012456b63bf144558e  guix-build-85885919656a/output/x86_64-apple-darwin/bitcoin-85885919656a-osx-unsigned.tar.gz\n  6ddd041d2b359f1be5272e79d80deb7ed233289394cbc3436b4cc43853c9690f  guix-build-85885919656a/output/x86_64-apple-darwin/bitcoin-85885919656a-osx64.tar.gz\n  ef8ce6b349d886f23341dd034463b18d0c5298cf6b2d95632ae24ca98b1b51c8  guix-build-85885919656a/output/x86_64-linux-gnu/SHA256SUMS.part\n  ce5c2d681617ab1f2f20487ab0b73c48a436a3d313e7441d594a68f28a39a5d3  guix-build-85885919656a/output/x86_64-linux-gnu/bitcoin-85885919656a-x86_64-linux-gnu-debug.tar.gz\n  b364641aff6a1cde8b1bd950a50c74e9c49a09669d5597365de4da250b41aea6  guix-build-85885919656a/output/x86_64-linux-gnu/bitcoin-85885919656a-x86_64-linux-gnu.tar.gz\n  ```\n\nACKs for top commit:\n  hebasto:\n    ACK 85885919656a3f606f3d7f208378aabe95f3f62d\n  dunxen:\n    ACK 8588591\n\nTree-SHA512: ee75c630366200e2a93a3a82fb5f689c6f69e3a39a00e8bf61609a9f21283b6511e9e2ceb44c52550f8f231b38f5966d2ef2669ada5588272cc424cbd25a1ed2"
+    ],
+    "distinct_authors": [
+      "MarcoFalke"
+    ],
+    "commit_urls": [
+      "https://github.com/bitcoin/bitcoin/commit/973c39029808a20b9afc244559a92e9d700d3824",
+      "https://github.com/bitcoin/bitcoin/commit/b3122e167a023df18f67c4083bc72f78968874db",
+      "https://github.com/bitcoin/bitcoin/commit/b32f0d3af1e0af858ef75d76661f55b2ce9af8e2",
+      "https://github.com/bitcoin/bitcoin/commit/e3de7cb9039770e0fd5b8bb8a5cba35c87ae8f00",
+      "https://github.com/bitcoin/bitcoin/commit/9ec3991ad3b2ae91997c696a4c2f187fe538eff0"
+    ]
+  },
+  "CGLD": {
+    "commit_count": 1,
+    "lines_of_code": 2,
+    "commit_messages": [
+      "Fix tx DecodeRLP for rlp lists (#1801)"
+    ],
+    "distinct_authors": [
+      "GitHub"
+    ],
+    "commit_urls": [
+      "https://github.com/celo-org/celo-blockchain/commit/f957b0a85d0e45ebdfcfbdb568889890b065bb7b"
+    ]
+  },
+  "RAD": {
+    "commit_count": 10,
+    "lines_of_code": 910,
+    "commit_messages": [
+      "fix variable mismatch\n\nSigned-off-by: Julien Donck <hello@juliendonck.com>",
+      "Merge pull request #7 from radicle-dev/julien/add-metadata\n\nscaffolding",
+      "adding metadata + styling card\n\nSigned-off-by: Julien Donck <hello@juliendonck.com>",
+      "abstract out format utils\n\nSigned-off-by: Julien Donck <hello@juliendonck.com>",
+      "style header / footer\n\nSigned-off-by: Julien Donck <hello@juliendonck.com>",
+      "styling detail page",
+      "style buttons\n\nSigned-off-by: Julien Donck <hello@juliendonck.com>",
+      "add created at date on detail\n\nSigned-off-by: Julien Donck <hello@juliendonck.com>",
+      "adding my-workstreams page + styling links\n\nSigned-off-by: Julien Donck <hello@juliendonck.com>",
+      "got rid of polkadot references"
+    ],
+    "distinct_authors": [
+      "GitHub",
+      "Julien Donck"
+    ],
+    "commit_urls": [
+      "https://github.com/radicle-dev/workstreams-app/commit/d03f0ef89418c033744235151b6ce3b6a21c7e27",
+      "https://github.com/radicle-dev/workstreams-app/commit/f000eca1334eaf85fec3973df426ab53fc278e21",
+      "https://github.com/radicle-dev/workstreams-app/commit/1e2cc14b15bc32ad5b9cd77580c24c79f27bcd2a",
+      "https://github.com/radicle-dev/workstreams-app/commit/f415fa33e1a8b6d312c25e8742fb6a24ecbb28df",
+      "https://github.com/radicle-dev/workstreams-app/commit/e7ffc4bcd2e7a35a86e07e33f645104fbaae1430",
+      "https://github.com/radicle-dev/workstreams-app/commit/3c2912998a51545fb9e4afebf66208013f976392",
+      "https://github.com/radicle-dev/workstreams-app/commit/9ed77878c5297eda2f6ec00edfc721914f0892d7",
+      "https://github.com/radicle-dev/workstreams-app/commit/05295650704dce25bdbb0474c40619ca55cb82ff",
+      "https://github.com/radicle-dev/workstreams-app/commit/bc0cffc340dd2ad15ee22dac274dc59b1684309c",
+      "https://github.com/radicle-dev/radicle-grants/commit/3aadbc0924ed92b51ef27324d1046a559bc416d3"
+    ]
+  },
+  "ALGO": {
+    "commit_count": 13,
+    "lines_of_code": 1554,
+    "commit_messages": [
+      "Adding new scenario for feature networks (#3451)",
+      "Merge pull request #691 from dsaxton/patch-1\n\nFix typo in types.md",
+      "Merge pull request #681 from algorand/dryrun-dump\n\nAdding Create Dryrun sdk doc to debugging",
+      "rename abi to make it uppercase",
+      "merge",
+      "Update docs/get-details/dapps/smart-contracts/debugging.md\n\nCo-authored-by: nullun <nullun@users.noreply.github.com>",
+      "fix link",
+      "Merge branch 'staging' of github.com:algorand/docs into staging",
+      "adding more details about smart contracts to into page",
+      "adding example contract json file",
+      "add link to debug page",
+      "Merge pull request #698 from algorand/sc-intro-details\n\nadding more details about smart contracts to into page",
+      "Merge pull request #699 from algorand/abi-json-example\n\nadding example contract json file"
+    ],
+    "distinct_authors": [
+      "GitHub",
+      "Ben Guidarelli"
+    ],
+    "commit_urls": [
+      "https://github.com/algorand/go-algorand/commit/2a96a788db119c36b26f18dbeba4e2f9ad18b934",
+      "https://github.com/algorand/docs/commit/84393d6b4e2783e55d95f8c15720c3536ce55cef",
+      "https://github.com/algorand/docs/commit/ecef1a8f15ce5f38da9962fccc763044c0bd1424",
+      "https://github.com/algorand/docs/commit/64783bb061fb99ca69681561016850f011fa1568",
+      "https://github.com/algorand/docs/commit/e24d350edc2f51be7b76661166ac37b39dc9360a",
+      "https://github.com/algorand/docs/commit/0e81d30cd0d899d5552daa0b08f8e37828a54f6b",
+      "https://github.com/algorand/docs/commit/c4155cd3faa04655a6cba3e0109e6a8375553013",
+      "https://github.com/algorand/docs/commit/85d2515bb3e0e6bb04df6681ad37dacef184fe5f",
+      "https://github.com/algorand/docs/commit/eadb721a88902407080e1e259cd124976033cdec",
+      "https://github.com/algorand/docs/commit/898fed2a9c83da0b5702f0575931e5bf81a9c0a5",
+      "https://github.com/algorand/docs/commit/ed2b7dc53ba491fe1de00afa93bef26d76e8ad6c",
+      "https://github.com/algorand/docs/commit/ad4f67f8292fba5b6ae98979ad1ac7af3c3baac3",
+      "https://github.com/algorand/docs/commit/7ac67848b1d0e7aef568d9382505afb46cbd834e"
+    ]
+  },
+  "MASK": {
+    "commit_count": 7,
+    "lines_of_code": 1870,
+    "commit_messages": [
+      "feat: optimize NFT avatar's price display rule (#5104)\n\n* feat: optimize NFT avatar's price display rule\r\n\r\n* fix: if nft price is zero, do not display\r\n\r\n* fix: reply review\r\n\r\n* chore: revert get last sale price\r\n\r\n* fix: optimize nft name and token id display\r\n\r\n* refactor: reply review\r\n\r\nCo-authored-by: nuanyang233 <528944303@qq.com>",
+      "feat: optimize NFT avatar's price display rule (#5104)\n\n* feat: optimize NFT avatar's price display rule\r\n\r\n* fix: if nft price is zero, do not display\r\n\r\n* fix: reply review\r\n\r\n* chore: revert get last sale price\r\n\r\n* fix: optimize nft name and token id display\r\n\r\n* refactor: reply review\r\n\r\nCo-authored-by: nuanyang233 <528944303@qq.com>",
+      "feat(avalanche): integrate avalanche network  (#5289)\n\n* feat(avalanche): integrate avalanche network #4864\r\n\r\n* feat(avalanche): add traderjoe dex\r\n\r\n* chore(avalanche): fixed traderjoe\r\n\r\n* feat(avalanche): add assets avalanche logo\r\n\r\n* chore(avalanche): fixed labs_settings_swap_network\r\n\r\n* chore(avalanche): add openocea contract on avalanche network\r\n\r\n* chore(avalanche): setup avalanche  for debank, coingeck, coinmarketcap\r\n\r\n* chore(avalanche): add tokens address\r\n\r\n* feat(Avalanche): add Pangolin Dex\r\n\r\n* feat(avalanche): add balanceChecker contract address\r\n\r\n* chore(avalanche): update assets and json infos\r\n\r\n* chore(avalanche): update wavax addres\r\n\r\n* chore: improve chain id\r\n\r\n* refactor: opensea api\r\n\r\n* chore(avalanche): add native tokens variable and circle avax brand\r\n\r\n* feat(avalanche): add mainnet contracts\r\n\r\n* chore(avalanche): fixed show price\r\n\r\n* chore(avalanche): minimizer pangolinIcon 2.73k → 1.35k\r\n\r\n* chore(avalanche): fixed trading view for avalanche default token\r\n\r\n* chore(avalanche): fix swap issues\r\n\r\n* feat(avalanche): add ito, mask-box, nftredpacket, redpacket contracts mainnet/fuji\r\n\r\n* chore(avalanche): change chain to avax and add redPacket contracts addres\r\n\r\n* chore(avalanche): fixed tokens symbols variables\r\n\r\n* chore(avalanche): fixed coingecko api and add fixed ITO contracts\r\n\r\n* chore(avalanche): update maskbook contracts\r\n\r\n* fix: fix swap\r\n\r\n* fix: wrong config for avalanche\r\n\r\n* fix: sort avalanche chains\r\n\r\n* chore(avalanche): improve ito contracts and subgraphs\r\n\r\n* chore(avalanche): use trustwallet fork repository\r\n\r\n* chore(avalanche): add avax on deBank json and fixed swap\r\n\r\n* chore(dex): enable traderJoe pangolindex and fixed ClaimAllDialog\r\n\r\n* fix(trader): fix trader\r\n\r\n* fixup! fix(trader): fix trader\r\n\r\n* fix: use dimensiondev/assets\r\n\r\n* fix: avalanche native token label\r\n\r\n* fix: extract variable\r\n\r\nCo-authored-by: Septs <github@septs.pw>\r\nCo-authored-by: unclebill <billbill290@gmail.com>",
+      "fix: kv storage increase network identification (#5512)",
+      "Revert \"feat: enables trusted types in develop mode (#5509)\"\n\nThis reverts commit b0043258f3f29220977362b7b5a44f7a4ead9a2a.",
+      "fix: return type (#5506)\n\n* fix: return type\r\n\r\n* fix: reply review\r\n\r\n* fix: reply review",
+      "fix: rss3 nft crash (#5515)"
+    ],
+    "distinct_authors": [
+      "guanbinrui",
+      "GitHub"
+    ],
+    "commit_urls": [
+      "https://github.com/DimensionDev/Maskbook/commit/140319cd39abca484d1ffbf07e7cc41f3b504a1b",
+      "https://github.com/DimensionDev/Maskbook/commit/4e24f6bbcc6d2f6bf42b8f8fa9a249417f2780cd",
+      "https://github.com/DimensionDev/Maskbook/commit/c21cc1d45d6ad336c82a22a94ab8a6b7be1f8f98",
+      "https://github.com/DimensionDev/Maskbook/commit/a9bc43a36d43d10185b67c997d6d63315bcb406d",
+      "https://github.com/DimensionDev/Maskbook/commit/69e92270e7b12f531b0f1336f1bef974917deb27",
+      "https://github.com/DimensionDev/Maskbook/commit/ed197699eea335964c58b1974010b0251956c820",
+      "https://github.com/DimensionDev/Maskbook/commit/7d9e12a8f355eba527b3e9a1ae35250e6c1ee131"
+    ]
+  },
+  "QUICK": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "MIR": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "DASH": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "JASMY": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "REQ": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "TRAC": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "TRIBE": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "MLN": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "NMR": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "BAL": {
+    "commit_count": 4,
+    "lines_of_code": 69973,
+    "commit_messages": [
+      "Upgrade testing suite to support DOM testing (#1322)\n\n* update: upgrade testing suite to support DOM testing\r\n\r\n* fix: match up package json with develop\r\n\r\n* fix: package json again",
+      "Convert balstack to a render function component (#1313)\n\n* update: convert balstack to a render function component\r\n\r\n* fix: lint\r\n\r\n* cleanup: remove unneeded isDynamic prop from balstack\r\n\r\n* update: implement remaining props and add comments\r\n\r\n* update: add balstack spec file\r\n\r\n* update: complete balstack tests",
+      "1.38.0 (#1333)",
+      "UI 746 refactor swapper/web3 into services (#958)\n\n* Add skeleton of service\r\n\r\n* In progress code, before changing SwapToken amount type\r\n\r\n* Refactor Swapper/web3 Into Services\r\n\r\n- Create Swap service that holds most of the logic that swapper used to\r\ndo.\r\n- Create new SwapToken type that can work for both swapIn and swapOut\r\nmethods to avoid duplication.\r\n- Create services for accessing each of the different solidity\r\ncontracts, so that it is clear what contracts are being called with what\r\nparameters.\r\n- Create Contract Caller service that is similar to web3 with cleaner\r\ncode and less parameters required.\r\n- Add new method to gas price service to generate gas price overrides\r\nwhen calling contracts.\r\n\r\n* Cleanup network and address code\r\n\r\n- Remove all initialization of network and addresses from service\r\nconstructors.\r\n- Remove all contract / signer related code from services as they all go\r\nthrough contract-caller now.\r\n- Pull network / address dynamically through the config service instead,\r\nso it's always up to date.\r\n\r\n* Remove unused vars from vault service\r\n\r\n* Code Style + Type Fixes\r\n\r\n- Use an enum for SwapToken type instead of a string.\r\n- Use strict equality everywhere\r\n- Remove unneccessary async's\r\n- Add types to returns from Functions.\r\n\r\n* Move ContractCaller to web3, general code cleanup\r\n\r\n- Move the contractCaller to services/web3 as it has similar contract\r\ninteraction functionality and is similar to the old web3 util.\r\n- Make GasSettings an interface.\r\n- Don't use composables in services\r\n- Fix bugs in gas price service.\r\n\r\n* Add setting of web3 service provider\r\n\r\n- Allow setting the provider of the web3 service so that swapper can set\r\nit to the user wallet provider before performing a swap. This is so\r\naddress retrieval and sendTransaction calls are done via the users\r\nwallet rather than infura.\r\n- Fixed bug with vault abi.\r\n\r\n* Add a reactive provider to web3.service\r\n\r\n* Add computed provider to web3.service.ts\r\n\r\n- Make web3.plugin.ts pass a computed function into the service that\r\ndetermines the correct provider to use when the service is used. The\r\nprovider is set whenever a new wallet is connected and automatically\r\nreacts to the account being changed.\r\n\r\n* Remove network/provider being passed to swapper\r\n\r\n- These are now unneccessary as the provider is automatically set in\r\nweb3.service.ts.\r\n\r\n* Use dependency injection for services, add appProvider and userProvider\r\n\r\n- Services should keep their own readonly local pointer to services so\r\nthey can be changed via dependency injection if required.\r\n- Have separate appProvider and userProvider in the web3 service\r\nthat are used in different locations.\r\n\r\n* Add exchange proxy tests. Add Address type.\r\n\r\n- Add basic tests for exchange proxy\r\n- Add Address type which is a string, to be more explicit about what\r\nartugments should be Addresses and what should be numbers.\r\n\r\n* Apply SOR v2 updates\r\n\r\n- Apply all updates to support SORV2 that are already in develop\r\n\r\n* Add Vault Service tests\r\n\r\n- Add vault service tests\r\n- Change some exports to export class as default\r\n\r\n* Change variable name to userProvider\r\n\r\n* Add unit tests for swap service\r\n\r\n- Add unit tests for single, multi and lido swaps, ensuring they call\r\nthe correct services with the correct arguments\r\n- Create mocks for services to use in tests.\r\n\r\n* Fix linter issues\r\n\r\n* Fix bug with tokenIn/tokenOut being changed in lidoBatchSwap\r\n\r\n- Fix bug with those token details being changed because they are passed by\r\nreference.\r\n- Fix swap tests.\r\n\r\n* Lint fixes\r\n\r\n* Fix Bugs with Native Asset Swapping, Lido Swapping\r\n\r\n- Fixed bug where native asset value wasn't being passed through to\r\nservice.\r\n- Fixed bug with lido tests where the tokenIn.address wasn't lowercase\r\nso stETH wasn't being converted to wstETH\r\n- Added tests for fixes.\r\n- Added more types to ABI's\r\n\r\n* Remove unused var, rebase\r\n\r\n* Fix minor issues with ENS avatars after rebase\r\n\r\n* Move Boosted Pool swap functions to swap.service\r\n\r\n- Move boostedJoinBatchSwap and boostedExitBatchSwap from swapper to\r\nswap.service. Use vault service for performing the swaps.\r\n\r\n* Reverse ens and avatar order to be same as before\r\n\r\n* Re-add console logs for web3 call information\r\n\r\n* Add unit tests for boosted pool invest/withdraw\r\n\r\n* Refactor boostedJoin to use SwapTokens as arguments\r\n\r\n- Update boostedJoinBatchSwap to take SwapToken's instead of what they\r\nwere taking previously\r\n- Update test to call with new arguments, but keep rest of the test the\r\nsame.\r\n\r\n* Refactored boostedExitBatchSwap to use SwapTokens\r\n\r\n- Refactored boostedExitBatchSwap to use SwapTokens like the other\r\nfunctions\r\n- Update tests and swapper to use these new arguments and ensure it\r\nstill works as it should.\r\n\r\n* Refactor calcaulateLimits and use for boosted pools\r\n\r\n- Refactor calculateLimits so that it can take arrays of tokens.\r\n- Reduce duplicate code in calculateLimits and boosted pools. Use\r\ncalculateLimits to generate the limits for boosted pools.\r\n\r\n* Rename MetamaskError to WalletError\r\n\r\n* Use SwapV2 from sdk instead of sor2"
+    ],
+    "distinct_authors": [
+      "GitHub"
+    ],
+    "commit_urls": [
+      "https://github.com/balancer-labs/frontend-v2/commit/9a9a8f87c35b6a3883b32706109359281ef1fc75",
+      "https://github.com/balancer-labs/frontend-v2/commit/fb0118fa03c09e33d8f1a8ea5b60bf3088f69d3a",
+      "https://github.com/balancer-labs/frontend-v2/commit/4bf07e8c6d05775619717d7b9383775b0d61fcc9",
+      "https://github.com/balancer-labs/frontend-v2/commit/368cb6172d98e187a06a4e403633261d6e56b24c"
+    ]
+  },
+  "TRB": {
+    "commit_count": 16,
+    "lines_of_code": 636,
+    "commit_messages": [
+      "Update __init__.py",
+      "Create a single API entry point for users.",
+      "Add placeholder for new AbiQuery subclass (still needs implementation).",
+      "Adapt examples to use API",
+      "Switch CLI from staker to account terminology",
+      "bufgix for CONFIG cli command",
+      "Bugfix: CLI query status command handles zero on-chain datapoints.",
+      "Added more CLI tests.",
+      "Test and style fixes.",
+      "Update test_cli.py",
+      "Leave stub imports to avoid breaking feed examples.",
+      "Clarify that the descriptor should be identical for all queries.",
+      "Merge pull request #204 from tellor-io/subtypes\n\nOracleQuery generalization, dev updates and bug fixes.",
+      "Documentation updates",
+      "Merge pull request #205 from tellor-io/docs\n\nDocumentation updates",
+      "Bump version"
+    ],
+    "distinct_authors": [
+      "clamdad",
+      "GitHub"
+    ],
+    "commit_urls": [
+      "https://github.com/tellor-io/telliot-core/commit/6b597eff3f97a3904c83104d7770a490ebe39bc8",
+      "https://github.com/tellor-io/telliot-core/commit/333dcd058600f9a581bb1acbaba2244439ee785a",
+      "https://github.com/tellor-io/telliot-core/commit/623c488c4ad40f975133b1df0263ac0ca4f34d1d",
+      "https://github.com/tellor-io/telliot-core/commit/6787a05c644900539813982d244b72cec143f208",
+      "https://github.com/tellor-io/telliot-core/commit/8787e66bb77699e8034ad5cf1a18741df74d0497",
+      "https://github.com/tellor-io/telliot-core/commit/b0159bfd14f1a2cea69e2106e1be116b3b654b8b",
+      "https://github.com/tellor-io/telliot-core/commit/2eeba78a5013ae0e21593791ff0cceddca3629ff",
+      "https://github.com/tellor-io/telliot-core/commit/f678f0aa79d318b092fbdcc7c20d70f924f56136",
+      "https://github.com/tellor-io/telliot-core/commit/c1a0fa1db51690138689f34af4c75c2f88f72252",
+      "https://github.com/tellor-io/telliot-core/commit/15c6528b64998a55def87fc67abba59f326d60b4",
+      "https://github.com/tellor-io/telliot-core/commit/ba5f8f2f9e82cfd72bf18f8bdf8a14f850e29009",
+      "https://github.com/tellor-io/telliot-core/commit/6959579346afff7be38f1abe258afc0a7b406758",
+      "https://github.com/tellor-io/telliot-core/commit/42b085522e82a2a223ad9b0d95ba3f2619df44a5",
+      "https://github.com/tellor-io/telliot-core/commit/84cbbb5fab7beabc0ea27665a185f7bd6ad7fefa",
+      "https://github.com/tellor-io/telliot-core/commit/5e9c75456d4adeed53bbd2163e5fd8e6109d1a07",
+      "https://github.com/tellor-io/telliot-core/commit/ef4a3a4d02a3e6fd23350b40f5de86a923e907ca"
+    ]
+  },
+  "SOL": {
+    "commit_count": 120,
+    "lines_of_code": 4158,
+    "commit_messages": [
+      "Merge branch 'automerge-pending'",
+      "chore(release): 0.2.1728",
+      "Pull request-Mario token\n\nCloses #15450",
+      "Who knows\n\nCloses #15452",
+      "Merge branch 'automerge-pending'",
+      "chore(release): 0.2.1729",
+      "Traders Toolbox Token Additions\n\nCloses #15456",
+      "pull request\n\nCloses #15459",
+      "Adding Second Foundation Graphics Token\n\nCloses #15460",
+      "Merge branch 'automerge-pending'",
+      "chore(release): 0.2.1730",
+      "adding Katie Coin token\n\nCloses #15461",
+      "adding J_CHAR_ Token\n\nCloses #15462",
+      "Updating Tokens\n\nCloses #15464",
+      "Merge branch 'automerge-pending'",
+      "chore(release): 0.2.1731",
+      "adding project token\n\nCloses #15468",
+      "Adding dauqu token\n\nCloses #15469",
+      "Merge branch 'automerge-pending'",
+      "chore(release): 0.2.1732",
+      "Merge branch 'automerge-pending'",
+      "chore(release): 0.2.1733",
+      "Add MEOW Token\n\nCloses #15475",
+      "Merge branch 'automerge-pending'",
+      "chore(release): 0.2.1734",
+      "Add DAGO-WL Token\n\nCloses #15476",
+      "whoochie add\n\nCloses #15340",
+      "Adding Custom Token\n\nCloses #15473",
+      "Merge branch 'automerge-pending'",
+      "chore(release): 0.2.1735",
+      "add Gooney Toons Droplet ($GOON) [@solventprotocol]\n\nCloses #15480",
+      "Merge branch 'automerge-pending'",
+      "chore(release): 0.2.1736",
+      "Adding HKSM Coin\n\nCloses #15481",
+      "Adding Norqoin Token\n\nCloses #15483",
+      "adding bldr360\n\nCloses #15484",
+      "Merge branch 'automerge-pending'",
+      "chore(release): 0.2.1737",
+      "Add CAPRA token\n\nCloses #15485",
+      "Bump thread_local (#2789)\n\n* Revert \"Temp. ignore thread_local 1.1.3 security warning (#2788)\"\r\n\r\nThis reverts commit 44b338fa1467f6ffc51f9ae329c082b6afb10803.\r\n\r\n* Bump thread_local",
+      "token-2022: make extension instruction builders consistent with vanilla token (#2782)\n\n* Make TransferFee and MintClose ix builders consistent with vanilla token\r\n\r\n* Make ConfidentialTransfer ix builders consistent with vanilla token",
+      "Bump thread_local (#22711)",
+      "add linuxgold ;)\n\nCloses #15488",
+      "Merge branch 'automerge-pending'",
+      "chore(release): 0.2.1738",
+      "token-2022: add more tests (#2783)\n\n* Add extended-mint case to test_get_account_data_size()\r\n\r\n* Add missing account-type init\r\n\r\n* Add basic init-acct ProgramTest tests",
+      "Add test token - MetaMalls(MALL)\n\nCloses #15478",
+      "Update expected instruction count in test (#22702)",
+      "Add Dashsnipe WL Token ($DASH)\n\nCloses #15492",
+      "Added aeTRYB token\n\nCloses #15493",
+      "Merge branch 'automerge-pending'",
+      "chore(release): 0.2.1739",
+      "adding Don Coin token\n\nCloses #15496",
+      "Move discard check before generate offsets (#22684)",
+      "Adding SmolCoin token\n\nCloses #15497",
+      "Merge branch 'automerge-pending'",
+      "chore(release): 0.2.1740",
+      "adding smart money token\n\nCloses #15491",
+      "token-2022: plumb program_id through instruction builders (#2792)\n\n* Plumb program_id into ix builders\r\n\r\n* Don't unwrap extension instructions",
+      "Update Tags in artchive coins\n\nTag don't work well with phantom wallet. makes the coin show as a NFT instead of a token",
+      "adding dNb Coin token\n\nCloses #15504",
+      "Handle already discarded packets in gpu sigverify path (#22680)",
+      "Merge branch 'automerge-pending'",
+      "chore(release): 0.2.1741",
+      "SmellingFart coin\n\nCloses #15507",
+      "Adding native HAPI token\n\nCloses #15508",
+      "Restore rent sysvar to create_associated_token_account",
+      "Merge pull request #15535 from wmeyer1961/main\n\nUpdate Tags in artchive coins",
+      "Adding NETOFF token\n\nCloses #15512",
+      "chore: remove remaining unused Xargo.toml files",
+      "chore: remove remaining unused Xargo.toml files",
+      "Merge branch 'automerge-pending'",
+      "Revert ATA to spl-token v3.3 (#2796)",
+      "chore(release): 0.2.1742",
+      "adding YattaCoin token\n\nCloses #15509",
+      "add choose coin\n\nCloses #15514",
+      "Adding Bangla Coin token\n\nCloses #15516",
+      "Adding WOS Free Token to Solana Blockchain\n\nCloses #15515",
+      "Merge branch 'automerge-pending'",
+      "adding Olvency token\n\nCloses #15518",
+      "chore(release): 0.2.1743",
+      "adding KAVALAN COIN\n\nCloses #15522",
+      "Pull request\n\nCloses #15523",
+      "adding stonkis coin\n\nCloses #15525",
+      "Merge branch 'automerge-pending'",
+      "Temp. ignore thread_local 1.1.3 security warning (#2788)\n\n* fix: temp ingnore thread_local 1.1.3 security warning\r\n\r\n* chore: fix typo",
+      "chore(release): 0.2.1744",
+      "Governance Chat: Voter weight  (#2778)\n\n* chore: update governance chat program version to 0.2.0\r\n\r\n* feat: support voter weight for chat\r\n\r\n* chore: move ensure_voter_weight_addin_is_built to test sdk\r\n\r\n* chore: add program version to logs\r\n\r\n* fix: workaround for logs\r\n\r\n* chore: add test for chat message using voter weight addin\r\n\r\n* chore: remove logger overrides\r\n\r\nCo-authored-by: Jon Cinque",
+      "adding ZerberusNetworkToken\n\nCloses #15529",
+      "Merge branch 'automerge-pending'",
+      "chore(release): 0.2.1745",
+      "Add GHOST OPTIONS TOKEN\n\nCloses #15532",
+      "Nilan Aish Coin\n\nCloses #15534",
+      "Merge branch 'automerge-pending'",
+      "chore(release): 0.2.1746",
+      "Governance: Realm authority validation (#2787)\n\n* feat: Ensure realm authority can be set to realm's governances only\r\n\r\n* chore: update comments for governance account check\r\n\r\n* chore: update realm authority comments\r\n\r\n* chore: update comments\r\n\r\n* chore: update comments\r\n\r\nCo-authored-by: Jon Cinque <jon.cinque@gmail.com>",
+      "add souls token\n\nCloses #15536",
+      "add SM Token\n\nCloses #15540",
+      "Update solana.tokenlist.json\n\nCloses #15539",
+      "Add VerdeCoin.\n\nCloses #15533",
+      "Merge branch 'automerge-pending'",
+      "chore(release): 0.2.1747",
+      "Adding Grands Global Token\n\nCloses #15542",
+      "Validate proposal owner for tipped vote (#2793)",
+      "add 'ticks-per-slot' to 'solana-test-validator' (#22701)\n\n* add 'ticks-per-slot' to 'solana-test-validator'\n\n* add input parser validator for \"ticks-per-slot\" argument\n\n* fix fmt",
+      "Updating Tokens\n\nCloses #15543",
+      "chore(release): 0.2.1748",
+      "Merge branch 'automerge-pending'",
+      "chore(release): 0.2.1749",
+      "Merge pull request #1 from solana-labs/main\n\nCloses #15547",
+      "Merge branch 'automerge-pending'",
+      "chore(release): 0.2.1750",
+      "lazy token\n\nCloses #15549",
+      "spl-associated-token-account: Add feature for new program (#22648)\n\n* spl-associated-token-account: Add feature for new program\r\n\r\n* Address feedback",
+      "Added FIRECUP COIN\n\nCloses #15552",
+      "Merging RedCoin Token addition\n\nCloses #15555",
+      "Pull Sun token\n\nCloses #15557",
+      "Merge branch 'automerge-pending'",
+      "chore(release): 0.2.1751",
+      "Adding KROM Token\n\nCloses #15559"
+    ],
+    "distinct_authors": [
+      "xxmafiaxxx",
+      "darek4you",
+      "ysavchenko",
+      "ars9",
+      "yang9515181",
+      "FullMoonMiningCo",
+      "SegFun01",
+      "sungminkim01",
+      "shuvoGit50",
+      "keone",
+      "christianfirecup",
+      "wildtangent",
+      "KingpinFisk",
+      "c-spider",
+      "saltvatten",
+      "j-devx",
+      "mef123",
+      "Dmitri Makarov",
+      "Luapix",
+      "al3x2508",
+      "Bugzum",
+      "linuxgold78",
+      "hornsvshalos",
+      "azaek",
+      "dauqu",
+      "projectjewels",
+      "Olvency",
+      "game09488",
+      "Michael Vines",
+      "GitHub",
+      "wmeyer1961",
+      "Mickyfly",
+      "sultanpeyek",
+      "LinuxMeow",
+      "Josser02",
+      "deadzer0",
+      "jawmeschege",
+      "Dani-Brasoveanu",
+      "BEN1199",
+      "solanaminers",
+      "lminor",
+      "exogenesys",
+      "nilan3",
+      "gerpdev",
+      "katieandlaura",
+      "lthull",
+      "OmarMalik",
+      "pvella",
+      "paxanon",
+      "token-list-automerger[bot]",
+      "PatrykXDD",
+      "cryptodog912",
+      "albertamoyaw",
+      "thebigred1",
+      "TradersToolbox"
+    ],
+    "commit_urls": [
+      "https://github.com/solana-labs/token-list/commit/8c51c45e1d7317ba7277c44b50719627898a78c2",
+      "https://github.com/solana-labs/token-list/commit/beb70eebef2fe2b164854ed856e97e16be4f657a",
+      "https://github.com/solana-labs/token-list/commit/614fce362db6f6ba5c4f7b81bbbbbb1616f81af0",
+      "https://github.com/solana-labs/token-list/commit/44279402217684f67fd6112a3d9d6ae9524ec268",
+      "https://github.com/solana-labs/token-list/commit/ff1a0a5cc3ca2c48514a7258f594ae1b6b664138",
+      "https://github.com/solana-labs/token-list/commit/aa59ea6e3247d370590d5547a5e4769828c34db9",
+      "https://github.com/solana-labs/token-list/commit/59a479f5d0939120a2e164a6320fd68073fd6987",
+      "https://github.com/solana-labs/token-list/commit/6ea0fd9e98c0002c2f27cff9cf123423fa2a45ae",
+      "https://github.com/solana-labs/token-list/commit/cde4171cd7dc3cdad0ef06b0e2c66a13475f200b",
+      "https://github.com/solana-labs/token-list/commit/b9ec1b1d734c82bd2601c06916177d54a2a377f2",
+      "https://github.com/solana-labs/token-list/commit/d2a66412fe68d49dc9b25f3c6cac2d39b8d67ecd",
+      "https://github.com/solana-labs/token-list/commit/10b1e4b9704c2c215750413fb68bd9b5b1fce5ab",
+      "https://github.com/solana-labs/token-list/commit/caf6ca2a32c5993a42d330e1de0cc33c94192957",
+      "https://github.com/solana-labs/token-list/commit/6d4ef1a9b92a2a4f8fdd86eba5a34f594ab5ff97",
+      "https://github.com/solana-labs/token-list/commit/fe0514524be64587f59e0466226e131a45ab6479",
+      "https://github.com/solana-labs/token-list/commit/6cd46aa62aeb304cb019b149a1584f5801cb5b52",
+      "https://github.com/solana-labs/token-list/commit/c4e5932dcb1a07feba7e7170f1ec0aee7b3a6fa7",
+      "https://github.com/solana-labs/token-list/commit/2bc7ad6ad6b669afee480ca97778405acde99fe0",
+      "https://github.com/solana-labs/token-list/commit/d386297ae20be724767b0eea841f6ce9b6e5eb29",
+      "https://github.com/solana-labs/token-list/commit/68cdecd2f85f5ec3e3033f93ae898dc488234031",
+      "https://github.com/solana-labs/token-list/commit/32a34ebd3d9e7349a64d10c0969b1f58a3bb06e5",
+      "https://github.com/solana-labs/token-list/commit/cf4ed4d8bca013cc5f906a4a0451ce6e074db01b",
+      "https://github.com/solana-labs/token-list/commit/dc7ebaa913285148a1f12cd4cb6cb01f7fa972fa",
+      "https://github.com/solana-labs/token-list/commit/8c311ddf9de817b93353536d4199ac7ec8ac155d",
+      "https://github.com/solana-labs/token-list/commit/adc6205d41b54ef18cc548dec57b7c87bad09337",
+      "https://github.com/solana-labs/token-list/commit/f99c0df40014f0f92e838ef11433d13166ffdd92",
+      "https://github.com/solana-labs/token-list/commit/020806a68b6af18933a156aa85d93ab572a73309",
+      "https://github.com/solana-labs/token-list/commit/f627f02e4b91932e0ee7253b9d6cdb4631ec0821",
+      "https://github.com/solana-labs/token-list/commit/49bdd5c67067fb24162c32b5a3110d9e0923fba2",
+      "https://github.com/solana-labs/token-list/commit/90ac674bb84e402de41145a3f213fcb13df32447",
+      "https://github.com/solana-labs/token-list/commit/bb9be995da51113f598b58d8c0e75f750886da36",
+      "https://github.com/solana-labs/token-list/commit/526bdcf85458ac5634491e0f585e340e76b53fe4",
+      "https://github.com/solana-labs/token-list/commit/59da88603d37f5810cc92303e972d2c0f87d930d",
+      "https://github.com/solana-labs/token-list/commit/168afa1dabf7261d12e00f618314ba81b7ce8313",
+      "https://github.com/solana-labs/token-list/commit/9489c11812f5d89d3e181f3f84dea77a7fbe1a4e",
+      "https://github.com/solana-labs/token-list/commit/2d80f6019c3f3bca66191e2ee16df0f24e130aff",
+      "https://github.com/solana-labs/token-list/commit/576e3bec28424169ea49bd5a811814117f50b739",
+      "https://github.com/solana-labs/token-list/commit/bd7de723e388b7091ab05f539d8429d99ad4ee38",
+      "https://github.com/solana-labs/token-list/commit/e42e67b416e3a6b2ad9860cb6ab566e8f3b62b15",
+      "https://github.com/solana-labs/solana-program-library/commit/28e779d4803effe56c040b80643df70fd8d6aae1",
+      "https://github.com/solana-labs/solana-program-library/commit/c03c1fc7b409c3ade1e91310f081debbba60f9cf",
+      "https://github.com/solana-labs/solana/commit/1c10677f8249a78049bd9114c4f9d29ce6db923e",
+      "https://github.com/solana-labs/token-list/commit/73dad2601913b27de893c791f4f6f2237c77875b",
+      "https://github.com/solana-labs/token-list/commit/5719eaf6368610d51aa0c7893ad9b4850df376cd",
+      "https://github.com/solana-labs/token-list/commit/c79a6cd85e0f5074b46cb8ccd381acfe0e313d0d",
+      "https://github.com/solana-labs/solana-program-library/commit/a98977f5fd17a006770607ce0991be0eeb2cd59b",
+      "https://github.com/solana-labs/token-list/commit/4fe1af4ff39c580fd772aa7ca5dd3f7fa950bf00",
+      "https://github.com/solana-labs/solana/commit/9666f4a8be472df4edaad3bcf03c19e0f836bbce",
+      "https://github.com/solana-labs/token-list/commit/c9a7ecfae2c1c2bcd0413c39aa9cfc908b84e198",
+      "https://github.com/solana-labs/token-list/commit/b9595e76fe69cbbb4a75b30a64d09710e51340ce",
+      "https://github.com/solana-labs/token-list/commit/eac9ed8c9c74120fc33945a0df9f626b51d78b0e",
+      "https://github.com/solana-labs/token-list/commit/ad812c64d48289d835531e7aff6ea8149d2a8505",
+      "https://github.com/solana-labs/token-list/commit/d3ec2b85f6ddcf33425492335d3c76aa0457df91",
+      "https://github.com/solana-labs/solana/commit/7569f282c6575fb35abc3ed51563316d8eb51fea",
+      "https://github.com/solana-labs/token-list/commit/678c61dc11283d1a2a11a7152ee3018015d74550",
+      "https://github.com/solana-labs/token-list/commit/8649940826810d125957584965e32d46d953c036",
+      "https://github.com/solana-labs/token-list/commit/cadebeb7c0508f1f26a9c2ee29b42f381a16c191",
+      "https://github.com/solana-labs/token-list/commit/1bb54292872ac94e4916e83d18fb810bb824dc06",
+      "https://github.com/solana-labs/solana-program-library/commit/cc8826ac707b724e3f6afed42d92f567a50553a8",
+      "https://github.com/solana-labs/token-list/commit/57afaa8a1eab10369b6aefac4cb72c74426271b9",
+      "https://github.com/solana-labs/token-list/commit/d187e67eb85904611b14f9577b985a6efe2fc4fc",
+      "https://github.com/solana-labs/solana/commit/2e56c59bcb2fde78303f11fa75f873b5d77ecbb0",
+      "https://github.com/solana-labs/token-list/commit/31b9d926effe1fc18b146cfed59838f8e5869e72",
+      "https://github.com/solana-labs/token-list/commit/2f569e05a19331f3579680868ec377f1c22c3630",
+      "https://github.com/solana-labs/token-list/commit/f29062b20d23b22783586a1def99c9834ae3fea6",
+      "https://github.com/solana-labs/token-list/commit/3c7d317b09f1ba5e6646bcc19ee031aee462174d",
+      "https://github.com/solana-labs/solana-program-library/commit/c309e10b8449607f2c96af68b343335dab63a90d",
+      "https://github.com/solana-labs/token-list/commit/3740673c99f7b5ce35f57e7a4a05888560714d27",
+      "https://github.com/solana-labs/token-list/commit/510ea2f90fb4c8f4d320b7d6f4735951b5a191cd",
+      "https://github.com/solana-labs/solana/commit/52045c761c857cfaeb7222e37f819da41f474988",
+      "https://github.com/solana-labs/solana-web3.js/commit/7d92227f9bfb26ad692fadf2d25da7ec2f71601b",
+      "https://github.com/solana-labs/token-list/commit/e3a531b3a03270c11099eba0d2dec8909880c04f",
+      "https://github.com/solana-labs/solana-program-library/commit/533f76756319ef945fd137f1bb560769c45a9893",
+      "https://github.com/solana-labs/token-list/commit/9bbbfb725322dd986c2687f253dc899b2d319e41",
+      "https://github.com/solana-labs/token-list/commit/3e2b9a7301469b00a26b00cd2c6d768c895c6585",
+      "https://github.com/solana-labs/token-list/commit/80f35245870e5f887acb7bb472912c98bd7f5386",
+      "https://github.com/solana-labs/token-list/commit/2ab59b2fbd61fec6a9e2ffcc51307fc602c1bdb1",
+      "https://github.com/solana-labs/token-list/commit/e5b92b11d269bfd341beeb4f459b143f967375d2",
+      "https://github.com/solana-labs/token-list/commit/f35491c38197bd72df1f8855c3c0de71cb0957a0",
+      "https://github.com/solana-labs/token-list/commit/9ba2617cdcf496afc548ecf45cd3f1e0844ee214",
+      "https://github.com/solana-labs/token-list/commit/76acf666d4c9648e5af8022ccea3106159bd4ff4",
+      "https://github.com/solana-labs/token-list/commit/1c405b626934112e5a373f111469a25746879332",
+      "https://github.com/solana-labs/token-list/commit/0a5fc105d8dea40907d4a9bf7542438a11ccc60a",
+      "https://github.com/solana-labs/token-list/commit/167b23ccc9aa793305a12efe33fb795e108dbc88",
+      "https://github.com/solana-labs/token-list/commit/f16c915511ff838e725a84d548abe7a3f8bf59d8",
+      "https://github.com/solana-labs/solana-program-library/commit/44b338fa1467f6ffc51f9ae329c082b6afb10803",
+      "https://github.com/solana-labs/token-list/commit/1e77e2b15b321c80c6d0de052c010a9edc0825a9",
+      "https://github.com/solana-labs/solana-program-library/commit/2ae2f5f06703897849e3817dd92777f7bcf338e5",
+      "https://github.com/solana-labs/token-list/commit/770e4d210b34eceba5296b184b4691f2adbba5ae",
+      "https://github.com/solana-labs/token-list/commit/8ded877b595b2202b3182543525345e8a2b77fa0",
+      "https://github.com/solana-labs/token-list/commit/bcece377693465b4bd61de57f3d0ca536eb0fba8",
+      "https://github.com/solana-labs/token-list/commit/9682dd355c38585735815a45d99a44bbf25d1744",
+      "https://github.com/solana-labs/token-list/commit/244849e068ae708cfe9e024892783c56f0a13345",
+      "https://github.com/solana-labs/token-list/commit/b5507b1ce2ac9c234aa884baa8eb399523986f14",
+      "https://github.com/solana-labs/token-list/commit/76eba8924d8662d1ae97d5bcdca8291e743ceb71",
+      "https://github.com/solana-labs/solana-program-library/commit/bc00009d6424944bf6401f4733bf5f1769401ccd",
+      "https://github.com/solana-labs/token-list/commit/ed679234f80e0149919a79355a0d3dd992c81196",
+      "https://github.com/solana-labs/token-list/commit/61331268bbb82fc6a68c090154c8053f83c35085",
+      "https://github.com/solana-labs/token-list/commit/fd1eb3d97bee134bfc8830bed6171889ffae598b",
+      "https://github.com/solana-labs/token-list/commit/8ae16b858d8fe2afd21253100430881b953f3ee7",
+      "https://github.com/solana-labs/token-list/commit/fde842c1ecd15ce5a757f63d03888db80ecad7fc",
+      "https://github.com/solana-labs/token-list/commit/325a17c0c7712ec300e90e61f9511c97b882b42a",
+      "https://github.com/solana-labs/token-list/commit/9aed33ec7a762a0abcf13856d32b2fbad15bb2b3",
+      "https://github.com/solana-labs/solana-program-library/commit/3e1dd7cac8f83e7a31f339ba0421349e592553dd",
+      "https://github.com/solana-labs/solana/commit/05624266613c11150d717d72c69afac4151cac5f",
+      "https://github.com/solana-labs/token-list/commit/d2a4a45949c5cfe78b168be30eceb53bd6b7d703",
+      "https://github.com/solana-labs/token-list/commit/90dff29228de39d81ba0deb8ff868006bd0e65c1",
+      "https://github.com/solana-labs/token-list/commit/15087ecef963cce9845f8c60da910f011dcecfcf",
+      "https://github.com/solana-labs/token-list/commit/35cfd174d95e045b62a51989d674ac189873a23e",
+      "https://github.com/solana-labs/token-list/commit/b6808f3d6ae2a61ea7140552abca1f7f2905a4f8",
+      "https://github.com/solana-labs/token-list/commit/489d6c13e360aa167789edc0a86148b5319b2390",
+      "https://github.com/solana-labs/token-list/commit/63d8b3555dce9aa2647fc62430243a5f1e3c0094",
+      "https://github.com/solana-labs/token-list/commit/56dd031d65a87a881aa05a075de1e208d19391c0",
+      "https://github.com/solana-labs/solana/commit/fc21af4e6e77c6af575133557c5b22c20e899da4",
+      "https://github.com/solana-labs/token-list/commit/38d07f0a39b5988890e2f53913533fd714a9feea",
+      "https://github.com/solana-labs/token-list/commit/537279c96272bbde5fc1342a4f65c525d866dfe6",
+      "https://github.com/solana-labs/token-list/commit/80919184fbdd42b850820c265bc8d5f174d2ce04",
+      "https://github.com/solana-labs/token-list/commit/f03817110d079cd3c363ec7b248fb56bf5d2d51f",
+      "https://github.com/solana-labs/token-list/commit/705eae9c9e07b879311a256be9c7928c8a5cf243",
+      "https://github.com/solana-labs/token-list/commit/84974e5deae70ecb8449687ea3ad2be5c9df9226"
+    ]
+  },
+  "IDEX": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "IOTX": {
+    "commit_count": 5,
+    "lines_of_code": 697,
+    "commit_messages": [
+      "[api] add test for api (#3006)\n\n* add unit test for api",
+      "[ioctl] build account sign command line into new ioctl (#3016)\n\n* build account sign command line into new ioctl",
+      "[ioctl] feat: Added Accountlist to newcmd (#3000)\n\n* [ioctl] feat: Added Accountlist to newcmd\r\n\r\n* Update accountlist_test.go\r\n\r\nReset CryptoSm2\r\n\r\nCo-authored-by: CoderZhi <thecoderzhi@gmail.com>\r\nCo-authored-by: Haaai <55118568+Liuhaai@users.noreply.github.com>",
+      "add hdwallet.DeriveKey for account.go calling in newcmd (#3010)",
+      "[ioctl/newcmd]  use AskToConfirm in AccountDelete (#3007)\n\n* use AskToConfirm"
+    ],
+    "distinct_authors": [
+      "GitHub"
+    ],
+    "commit_urls": [
+      "https://github.com/iotexproject/iotex-core/commit/926fbc5562f6db63ec440d5889756c8ecfbfda00",
+      "https://github.com/iotexproject/iotex-core/commit/7da2b4a966d5b564736a98492350cc6a3fd732b9",
+      "https://github.com/iotexproject/iotex-core/commit/97d02599f75f3f0a0aab7c6bdc5b791f36f65c4f",
+      "https://github.com/iotexproject/iotex-core/commit/966d7df03bb2d0ee9957d29d95e396d8b35e3990",
+      "https://github.com/iotexproject/iotex-core/commit/48b948c1797c693320ef3bfa594a7089ac80a9c1"
+    ]
+  },
+  "CHZ": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "ALCX": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "RGT": {
+    "commit_count": 2,
+    "lines_of_code": 36,
+    "commit_messages": [
+      "Merge pull request #483 from jeremie-platz/arbitrum-countdown-banner\n\nadded banner link + arrow animation",
+      "added banner link + arrow animation"
+    ],
+    "distinct_authors": [
+      "Jaime Pericás",
+      "GitHub"
+    ],
+    "commit_urls": [
+      "https://github.com/Rari-Capital/rari-dApp/commit/effe4457c634a2ded6152a5b259d0aebdfe42d48",
+      "https://github.com/Rari-Capital/rari-dApp/commit/ffa81dad0cf76538130dea46e0f11726ee2d19b3"
+    ]
+  },
+  "ATOM": {
+    "commit_count": 2,
+    "lines_of_code": 23,
+    "commit_messages": [
+      "fix: return 404 on non-existing tx (#10992)",
+      "perf:  Deduplicate bech32 encoding in bank send events (#11005)\n\n## Description\n\nperformance boost as this is one of the most commonly emitted events\n\n\n\n\n\n---\n\n### Author Checklist\n\n*All items are required. Please add a note to the item if the item is not applicable and\nplease add links to any relevant follow up issues.*\n\nI have...\n\n- [x] included the correct [type prefix](https://github.com/commitizen/conventional-commit-types/blob/v3.0.0/index.json) in the PR title\n- [ ] added `!` to the type prefix if API or client breaking change\n- [ ] targeted the correct branch (see [PR Targeting](https://github.com/cosmos/cosmos-sdk/blob/master/CONTRIBUTING.md#pr-targeting))\n- [ ] provided a link to the relevant issue or specification\n- [x] followed the guidelines for [building modules](https://github.com/cosmos/cosmos-sdk/blob/master/docs/building-modules)\n- [x] included the necessary unit and integration [tests](https://github.com/cosmos/cosmos-sdk/blob/master/CONTRIBUTING.md#testing)\n- [ ] added a changelog entry to `CHANGELOG.md`\n- [x] included comments for [documenting Go code](https://blog.golang.org/godoc)\n- [ ] updated the relevant documentation or specification\n- [x] reviewed \"Files changed\" and left comments if necessary\n- [ ] confirmed all CI checks have passed\n\n### Reviewers Checklist\n\n*All items are required. Please add a note if the item is not applicable and please add\nyour handle next to the items reviewed if you only reviewed selected items.*\n\nI have...\n\n- [ ] confirmed the correct [type prefix](https://github.com/commitizen/conventional-commit-types/blob/v3.0.0/index.json) in the PR title\n- [ ] confirmed `!` in the type prefix if API or client breaking change\n- [ ] confirmed all author checklist items have been addressed \n- [ ] reviewed state machine logic\n- [ ] reviewed API design and naming\n- [ ] reviewed documentation is accurate\n- [ ] reviewed tests and test coverage\n- [ ] manually tested (if applicable)"
+    ],
+    "distinct_authors": [
+      "GitHub"
+    ],
+    "commit_urls": [
+      "https://github.com/cosmos/cosmos-sdk/commit/158128953c45f95fb4fd7ed737005b2bd9c9f1eb",
+      "https://github.com/cosmos/cosmos-sdk/commit/96bc6a582aa870bf3be88e36254d1ca9d994b869"
+    ]
+  },
+  "FORTH": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "SUSHI": {
+    "commit_count": 25,
+    "lines_of_code": 8852,
+    "commit_messages": [
+      "Merge branch 'master' into refactor-navigation",
+      "refactor(Navigation): new navigation for desktop and mobile\nfeat(Icon): add icons\nfix(LimitOrder): add min height to table so pagination is static\nfix(Balances): remove unnecessary notic box",
+      "style(Footer): align right except for first column\nstyle(Footer): remove background for a cleaner look\nstyle(Footer): hover elements",
+      "style(Navigation): add backdrop fallback for firefox",
+      "chore(nav): move portfolio to right, make analytics conditional on feature flag",
+      "fix: path for inari & meow images",
+      "feat: improve some dynamic items, and remove add/import/migrate from /pools",
+      "chore: remove add/remove from pool menu for now",
+      "chore: your farms & all farms",
+      "fix: only set min-height on open & pending order if more than 1 page",
+      "style(Swapper): restyle legacy swapper\nfeat(Trade): create SwapLayout for layout hoisting between swap and limit\nfix(SwapRecipient): remove null values",
+      "Merge branch 'master' into style-swap",
+      "fix(Tooltip): add max width back\nfxI(TridentSwap): build error",
+      "style(Swap): insufficient liquidity error",
+      "style(Swap): border to arrow icon",
+      "chore: bump dependencies",
+      "Merge remote-tracking branch 'origin/style-swap'",
+      "Merge remote-tracking branch 'origin/style-swap'",
+      "fix(Swap): input panel was showing WAVAX instead of AVAX",
+      "chore: bump dependencies",
+      "chore: enable feature flag",
+      "chore: pool add and cleanup liquidity module",
+      "style(Footer): make the footer more subtle",
+      "fix(Popover): round box shadow",
+      "chore: bump dependencies"
+    ],
+    "distinct_authors": [
+      "Matthew Lilley",
+      "Chilli Chelli"
+    ],
+    "commit_urls": [
+      "https://github.com/sushiswap/sushiswap-interface/commit/40489ac1a6e22ccd90fd8574305238216dff6c52",
+      "https://github.com/sushiswap/sushiswap-interface/commit/6de1b378345c1fe966b9016b62bf8afe609d1bfe",
+      "https://github.com/sushiswap/sushiswap-interface/commit/c3c9b3fc7daa2ca884b749f04c87af62ba5900ec",
+      "https://github.com/sushiswap/sushiswap-interface/commit/aa34d4726859b95b09c59058ed2aea17bcfb7cc1",
+      "https://github.com/sushiswap/sushiswap-interface/commit/3bb962ae4b0874b5d37b8d1329caf2fc0531a1c6",
+      "https://github.com/sushiswap/sushiswap-interface/commit/6764bac2d14093db0622595d92785375888b54cf",
+      "https://github.com/sushiswap/sushiswap-interface/commit/0d09ca8caa7cebea4bfabb910c627c9c0d56d6e1",
+      "https://github.com/sushiswap/sushiswap-interface/commit/bfc4f42555e22b1a757c83ea71ead1b5c0aa6d0a",
+      "https://github.com/sushiswap/sushiswap-interface/commit/f28350270103d4d03fceab93028b103731e1998c",
+      "https://github.com/sushiswap/sushiswap-interface/commit/7607804142b82e56a005c2f936060e3439117d39",
+      "https://github.com/sushiswap/sushiswap-interface/commit/947c6367451831f77d60777f313b4ea60e9d1272",
+      "https://github.com/sushiswap/sushiswap-interface/commit/f0d6be3c90a2e2dd1f755cbcb056c44e03e76b80",
+      "https://github.com/sushiswap/sushiswap-interface/commit/a8fa62e2a259891e4af2ab0692e6067e4aa14974",
+      "https://github.com/sushiswap/sushiswap-interface/commit/0f44404eb0f3ddfd891a1abd060376a341403511",
+      "https://github.com/sushiswap/sushiswap-interface/commit/ebb5616717cb6f07c865a916b25dbf0e38cfefb5",
+      "https://github.com/sushiswap/sushiswap-interface/commit/0e8bb48a5688b6435b74253bc1af99d9691f2ae8",
+      "https://github.com/sushiswap/sushiswap-interface/commit/811c77efcaf0deb0ada6b7fe3e9d9211746a82af",
+      "https://github.com/sushiswap/sushiswap-interface/commit/25430d1be64a09ab8407c0040a5966b109415833",
+      "https://github.com/sushiswap/sushiswap-interface/commit/5d3406812a2655e1c0bf6fe843119bcdca578806",
+      "https://github.com/sushiswap/sushiswap-interface/commit/3e9738fb55a3957e171c1ea50c9497022eb01464",
+      "https://github.com/sushiswap/sushiswap-interface/commit/2db0eb200cac3d74be615667b2b20e451d5c6de8",
+      "https://github.com/sushiswap/sushiswap-interface/commit/d1634b250f294dcd29de0d85bbc45a962c977bf3",
+      "https://github.com/sushiswap/sushiswap-interface/commit/4b8707879336ad6e02201f23a0abf5e9bbc1cfbe",
+      "https://github.com/sushiswap/sushiswap-interface/commit/87f9a7fec7d93179529d03abc1a35f4722525859",
+      "https://github.com/sushiswap/sushiswap-interface/commit/fd1c5e1aa443b10e492cd11de0fcc46515ec06d3"
+    ]
+  },
+  "API3": {
+    "commit_count": 7,
+    "lines_of_code": 124,
+    "commit_messages": [
+      "Only mention RRP protocol on change=1 from path",
+      "Merge pull request #558 from api3dao/20220124-corrections\n\nOnly mention RRP protocol on change=1 from path",
+      "Added GCP receipt file.",
+      "Merge pull request #559 from api3dao/AN503-add-gcp-receipt\n\nAdded GCP receipt file.",
+      "Update to v0.4 zip files",
+      "Shouls be called Airnode deployer image\nThis helps with confusion when the Airnode client iamge is mentioned.",
+      "Merge pull request #562 from api3dao/AN458-tutorials\n\nAN458 tutorials"
+    ],
+    "distinct_authors": [
+      "GitHub",
+      "Warren Anderson"
+    ],
+    "commit_urls": [
+      "https://github.com/api3dao/api3-docs/commit/1f05866a553cd0b983838e1541084ba06f4d2f5b",
+      "https://github.com/api3dao/api3-docs/commit/c80b32414eea3bdb68b932f41ea81b8daa1490a0",
+      "https://github.com/api3dao/api3-docs/commit/7378506e591d1c877ebb97b9fcb567bb2d4ea20c",
+      "https://github.com/api3dao/api3-docs/commit/3f2a447ceadaaa6104a08de2dda77f315fcd8e0e",
+      "https://github.com/api3dao/api3-docs/commit/fd885212b694300af92c53ffe2ba60e45615d37c",
+      "https://github.com/api3dao/api3-docs/commit/ed6735da475a2cf20c354e1ab12474a2d868030e",
+      "https://github.com/api3dao/api3-docs/commit/fca20f52562524798c2d238f4df4759bdd6012f7"
+    ]
+  },
+  "MANA": {
+    "commit_count": 10,
+    "lines_of_code": 1637,
+    "commit_messages": [
+      "chore: bump log4js from 6.3.0 to 6.4.0 (#874)\n\nBumps [log4js](https://github.com/log4js-node/log4js-node) from 6.3.0 to 6.4.0.\r\n- [Release notes](https://github.com/log4js-node/log4js-node/releases)\r\n- [Changelog](https://github.com/log4js-node/log4js-node/blob/master/CHANGELOG.md)\r\n- [Commits](https://github.com/log4js-node/log4js-node/compare/v6.3.0...v6.4.0)\r\n\r\n---\r\nupdated-dependencies:\r\n- dependency-name: log4js\r\n  dependency-type: direct:production\r\n...\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\n\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+      "chore: bump node-fetch from 2.6.1 to 2.6.7 (#875)\n\nBumps [node-fetch](https://github.com/node-fetch/node-fetch) from 2.6.1 to 2.6.7.\r\n- [Release notes](https://github.com/node-fetch/node-fetch/releases)\r\n- [Changelog](https://github.com/node-fetch/node-fetch/blob/main/docs/CHANGELOG.md)\r\n- [Commits](https://github.com/node-fetch/node-fetch/compare/v2.6.1...v2.6.7)\r\n\r\n---\r\nupdated-dependencies:\r\n- dependency-name: node-fetch\r\n  dependency-type: direct:production\r\n...\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\n\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+      "Increase default snapshot frequency to 6h",
+      "chore(deps): bump @dcl/unity-renderer (#96)\n\nCo-authored-by: gonpombo8 <gonpombo8@users.noreply.github.com>",
+      "Update config.yml (#876)",
+      "feat: Add new Manage button to the name detail page (#531)\n\n* feat: Add new Manage button to the name detail page\r\n\r\n* feat: Add builderUrl to the utils instead of accessing env var in render time",
+      "fix: removed exit button in first character creation (#1818)",
+      "fix: added avatar name in hide gameobject list (#1799)\n\n* fix: added avatar name in hide gameobject list\r\n\r\n* fix: added name canvas in deactivate gameobject list in hide modifier areas\r\n\r\n* fix: improved hide gameobjects behavior with a common hideable parent",
+      "feat: use meta-transaction error toasts from dcl-dapps (#538)",
+      "feat: use meta-transaction error toasts from dcl-dapps (#1737)"
+    ],
+    "distinct_authors": [
+      "Agustina Aldasoro",
+      "GitHub"
+    ],
+    "commit_urls": [
+      "https://github.com/decentraland/catalyst/commit/0e0e6e29dc8b28327a4e36900ce10ae64f3ed9ae",
+      "https://github.com/decentraland/catalyst/commit/4d6969afcccf1563c9825548ec5fb74a1c9f4d17",
+      "https://github.com/decentraland/catalyst/commit/82fd6ef7ba08ceda12627bd2193476a5398bcea0",
+      "https://github.com/decentraland/js-sdk-toolchain/commit/765e2ab2bbff7d757b688004dfd099b28e6d0b37",
+      "https://github.com/decentraland/catalyst/commit/3a8c6ff484ca1223324c52dae060dd6f5a67125e",
+      "https://github.com/decentraland/marketplace/commit/eeae6b0e1b4abfcdf69da96ceab74ab4368a4c2c",
+      "https://github.com/decentraland/unity-renderer/commit/0e3473fe48bff4df38e8ddb11e287bf0e41f8554",
+      "https://github.com/decentraland/unity-renderer/commit/04c4bc6459be0ff653939979a0218534def72878",
+      "https://github.com/decentraland/marketplace/commit/832a98a9a7dace1e1b313574799a8721b01c1b23",
+      "https://github.com/decentraland/builder/commit/92423bc323444876faa00487bd4f493efd281664"
+    ]
+  },
+  "XRP": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "BAT": {
+    "commit_count": 5,
+    "lines_of_code": 90,
+    "commit_messages": [
+      "feat(#961): support tool user drain retry (#1148)\n\nadded check for multiple records",
+      "update deps, fixes: #1147 #1145 #1144 (#1149)",
+      "Bump nanoid from 3.1.30 to 3.2.0 in /public/creators-landing (#3528)\n\nBumps [nanoid](https://github.com/ai/nanoid) from 3.1.30 to 3.2.0.\r\n- [Release notes](https://github.com/ai/nanoid/releases)\r\n- [Changelog](https://github.com/ai/nanoid/blob/main/CHANGELOG.md)\r\n- [Commits](https://github.com/ai/nanoid/compare/3.1.30...3.2.0)\r\n\r\n---\r\nupdated-dependencies:\r\n- dependency-name: nanoid\r\n  dependency-type: indirect\r\n...\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\n\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+      "add created_at, updated_at columns to claim creds (#1152)\n\n* add created_at, updated_at columns to claim creds\r\n\r\n* bump schema version\r\n\r\n* fix up migration sql syntax\r\n\r\n* replace view name\r\n\r\n* set update_at to a better date",
+      "override eth symbol mapping, add debug endpoint for mapping (#1153)"
+    ],
+    "distinct_authors": [
+      "GitHub"
+    ],
+    "commit_urls": [
+      "https://github.com/brave-intl/bat-go/commit/0e52a4738959ee64c1f10f0f01bd896e43816c7e",
+      "https://github.com/brave-intl/bat-go/commit/5f81ffd69d3c8648788848d6bd42f58e92994d09",
+      "https://github.com/brave-intl/publishers/commit/5557208efb5af709fdd8b50b23532bf9120d34e7",
+      "https://github.com/brave-intl/bat-go/commit/f5e318b8d42a165c07839b2d8ca0c70e73c3839e",
+      "https://github.com/brave-intl/bat-go/commit/0e611cd2ccfd31f3da730abfef7c58ee53d3e5fa"
+    ]
+  },
+  "BTRST": {
+    "commit_count": 1,
+    "lines_of_code": 33,
+    "commit_messages": [
+      "Removed balance variable from ETHApp.sol (#567)\n\n* Removed non-required balance variable\r\n\r\n* Added reject message\r\n\r\n* removed require condition"
+    ],
+    "distinct_authors": [
+      "GitHub"
+    ],
+    "commit_urls": [
+      "https://github.com/Snowfork/snowbridge/commit/27d42ff00c339bc7f07253b5c1079b7e28dbbec1"
+    ]
+  },
+  "NKN": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "DNT": {
+    "commit_count": 1,
+    "lines_of_code": 37,
+    "commit_messages": [
+      "Add migration to set params"
+    ],
+    "distinct_authors": [
+      "Matus Lestan"
+    ],
+    "commit_urls": [
+      "https://github.com/district0x/memefactory/commit/5be6b185cc1dd8f94a147265d921007568b3c9d3"
+    ]
+  },
+  "KRL": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "BOND": {
+    "commit_count": 9,
+    "lines_of_code": 1822,
+    "commit_messages": [
+      "Add Governance Reward 2 support (#507)",
+      "Merge branch 'master' of github.com:BarnBridge/barnbridge-frontend into development",
+      "Merge Dev into Master (#508)\n\n* move network switch to sidebar\r\n\r\n* polish responsive\r\n\r\n* responsive polish\r\n\r\n* display user date time format\r\n\r\n* display user date time format\r\n\r\n* add snx token logo\r\n\r\n* disable gas fee selection for optimistic networks\r\n\r\n* responsive polish\r\n\r\n* remove TestnetNetwork from production build\r\n\r\n* polish header\r\n\r\n* remove unused vars\r\n\r\n* change optimistic maiinet SA loupe address\r\n\r\n* polish\r\n\r\n* add sunset SE alert text, disable deposit\r\n\r\n* change sa loupe address\r\n\r\n* disable FLOKI pools\r\n\r\n* display network switcher at header for desktop\r\n\r\n* polish\r\n\r\n* Add Governance Reward 2 support (#507)\r\n\r\nCo-authored-by: Alexandr <alexandr.ricov@digitalmob.ro>\r\nCo-authored-by: Alex <rykovalexandr@gmail.com>",
+      "Update networkProvider.tsx",
+      "Update index.tsx",
+      "Update index.tsx",
+      "Merge branch 'master' of github.com:BarnBridge/barnbridge-frontend into development",
+      "Update tokensProvider.tsx",
+      "Update tokensProvider.tsx"
+    ],
+    "distinct_authors": [
+      "Slava Matvienco",
+      "GitHub"
+    ],
+    "commit_urls": [
+      "https://github.com/BarnBridge/barnbridge-frontend/commit/9d50468e1cf2882932b12ca916251869b31ebcdb",
+      "https://github.com/BarnBridge/barnbridge-frontend/commit/0a416f6b793921e68c3604949b0ef7bea3cdf8c0",
+      "https://github.com/BarnBridge/barnbridge-frontend/commit/a4953003a2bf7821c8a6b8a897d001a6c3e00cef",
+      "https://github.com/BarnBridge/barnbridge-frontend/commit/6152ca3ef7f7c216c3abee6686b5a2e6e77f095c",
+      "https://github.com/BarnBridge/barnbridge-frontend/commit/e05ea086c3c5ab8bfb5bb810d77f5c7b8c56efee",
+      "https://github.com/BarnBridge/barnbridge-frontend/commit/ae7b5aec81c4e14b86b8a1ce39be99f38a6f7476",
+      "https://github.com/BarnBridge/barnbridge-frontend/commit/9f007ec906a1d3e539f15cdfe946665009efa7ff",
+      "https://github.com/BarnBridge/barnbridge-frontend/commit/c51dd8dda267c377288e72df520c52ab5f9d4e93",
+      "https://github.com/BarnBridge/barnbridge-frontend/commit/3050220ee38a7c19ae33d74c6cf317dfc5d10793"
+    ]
+  },
+  "CLV": {
+    "commit_count": 13,
+    "lines_of_code": 7023,
+    "commit_messages": [
+      "bugfix",
+      "new design",
+      "finish adapter",
+      "delete unused code",
+      "bugfix",
+      "add translation",
+      "partners",
+      "bugfix",
+      "bugfix",
+      "add instagram link",
+      "fix link",
+      "UI bug",
+      "error of yarn export"
+    ],
+    "distinct_authors": [
+      "werlandy",
+      "Taneeya"
+    ],
+    "commit_urls": [
+      "https://github.com/clover-network/oneland-home/commit/aeb0a74b60001339d942e8b0b57e22713e64fccc",
+      "https://github.com/clover-network/clover.finance/commit/f203d75e043bb68fdee00286e2698b6473bfc72c",
+      "https://github.com/clover-network/clover.finance/commit/26b0210676cc32341420be804d07fdc99cc3eee1",
+      "https://github.com/clover-network/clover.finance/commit/bb3d3959dd672ac658f0388ec5b7b64cb0aefd7a",
+      "https://github.com/clover-network/clover.finance/commit/1ddb7585c8fecc2e3906f16d5d1b15ae3bfe1b8d",
+      "https://github.com/clover-network/clover.finance/commit/e8c471fa29d20625e1760e3e148b133306bf0537",
+      "https://github.com/clover-network/clover.finance/commit/82ee8a989d8f317fdee881940cdb71930aeb7025",
+      "https://github.com/clover-network/clover.finance/commit/44ded978e484598a7dec90aa3dfbfc59f7b79401",
+      "https://github.com/clover-network/clover.finance/commit/f84bd5d7cfc659978b49cfee73c864c5a847b9f4",
+      "https://github.com/clover-network/clover.finance/commit/8916b666bc924e7b81e759681543d05600fd4f5a",
+      "https://github.com/clover-network/clover.finance/commit/6bb39b7257b9e37e709d67a3727e3e498cd7d47a",
+      "https://github.com/clover-network/clover.finance/commit/61e5bc7e0f203f877f7c44e23cc41427c9a0ad2b",
+      "https://github.com/clover-network/clover.finance/commit/4c55f953bcc3ef14c6ca9ac1621358e77fc2fbdd"
+    ]
+  },
+  "LQTY": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "KEEP": {
+    "commit_count": 2,
+    "lines_of_code": 482,
+    "commit_messages": [
+      "Merge branch 'main' into trusted-vaults",
+      "Merge pull request #111 from keep-network/trusted-vaults\n\nDeposits can be routed only to trusted vaults"
+    ],
+    "distinct_authors": [
+      "GitHub"
+    ],
+    "commit_urls": [
+      "https://github.com/keep-network/tbtc-v2/commit/ee8d3233849f81a79d9d13a1b0047864af3a6971",
+      "https://github.com/keep-network/tbtc-v2/commit/7fdc8064a9b94c95f2e26300aa867e23cf21708e"
+    ]
+  },
+  "ENS": {
+    "commit_count": 5,
+    "lines_of_code": 120,
+    "commit_messages": [
+      "Correct typo in web3j documentation (#85)",
+      "Merge branch 'master' into ensip-11",
+      "Merge branch 'ensip-11'",
+      "Add Ens l2 offchain section (#83) (#88)\n\n* Add ens-l2-offchain.md\r\n\r\n* Add ethersjs example\r\n\r\n* Fix typos\r\n\r\n* Change section title\r\n\r\n* Move ens-l2-offchain.md\r\n\r\n* Move ENSIP 11\r\n\r\n* Remove wildcard example",
+      "chore: update stats and add logos (#427)\n\n* chore: add polychaintwitterdrop\r\n\r\n* chore: add WizardsDAO\r\n\r\n* chore: update stats"
+    ],
+    "distinct_authors": [
+      "GitHub",
+      "Makoto Inoue"
+    ],
+    "commit_urls": [
+      "https://github.com/ensdomains/docs/commit/d020cf46522a5eadafa33bcfd05d4e634c9c80d2",
+      "https://github.com/ensdomains/docs/commit/ac03c0806ef7975bd17869c488c2232d35a6a92f",
+      "https://github.com/ensdomains/docs/commit/8bac827ff41283efa2f4c8d2ef7ad24cbade9d1a",
+      "https://github.com/ensdomains/docs/commit/ebaa448d363a46c96b92b1b58d776f87e85f6d4d",
+      "https://github.com/ensdomains/ensdomains-v2/commit/728d1d67cb978346c80599d4e863925c72997233"
+    ]
+  },
+  "RBN": {
+    "commit_count": 2,
+    "lines_of_code": 564,
+    "commit_messages": [
+      "task/updating-aurora-contracts aurora subgraph contracts (#52)",
+      "Increasing the cap for AURORA and NEAR in the deploy scripts, removing SUSHI tests, adding AURORA ETH puts (#207)\n\n* fix/aurora Increasing the cap for AURORA and NEAR in the deploy scripts\r\n\r\n* task/sushi-tests Removing the RibbonThetaVault SUSHI tests and enabling AURORA ETH Puts\r\n\r\nWe aren't using SUSHI vaults and this will speed up the pipeline for\r\ntesting. Also enabled AURORA ETH Puts.\r\n\r\n* Renaming NEAR -> WNEAR\r\n\r\n* fix/eth-put-aurora Fixing the failing eth put aurora testcase"
+    ],
+    "distinct_authors": [
+      "GitHub"
+    ],
+    "commit_urls": [
+      "https://github.com/ribbon-finance/ribbon-subgraph/commit/c217d9aea82cdf805f2b454e6b18518502101f51",
+      "https://github.com/ribbon-finance/ribbon-v2/commit/696b3b94e1ed9ef298d7f02f7ce4fb50da03d0c6"
+    ]
+  },
+  "ZEC": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "BNT": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "REN": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "RLC": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "XLM": {
+    "commit_count": 4,
+    "lines_of_code": 344,
+    "commit_messages": [
+      "horizon: Properly check against the HA array being empty (#4152)\n\nBecause of the way strings.Split works, the returned array will\r\n*always* have at least one element. If the string is empty, the\r\narray will be [\"\"], so we need to check [1] == \"\" instead of\r\nchecking a length of zero.",
+      "friendbot: create new problem on each handler call (#4193)\n\n* create new problem on each handle call\r\n\r\n* move registerror to app level",
+      "Split submitting logic out of gravitybeam and into stellarwallet (#20)",
+      "Fix small bug (#21)"
+    ],
+    "distinct_authors": [
+      "GitHub"
+    ],
+    "commit_urls": [
+      "https://github.com/stellar/go/commit/8652df76c2551af1a2c1ab67a3b319a4cf80597c",
+      "https://github.com/stellar/go/commit/3f730334285af0bbef315b7ad241575b9c1a7fa8",
+      "https://github.com/stellar/starbridge/commit/e3fab0b4edd1ca858c6fc76383065bcf9d609a52",
+      "https://github.com/stellar/starbridge/commit/240c60407bbf7642d4b28bfe3808005999bba1c8"
+    ]
+  },
+  "WBTC": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "LTC": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "EOS": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "KNC": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "IMX": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "UMA": {
+    "commit_count": 1,
+    "lines_of_code": 75,
+    "commit_messages": [
+      "Reinis frp/boba tvl (#469)\n\n* Update Boba WAGMI implementation\r\n\r\nSigned-off-by: Reinis Martinsons <reinis@umaproject.org>\r\n\r\n* Remove daily interval\r\n\r\nSigned-off-by: Reinis Martinsons <reinis@umaproject.org>\r\n\r\n* Fix spacing\r\n\r\nSigned-off-by: Reinis Martinsons <reinis@umaproject.org>\r\n\r\n* Add L2BEAT endpoint for fallback\r\n\r\nSigned-off-by: Reinis Martinsons <reinis@umaproject.org>"
+    ],
+    "distinct_authors": [
+      "GitHub"
+    ],
+    "commit_urls": [
+      "https://github.com/UMAprotocol/UMIPs/commit/99836f06c328f44429ceecf8fb5bdf816916a4b1"
+    ]
+  },
+  "ADA": {
+    "commit_count": 55,
+    "lines_of_code": 7764,
+    "commit_messages": [
+      "Merge pull request #1158 from BitEdNFP/master\n\nBitEd",
+      "Merge pull request #1176 from MCDF31/master\n\nAdd Mountain Token",
+      "Merge pull request #1191 from miguelaeh/redeemable\n\nRedeemable",
+      "Merge pull request #1208 from Cardamun/master\n\nCardamun",
+      "Merge pull request #1209 from sp33dy/sp33dy-pavia\n\nSp33dy pavia",
+      "Merge pull request #1210 from MarklJenkins/master\n\nUncleBenny11",
+      "Merge pull request #1211 from MarklJenkins/branch02\n\nUncleBenny12",
+      "Merge pull request #1212 from MarklJenkins/branch03\n\nUncleBenny13",
+      "Merge pull request #1213 from MarklJenkins/branch04\n\nUncleBenny14",
+      "Merge pull request #1214 from MarklJenkins/branch05\n\nUncleBenny15",
+      "Merge pull request #1215 from MarklJenkins/branch06\n\nUncleBenny16",
+      "Merge pull request #1216 from MarklJenkins/branch07\n\nUncleBenny17",
+      "Merge pull request #1217 from MarklJenkins/branch08\n\nUncleBenny18",
+      "Merge pull request #1218 from MarklJenkins/branch9\n\nUncleBenny19",
+      "Merge pull request #1219 from MarklJenkins/branch10\n\nUncleBenny20",
+      "Merge pull request #1220 from markl-jenkins/master\n\nUncleBenny21",
+      "Merge pull request #1221 from markl-jenkins/branch02\n\nUncleBenny22",
+      "Merge pull request #1222 from markl-jenkins/branch03\n\nUncleBenny23",
+      "Merge pull request #1223 from markl-jenkins/branch04\n\nUncleBenny24",
+      "Merge pull request #1224 from markl-jenkins/branch05\n\nUncleBenny25",
+      "Merge pull request #1225 from markl-jenkins/branch06\n\nUncleBenny26",
+      "Merge pull request #1226 from markl-jenkins/branch07\n\nUncleBenny27",
+      "Merge pull request #1227 from markl-jenkins/branch08\n\nUncleBenny28",
+      "Merge pull request #1228 from markl-jenkins/branch09\n\nUncleBenny29",
+      "Merge pull request #1229 from markl-jenkins/branch10\n\nUncleBenny30",
+      "Merge pull request #1231 from CryptoPetz/master\n\nEgg Shard",
+      "Merge pull request #1233 from cardano-tools-nft/30392185-0aad-4e90-af8f-00573438d869\n\nVibrant Grass Block",
+      "Merge pull request #1235 from jjwarren44/master\n\nCharlz Token",
+      "Merge pull request #1237 from cardano-on-the-road/master\n\n8fb112f28bbc5b7479810c6e2f28badbaf3eb26fe3ad0591a896386e454e534f.json",
+      "Merge pull request #1238 from MikeyHawky/freya-branch\n\na6124329634b5c500fefbbbeb78c76c6a6560806700e234b7a812db04652455941",
+      "Merge pull request #1239 from GADA-finance/master\n\nGADA Finance token submission",
+      "Merge branch 'cardano-foundation:master' into master",
+      "Merge pull request #1240 from matiwinnetou/cneta\n\ncNETA token",
+      "Merge pull request #1242 from matiwinnetou/crfa\n\nCRFA token",
+      "Merge pull request #1243 from tembloroso/master\n\n777 coin",
+      "Merge pull request #1244 from cheffNFT/master\n\nCHEFF corrected",
+      "Merge pull request #1245 from Staking-DAO/master\n\nSTK",
+      "Merge pull request #1246 from SlimQuiggle/StripperCoin\n\nStripperCoin token listing! Thank you! Cardano rocks!",
+      "Merge pull request #1247 from AndrewWestberg/lq_update\n\nUpdate LQ description",
+      "Merge pull request #1252 from frog357/master\n\nCreate 21a5cfeb487bffdc52dcc482fa3cd657f54dd7a8f16bac40bad763e04d5253…",
+      "Merge pull request #1253 from cyprusdonkey/master\n\nGERO",
+      "Set Redeemable decimals to zero",
+      "Merge pull request #1256 from sevanspowell/sevanspowell/fix-pr-ci-logic.yaml\n\nUse HEAD instead of GITHUB_SHA to diff master and PR",
+      "Update sequence number",
+      "Merge pull request #1257 from miguelaeh/redeemable\n\nSet Redeemable decimals to zero",
+      "Merge pull request #1258 from sp33dy/master\n\nCreate HOSKY & KIDZ (this should now work)",
+      "Create 9c2a02b3a38380568749ff510a27d8884bd689dd6acbe2acfee4a509576f726c64.json\n\nHey, Just redid it \r\n@GabrielMazzant3 Twitter",
+      "Merge branch 'cardano-foundation:master' into master",
+      "update XT metadata (remove recimals, increment sequence number)",
+      "Merge pull request #1259 from GabrielMazzanti/master\n\nCreate 9c2a02b3a38380568749ff510a27d8884bd689dd6acbe2acfee4a509576f72…",
+      "Merge pull request #1232 from ggcaponetto/master\n\nupdate XT metadata (remove decimals)",
+      "Merge pull request #1248 from WolfCardano/master\n\n1a71dc14baa0b4fcfb34464adc6656d0e562571e2ac1bc990c9ce5f6574f4c46.json",
+      "Merge pull request #1204 from thegalgos/master\n\nThe Galgos Token",
+      "Merge pull request #1249 from Fuma419/master\n\nHodler Coalition Coin",
+      "Use HEAD instead of GITHUB_SHA to diff master and PR\n\n- Using \"${GITHUB_SHA}\" to point to the pull request commit does not work when\n  the pull request comes from a fork. The incorrect SHA leads to the diff being\n  incorrect, which leads to validation errors. Using HEAD eliminates these\n  problems, diffing the correct states."
+    ],
+    "distinct_authors": [
+      "Giuseppe Caponetto",
+      "Samuel Evans-Powell",
+      "GitHub",
+      "Miguel A. Cabrera Minagorri"
+    ],
+    "commit_urls": [
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/4c8bb19b76882d56c8c38b4bc1b4b2ddbde41430",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/8acc138d104ccd285c99e882b05fc84fad1a5f9a",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/079bfce2fb7126e960650db8546b55abc5269b9c",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/092757b5a42463f771d24a37d51f0a6bac8707de",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/1671bd6e600dda9daa704ce332c5ae429402e5b3",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/8e537505c282309cdb2dd7b67a0244da4c27847b",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/d7c6093ae2af867aa715952d1268680f47fbf41b",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/3439f9f818b4d305a49956e97bd857c1d8333523",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/7ce68096b45c47de0277f72955f668f08a5cf2f7",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/8988cc22d213ea098d45c6e7c267cdcd5095777e",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/0ca31b0cf223c7f1b6a797f38155f7f28a4c583b",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/8ffd25d6acf906fcc6d6f8f52b75d33059af1015",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/ea63d5c48018cd43331cf814d1c499c0d77c0264",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/944aeb823ec0da5d18bd9c17d9a90e7302abce9b",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/f8b95f395e57517f9d9005b5519ac3344ff4035a",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/5c43a861a0ee4cb465a2f3a666e1106ba5ac92f1",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/8a7d43c10d64ee9e4b3f20a039541d8e4e93626f",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/5009e532a5998dc96abdbf8b08a63d168adc8511",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/5d8a6a0e1ed4c99752d7f392f55cb9b154d07080",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/65ff8fe2306db7322dade119bd4b0a7297b94757",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/9b96d42808c4c582ff7653c4c70e51a629ea42af",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/2fbef246b3a9bfd53cf76c749f6f20c40d84d5ad",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/b417f4f3e208c522829fe370f4e38f5161f89a48",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/aa9422ebf9635b15db80271b8e2b21be44ff44c8",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/53a44bf118481be2c8950346aee74bb6e1138f9c",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/d3ffe356e3f8326d5f9878df45726a3c7a0491cd",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/142e4fad1c2747599bdc2ea3d3dd28612f89b5e5",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/6dfd7f168c4499fdb5e97c5c510436b24eea4af9",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/3e3a33f0c3483d584e47dbf2c2085c3a75863c77",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/c7ccf068b1c2073e96c79bde774bd32168bc836a",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/d37bd0d7cfb4ed3040280091c8071fcb69ecb645",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/62a76f7584c1cddf4dcf5669a5ce73fa860a79ab",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/efa882cc9b0dbfecd1a82a1ebc3667326f5df8b2",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/07e03a9bf2d47acd4c5bea8c5fea769ef9664977",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/49704bd3a251de8508b92d10c2f9f1519cbfd975",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/27f650dcf8db51721bb174cc0f44c5fed78bc80f",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/40c0ae772ff9b4aca36f6e1fc75ac9896cccc54b",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/5ed96eec2920e6866516160e75d159faed378801",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/6bc3ffa3f6857c3349e0fab88d8efcc4da9573ee",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/20480d4c97b0723539896fa8bb17878b941b9d67",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/46879defb7bf0d067ee7d8200c924b83b5730755",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/f6a161cda31101dfc95a7a01468e176d9cc8ebfd",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/83946836320a1aa625463bb9ad0a3895683ddd22",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/2f346b4cd5bf5678b2ee7312f11b66216fbb8ad2",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/1b0a16784e161c580257fc436c762ec07617f75b",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/554758f57e66c00dc678ca569589cfe2fcc231cc",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/faf7e2473e8c90d3bc0cf0d514b0f4fb61657878",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/e554050e7995b90750d1c2d7d573893deb446272",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/200c1eb06b3bbd93fcccba966079982eddaefbbe",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/a4b465e3fad7aa02effe395888edbea8d3eadff4",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/1cee55573e68202f33ba91b1b42b4614acafeb28",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/3f7e2ad676d25200c43ee6960b5e8c92e5dd1f35",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/ade68921bfb675db1c669faabcaece67c1205bbe",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/3b7a98ec5d44c3a7ed7dc59bbce730556743241a",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/bb7a90615d0207612fa01005da673b8b40cf8f39"
+    ]
+  },
+  "ANKR": {
+    "commit_count": 3,
+    "lines_of_code": 1514,
+    "commit_messages": [
+      "update proto",
+      "update proto",
+      "update proto"
+    ],
+    "distinct_authors": [
+      "khasan"
+    ],
+    "commit_urls": [
+      "https://github.com/Ankr-network/ankrscan-proto-contract/commit/fd7660a2dfb81645cff803d3e781a7be77650339",
+      "https://github.com/Ankr-network/ankrscan-proto-contract/commit/0718125ff8c5171babecb5532e4bafcdfc32289a",
+      "https://github.com/Ankr-network/ankrscan-proto-contract/commit/bc7572319d02bbd3d8cd379f7eb3982a260b2624"
+    ]
+  },
+  "ZRX": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "CTSI": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "GTC": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "UST": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "GNT": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "GRT": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "FOX": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "BLZ": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "PLA": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "FET": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "BADGER": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "ORN": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "SUKU": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "COMP": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "WLUNA": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "MATIC": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "STORJ": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "1INCH": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "ZEN": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "GALA": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "OGN": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "CVC": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "AVAX": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "ETC": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "NU": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "USDC": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "POLS": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "BICO": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "OMG": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "ICP": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "POWR": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "LINK": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "DOT": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "ACH": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "ARPA": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "LPT": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "AAVE": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "ENJ": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "QNT": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "GODS": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "COTI": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "NCT": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "DESO": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "MKR": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "RLY": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "COVAL": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "FX": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "DAI": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "YFII": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "SKL": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "PRO": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "TRU": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "SNX": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "LOOM": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "AUCTION": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "RAI": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "OXT": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "BAND": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "DOGE": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "REP": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "XTZ": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "PAX": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "MDT": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "ETH": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "SPELL": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "SUPER": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "WCFG": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "BCH": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "CRO": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "POLY": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "YFI": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "MUSD": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "XYO": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "UNI": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "FIL": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "CRV": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "INV": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "GFI": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "RARI": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
   }
 }

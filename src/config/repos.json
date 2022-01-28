@@ -1273,7 +1273,6 @@
     "name": "Wrapped Centrifuge",
     "description": "Unlocking liquidity for real world assets",
     "repos": [
-      "https://centrifuge.io/",
       "https://github.com/centrifuge/go-centrifuge",
       "https://github.com/centrifuge/precise-proofs",
       "https://github.com/centrifuge/protocol",

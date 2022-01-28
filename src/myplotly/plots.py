@@ -5,6 +5,9 @@ import textwrap
 
 from ..stats_util import Stats
 
+# xaxis formatting
+# https://stackoverflow.com/questions/52339903/plotly-how-to-plot-just-month-and-day-on-x-axis-ignore-year
+
 class Plots:
 
     def create_commits_plot(token: str, token_data_df, project_commits_list, commits_df):
@@ -26,7 +29,7 @@ class Plots:
             yaxis='y2'
         ))
         fig.layout.update(yaxis2 = go.layout.YAxis(title="# Files Modified Per Commit", overlaying='y', side='right', type='log'))
-        fig.update_layout(hoverlabel_align='left')
+        fig.update_layout(hoverlabel_align='left', xaxis=dict(tickformat="%b-%d-%Y"))
         return fig
 
     def create_aggregate_commit_count_plot(token: str, token_data_df, project_commits_list):
@@ -68,7 +71,7 @@ class Plots:
             yaxis='y2'
         ))
         fig.layout.update(yaxis2 = go.layout.YAxis(title=f"Lines of Code", overlaying='y', side='right', type='log'))
-        fig.update_layout(hoverlabel_align='left')
+        fig.update_layout(hoverlabel_align='left', xaxis=dict(tickformat="%b-%d-%Y"))
         return fig
 
     def create_number_of_authors_plot(token: str, token_data_df, project_commits_list):
@@ -90,7 +93,7 @@ class Plots:
         ))
 
         fig.layout.update(yaxis2 = go.layout.YAxis(title=f"Number of Authors", overlaying='y', side='right', type='linear'))
-        fig.update_layout(hoverlabel_align='left')
+        fig.update_layout(hoverlabel_align='left', xaxis=dict(tickformat="%b-%d-%Y"))
         return fig
 
     def create_price_fig(token, token_data_df):
@@ -104,7 +107,7 @@ class Plots:
             hovertemplate='<br><b>Price: </b> %{y}<br>'+'<extra></extra>'
         ))
         fig.layout.update(yaxis = go.layout.YAxis(title=f"{token} price in USD", side="left"))
-        fig.update_layout(yaxis_tickformat = '$')
+        fig.update_layout(yaxis_tickformat = '$', xaxis=dict(tickformat="%b-%d-%Y"))
         return fig
 
     def create_commit_hover_template():

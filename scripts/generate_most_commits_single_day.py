@@ -1,5 +1,6 @@
 from datetime import datetime, date, timedelta
 import json
+import time
 from typing import Optional
 
 from src import setup_data
@@ -63,20 +64,29 @@ def get_top_most_active(daily_json_path, n=10):
         daily_report = json.load(f)
     
     # sort in descending order, [(token_name, commit_count or lines_of_code), ...]
-    daily_report__by_commits_as_list = [(token_name, int(token_data['commit_count'])) for token_name, token_data in daily_report.items()]
-    sorted_by_commit_count = sorted(daily_report__by_commits_as_list, key=lambda x: x[1], reverse=True)
+    sort_by_metric = lambda report_list: sorted(report_list, key=lambda x: x[1], reverse=True)
 
-    daily_report__by_LOC_as_list = [(token_name, int(token_data['lines_of_code'])) for token_name, token_data in daily_report.items()]
-    sorted_by_lines_of_code = sorted(daily_report__by_LOC_as_list, key=lambda x: x[1], reverse=True)
+    daily_report_by_commits_as_list = [(token_name, int(token_data['commit_count'])) for token_name, token_data in daily_report.items()]
+    sorted_by_commit_count = sort_by_metric(daily_report_by_commits_as_list)
 
-    return sorted_by_commit_count[:n], sorted_by_lines_of_code[:n]
+    daily_report_by_LOC_as_list = [(token_name, int(token_data['lines_of_code'])) for token_name, token_data in daily_report.items()]
+    sorted_by_lines_of_code = sort_by_metric(daily_report_by_LOC_as_list)
+
+    daily_report_by_distinct_authors = [(token_name, int(len(token_data['distinct_authors']))) for token_name, token_data in daily_report.items()]
+    sorted_by_distinct_authors = sort_by_metric(daily_report_by_distinct_authors)
+
+    return sorted_by_commit_count[:n], sorted_by_lines_of_code[:n], sorted_by_distinct_authors[:n]
 
 if __name__ == "__main__":
 
     # generates the daily report, defaults to today if no datetime passed in
-    generate_daily_report(datetime(year=2022, month=1, day=24))
+    #query_start_time = time.time()
+    #generate_daily_report(datetime(year=2022, month=1, day=25))
+    #print("\n\n--- daily report generation ran in %s seconds ---\n\n" % (time.time() - query_start_time))
 
-    date_wanted = '2022-01-24'
-    by_commits, by_LOC = get_top_most_active(f"{DAILY_REPORTS_PATH}{date_wanted}.json", n=10)
-    print("Top projects by # of commits", *by_commits, sep="\n")
-    print("Top projects by new lines of code", *by_LOC, sep="\n")
+    # display the top 10 from the daily report
+    date_wanted = '2022-01-25'
+    by_commits, by_LOC, by_distinct_authors = get_top_most_active(f"{DAILY_REPORTS_PATH}{date_wanted}.json", n=10)
+    print("\nTop projects by # of commits", *by_commits, sep="\n")
+    print("\nTop projects by new lines of code", *by_LOC, sep="\n")
+    print("\nTop projects by distinct authors", *by_distinct_authors, sep="\n")

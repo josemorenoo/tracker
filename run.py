@@ -11,10 +11,10 @@ from src.setup_data import load_data
 from src.myplotly.plots import Plots
     
 # setup
-read_from_pickle = False
-token="CGLD"
-start_date = datetime(2021, 1, 1, 12, 00, 00)
-end_date = datetime(2021, 1, 2, 12, 00, 00)
+read_from_pickle = True
+token="LRC"
+start_date = datetime(2022, 1, 20, 12, 00, 00)
+end_date = datetime(2022, 1, 25, 12, 00, 00)
 timeframe = "month"
 
 # get repo list
@@ -32,7 +32,7 @@ token_data_df, project_commits_list, project_commits_df = load_data(
     write_to_pickle = not read_from_pickle
 )
 
-print(f"commits found for {start_date} through {end_date}: {len(project_commits_list)}")
+print(f"{len(project_commits_list)} commits found between {start_date} and {end_date}")
 
 
 # this is a list of FUNCTIONS, each one takes in the same three parameters and outputs a fig
