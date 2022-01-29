@@ -60,13 +60,13 @@
       "Guard CBlockIndex::nStatus/nFile/nDataPos/nUndoPos by cs_main\n\nCo-authored-by: Vasil Dimov <vd@FreeBSD.org>"
     ],
     "distinct_authors": [
-      "Andrew Chow",
+      "fanquake",
+      "Sebastian Falbesoner",
+      "Hennadii Stepanov",
       "Jon Atack",
       "MarcoFalke",
-      "fanquake",
-      "Hennadii Stepanov",
       "laanwj",
-      "Sebastian Falbesoner"
+      "Andrew Chow"
     ],
     "commit_urls": [
       "https://github.com/bitcoin/bitcoin/commit/bd482b3ffebc68130f8a18dabf08ed1aff7ea159",
@@ -409,60 +409,60 @@
       "chore(release): 0.2.1772"
     ],
     "distinct_authors": [
-      "variansol",
-      "migueloliveros",
-      "mum33n",
-      "kmpunk",
-      "token-list-automerger[bot]",
-      "FullMoonMiningCo",
-      "garyjob",
-      "KingpinFisk",
-      "chrigeeel",
-      "Shakti105",
-      "BestGitUser1",
-      "josezy",
-      "Citizen72",
-      "darioe54",
-      "willkilla9",
-      "samwarlock",
-      "realnihal",
-      "HP-hoodieprint",
-      "drllvm",
-      "ApesAgainstTheMachine",
-      "CryptoGodd",
-      "cryptofromapro",
-      "rangersmyth74",
-      "Michael Vines",
-      "kurtgalvin",
-      "LennyKato",
-      "tund1",
-      "brunotimsa",
-      "rahulchy960",
-      "SolGrandApes",
-      "GitHub",
-      "btcnftcoin",
-      "ImBillyon",
-      "TechyKid",
-      "DekreedStudios",
-      "JYOOrepository",
-      "zakimzf",
-      "NomiAdam",
-      "starcodez",
-      "andbandu",
       "asadat81",
-      "robbaxi",
       "buff5953",
-      "mrchaos",
-      "hhstanchev",
-      "TOTE-Club",
-      "Keisuke Wantanabe",
-      "flypup1",
-      "haroonmoh",
+      "LennyKato",
+      "mum33n",
+      "cryptofromapro",
+      "brunotimsa",
+      "GitHub",
+      "CryptoGodd",
+      "DekreedStudios",
+      "realnihal",
       "WeAreMetaverse",
+      "josezy",
+      "TOTE-Club",
       "arnor95",
+      "TechyKid",
+      "KingpinFisk",
+      "willkilla9",
+      "BestGitUser1",
+      "btcnftcoin",
+      "haroonmoh",
+      "tund1",
+      "andbandu",
+      "drllvm",
+      "ImBillyon",
+      "migueloliveros",
+      "samwarlock",
+      "garyjob",
+      "Shakti105",
+      "mrchaos",
+      "JYOOrepository",
       "Zabb116",
+      "deadzer0",
+      "zakimzf",
+      "FullMoonMiningCo",
+      "rahulchy960",
+      "Michael Vines",
+      "NomiAdam",
+      "rangersmyth74",
+      "chrigeeel",
+      "token-list-automerger[bot]",
+      "HP-hoodieprint",
+      "ApesAgainstTheMachine",
       "BEN1199",
-      "deadzer0"
+      "starcodez",
+      "darioe54",
+      "SolGrandApes",
+      "Keisuke Wantanabe",
+      "hhstanchev",
+      "flypup1",
+      "robbaxi",
+      "kmpunk",
+      "Citizen72",
+      "kurtgalvin",
+      "variansol"
     ],
     "commit_urls": [
       "https://github.com/solana-labs/token-list/commit/4d78be94859dffc2229f5e0e1b6fc95b74ecd034",
@@ -793,8 +793,8 @@
       "bugfix"
     ],
     "distinct_authors": [
-      "Taneeya",
-      "werlandy"
+      "werlandy",
+      "Taneeya"
     ],
     "commit_urls": [
       "https://github.com/clover-network/clover.finance/commit/048c5f92479db63074b61ebe9ef50829e17dff49",
@@ -902,8 +902,8 @@
       "Merge pull request #3321 from MonsieurNicolas/bumpSpdlog1.9.2\n\nBump spdlog1.9.2\n\nReviewed-by: graydon"
     ],
     "distinct_authors": [
-      "GitHub",
-      "MonsieurNicolas"
+      "MonsieurNicolas",
+      "GitHub"
     ],
     "commit_urls": [
       "https://github.com/stellar/stellar-core/commit/58011b304998a3999016243efcfcc4b4c138e9a8",
@@ -1000,11 +1000,11 @@
       "Delete CHIMPY-go.png"
     ],
     "distinct_authors": [
+      "BisonBucks",
       "AntworkersColony",
       "GitHub",
       "root",
-      "devops",
-      "BisonBucks"
+      "devops"
     ],
     "commit_urls": [
       "https://github.com/cardano-foundation/CIPs/commit/40df5d38b3da788de1b7f6c346466d1d713f952a",
@@ -1039,9 +1039,11 @@
     ]
   },
   "ANKR": {
-    "commit_count": 9,
-    "lines_of_code": 6204,
+    "commit_count": 14,
+    "lines_of_code": 6264,
     "commit_messages": [
+      "Changed tokenId type to string",
+      "Revert \"Changed tokenId type to string\"\n\nThis reverts commit e2f890809ad3b336a04d4ed5a93c0fb49dcf39ad.",
       "update proto",
       "update proto",
       "update proto",
@@ -1050,12 +1052,18 @@
       "update proto",
       "update proto",
       "update proto",
-      "update proto"
+      "update proto",
+      "Changed page token type from string to bytes",
+      "Revert \"Changed page token type from string to bytes\"\n\nThis reverts commit 59f62bf1ef2c2e12a9f8a04db63e5dbea3f6761c.",
+      "Changed page token from string to bytes in both request and reply"
     ],
     "distinct_authors": [
+      "redcuckoo",
       "khasan"
     ],
     "commit_urls": [
+      "https://github.com/Ankr-network/ankrscan-proto-contract/commit/e2f890809ad3b336a04d4ed5a93c0fb49dcf39ad",
+      "https://github.com/Ankr-network/ankrscan-proto-contract/commit/54a0bf7a8672fccae29979c4720007673c60408c",
       "https://github.com/Ankr-network/ankrscan-proto-contract/commit/bbb02818188317f109569e619a2d186f365c81dc",
       "https://github.com/Ankr-network/ankrscan-proto-contract/commit/922a5a27a6777c9825a5dca44c34443f86ed82c0",
       "https://github.com/Ankr-network/ankrscan-proto-contract/commit/adb788220b69e683001bac692dc859a71c0ffedf",
@@ -1064,7 +1072,10 @@
       "https://github.com/Ankr-network/ankrscan-proto-contract/commit/f2c88433b31d882977b1e812c1d5dcb61128e26d",
       "https://github.com/Ankr-network/ankrscan-proto-contract/commit/201e6a253cfe67b4c43ccc2f3d82f9fa723a190b",
       "https://github.com/Ankr-network/ankrscan-proto-contract/commit/5437486f8f914f0f3a9afa209f4af62292d1870b",
-      "https://github.com/Ankr-network/ankrscan-proto-contract/commit/49f3960f459a6589feb3426eeb72989146b65c03"
+      "https://github.com/Ankr-network/ankrscan-proto-contract/commit/49f3960f459a6589feb3426eeb72989146b65c03",
+      "https://github.com/Ankr-network/ankrscan-proto-contract/commit/59f62bf1ef2c2e12a9f8a04db63e5dbea3f6761c",
+      "https://github.com/Ankr-network/ankrscan-proto-contract/commit/6f24496de34c2360a2f6fb00e9dbb00ffec46c8f",
+      "https://github.com/Ankr-network/ankrscan-proto-contract/commit/361709cfeed5bd9cf6625b9825836eba9342ddc9"
     ]
   },
   "ZRX": {
@@ -1078,8 +1089,8 @@
       "Publish\n\n - @0x/asset-swapper@16.48.0"
     ],
     "distinct_authors": [
-      "Github Actions",
-      "GitHub"
+      "GitHub",
+      "Github Actions"
     ],
     "commit_urls": [
       "https://github.com/0xProject/protocol/commit/9d08fefa1c4c12b610d11c0caa99f912f85328cf",
@@ -1115,9 +1126,9 @@
       "Set the default fee denom to UST"
     ],
     "distinct_authors": [
+      "GitHub",
       "evanorti",
-      "sim",
-      "GitHub"
+      "sim"
     ],
     "commit_urls": [
       "https://github.com/terra-money/core/commit/9ef67cf1c441bc51937d6285e9cdc5f90cd3b3dd",
@@ -1151,8 +1162,8 @@
       "v1.10.1\n\n- Update address book with new deployed testnet contracts"
     ],
     "distinct_authors": [
-      "Ariel Barmat",
-      "David Lutterkort"
+      "David Lutterkort",
+      "Ariel Barmat"
     ],
     "commit_urls": [
       "https://github.com/graphprotocol/graph-node/commit/1333e4c89ead7cbbcc5a5f483dba43b5f806c352",
@@ -1176,8 +1187,8 @@
       "Add tf_privacy to KerasLearner (#208)\n\n* update keras mnist diffpriv\r\n\r\n* add dp to keraslearner and test\r\n\r\n* tox\r\n\r\n* typo\r\n\r\n* speed up keras mnist diffpriv example - at some accuracy cost by lowering num_microbatches\r\n\r\n* resolve conflict\r\n\r\n* always return weight & optionally an error code\r\n\r\n* fix dp keras test"
     ],
     "distinct_authors": [
-      "daeMOn",
-      "GitHub"
+      "GitHub",
+      "daeMOn"
     ],
     "commit_urls": [
       "https://github.com/fetchai/fetchd/commit/f8ddc844e2cebd5e474585604c7eed44359bedfb",
@@ -1207,12 +1218,12 @@
       "fix: change logic on number of snapshots variable and add more tests"
     ],
     "distinct_authors": [
-      "jorijnsmit",
+      "Swole Badger",
       "GitHub",
-      "Andrew Kulikov",
-      "brookstaylor",
       "sajanrajdev",
-      "Swole Badger"
+      "jorijnsmit",
+      "brookstaylor",
+      "Andrew Kulikov"
     ],
     "commit_urls": [
       "https://github.com/Badger-Finance/badger-rewards/commit/9135d23c3dca91268f2544a3a4ef2ba85651244f",
@@ -1255,20 +1266,25 @@
     "commit_urls": []
   },
   "MATIC": {
-    "commit_count": 5,
-    "lines_of_code": 1273,
+    "commit_count": 7,
+    "lines_of_code": 1339,
     "commit_messages": [
       "Merge pull request #303 from maticnetwork/merge-subs2\n\nMerge subs2",
+      "add test for dev flag",
+      "replace Fatalf function with fmt.Errorf",
       "Merge pull request #754 from nicovalencia/master\n\nAdds steps and child manager addresses to ethereum-polygon > mintable-assets.",
       "Merge pull request #756 from eltociear/patch-7\n\nFix typo in delegator-faq.md",
       "fix: use correct user 2 address (To address) variable name in env",
       "Fix typo in delegator-faq.md\n\nsuccessfull -> successful"
     ],
     "distinct_authors": [
-      "GitHub"
+      "GitHub",
+      "Manav Darji"
     ],
     "commit_urls": [
       "https://github.com/maticnetwork/bor/commit/55c34d660b1871323672ec2755cbf8731bc1a0f4",
+      "https://github.com/maticnetwork/bor/commit/08f9931147cdcafc5129e542751d6dab91c8ec45",
+      "https://github.com/maticnetwork/bor/commit/6ccd75c186d4e84f3a62ec21c630e0484ce776e6",
       "https://github.com/maticnetwork/matic-docs/commit/94a6bcdc6f16cdf92108d62ead7ec69cd950f0bc",
       "https://github.com/maticnetwork/matic-docs/commit/dd475fa7a78634dd4e6febdd9e82f67b7ab5916e",
       "https://github.com/maticnetwork/maticjs-plasma/commit/b82e282228a8fbc8b9c3a007f83e4c36239d08cd",
@@ -1291,12 +1307,12 @@
       "config.go: add maximumBufferSize for DRPC streams\n\nThis change adds the maximumBufferSize option to Config using linkname\nhack. This is similar to the existing pool and connector, as we don't\nwant these options to be exposed by default. This change is primarily\nneeded to be able to configure the underlying DRPC connection manager to\ndrop large buffers from inside of, e.g., Gateway-MT or Link Sharing\nService.\n\nUpdates storj/gateway-mt#135\n\nChange-Id: I4534308849b7233523e00bf57eabd02fac0a107a"
     ],
     "distinct_authors": [
+      "Jeff Wendling",
+      "Fadila",
       "Nikolay Yurchenko",
       "Egon Elbre",
-      "Jeff Wendling",
-      "Michal Niewrzal",
       "Artur M. Wolff",
-      "Fadila"
+      "Michal Niewrzal"
     ],
     "commit_urls": [
       "https://github.com/storj/storj/commit/9ce1a4e25d06eb9ca7a016be2fed9153a67f9606",
@@ -1498,18 +1514,18 @@
       "Merge branch 'johnw/nns1-1034' into 'master'\n\n[NNS1-1034] Ensure age is not lost during a non-dissolving merge\n\nPlease see trouble ticket NNS1-1034 for background and information. \n\nSee merge request dfinity-lab/public/ic!2839"
     ],
     "distinct_authors": [
-      "Severin Siffert",
-      "John Wiegley",
-      "GitHub",
-      "Daniel Stefan Dietiker",
       "Stefan Dietiker",
-      "Marko Kosmerl",
-      "Livio Kopp",
-      "Mario Pastorelli",
       "nico",
-      "Egeyar Bagcioglu",
+      "Paul Liu",
       "Ryan Croote",
-      "Paul Liu"
+      "John Wiegley",
+      "Severin Siffert",
+      "Egeyar Bagcioglu",
+      "Livio Kopp",
+      "GitHub",
+      "Mario Pastorelli",
+      "Marko Kosmerl",
+      "Daniel Stefan Dietiker"
     ],
     "commit_urls": [
       "https://github.com/dfinity/ic/commit/f8fab26fe9c2b71113f7262a2ccf762a36b57b12",
@@ -1589,15 +1605,15 @@
     ],
     "distinct_authors": [
       "Blaž Hrastnik",
-      "Jordan Krage",
-      "chainchad",
-      "GitHub",
-      "Sam",
       "Kristijan Rebernisak",
-      "Michael Street",
-      "Ryan Hall",
       "Javier Marcos",
-      "Justin Kaseman"
+      "Sam",
+      "Ryan Hall",
+      "Jordan Krage",
+      "Michael Street",
+      "chainchad",
+      "Justin Kaseman",
+      "GitHub"
     ],
     "commit_urls": [
       "https://github.com/smartcontractkit/chainlink/commit/14162f4eaa215af81e5d159d33762b72bca8fdff",
@@ -1663,8 +1679,8 @@
       "Companion for Use proper bounded vector type for nominations #10601 (#4709)\n\n* Fixing polkadot after subtrate changes\r\n`MAX_NOMINATIONS` was changed to `MaxNominations`\r\n\r\n* Fixing some more places\r\n\r\n* Apply suggestions from code review\r\n\r\n* update lockfile for {\"substrate\"}\r\n\r\nCo-authored-by: Kian Paimani <5588131+kianenigma@users.noreply.github.com>\r\nCo-authored-by: Shawn Tabrizi <shawntabrizi@gmail.com>\r\nCo-authored-by: parity-processbot <>"
     ],
     "distinct_authors": [
-      "GitHub",
-      "Michael Mueller"
+      "Michael Mueller",
+      "GitHub"
     ],
     "commit_urls": [
       "https://github.com/paritytech/ink-docs/commit/7d3c6c1d911e4dfd9d13136f15ac0fc9b7bb1396",
@@ -1799,10 +1815,10 @@
       "Merge pull request #458 from Gala-G/master\n\nUpdate mip38.md"
     ],
     "distinct_authors": [
-      "Adam Goth",
-      "blimpa",
+      "Gala-G",
       "GitHub",
-      "Gala-G"
+      "blimpa",
+      "Adam Goth"
     ],
     "commit_urls": [
       "https://github.com/makerdao/governance-portal-v2/commit/5e135fd57d4f33dc4a6c46a11747621fc847de18",
@@ -1856,9 +1872,9 @@
       "Merge pull request #458 from Gala-G/master\n\nUpdate mip38.md"
     ],
     "distinct_authors": [
-      "blimpa",
+      "Gala-G",
       "GitHub",
-      "Gala-G"
+      "blimpa"
     ],
     "commit_urls": [
       "https://github.com/makerdao/mips/commit/a6929588665f616890a85f26d9b9575e6e0f6005",
@@ -1884,14 +1900,21 @@
     "commit_urls": []
   },
   "SKL": {
-    "commit_count": 11,
-    "lines_of_code": 8092,
+    "commit_count": 18,
+    "lines_of_code": 9251,
     "commit_messages": [
+      "Refactor deployFunctionFactory",
+      "Refactor deployWithConstructorFunctionFactory",
+      "Refactor deployWithLibraryFunctionFactory",
+      "Refactor deploy scripts",
       "Merge branch 'develop' into feature/SKALE-1263-game-mode",
       "Merge branch 'develop' into feature/SKALE-4894-pass-new-BLS-keys-to-IMA-schain-part",
+      "Fix typescript errors in tests",
       "Multi-transaction mode",
       "Merge branch 'develop' into feature/SKALE-4861-low-level-msgs-between-chains",
       "SKALE-4894 fix build",
+      "Fix typescript errors in migration scripts",
+      "Add types",
       "SKALE-4894 updateIMABLSKey only if there is one",
       "Merge branch 'feature/SKALE-4894-pass-new-BLS-keys-to-IMA-schain-part' of github.com:skalenetwork/skaled into feature/SKALE-4894-pass-new-BLS-keys-to-IMA-schain-part",
       "SKALE-4894 fix tests",
@@ -1900,15 +1923,23 @@
       "SKALE-4894 remove unused options"
     ],
     "distinct_authors": [
-      "Oleh Nikolaiev",
-      "GitHub"
+      "Dmytro Stebaiev",
+      "GitHub",
+      "Oleh Nikolaiev"
     ],
     "commit_urls": [
+      "https://github.com/skalenetwork/skale-manager/commit/a55567b4b1219ec0dea0ccbe9629d95b49ecccd6",
+      "https://github.com/skalenetwork/skale-manager/commit/2ae018278fda0284f2124017ea22c9cf3b6198c2",
+      "https://github.com/skalenetwork/skale-manager/commit/bac7695b62d421ae55a71422b89cf40d3e6dcbcc",
+      "https://github.com/skalenetwork/skale-manager/commit/370a26c23b181bea2b9d8aa141d09d9e3c8c74c8",
       "https://github.com/skalenetwork/skaled/commit/232cff8f386189a55e850dc58b9dbd0351512e9c",
       "https://github.com/skalenetwork/skaled/commit/38ce141179805e2d6fd66bcdb519372a5fff4491",
+      "https://github.com/skalenetwork/skale-manager/commit/1ed4a526a24fd4bb0673459a2225a4a1fc8f1551",
       "https://github.com/skalenetwork/skaled/commit/e85d20dfc9630b22231116f360908dd3105922e4",
       "https://github.com/skalenetwork/skaled/commit/0e659f5d0d4ed8377ac086b69d0abcd02e5339a5",
       "https://github.com/skalenetwork/skaled/commit/0675747fb490a719e3496faeb19a14f4ff6c4676",
+      "https://github.com/skalenetwork/skale-manager/commit/121689192840a81536dc7add0bd6852fbac33aa2",
+      "https://github.com/skalenetwork/skale-manager/commit/37968265f7763c12f1085d8bbc3f77c13c28a8f0",
       "https://github.com/skalenetwork/skaled/commit/c910494d5f42ce5188ce911f6083b9413eab664d",
       "https://github.com/skalenetwork/skaled/commit/44482aace378d94b1a356163c72b11987738393a",
       "https://github.com/skalenetwork/skaled/commit/51c1f1069c23e93fef1b50cf648ae3b574754d16",
@@ -1966,9 +1997,9 @@
       "SIP-202 Add phase one and phase two tech spec (#861)"
     ],
     "distinct_authors": [
-      "Jakub Mucha",
+      "fritzschoff",
       "GitHub",
-      "fritzschoff"
+      "Jakub Mucha"
     ],
     "commit_urls": [
       "https://github.com/Synthetixio/SIPs/commit/713e8a15c8549ed41a96674011704092ad2d1280",
@@ -2085,8 +2116,8 @@
     "commit_urls": []
   },
   "ETH": {
-    "commit_count": 49,
-    "lines_of_code": 732811,
+    "commit_count": 50,
+    "lines_of_code": 732861,
     "commit_messages": [
       "added Scam lert to home",
       "Merge branch 'ethereum:dev' into dev",
@@ -2115,6 +2146,7 @@
       "Fixed modal title for folder creation",
       "Merge branch 'dev' into 5139",
       "Change the way we run solcjs now that it has been renamed in solc-js",
+      "dynamic imports",
       "Update src/content/glossary/index.md\n\nCo-authored-by: Joshua <62268199+minimalsm@users.noreply.github.com>",
       "Update src/content/glossary/index.md\n\nCo-authored-by: Joshua <62268199+minimalsm@users.noreply.github.com>",
       "Merge pull request #639 from cburgdorf/christoph/fix/551\n\nFixed a crash with a certain unprintable ASCII char",
@@ -2139,16 +2171,17 @@
       "add missing sections to eip-3770 and rename asset (#4462)"
     ],
     "distinct_authors": [
-      "LukaK",
-      "GitHub",
-      "lianahus",
       "Christoph Burgdorf",
-      "Kamil Śliwak",
-      "Joe",
-      "David Disu",
-      "Joshua",
       "yann300",
-      "Martin Holst Swende"
+      "David Disu",
+      "lianahus",
+      "Martin Holst Swende",
+      "GitHub",
+      "Kamil Śliwak",
+      "LukaK",
+      "aniket-engg",
+      "Joe",
+      "Joshua"
     ],
     "commit_urls": [
       "https://github.com/ethereum/remix-project/commit/b2f07889ce3df23955da5765b53eaf6eae1064fb",
@@ -2178,6 +2211,7 @@
       "https://github.com/ethereum/remix-project/commit/7d993bc6354a4d3ff905ff4faac2a6efbc7609f4",
       "https://github.com/ethereum/ethereum-org-website/commit/e276200a95425719c30f97766756dd8701e29e1c",
       "https://github.com/ethereum/solidity/commit/2e1383eae165568cecf076223dc4c16bb5266409",
+      "https://github.com/ethereum/remix-project/commit/819d859f662ed35b414c25ee981b922d4f318930",
       "https://github.com/ethereum/ethereum-org-website/commit/965421975186862365a6d34c4a13a7417a4e0b65",
       "https://github.com/ethereum/ethereum-org-website/commit/377b087608f8474a3ae422d3a9f859dd82c0a815",
       "https://github.com/ethereum/fe/commit/3e0009f97bd32608b91dd9217f65073cdc16e771",
@@ -2282,8 +2316,8 @@
       "fix: remove non-curve overrides for now (#156)"
     ],
     "distinct_authors": [
-      "GitHub",
-      "jstash"
+      "jstash",
+      "GitHub"
     ],
     "commit_urls": [
       "https://github.com/yearn/yearn-exporter/commit/c3399eb4d06fb2666a8df9995edd7d0a428dd881",
@@ -2304,8 +2338,8 @@
       "chore: added compile-ts to prepublishOnly script\nchore: bumped version to 2.4.1"
     ],
     "distinct_authors": [
-      "Nick Addison",
-      "GitHub"
+      "GitHub",
+      "Nick Addison"
     ],
     "commit_urls": [
       "https://github.com/mstable/MIPs/commit/b43aea9feeb03e2dbda473687ed6d9ee61c357ab",
@@ -2350,8 +2384,8 @@
     ]
   },
   "FIL": {
-    "commit_count": 12,
-    "lines_of_code": 100,
+    "commit_count": 16,
+    "lines_of_code": 300,
     "commit_messages": [
       "fix: correctly set cache path for empty sector update proofs (#1557)",
       "Merge pull request #295 from filecoin-project/steb/vm-fixes\n\nvarious fixes to the VM found on the new conformance tests",
@@ -2364,12 +2398,17 @@
       "remove a log",
       "Merge pull request #7998 from filecoin-project/arajasek-patch-3\n\nchore: sealer: quieten a log",
       "fvm: trace value-only sends",
-      "Fix empty sector update priority and add debugging (#1558)\n\n* feat: add some additional debugging\r\n* fix: swap sector update proofs to non-priority (resolves #1553)"
+      "Fix empty sector update priority and add debugging (#1558)\n\n* feat: add some additional debugging\r\n* fix: swap sector update proofs to non-priority (resolves #1553)",
+      "refactor: eliminate distinction between markset and markset visitors",
+      "parallelize walkChain",
+      "dynamically compute number of workers for parallel chain walk",
+      "use minimum of 2 workers"
     ],
     "distinct_authors": [
+      "vyzo",
+      "GitHub",
       "Steven Allen",
-      "Masih H. Derkani",
-      "GitHub"
+      "Masih H. Derkani"
     ],
     "commit_urls": [
       "https://github.com/filecoin-project/rust-fil-proofs/commit/57c9651392561469deb8167452a26473bc060839",
@@ -2383,7 +2422,11 @@
       "https://github.com/filecoin-project/lotus/commit/2d0929e305125d65bbc0fdb6e1ee39b19d64e69f",
       "https://github.com/filecoin-project/lotus/commit/f1b24598f565b3234e80a17d3c65704f68b031a7",
       "https://github.com/filecoin-project/ref-fvm/commit/b0b040f82ee7585b6795437ad08714979c42454f",
-      "https://github.com/filecoin-project/rust-fil-proofs/commit/c836cabb95bfb6dbee9ae1d3e9265223315def9c"
+      "https://github.com/filecoin-project/rust-fil-proofs/commit/c836cabb95bfb6dbee9ae1d3e9265223315def9c",
+      "https://github.com/filecoin-project/lotus/commit/25284b5325c33771759fad66891cc76f0b5c21f1",
+      "https://github.com/filecoin-project/lotus/commit/7c8edf5632aa2133a2c292daa1ce083e4df39a1e",
+      "https://github.com/filecoin-project/lotus/commit/8e01e73de4722baa0d4d1dab0a2fe21106328f34",
+      "https://github.com/filecoin-project/lotus/commit/10f2445a9909784d122aa4e7c24efbb573be17d8"
     ]
   },
   "CRV": {
@@ -2425,11 +2468,11 @@
       "chore: bump versions after release"
     ],
     "distinct_authors": [
-      "GitHub",
+      "Eugene Nacu",
       "Denis Mazin",
+      "GitHub",
       "Aleksandr",
-      "Sergei Vychegzhanin",
-      "Eugene Nacu"
+      "Sergei Vychegzhanin"
     ],
     "commit_urls": [
       "https://github.com/rarible/protocol/commit/2cdd39af1a350339dd6f221d5205d9925991320c",

@@ -1,0 +1,2099 @@
+{
+  "AMP": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "LRC": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "BTC": {
+    "commit_count": 4,
+    "lines_of_code": 528,
+    "commit_messages": [
+      "Merge bitcoin/bitcoin#23508: Add getdeploymentinfo RPC\n\na3809228917b8f750090c8bfec8e283391dbb524 Release notes for getdeploymentinfo rpc (Anthony Towns)\n240cad09baefcf363cce36a4b2795122adfce27f rpc: getdeploymentinfo: include signalling info (Anthony Towns)\n376c0c6dae2bebbb3e1352377e71fb1996d09f64 rpc: getdeploymentinfo: include block hash/height (Anthony Towns)\na7469bcd35692d56f57e91b3f21d30855bdf6531 rpc: getdeploymentinfo: change stats to always refer to current period (Anthony Towns)\n7f15c1841b98de6931a7ac68e16635a05d3e96cf rpc: getdeploymentinfo: allow specifying a blockhash other than tip (Anthony Towns)\nfd826130a0a4e67fdc26f8064f4ecb4ff79b3333 rpc: move softfork info from getblockchaininfo to getdeploymentinfo (Anthony Towns)\n\nPull request description:\n\n  The aim of this PR is to improve the ability to monitor soft fork status. It first moves the softfork section from getblockchaininfo into a new RPC named getdeploymentinfo, which is then also able to query the status of forks at an arbitrary block rather than only at the tip. In addition, bip9 status is changed to indicate the status of the given block, rather than just for the next block, and an additional field is included to indicate whether each block in the signalling period signaled.\n\nACKs for top commit:\n  laanwj:\n    Code review and lightly tested ACK a3809228917b8f750090c8bfec8e283391dbb524\n  Sjors:\n    tACK a3809228917b8f750090c8bfec8e283391dbb524\n  fjahr:\n    tACK a3809228917b8f750090c8bfec8e283391dbb524\n\nTree-SHA512: 7417d733b47629f229c5128586569909250481a3e94356c52fe67a03fd42cd81745246e384b98c4115fb61587714c879e4bc3e5f5c74407d9f8f6773472a33cb",
+      "Merge bitcoin/bitcoin#21851: release: support cross-compiling for arm64-apple-darwin\n\nedd70b52fcd79026e9c63b8bc481fa68f95edf11 doc: add arm macOS depends platform triplet (jarolrod)\n0628815e9565a10df96f0f58b9a17cbf7f10dc27 guix: add arm64-apple-darwin triplet (fanquake)\nca47f2e211f48a8722bb04fd33e456d5db00b968 guix: use autoconf 2.71 (fanquake)\n6fe55160dd00fb387a5110a2d2e188618838e9a3 contrib: support arm64 darwin in security checks (fanquake)\n446e73cc0bb7cd628039eaf9b1bcc93db23b924f build: use macOS 11 SDK (Xcode 12.2) (fanquake)\n\nPull request description:\n\n  With a few minor changes, our macOS toolchain, and Guix, supports building for `arm64-apple-darwin` (Apple M1). Newer [`config.guess`](https://git.savannah.gnu.org/cgit/config.git/plain/config.guess) and [`config.sub`](https://git.savannah.gnu.org/cgit/config.git/plain/config.sub) are required (via autoconf 2.71), as support for recognising `arm64-apple-darwin` [was only recently added](https://git.savannah.gnu.org/cgit/config.git/commit/?id=2593751ef276497e312d7c4ce7fd049614c7bf80). A newer version of the macOS SDK (11.0+) is also required; I've taken this from Xcode 12.2.\n\n  Guix Build:\n  ```bash\n  bash-5.1# find guix-build-$(git rev-parse --short=12 HEAD)/output/ -type f -print0 | env LC_ALL=C sort -z | xargs -r0 sha256sum\n  c9c64c6252927c82d4a96eb2b1a13c557ac230afa3640a7f2feec87fabe2b7e5  guix-build-edd70b52fcd7/output/aarch64-linux-gnu/SHA256SUMS.part\n  b57dd461ec6a0b22ce9614ab824bcbff4c3e6e935c22367aff9a718f46c3fd39  guix-build-edd70b52fcd7/output/aarch64-linux-gnu/bitcoin-edd70b52fcd7-aarch64-linux-gnu-debug.tar.gz\n  66da9f57a6789108db3460d2b54a8bed68b7e147627404e51f66254d91500402  guix-build-edd70b52fcd7/output/aarch64-linux-gnu/bitcoin-edd70b52fcd7-aarch64-linux-gnu.tar.gz\n  13213523984837fc66fe27cc4dac269f6ef554ec56316af92337f4c4845f6acf  guix-build-edd70b52fcd7/output/arm-linux-gnueabihf/SHA256SUMS.part\n  e1a17b41c92879ccb6608a6a6f82aac22d999f10d798f40f96297d91ebd90d20  guix-build-edd70b52fcd7/output/arm-linux-gnueabihf/bitcoin-edd70b52fcd7-arm-linux-gnueabihf-debug.tar.gz\n  6a6d54081c2dd8f9a44293275aea875587b5fa7cc31a30925fb5156bb1e55bf3  guix-build-edd70b52fcd7/output/arm-linux-gnueabihf/bitcoin-edd70b52fcd7-arm-linux-gnueabihf.tar.gz\n  79f617a2f0a11e6a8fcf8058e05204a374ab5f689ccb15a2ff449ee2dd5e8216  guix-build-edd70b52fcd7/output/arm64-apple-darwin/SHA256SUMS.part\n  6fb04a18b17812174ec35a6788dce5745d6c2dec558056dcfdd356b57d089b99  guix-build-edd70b52fcd7/output/arm64-apple-darwin/bitcoin-edd70b52fcd7-arm64-apple-darwin.tar.gz\n  a67e415631bea940adab86adec9899593fa35e1773d4ac1149efd249adf89996  guix-build-edd70b52fcd7/output/arm64-apple-darwin/bitcoin-edd70b52fcd7-osx-unsigned.dmg\n  2a41c273afb8bb621226de80302a7190eee057c2447d113999f40a9485430d44  guix-build-edd70b52fcd7/output/arm64-apple-darwin/bitcoin-edd70b52fcd7-osx-unsigned.tar.gz\n  c8d9358471e1d72d56122ae6f53dc2a42ae0925628bf347acd1a3ae7110d8759  guix-build-edd70b52fcd7/output/dist-archive/bitcoin-edd70b52fcd7.tar.gz\n  1985a4869307418ec2ee85f5f0ccfea0944eba0792318a8676ae213a9589ed97  guix-build-edd70b52fcd7/output/powerpc64-linux-gnu/SHA256SUMS.part\n  6a1d3525011da84e24997c9ab39563b3597ae881b4d1af5a09a6e673cfc59808  guix-build-edd70b52fcd7/output/powerpc64-linux-gnu/bitcoin-edd70b52fcd7-powerpc64-linux-gnu-debug.tar.gz\n  cda50c28b2920caef74de4b3e78fd4d81592d1aadc9758d1882f1cad16dc83ca  guix-build-edd70b52fcd7/output/powerpc64-linux-gnu/bitcoin-edd70b52fcd7-powerpc64-linux-gnu.tar.gz\n  ca92936cf796543d13250f94175af772a9fc985e834017d6af2cfb36eea289e6  guix-build-edd70b52fcd7/output/powerpc64le-linux-gnu/SHA256SUMS.part\n  64c46248065149a384c5710adeb4fd8e795ffee7d6441e4edb71468c6cf1478e  guix-build-edd70b52fcd7/output/powerpc64le-linux-gnu/bitcoin-edd70b52fcd7-powerpc64le-linux-gnu-debug.tar.gz\n  bb9c3400a1dd88fa5fd26e8e22ba0f3a43263bdbb762233ed1670394d3d69ed1  guix-build-edd70b52fcd7/output/powerpc64le-linux-gnu/bitcoin-edd70b52fcd7-powerpc64le-linux-gnu.tar.gz\n  926ef7a23ecdf02a6619f9dba0db814373c1a5105347e4c13b80a116910d1c8d  guix-build-edd70b52fcd7/output/riscv64-linux-gnu/SHA256SUMS.part\n  cdf7ce78f206378a44122865150784c20bf1bec6943b48e35a41633c0f1f05ed  guix-build-edd70b52fcd7/output/riscv64-linux-gnu/bitcoin-edd70b52fcd7-riscv64-linux-gnu-debug.tar.gz\n  026bbb6662f4074054457ce1678fc1d697bfbf87c80f1c3d5d560bcc18e3bea6  guix-build-edd70b52fcd7/output/riscv64-linux-gnu/bitcoin-edd70b52fcd7-riscv64-linux-gnu.tar.gz\n  0190b93fc5d5202c6b252e51c34799fb153a284cc53b0e6f62d2521dc61866bd  guix-build-edd70b52fcd7/output/x86_64-apple-darwin/SHA256SUMS.part\n  69aac1a962aeeec01c30015f79d93c57d68a484c3905b8a526f90e7e7382bc1b  guix-build-edd70b52fcd7/output/x86_64-apple-darwin/bitcoin-edd70b52fcd7-osx-unsigned.dmg\n  ea37691f1df0389afedbb9eece45660dcb2ee867ffda1d26b244a471af2a6230  guix-build-edd70b52fcd7/output/x86_64-apple-darwin/bitcoin-edd70b52fcd7-osx-unsigned.tar.gz\n  f56ff4035e3bc70c2cbb04f8a7f5ef23096088189e84fa172cec97f59336cf2b  guix-build-edd70b52fcd7/output/x86_64-apple-darwin/bitcoin-edd70b52fcd7-osx64.tar.gz\n  a1c1bf47083c6f19bcc68761ea56bec666cfe128f4ba878a5655ae12874fe038  guix-build-edd70b52fcd7/output/x86_64-linux-gnu/SHA256SUMS.part\n  cad26c66c764361b30c8204e7743dbb6c0e6dd1eb3af9418d77bd566e05e1470  guix-build-edd70b52fcd7/output/x86_64-linux-gnu/bitcoin-edd70b52fcd7-x86_64-linux-gnu-debug.tar.gz\n  ed2b459a06d5bc0f895402323fc5cae543a387d0621a55214feb37513210324e  guix-build-edd70b52fcd7/output/x86_64-linux-gnu/bitcoin-edd70b52fcd7-x86_64-linux-gnu.tar.gz\n  ```\n\nACKs for top commit:\n  hebasto:\n    ACK edd70b52fcd79026e9c63b8bc481fa68f95edf11, a Guix `bitcoin-edd70b52fcd7-osx-unsigned.dmg` tested on Mac mini (M1, 2020) + macOS Monterey 12.1 (21C52).\n\nTree-SHA512: 00c55e139ce60c89900ef9365c380beec9474d8a0459bb584fd966d17715344fcf95b208b7222f665a5e3989aed51d3161641d3737aa6122a41b0c9f0d35906d",
+      "Merge bitcoin/bitcoin#24139: Avoid unsigned integer overflow in bitcoin-tx\n\nfaa75fa19335e3e826efa4f2280609a2db34425d Avoid unsigned integer overflow in bitcoin-tx (MarcoFalke)\n\nPull request description:\n\n  While `npos` means \"largest unsigned value\" and adding `1` to it yields `0`, it may be clearer to just assign `0` to it and only increment otherwise.\n\n  This also allows to remove a file-wide suppression for `unsigned-integer-overflow`.\n\nACKs for top commit:\n  hebasto:\n    ACK faa75fa19335e3e826efa4f2280609a2db34425d, I have reviewed the code and it looks OK, I agree it can be merged.\n  theStack:\n    Code-review ACK faa75fa19335e3e826efa4f2280609a2db34425d\n\nTree-SHA512: c24436641e5d801341c948b812c7f711d5dff70efdf04af00fd3221f4b81d93f25608dddaa36230ba81ca7ab0d18bdd957095d4561e22621e4d69017934f0a16",
+      "Merge bitcoin-core/gui#526: Add address relay/processed/rate-limited fields to peer details\n\n9fbd1bb7fabec76c668a649967f6f4e355e6ca59 gui: use available space to display \"Last Transaction\" in peer details (Jon Atack)\n6cd132d38014e790d7c65ea4755ff63733660e36 gui: add \"Addresses Rate-Limited\" (m_addr_rate_limited) to peer details (Jon Atack)\n19623d3182d426a263ae57e8b34a8f57e905f75f gui: add \"Addresses Processed\" (m_addr_processed) to peer details (Jon Atack)\na465a66ef209a241a4df1164d50cea97daaf4d99 gui: add \"Address Relay\" (m_addr_relay_enabled) to peer details (Jon Atack)\n\nPull request description:\n\n  This pull adds the following address fields in rpc getpeerinfo and cli -netinfo to the gui peers details:\n\n  - Address Relay (Yes/No)\n  - Addresses Processed (integer)\n  - Addresses Rate-Limited (integer)\n\n  and uses the additional horizontal space to display \"Last Transaction\" (instead of \"Last Tx\").\n\n  ![Screenshot from 2022-01-21 00-05-49](https://user-images.githubusercontent.com/2415484/150436343-02abe635-8abe-4212-9ce5-522df17ca2b6.png)\n\nACKs for top commit:\n  hebasto:\n    ACK 9fbd1bb7fabec76c668a649967f6f4e355e6ca59, tested on Ubuntu 21.10 (Qt 5.15.2).\n  w0xlt:\n    reACK 9fbd1bb\n\nTree-SHA512: 76d414b82f432b7baf2cadcf2f52412a3af8ad78a93755bb82c65df5353dda4d2e2522428a36c8bb95316bf84b17f2485636c33ce5ae11566469671b5384d845"
+    ],
+    "distinct_authors": [
+      "MarcoFalke",
+      "Hennadii Stepanov",
+      "fanquake"
+    ],
+    "commit_urls": [
+      "https://github.com/bitcoin/bitcoin/commit/d4e92d843650b0480b86d15ce46ed02b6fd9b5be",
+      "https://github.com/bitcoin/bitcoin/commit/a4f7c41271edd28e2b2bf870174d4db155830c97",
+      "https://github.com/bitcoin/bitcoin/commit/1245c62fef1de2df9344e375ee225077fb3d74fa",
+      "https://github.com/bitcoin/bitcoin/commit/5b4b8f76f3ae11064d4aa3ac157558e364751fd2"
+    ]
+  },
+  "CGLD": {
+    "commit_count": 2,
+    "lines_of_code": 1539,
+    "commit_messages": [
+      "chore: remove wallet-walletconnect (#9187)\n\nCo-authored-by: Daniel Kesler <danielckesler@gmail.com>",
+      "Added Granda Mento to adding Stable Tokens docs (#291)"
+    ],
+    "distinct_authors": [
+      "GitHub"
+    ],
+    "commit_urls": [
+      "https://github.com/celo-org/celo-monorepo/commit/fa9eae11256603c810d09b983d2b378067941be1",
+      "https://github.com/celo-org/docs/commit/d78957723b8539d3a434ebce4e6be3e064d735e4"
+    ]
+  },
+  "RAD": {
+    "commit_count": 2,
+    "lines_of_code": 104,
+    "commit_messages": [
+      "Merge pull request #13 from radicle-dev/sebastinez/metamask-connect\n\nAdd Web3Providers",
+      "Add Web3Providers\n\nSigned-off-by: Sebastian Martinez <sebastinez@me.com>"
+    ],
+    "distinct_authors": [
+      "GitHub",
+      "Sebastian Martinez"
+    ],
+    "commit_urls": [
+      "https://github.com/radicle-dev/workstreams-app/commit/0b6b4988bda3348d9825a9c614428afc249be51b",
+      "https://github.com/radicle-dev/workstreams-app/commit/e2b63b980f71ac6345a7ad25ed248e3d0f8092a1"
+    ]
+  },
+  "ALGO": {
+    "commit_count": 14,
+    "lines_of_code": 906,
+    "commit_messages": [
+      "Update docs/get-details/atomic_transfers.md\n\nCo-authored-by: nullun <nullun@users.noreply.github.com>",
+      "Merge pull request #708 from nullun/staging\n\nInitial AVM 1.1 updates to Inner Transactions page.",
+      "Merge pull request #702 from algorand/atc-docs\n\ninitial atc docs",
+      "Merge pull request #707 from algorand/smart_sigs_docs_rephrasing\n\nRephrase reference to example smart signature TEAL compilation",
+      "Initial AVM 1.1 update for Inner Transactions.",
+      "Added far border on table.",
+      "Merge pull request #710 from nullun/staging\n\nCorrection to 256 inner transactions and clarification on groups",
+      "Removal of transaction properties tables.",
+      "Add additional encoding tests. (#853)",
+      "Verify genesis hash during startup. (#842)",
+      "Removed old sentance about inner transaction type limitations.",
+      "Correctino to 256 inner transactions and clarification on why you'd use grouped inner transactions.",
+      "Typo",
+      "Fix typos in ABI docs"
+    ],
+    "distinct_authors": [
+      "GitHub",
+      "michaeldiamant",
+      "nullun"
+    ],
+    "commit_urls": [
+      "https://github.com/algorand/docs/commit/f4b9533a23ac38f264ff406fa923dd56dedcf18c",
+      "https://github.com/algorand/docs/commit/9b15f88d87fe376d15d0243cd68913896569b9af",
+      "https://github.com/algorand/docs/commit/b83ff3894c58ba829ca504002ccb06e32c604171",
+      "https://github.com/algorand/docs/commit/03d75a37445d2dbfaa744d8b561b3e75fd211750",
+      "https://github.com/algorand/docs/commit/7a9de44749ba96ac311d448de4d430e7b52e670c",
+      "https://github.com/algorand/docs/commit/bb0dd1c460a2b5b2a37b119dbbdf2bcc6d3d1d70",
+      "https://github.com/algorand/docs/commit/db942b9fa985aff9d4b055d07516e3f4fd53e35b",
+      "https://github.com/algorand/docs/commit/8162248e2993ec3ed1a47572a021eb8ba86f3bf0",
+      "https://github.com/algorand/indexer/commit/2d978f08579fd45a08b1949aecae894d82857d4b",
+      "https://github.com/algorand/indexer/commit/60f4b438ca9a7c29faab117721ddd49a9e01f3db",
+      "https://github.com/algorand/docs/commit/f37db919e6935fbcf007467bc90c334d2c49d71a",
+      "https://github.com/algorand/docs/commit/ff2324e4e8a80ff162a14e9379f111e165b650ab",
+      "https://github.com/algorand/docs/commit/0d530306ed70a675605a59226632a8f9671d4d85",
+      "https://github.com/algorand/docs/commit/6899205ecaf637408f5ec4ebb9d4e779bbb49650"
+    ]
+  },
+  "MASK": {
+    "commit_count": 11,
+    "lines_of_code": 589,
+    "commit_messages": [
+      "chore: snapshot api update (#5546)\n\n* chore: snapshot api update\r\n\r\n* fix: minds io injection",
+      "fix(twitter): searchProfileTabPageSelector gets update (#5551)",
+      "fix: say hello post content (#5550)",
+      "fix: recover tx receipt && ito i18n key (#5542)\n\n* fix: recover tx receipt && ito i18n key\r\n\r\n* chore: temporary change for qa\r\n\r\n* chore: little fix\r\n\r\n* Revert \"chore: temporary change for qa\"\r\n\r\nThis reverts commit 7302619459f22d00ec3a25bf95cd03d1ba3f8587.\r\n\r\n* chore: little fix\r\n\r\n* fix: i18n key\r\n\r\n* fix: dashboard ui style\r\n\r\n* Revert \"Revert \"chore: temporary change for qa\"\"\r\n\r\nThis reverts commit d4118d3a941dc8f21987a9ebe5006888ee61f355.\r\n\r\n* Revert \"chore: temporary change for qa\"\r\n\r\n* fix: ui",
+      "fix: collection icon (#5541)",
+      "fix: flow asset format currency (#5552)",
+      "feat: support 1559 on polygon chain (#5534)\n\n* feat: support 1559 on polygon chain\r\n\r\n* fix: bugfix\r\n\r\n* fix: bugfix\r\n\r\n* fix: replace default gas fee with api on 1559\r\n\r\n* chore: remove console\r\n\r\n* chore: ui style\r\n\r\n* fix: adjust reset gas config logic\r\n\r\n* fix: add judgment\r\n\r\n* chore: code style\r\n\r\n* chore: remove useless code\r\n\r\n* fix: eslint",
+      "fix: red packet/ITO not avaliable on fantom and aurora (#5555)\n\n* fix: red packet not avaliable on fantom and aurora\r\n\r\n* fixup! fix: red packet not avaliable on fantom and aurora",
+      "fix: switch chain of coin98 wallet (#5553)\n\n* fix: switch chain of coin98 wallet\r\n\r\n* fix: no wallet crash",
+      "chore: display nft wall address (#5558)",
+      "refactor: add more rpc keys (#5560)\n\n* refactor: add more rpc keys\r\n\r\n* refactor: remove unused declaration\r\n\r\n* fix: cspell"
+    ],
+    "distinct_authors": [
+      "GitHub"
+    ],
+    "commit_urls": [
+      "https://github.com/DimensionDev/Maskbook/commit/c0c5651f9b86b7e512b459ac7f87c6a36c737cdf",
+      "https://github.com/DimensionDev/Maskbook/commit/3ac84c21ea91de5904e7d1c8940e085353d31137",
+      "https://github.com/DimensionDev/Maskbook/commit/5c26ad7126021616f07288b1fcb65c162a5335f3",
+      "https://github.com/DimensionDev/Maskbook/commit/6c34d560712299ee093ec0694e1e1475bc7e7fe2",
+      "https://github.com/DimensionDev/Maskbook/commit/d90012bf20ea677f9030f9d810d4b561395161f2",
+      "https://github.com/DimensionDev/Maskbook/commit/bd8d95fa3fbb276103f7b5da3b24830f26697805",
+      "https://github.com/DimensionDev/Maskbook/commit/bce4f46a3628da5657383d3ec5734cee12f3e7b4",
+      "https://github.com/DimensionDev/Maskbook/commit/d7c9f5a955d2d60a93108f511eeb2dcfea095662",
+      "https://github.com/DimensionDev/Maskbook/commit/cb38dea70edf6b39dcc861c5f4192d1b09b461b1",
+      "https://github.com/DimensionDev/Maskbook/commit/85c90f6f024efa7a66472413c9a2270f325ad12f",
+      "https://github.com/DimensionDev/Maskbook/commit/92a4b11f205e9cce1008b1af979f4d89a1176b09"
+    ]
+  },
+  "QUICK": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "MIR": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "DASH": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "JASMY": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "REQ": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "TRAC": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "TRIBE": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "MLN": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "NMR": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "BAL": {
+    "commit_count": 1,
+    "lines_of_code": 1953,
+    "commit_messages": [
+      "Bump postcss from 7.0.39 to 8.2.13 (#1288)\n\nBumps [postcss](https://github.com/postcss/postcss) from 7.0.39 to 8.2.13.\r\n- [Release notes](https://github.com/postcss/postcss/releases)\r\n- [Changelog](https://github.com/postcss/postcss/blob/main/CHANGELOG.md)\r\n- [Commits](https://github.com/postcss/postcss/compare/7.0.39...8.2.13)\r\n\r\n---\r\nupdated-dependencies:\r\n- dependency-name: postcss\r\n  dependency-type: direct:development\r\n...\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\n\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>"
+    ],
+    "distinct_authors": [
+      "GitHub"
+    ],
+    "commit_urls": [
+      "https://github.com/balancer-labs/frontend-v2/commit/695a0e93bd99b94f369ac5a192f3123fd49f7403"
+    ]
+  },
+  "TRB": {
+    "commit_count": 6,
+    "lines_of_code": 193,
+    "commit_messages": [
+      "Add ABI to catalog",
+      "Make sure ABI is in formal JSON format.",
+      "Switch LegacyRequests to use ABI encoding",
+      "Cleanup (#214)\n\n* Change LegacyQuery to use ABI encoding\r\n* Cleanup ABI formatting\r\n* Handle error condition.\r\n* Docs and formatting\r\n* Update catalog to show query encoding ABI",
+      "Bump version",
+      "Merge pull request #18 from tellor-io/update-catalog\n\nUpdated catalog"
+    ],
+    "distinct_authors": [
+      "GitHub",
+      "clamdad"
+    ],
+    "commit_urls": [
+      "https://github.com/tellor-io/dataSpecs/commit/52cae6400712b69a5d2027ae6ea649a0a4a153d4",
+      "https://github.com/tellor-io/dataSpecs/commit/7e001a37a77757c501a23c19bb09ba4b2a5e0012",
+      "https://github.com/tellor-io/dataSpecs/commit/9b46409f2c45ea936b53d3d6d98a3ecbd1320711",
+      "https://github.com/tellor-io/telliot-core/commit/9dd723e53a1754080e5dd121fc4feebd5980b67f",
+      "https://github.com/tellor-io/telliot-core/commit/3e887752e84c8c49656f8edf025974f3288e8201",
+      "https://github.com/tellor-io/dataSpecs/commit/6ce1d23910baeca213d7e0e6bff9b845ea61f5f1"
+    ]
+  },
+  "SOL": {
+    "commit_count": 126,
+    "lines_of_code": 5185,
+    "commit_messages": [
+      "Merge branch 'automerge-pending'",
+      "chore(release): 0.2.1829",
+      "third commit for HAPPY\n\nCloses #16063",
+      "Add DNMM WL Token\n\nCloses #16062",
+      "Adding Thesis Token and Varkalai Founder\n\nCloses #16067",
+      "Merge branch 'automerge-pending'",
+      "new commit for ENFT & ENOFEL\n\nCloses #16069",
+      "chore(release): 0.2.1830",
+      "RUNI Token\n\nCloses #15953",
+      "Adding Mask token for pdtnft\n\nCloses #16070",
+      "chore: bump socket2 from 0.4.2 to 0.4.4 (#22799)\n\n* chore: bump socket2 from 0.4.2 to 0.4.4\r\n\r\nBumps [socket2](https://github.com/rust-lang/socket2) from 0.4.2 to 0.4.4.\r\n- [Release notes](https://github.com/rust-lang/socket2/releases)\r\n- [Changelog](https://github.com/rust-lang/socket2/blob/master/CHANGELOG.md)\r\n- [Commits](https://github.com/rust-lang/socket2/compare/v0.4.2...v0.4.4)\r\n\r\n---\r\nupdated-dependencies:\r\n- dependency-name: socket2\r\n  dependency-type: direct:production\r\n  update-type: version-update:semver-patch\r\n...\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\n\r\n* [auto-commit] Update all Cargo lock files\r\n\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>\r\nCo-authored-by: dependabot-buildkite <dependabot-buildkite@noreply.solana.com>",
+      "Merge branch 'automerge-pending'",
+      "chore(release): 0.2.1831",
+      "Add Works Token\n\nCloses #16072",
+      "Merge branch 'automerge-pending'",
+      "chore(release): 0.2.1832",
+      "Add HERO token\n\nCloses #16076",
+      "Added SnipeCoin\n\nCloses #16077",
+      "Adding Bhuna Token\n\nCloses #16080",
+      "Add BokBok token from Irreverent Labs\n\nCloses #16083",
+      "Merge branch 'automerge-pending'",
+      "chore(release): 0.2.1833",
+      "add coin\n\nCloses #16075",
+      "Adding DRT Token\n\nCloses #16089",
+      "Add GODz Token and GODz WL Seed Token\n\nCloses #16090",
+      "Merge branch 'automerge-pending'",
+      "chore(release): 0.2.1834",
+      "Add PZAH Token\n\nCloses #16094",
+      "Adding ElonCoin Token\n\nCloses #16096",
+      "Adding ONDA \n\nCloses #16097",
+      "Merge branch 'automerge-pending'",
+      "Adding Dauswap Token\n\nCloses #16091",
+      "chore(release): 0.2.1835",
+      "add GIN token\n\nCloses #16102",
+      "Merge branch 'automerge-pending'",
+      "chore(release): 0.2.1836",
+      "SNKC coin name updated\n\nCloses #15969",
+      "should work first try\n\nCloses #16105",
+      "Adding Lunar Token\n\nCloses #16108",
+      "Adding Wumbo token\n\nCloses #16109",
+      "Merge branch 'automerge-pending'",
+      "chore(release): 0.2.1837",
+      "Adding a new token\n\nCloses #15931",
+      "Merge branch 'automerge-pending'",
+      "chore(release): 0.2.1838",
+      "token-2022: fix panics due to small buffers (#2824)\n\n* Add panicking test\r\n\r\n* Fix panic\r\n\r\n* Add another panicking case\r\n\r\n* Fix panic\r\n\r\n* Add another panicking case\r\n\r\n* Fix panics\r\n\r\n* Add another panicking case\r\n\r\n* Fix\r\n\r\n* Add another case\r\n\r\n* Move existing fix outside if clause\r\n\r\n* Add some helpful comments",
+      "VROOM and MUSH Tokens\n\nCloses #16124",
+      "chore: bump fd-lock from 3.0.2 to 3.0.3 (#22813)\n\nBumps [fd-lock](https://github.com/yoshuawuyts/fd-lock) from 3.0.2 to 3.0.3.\r\n- [Release notes](https://github.com/yoshuawuyts/fd-lock/releases)\r\n- [Commits](https://github.com/yoshuawuyts/fd-lock/commits)\r\n\r\n---\r\nupdated-dependencies:\r\n- dependency-name: fd-lock\r\n  dependency-type: direct:production\r\n  update-type: version-update:semver-patch\r\n...\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\n\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+      "first commit for <RADIO Radio Token>\n\nCloses #16125",
+      "$AMMO\n\nCloses #16110",
+      "ADD cPANZR token\n\nCloses #16122",
+      "Merge branch 'automerge-pending'",
+      "chore(release): 0.2.1839",
+      "Adding SIPA Token\n\nCloses #16123",
+      "(Ledger Store) Add comments for find slot functions. (#22666)",
+      "chore: bump serde from 1.0.134 to 1.0.136 (#22817)\n\n* chore: bump serde from 1.0.134 to 1.0.136\r\n\r\nBumps [serde](https://github.com/serde-rs/serde) from 1.0.134 to 1.0.136.\r\n- [Release notes](https://github.com/serde-rs/serde/releases)\r\n- [Commits](https://github.com/serde-rs/serde/compare/v1.0.134...v1.0.136)\r\n\r\n---\r\nupdated-dependencies:\r\n- dependency-name: serde\r\n  dependency-type: direct:production\r\n  update-type: version-update:semver-patch\r\n...\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\n\r\n* [auto-commit] Update all Cargo lock files\r\n\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>\r\nCo-authored-by: dependabot-buildkite <dependabot-buildkite@noreply.solana.com>",
+      "Revert \"Revert ATA to spl-token v3.3 (#2796)\" (#2800)\n\nThis reverts commit 533f76756319ef945fd137f1bb560769c45a9893.",
+      "Merge branch 'automerge-pending'",
+      "chore(release): 0.2.1840",
+      "added command to trim extra data with link \n\nfiltered_url7=$(cut -f7 -d\" \" vercelfile2.txt) command to trim and get exact preview link",
+      "Add Penny Token\n\nCloses #16136",
+      "Add plan b\n\nCloses #16137",
+      "Merge branch 'automerge-pending'",
+      "chore(release): 0.2.1841",
+      "Adding DA Futuristics\n\nCloses #16141",
+      "adding levlups token please \n\nCloses #16142",
+      "add some tokens\n\nCloses #16044",
+      "Add KAI Token\n\nCloses #16144",
+      "Dust Protocol (DeGods)\n\nCloses #16145",
+      "Fix poh recorder initialization on startup (#22755)",
+      "Merge branch 'automerge-pending'",
+      "chore(release): 0.2.1842",
+      "Add maqe token\n\nCloses #16151",
+      "adding tooknie token\n\nCloses #16152",
+      "Merge LUX\n\nCloses #16153",
+      "ADSL-2EF coin\n\nCloses #16154",
+      "Handle extended token Accounts in ATA program (#2738)\n\n* Use token-2022 in ProgramTest\r\n\r\n* Add get_account_len() helper with CPI to spl_token::get_account_data_size()\r\n\r\n* Add test for extended mints/accounts using transfer_fee",
+      "Add extension realloc helper (#2821)",
+      "Merge branch 'automerge-pending'",
+      "chore(release): 0.2.1843",
+      "GAFA Commit\n\nCloses #16157",
+      "Merge branch 'automerge-pending'",
+      "chore(release): 0.2.1844",
+      "Adding LightCoin token\n\nCloses #16163",
+      "add update settings coin\n\nCloses #16166",
+      "Adding Mountain Top Coin\n\nCloses #16167",
+      "Resubmitting Quantanium\n\nCloses #16169",
+      "Merge branch 'automerge-pending'",
+      "add UGA token\n\nCloses #15956",
+      "chore(release): 0.2.1845",
+      "adding Nex Gen token\n\nCloses #16171",
+      "BlockchainWizard Token 3 Create\n\nCloses #16174",
+      "add commands for the traceability of the exact URL in the file",
+      "Merge branch 'automerge-pending'",
+      "chore(release): 0.2.1846",
+      "remove unnecessary commands & fetch Vercel deployment URL in slack report",
+      "Adding romeao coin token\n\nCloses #16183",
+      "adding San Diego Padres Token\n\nCloses #16184",
+      "Adding Viking NFT token\n\nCloses #16185",
+      "Add stake-pool browser build commands and documentation (#2804)\n\n* Add browser build commands and documentation\r\n\r\n* Improve rollup configuration\r\n\r\n* Remove unused external import from rollup configuration\r\n\r\n* Move from Babel to Typescript plugin\r\n\r\nCo-authored-by: Jon Cinque <jon.cinque@gmail.com>",
+      "SolMonkeRejects Whitelist Token 2\n\nCloses #16186",
+      "Adding PUGs Token\n\nCloses #16187",
+      "FAMILY-TOKEN\n\nCloses #16188",
+      "Merge branch 'automerge-pending'",
+      "chore(release): 0.2.1847",
+      "Future Finance Systems Token - FFSYST\n\nCloses #16191",
+      "copen\n\nCloses #16190",
+      "Adding ORLC token\n\nCloses #16192",
+      "add coin\n\nCloses #16092",
+      "BlockChainWizard Token 4\n\nCloses #16193",
+      "Merge branch 'automerge-pending'",
+      "chore(release): 0.2.1848",
+      "adding INFCoin\n\nCloses #16194",
+      "added mai stablecoin\n\nCloses #16195",
+      "Merge branch 'automerge-pending'",
+      "chore(release): 0.2.1849",
+      "adding Tarras coin\n\nCloses #16201",
+      "GMWL token\n\nCloses #16202",
+      "Merge branch 'automerge-pending'",
+      "chore(release): 0.2.1850",
+      "adding Nirvik token\n\nCloses #16204",
+      "Adding HaleTown Coin Token\n\nCloses #16205",
+      "Adding BoizDemWe Coin for Automerge - Last one I promise\n\nCloses #16208",
+      "Merge branch 'automerge-pending'",
+      "chore(release): 0.2.1851",
+      "Limit compiler jobs if the machine has lower than 4gb/thread (#22704)"
+    ],
+    "distinct_authors": [
+      "ArjanLuckyKat",
+      "sebkamil",
+      "bomlinh",
+      "codefuturance",
+      "solodevo",
+      "ADSL-2EF",
+      "RiadZX",
+      "BlockchainWizard",
+      "bakri993",
+      "amilz",
+      "flowerview",
+      "UniversolSoldier",
+      "solanahero",
+      "eloncoin2022",
+      "steve12345585",
+      "anvitmangal",
+      "GafaCoin",
+      "publu",
+      "token-list-automerger[bot]",
+      "gowtham-k147",
+      "Hariienesh1901",
+      "jandfranc",
+      "rakeshreddy7979",
+      "Cryptlofi",
+      "puppetmonkester",
+      "elliott-w",
+      "milorue",
+      "deepak-aditya",
+      "crinkylips",
+      "SanDiegoPadresToken",
+      "ThePzahParty",
+      "Romeao",
+      "rmarle",
+      "lucastoian",
+      "bapcsolana",
+      "baileyfiscus",
+      "hotdogtown",
+      "fpetruololo",
+      "ondaverse",
+      "leonardodarkness",
+      "KSuphawit",
+      "WEVR33",
+      "Mrhydrate",
+      "amnajpotipak",
+      "infectedw",
+      "garrettbear",
+      "GitHub",
+      "developrobots",
+      "DrNapNap",
+      "levlups",
+      "andbandu",
+      "pongoe",
+      "DekreedStudios",
+      "QuantaniumCrypto",
+      "j0hnboy75067",
+      "pyujin78",
+      "RomanLeman",
+      "jiayih1212",
+      "cmowenby",
+      "Didin7",
+      "mushroomracer",
+      "nirvikBasnet",
+      "dauqu",
+      "bankr2fpv",
+      "humanpong",
+      "JacobTStaggs"
+    ],
+    "commit_urls": [
+      "https://github.com/solana-labs/token-list/commit/a1589635a949ed77a9b4750786601dd8cd978c54",
+      "https://github.com/solana-labs/token-list/commit/92e5de35d3a966e585ccfeb04997eefbb40a9065",
+      "https://github.com/solana-labs/token-list/commit/61d70582f66de9285459a25c21912ab163600fcb",
+      "https://github.com/solana-labs/token-list/commit/cc024875e1ebed11bdc2b543c524fb59131f4056",
+      "https://github.com/solana-labs/token-list/commit/3f4659621b86889b911464a84328e1dc5bbdf197",
+      "https://github.com/solana-labs/token-list/commit/6a2e06cc4d36b6bf22a6b1686d33b23edbbdf9f5",
+      "https://github.com/solana-labs/token-list/commit/258a8d3e48b103a23338c889989bd771b1072645",
+      "https://github.com/solana-labs/token-list/commit/0d65632222a0b0091b9fbd6f2af157f95a648eaf",
+      "https://github.com/solana-labs/token-list/commit/9999359d3fca8df893c8ec1493998063dd82e44a",
+      "https://github.com/solana-labs/token-list/commit/5b59a8263b36400fa1317d65b138391c585dbbd1",
+      "https://github.com/solana-labs/solana/commit/5b1d9739ce3e31fdbf38e882830c5542dc913a17",
+      "https://github.com/solana-labs/token-list/commit/8881f65a41d0072653c9cd95415a29cd59e10c2c",
+      "https://github.com/solana-labs/token-list/commit/10ba76c0fb36b97d0cd0200f89723a007e71df72",
+      "https://github.com/solana-labs/token-list/commit/715e2c12c6bfd82625c08c6ecf0a53a771bf39e7",
+      "https://github.com/solana-labs/token-list/commit/1bea530ee88f7e08aaa8fc22ecff8d6333071b8f",
+      "https://github.com/solana-labs/token-list/commit/5e9d4b6ae4156f22bf5beeaf12e3b6695b63df1f",
+      "https://github.com/solana-labs/token-list/commit/cc5c3cac468cbfab028f9697dfe63357934a3b43",
+      "https://github.com/solana-labs/token-list/commit/1708a62a101942a34b8031cc6876c5c9f75e05a8",
+      "https://github.com/solana-labs/token-list/commit/80cfe728c1392fe321be505d2b945c28c440d2e2",
+      "https://github.com/solana-labs/token-list/commit/c163532b9e2861eb4696498028710995839fa5c5",
+      "https://github.com/solana-labs/token-list/commit/d0825fffee6383b40e197ebd144312dc78a2a1c6",
+      "https://github.com/solana-labs/token-list/commit/4a51d0721674e63e0f541c0ecc6100c75f2eb493",
+      "https://github.com/solana-labs/token-list/commit/77bae70ff008cc8a15e24b15813a20328a39eaa8",
+      "https://github.com/solana-labs/token-list/commit/d7e9f7dd74ecee7f6dfa25cfa7e6bc235eba5069",
+      "https://github.com/solana-labs/token-list/commit/d39acbb3697f313b38c8e08b8bdce339de37fadb",
+      "https://github.com/solana-labs/token-list/commit/3420434fdb1ad143dafbbbd3e0106dc1674caad1",
+      "https://github.com/solana-labs/token-list/commit/757a1b177f291641738c00d7cc3e3fcf7e343d34",
+      "https://github.com/solana-labs/token-list/commit/7ad83c86d53d12026c9658f65e677abff6ee67bd",
+      "https://github.com/solana-labs/token-list/commit/ee3c6fada2bf9e42b9ab36926bfa35286ccebc52",
+      "https://github.com/solana-labs/token-list/commit/c71f9bb440f75559424db8ec7b3e9437363a8f76",
+      "https://github.com/solana-labs/token-list/commit/402307cfc33d4ca84265f949e2edc6c136124479",
+      "https://github.com/solana-labs/token-list/commit/459156a08b56ad28f8ab15335dde41db90db7443",
+      "https://github.com/solana-labs/token-list/commit/c8e694701285f25cfbe7636e48e2c7675e58e2e1",
+      "https://github.com/solana-labs/token-list/commit/fdefaa19eb255b3dc5d0b234dda5318fb361e7fc",
+      "https://github.com/solana-labs/token-list/commit/c6ee63969bdcdf688b76d3b9e2fa9fcc59696725",
+      "https://github.com/solana-labs/token-list/commit/e8466321ee0bfdaec34e301a2a6b906001c864d1",
+      "https://github.com/solana-labs/token-list/commit/2cfd32cd64168e5b6b9e14bd49d489eba34f9c18",
+      "https://github.com/solana-labs/token-list/commit/993a83dd271cb4f9e15ccc733061b41c13173fda",
+      "https://github.com/solana-labs/token-list/commit/6869e551447929c3826442e0f150ab83eab5c0a5",
+      "https://github.com/solana-labs/token-list/commit/4626a7801e9a43986bdb578e679e34b69e88a2bd",
+      "https://github.com/solana-labs/token-list/commit/143315371ba74e3d5f9d3bd547e962ce6e543a04",
+      "https://github.com/solana-labs/token-list/commit/54966a35fca07df4e89e0523a8deaef5929b10ae",
+      "https://github.com/solana-labs/token-list/commit/d75bfa1534dfb562125d54fd70bb1726cbe084ba",
+      "https://github.com/solana-labs/token-list/commit/5d2803a1f2841629ae3060ccf15bbd0f2781dc2e",
+      "https://github.com/solana-labs/token-list/commit/d7f240a2680e0d42c399e66d48da8537a80e3a51",
+      "https://github.com/solana-labs/solana-program-library/commit/8a2d3cc227a0c75f07b0c938ef59d9b338b0ecae",
+      "https://github.com/solana-labs/token-list/commit/17bc19169ecd81f6be0f148b65db1b3e47fae90a",
+      "https://github.com/solana-labs/solana/commit/f7da18a4a05b1ce03e1f8dafb4186d0c8e3ae983",
+      "https://github.com/solana-labs/token-list/commit/0909513faab560c4be2f4c2653d09afb3edf18cb",
+      "https://github.com/solana-labs/token-list/commit/26565a09d03ed878493bad394c44d749d2a0db6b",
+      "https://github.com/solana-labs/token-list/commit/5837c10428170c11b9667f0aeb39d5491c2fec14",
+      "https://github.com/solana-labs/token-list/commit/f327c9ba1757a2d57d839005c6ac4140a9db99df",
+      "https://github.com/solana-labs/token-list/commit/df9f5f87d3bb1b5e2af6ba8a2380083b83843147",
+      "https://github.com/solana-labs/token-list/commit/3a1f1d22ef79bddf28f174a8a949f52d8246221a",
+      "https://github.com/solana-labs/solana/commit/40a49081b9d0527e839acbd0bd8a4a942b04375d",
+      "https://github.com/solana-labs/solana/commit/cc746931767b1e997844e2ea7e77596d16c82b4f",
+      "https://github.com/solana-labs/solana-program-library/commit/9d759b70f96338c3c8d8397389a36ece3fcf7c84",
+      "https://github.com/solana-labs/token-list/commit/fb17d3cbfd0431e2dbccc40f9ce597b5d97a4e42",
+      "https://github.com/solana-labs/token-list/commit/21612cac4bd5aed04537e3369689883ca565e3d1",
+      "https://github.com/solana-labs/solana/commit/ee9ccaf4144759c3631d626072c3cd25e42b1812",
+      "https://github.com/solana-labs/token-list/commit/14cef64495c91cc63b0b9f892ff7bec7f16b3484",
+      "https://github.com/solana-labs/token-list/commit/026ad75d3f1efb432f9c5d7a5f344a6e0dfd8f62",
+      "https://github.com/solana-labs/token-list/commit/2d9267f66313add89128201bea7849ab899dd647",
+      "https://github.com/solana-labs/token-list/commit/298b0adc0db8a5831ecbbe390fb0ad63e48d6178",
+      "https://github.com/solana-labs/token-list/commit/2397cb941e6c1caf2c7673e2b696b5208b4b91e5",
+      "https://github.com/solana-labs/token-list/commit/dad9f8d1ccc37b1435616fcc8741a6081856c949",
+      "https://github.com/solana-labs/token-list/commit/5fc035c9855b1889469ebbe6347adaaf721b1f43",
+      "https://github.com/solana-labs/token-list/commit/f3c53190dce3300d793dd98dd5ab960586cbdd2a",
+      "https://github.com/solana-labs/token-list/commit/a28568e5c82a6310423046a8ae71bc5856654cdd",
+      "https://github.com/solana-labs/solana/commit/220aa6ada035c53bb7e9fe9a7d3725f27da95982",
+      "https://github.com/solana-labs/token-list/commit/bce914a8c8305ff271f69c6495054a593df89bf0",
+      "https://github.com/solana-labs/token-list/commit/662cbb47796e013bf025725ad7017f2c5399cd41",
+      "https://github.com/solana-labs/token-list/commit/7c3e0d9b700c628ebd3a200d80880dca30bbea88",
+      "https://github.com/solana-labs/token-list/commit/14439d61e55e240d29a795d936d31a500b05ac6e",
+      "https://github.com/solana-labs/token-list/commit/5675e586d46312c791cf5d0b1a210a8a9ee20c24",
+      "https://github.com/solana-labs/token-list/commit/87b8e1c6ac44d83803826fad2db0364a4e7f0431",
+      "https://github.com/solana-labs/solana-program-library/commit/eaaed0d3c46a4c3a2ebbf90643027c1dde4e3113",
+      "https://github.com/solana-labs/solana-program-library/commit/f9e6f667583c06997d437efa21f6059d0ecef1c5",
+      "https://github.com/solana-labs/token-list/commit/83238b50bc7f5a8403407d511a34cea7e058756d",
+      "https://github.com/solana-labs/token-list/commit/c4c6610153d6a233c98bb9dbf801e67999c58a96",
+      "https://github.com/solana-labs/token-list/commit/bd9990f935abf5f5d611fd562e65c103c2bc1a37",
+      "https://github.com/solana-labs/token-list/commit/4cf5ae12587307aeee429d4b70ab0d386919501f",
+      "https://github.com/solana-labs/token-list/commit/e8dbb130309d4c584b99dabfcb1a4643e9eed6f4",
+      "https://github.com/solana-labs/token-list/commit/638f3ec3afc2dda9978ede1ee7637f8308fe391f",
+      "https://github.com/solana-labs/token-list/commit/78f754566a2dae6dea506694d3f0f51e4462f5aa",
+      "https://github.com/solana-labs/token-list/commit/2381fb586f8af384469e84217006494fb094acb2",
+      "https://github.com/solana-labs/token-list/commit/439b843fd0d6352839c296d49fb3895ea977e789",
+      "https://github.com/solana-labs/token-list/commit/33eb9eddecf7397427d2cfa91c2aef80e726024b",
+      "https://github.com/solana-labs/token-list/commit/54abf153ad605ff4ae85bb9ca84078fd3ac74250",
+      "https://github.com/solana-labs/token-list/commit/f46a1530a2898ee6892c895894d66ce9dfd9d157",
+      "https://github.com/solana-labs/token-list/commit/ddd761a78e82873c9b079890f72c067beb4beaf9",
+      "https://github.com/solana-labs/token-list/commit/84577e665f0edb827c6a7474d66543a72c467d26",
+      "https://github.com/solana-labs/solana/commit/4cce058e0789c479cef2c6fa3c7f831ccaa5a155",
+      "https://github.com/solana-labs/token-list/commit/5910a35432ead4ade4cd314efe94b3bd7e8f67d3",
+      "https://github.com/solana-labs/token-list/commit/d97264fc1278f80c2ba482792f4f318c5da79a5c",
+      "https://github.com/solana-labs/solana/commit/aab70b3aee2d39ce54842bc5011ffc44c8375cfd",
+      "https://github.com/solana-labs/token-list/commit/7f6cbd0d9a9c67d29357470141c23f9d9c6b41c7",
+      "https://github.com/solana-labs/token-list/commit/78aac73bf4d1f4b4b1fafc6fa6a5e1164c579e6f",
+      "https://github.com/solana-labs/token-list/commit/0e57eb27a2f7821a44d627afb279a7e71a06d013",
+      "https://github.com/solana-labs/solana-program-library/commit/b63d368b79e32d8c5e2938d10f3a9a2ac8346378",
+      "https://github.com/solana-labs/token-list/commit/b59512522fdaeb71d876c73b99d6e17a1d4dd361",
+      "https://github.com/solana-labs/token-list/commit/0dc533a242156a42143aab2feb47fd982c2ad920",
+      "https://github.com/solana-labs/token-list/commit/9c18e0ad991151029ab692f03287aed2af3a00ab",
+      "https://github.com/solana-labs/token-list/commit/a5a9015446601f7eaef819f6b8d828e8efee7cac",
+      "https://github.com/solana-labs/token-list/commit/ce398ca2d48c34899fb709d1bc60993001ac0e3f",
+      "https://github.com/solana-labs/token-list/commit/35c4082f2fd51843f513e74870cea6521506fdde",
+      "https://github.com/solana-labs/token-list/commit/12932e3a57e838247db60b9690f1bb4555049d15",
+      "https://github.com/solana-labs/token-list/commit/a1f3ce0c0438057c3a1374532efe51d87f57005c",
+      "https://github.com/solana-labs/token-list/commit/7de80c9e764962085c62e1df43ed0017c25594fd",
+      "https://github.com/solana-labs/token-list/commit/d342affe0485083f35bab0045b444fafe2c79fb0",
+      "https://github.com/solana-labs/token-list/commit/b4752c2c51141e4894f3b2e091a9069c66a1bf53",
+      "https://github.com/solana-labs/token-list/commit/fbd643e4aa0971e0ecf119f6afb5a43ebb74cd9e",
+      "https://github.com/solana-labs/token-list/commit/625b7476fe99ed9c3092403b6a285b58b6769546",
+      "https://github.com/solana-labs/token-list/commit/f373b211dec0ce11e1547acc3414c9e3a84d1818",
+      "https://github.com/solana-labs/token-list/commit/57b2402da55bd876108e2fe71c557adff610cfa5",
+      "https://github.com/solana-labs/token-list/commit/ba30f409f8529b7c344fff2ec6666307e270b269",
+      "https://github.com/solana-labs/token-list/commit/3f763336b3bf5f77a07b3c2de2898062db391962",
+      "https://github.com/solana-labs/token-list/commit/6b4f73c415b8aec2d972d38f5a2e3b2fb8603504",
+      "https://github.com/solana-labs/token-list/commit/1a2faa5d5c45e76f3e4b3646c6aef5ea69d3b19b",
+      "https://github.com/solana-labs/token-list/commit/4aabecdd1c9d0c40bad6b09a75ee71b68f7f3321",
+      "https://github.com/solana-labs/token-list/commit/3ea77fd8bc35a9d4f8b734ff804f514ea590fe3e",
+      "https://github.com/solana-labs/token-list/commit/1777665508955bf2aaefd2ecbbbd13d7276f713d",
+      "https://github.com/solana-labs/token-list/commit/23c6e197ea020fce17ae1042926296e854f86147",
+      "https://github.com/solana-labs/token-list/commit/ef173829bc16994e9527fe45ce18fa9aa11ebcec",
+      "https://github.com/solana-labs/token-list/commit/a11b593ec81e74c55d39926f21af658ba740cc5a",
+      "https://github.com/solana-labs/solana/commit/1b7bc8b284ba18a6c6603efcb9e905914f8a38dc"
+    ]
+  },
+  "IDEX": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "IOTX": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "CHZ": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "ALCX": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "RGT": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "ATOM": {
+    "commit_count": 8,
+    "lines_of_code": 7233,
+    "commit_messages": [
+      "Update Ledger doc with Keplr (#1205)\n\n* Update Ledger doc with Keplr\r\n\r\nReplaced Lunie instructions with Keplr\r\n\r\n* Removed leftover Lunie content\r\n\r\n* Update ledger.md\r\n\r\nCo-authored-by: billy rennekamp <billy.rennekamp@gmail.com>",
+      "Update joining mainnet documentation (#1146)\n\n* Update joining mainnet documentation\r\n\r\n* Minor fixes for updated joining mainnet documentation\r\n\r\n* Update menu order\r\n\r\n* Make requested changes\r\n\r\n* Additional updates\r\n\r\n* Make requested changes for hardware config\r\n\r\n* Update config header\r\n\r\n* Fix tabbing header\r\n\r\n* Update joining mainnet documentation\r\n\r\n* Minor fixes for updated joining mainnet documentation\r\n\r\n* Update menu order\r\n\r\n* Make requested changes\r\n\r\n* Additional updates\r\n\r\n* Make requested changes for hardware config\r\n\r\n* Update config header\r\n\r\n* Fix tabbing header\r\n\r\nCo-authored-by: billy rennekamp <billy.rennekamp@gmail.com>",
+      "Updates to Validator Docs (#1207)\n\n* Updated validator documentation.\r\n\r\n* Small updates\r\n\r\n* fixes from yaru feedback\r\n\r\n* Update docs/validators/validator-setup.md\r\n\r\nCo-authored-by: lg <8335464+glnro@users.noreply.github.com>\r\n\r\n* Update docs/validators/validator-setup.md\r\n\r\nCo-authored-by: lg <8335464+glnro@users.noreply.github.com>\r\n\r\nCo-authored-by: lg <8335464+glnro@users.noreply.github.com>\r\nCo-authored-by: billy rennekamp <billy.rennekamp@gmail.com>",
+      "fix: orm go.mod",
+      "feat: add message option extension to signal msg signers in a language agnostic way (#10977)\n\n## Description\n\nCloses: #10933 \n\n\n\n---\n\n### Author Checklist\n\n*All items are required. Please add a note to the item if the item is not applicable and\nplease add links to any relevant follow up issues.*\n\nI have...\n\n- [ ] included the correct [type prefix](https://github.com/commitizen/conventional-commit-types/blob/v3.0.0/index.json) in the PR title\n- [ ] added `!` to the type prefix if API or client breaking change\n- [ ] targeted the correct branch (see [PR Targeting](https://github.com/cosmos/cosmos-sdk/blob/master/CONTRIBUTING.md#pr-targeting))\n- [ ] provided a link to the relevant issue or specification\n- [ ] followed the guidelines for [building modules](https://github.com/cosmos/cosmos-sdk/blob/master/docs/building-modules)\n- [ ] included the necessary unit and integration [tests](https://github.com/cosmos/cosmos-sdk/blob/master/CONTRIBUTING.md#testing)\n- [ ] added a changelog entry to `CHANGELOG.md`\n- [ ] included comments for [documenting Go code](https://blog.golang.org/godoc)\n- [ ] updated the relevant documentation or specification\n- [ ] reviewed \"Files changed\" and left comments if necessary\n- [ ] confirmed all CI checks have passed\n\n### Reviewers Checklist\n\n*All items are required. Please add a note if the item is not applicable and please add\nyour handle next to the items reviewed if you only reviewed selected items.*\n\nI have...\n\n- [ ] confirmed the correct [type prefix](https://github.com/commitizen/conventional-commit-types/blob/v3.0.0/index.json) in the PR title\n- [ ] confirmed `!` in the type prefix if API or client breaking change\n- [ ] confirmed all author checklist items have been addressed \n- [ ] reviewed state machine logic\n- [ ] reviewed API design and naming\n- [ ] reviewed documentation is accurate\n- [ ] reviewed tests and test coverage\n- [ ] manually tested (if applicable)",
+      "fix: add iavl-cache-size config parsing to GetConfig (#10990)\n\n## Description\n\nCloses: #10982\n\nAdded missing iavl-cache-size config parsing to GetConfig.\n\n\n\n---\n\n### Author Checklist\n\n*All items are required. Please add a note to the item if the item is not applicable and\nplease add links to any relevant follow up issues.*\n\nI have...\n\n- [ ] included the correct [type prefix](https://github.com/commitizen/conventional-commit-types/blob/v3.0.0/index.json) in the PR title\n- [ ] added `!` to the type prefix if API or client breaking change\n- [ ] targeted the correct branch (see [PR Targeting](https://github.com/cosmos/cosmos-sdk/blob/master/CONTRIBUTING.md#pr-targeting))\n- [ ] provided a link to the relevant issue or specification\n- [ ] followed the guidelines for [building modules](https://github.com/cosmos/cosmos-sdk/blob/master/docs/building-modules)\n- [ ] included the necessary unit and integration [tests](https://github.com/cosmos/cosmos-sdk/blob/master/CONTRIBUTING.md#testing)\n- [ ] added a changelog entry to `CHANGELOG.md`\n- [ ] included comments for [documenting Go code](https://blog.golang.org/godoc)\n- [ ] updated the relevant documentation or specification\n- [ ] reviewed \"Files changed\" and left comments if necessary\n- [ ] confirmed all CI checks have passed\n\n### Reviewers Checklist\n\n*All items are required. Please add a note if the item is not applicable and please add\nyour handle next to the items reviewed if you only reviewed selected items.*\n\nI have...\n\n- [ ] confirmed the correct [type prefix](https://github.com/commitizen/conventional-commit-types/blob/v3.0.0/index.json) in the PR title\n- [ ] confirmed `!` in the type prefix if API or client breaking change\n- [ ] confirmed all author checklist items have been addressed \n- [ ] reviewed state machine logic\n- [ ] reviewed API design and naming\n- [ ] reviewed documentation is accurate\n- [ ] reviewed tests and test coverage\n- [ ] manually tested (if applicable)",
+      "feat(orm): codegen (#11033)\n\n## Description\n\nadds orm code generation\n\nCloses: #10737 \n\n\n\n---\n\n### Author Checklist\n\n*All items are required. Please add a note to the item if the item is not applicable and\nplease add links to any relevant follow up issues.*\n\nI have...\n\n- [ ] included the correct [type prefix](https://github.com/commitizen/conventional-commit-types/blob/v3.0.0/index.json) in the PR title\n- [ ] added `!` to the type prefix if API or client breaking change\n- [ ] targeted the correct branch (see [PR Targeting](https://github.com/cosmos/cosmos-sdk/blob/master/CONTRIBUTING.md#pr-targeting))\n- [ ] provided a link to the relevant issue or specification\n- [ ] followed the guidelines for [building modules](https://github.com/cosmos/cosmos-sdk/blob/master/docs/building-modules)\n- [ ] included the necessary unit and integration [tests](https://github.com/cosmos/cosmos-sdk/blob/master/CONTRIBUTING.md#testing)\n- [ ] added a changelog entry to `CHANGELOG.md`\n- [ ] included comments for [documenting Go code](https://blog.golang.org/godoc)\n- [ ] updated the relevant documentation or specification\n- [ ] reviewed \"Files changed\" and left comments if necessary\n- [ ] confirmed all CI checks have passed\n\n### Reviewers Checklist\n\n*All items are required. Please add a note if the item is not applicable and please add\nyour handle next to the items reviewed if you only reviewed selected items.*\n\nI have...\n\n- [ ] confirmed the correct [type prefix](https://github.com/commitizen/conventional-commit-types/blob/v3.0.0/index.json) in the PR title\n- [ ] confirmed `!` in the type prefix if API or client breaking change\n- [ ] confirmed all author checklist items have been addressed \n- [ ] reviewed state machine logic\n- [ ] reviewed API design and naming\n- [ ] reviewed documentation is accurate\n- [ ] reviewed tests and test coverage\n- [ ] manually tested (if applicable)",
+      "fix(orm): bad error messages (#11059)\n\n## Description\n\nI've tested this locally running codegen and this PR changes this error message:\n```\npanic: nil field: unsupported key field\n\ngoroutine 1 [running]:\ngithub.com/cosmos/cosmos-sdk/orm/internal/codegen.newTableGen({0xc00000d938, 0xc0003c4100}, 0xc0003c0c60, 0xc0002d4c80)\n        /Users/arc/go/pkg/mod/github.com/cosmos/cosmos-sdk/orm@v1.0.0-alpha.3/internal/codegen/table.go:47 +0x3e5\ngithub.com/cosmos/cosmos-sdk/orm/internal/codegen.fileGen.gen({0xc00000d938, 0xc0003c4100})\n        /Users/arc/go/pkg/mod/github.com/cosmos/cosmos-sdk/orm@v1.0.0-alpha.3/internal/codegen/file.go:32 +0x205\ngithub.com/cosmos/cosmos-sdk/orm/internal/codegen.PluginRunner(0xc000137cc0)\n        /Users/arc/go/pkg/mod/github.com/cosmos/cosmos-sdk/orm@v1.0.0-alpha.3/internal/codegen/codegen.go:40 +0x159\ngoogle.golang.org/protobuf/compiler/protogen.run({0x0, 0x0}, 0x143b8f0)\n        /Users/arc/go/pkg/mod/google.golang.org/protobuf@v1.27.1/compiler/protogen/protogen.go:74 +0x142\ngoogle.golang.org/protobuf/compiler/protogen.Options.Run({0x0, 0x0}, 0xc0000001a0)\n        /Users/arc/go/pkg/mod/google.golang.org/protobuf@v1.27.1/compiler/protogen/protogen.go:52 +0x2a\nmain.main()\n        /Users/arc/go/pkg/mod/github.com/cosmos/cosmos-sdk/orm@v1.0.0-alpha.3/cmd/protoc-gen-go-cosmos-orm/main.go:10 +0x25\nFailure: plugin go-cosmos-orm: exit status 2; context canceled; exit status 2; signal: killed; signal: killed; context canceled\n```\n\ninto this:\n```\nFailure: plugin go-cosmos-orm: field id on regen.ecocredit.v1beta1.BatchSupply: field not found\n```\n\n\n\n\n---\n\n### Author Checklist\n\n*All items are required. Please add a note to the item if the item is not applicable and\nplease add links to any relevant follow up issues.*\n\nI have...\n\n- [ ] included the correct [type prefix](https://github.com/commitizen/conventional-commit-types/blob/v3.0.0/index.json) in the PR title\n- [ ] added `!` to the type prefix if API or client breaking change\n- [ ] targeted the correct branch (see [PR Targeting](https://github.com/cosmos/cosmos-sdk/blob/master/CONTRIBUTING.md#pr-targeting))\n- [ ] provided a link to the relevant issue or specification\n- [ ] followed the guidelines for [building modules](https://github.com/cosmos/cosmos-sdk/blob/master/docs/building-modules)\n- [ ] included the necessary unit and integration [tests](https://github.com/cosmos/cosmos-sdk/blob/master/CONTRIBUTING.md#testing)\n- [ ] added a changelog entry to `CHANGELOG.md`\n- [ ] included comments for [documenting Go code](https://blog.golang.org/godoc)\n- [ ] updated the relevant documentation or specification\n- [ ] reviewed \"Files changed\" and left comments if necessary\n- [ ] confirmed all CI checks have passed\n\n### Reviewers Checklist\n\n*All items are required. Please add a note if the item is not applicable and please add\nyour handle next to the items reviewed if you only reviewed selected items.*\n\nI have...\n\n- [ ] confirmed the correct [type prefix](https://github.com/commitizen/conventional-commit-types/blob/v3.0.0/index.json) in the PR title\n- [ ] confirmed `!` in the type prefix if API or client breaking change\n- [ ] confirmed all author checklist items have been addressed \n- [ ] reviewed state machine logic\n- [ ] reviewed API design and naming\n- [ ] reviewed documentation is accurate\n- [ ] reviewed tests and test coverage\n- [ ] manually tested (if applicable)"
+    ],
+    "distinct_authors": [
+      "Aaron Craelius",
+      "GitHub"
+    ],
+    "commit_urls": [
+      "https://github.com/cosmos/gaia/commit/2e654adbf83a8c7f18055d50f9731f44eaddef0f",
+      "https://github.com/cosmos/gaia/commit/118aaa7ed1be4a77897f11db5a9deb75393e1e32",
+      "https://github.com/cosmos/gaia/commit/c7646be29738dc7427622ab092b346cd50478249",
+      "https://github.com/cosmos/cosmos-sdk/commit/627748d4e9362769a0bd391447ac9bbc7b68b225",
+      "https://github.com/cosmos/cosmos-sdk/commit/3a1027c74b15ad78270dbe68b777280bde393576",
+      "https://github.com/cosmos/cosmos-sdk/commit/03dcc4f26e5a7c458877a5d543ce8c541cdc7c08",
+      "https://github.com/cosmos/cosmos-sdk/commit/20b2605d7929767163c3908cc321d8568a9d6090",
+      "https://github.com/cosmos/cosmos-sdk/commit/22517392b3ca937bfbffc21f6149ed324b1866bd"
+    ]
+  },
+  "FORTH": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "SUSHI": {
+    "commit_count": 1,
+    "lines_of_code": 2,
+    "commit_messages": [
+      "fix: track liquidity for gOHM & MAGIC on arbi"
+    ],
+    "distinct_authors": [
+      "Matthew Lilley"
+    ],
+    "commit_urls": [
+      "https://github.com/sushiswap/sushiswap-interface/commit/0d7470d3d7d532bf2c8d4c2ecac197b251326206"
+    ]
+  },
+  "API3": {
+    "commit_count": 10,
+    "lines_of_code": 252,
+    "commit_messages": [
+      "Added jobPageRevision field\nThis integer is increased to force the Jobs Icon badge to reappear. Usually when a new job(s) is posted.",
+      "Added badge to Jobs Icon\nA badge appears when a new job(s) is posted. When the reader visits the job page the badge goes away until another job(s) i sposted.",
+      "Code header comment",
+      "Document in dev for the JobsIcon component",
+      "Hide JobsIcon on hte landing page.",
+      "Move icon 9px to the right",
+      "Move icon 8px to the left",
+      "Improved dev  JobsIcon dev instructions.",
+      "Adjusted Version modal top\nThe new jobs Icon was cutting off the top of the verison modal. Moved the modal down 10px.",
+      "Merge pull request #569 from api3dao/20220128-jobs-badge\n\n20220128 jobs badge"
+    ],
+    "distinct_authors": [
+      "GitHub",
+      "Warren Anderson"
+    ],
+    "commit_urls": [
+      "https://github.com/api3dao/api3-docs/commit/165a8e6f38b132ae0246b241bda9f4d8d29fbaf2",
+      "https://github.com/api3dao/api3-docs/commit/f2ea343026ae7202fd9bda2c8b13d7a42219c513",
+      "https://github.com/api3dao/api3-docs/commit/d31b1d09306ef24b79bd8df878adb60e36a4dd07",
+      "https://github.com/api3dao/api3-docs/commit/c16ccd96e3d9f059ca7fbc121542fe59a8d18ae0",
+      "https://github.com/api3dao/api3-docs/commit/96750f2ee65b48eabd2bd4143ec4f049c7813c13",
+      "https://github.com/api3dao/api3-docs/commit/fe15e8f80a2899c9d821516aa73739eb7d2c3e14",
+      "https://github.com/api3dao/api3-docs/commit/3527ceab91deb6e9d69e3fd5fb5d6ea9333983a9",
+      "https://github.com/api3dao/api3-docs/commit/a18a2f267e1cde79dd1e8a5bf4a5767cc669144c",
+      "https://github.com/api3dao/api3-docs/commit/83a9e0d7287fafe65acae1340046018b58462201",
+      "https://github.com/api3dao/api3-docs/commit/814a609bd5d2a97cb3817e0c77f862be8935f752"
+    ]
+  },
+  "MANA": {
+    "commit_count": 6,
+    "lines_of_code": 3428,
+    "commit_messages": [
+      "chore: update version (#79)",
+      "docs: report bug template (#80)",
+      "feat: desktop issues goes to `explorer-desktop` repo (#1858)",
+      "chore: normalize storage (#883)\n\n* wip\r\n\r\n* style\r\n\r\n* fix\r\n\r\n* apply feedback\r\n\r\n* use both jest reporters in ci",
+      "refactor: move components to assemblies (#1854)\n\n* refactor: moved components to own assemblies\r\n\r\n- Moved TextShape, DCLFont and all ParametrizedShapes to own assemblies\r\n- had to move BaseShape and CollidersManager to own assemblies\r\n- had to move PrimitiveMeshBuilder to Utils assembly\r\n- had to move BaseComponent and BaseDisposable to WorldRuntimeInterfaces\r\n assembly (should change its name later)\r\n\r\n* move all BaseVariable classes to their own assembly + move Billboard\r\ncomponent to its own assembly\r\n\r\n* fix compiler errors",
+      "fix: Move the StartMenu initialization before the world is up (#1852)"
+    ],
+    "distinct_authors": [
+      "GitHub"
+    ],
+    "commit_urls": [
+      "https://github.com/decentraland/explorer-desktop/commit/265a7d7e66f85bf6e1973dbec376b61bf9fc97eb",
+      "https://github.com/decentraland/explorer-desktop/commit/c2c093e24aa554a22437a6733f011fd85c10935a",
+      "https://github.com/decentraland/unity-renderer/commit/e31c0abd3078cb5a2fc68b3f3ca21d8880716a54",
+      "https://github.com/decentraland/catalyst/commit/36b7d5afd1d1c888da8fb3cac52ae7501226e6b2",
+      "https://github.com/decentraland/unity-renderer/commit/8eaafdc85e266cc0d9adddb1803c7f15cfb8f31d",
+      "https://github.com/decentraland/unity-renderer/commit/edc51f8b8a11727a04bd0d373ad45d747074c5db"
+    ]
+  },
+  "XRP": {
+    "commit_count": 1,
+    "lines_of_code": 4,
+    "commit_messages": [
+      "fix: use correct error code for `/top` endpoint (#73)\n\n* fix error code of /top endpoint\r\n\r\n* fix success code to make linter happy"
+    ],
+    "distinct_authors": [
+      "GitHub"
+    ],
+    "commit_urls": [
+      "https://github.com/ripple/explorer/commit/a8f0ff94670657510ffd86bac866c0265cb409ef"
+    ]
+  },
+  "BAT": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "BTRST": {
+    "commit_count": 2,
+    "lines_of_code": 2004,
+    "commit_messages": [
+      "revert port change (#571)",
+      "work with latest Snowbridge repo (#74)\n\n* updated package version\r\n\r\n* Added snowbridge-test one-click\r\n\r\n* Refactor code\r\n\r\n* Added coming-soon in dropdown\r\n\r\n* added parachain id to ERC20App\r\n\r\n* minor changes\r\n\r\nCo-authored-by: Alistair Singh <alistair.singh7@gmail.com>"
+    ],
+    "distinct_authors": [
+      "GitHub"
+    ],
+    "commit_urls": [
+      "https://github.com/Snowfork/snowbridge/commit/2b6e106f5c5802ba9b196d959c62e0fc268e87a2",
+      "https://github.com/Snowfork/snowbridge-web/commit/5f3e5feef4e15091b2a58feb4b86b5977a05948c"
+    ]
+  },
+  "NKN": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "DNT": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "KRL": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "BOND": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "CLV": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "LQTY": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "KEEP": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "ENS": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "RBN": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "ZEC": {
+    "commit_count": 4,
+    "lines_of_code": 676,
+    "commit_messages": [
+      "[#186] Fix running Kotlin module tests on CI",
+      "ZIP 32: Remove Sprout-related specifications. fixes #581\n\nSigned-off-by: Daira Hopwood <daira@jacaranda.org>",
+      "Merge pull request #588 from daira/zip-32-remove-sprout-hd\n\nZIP 32: Remove Sprout-related specifications",
+      "ZIP 32: Fix an error in #588; \"ZcashIP32_Sprout\" was a personalization for BLAKE2b-512, not BLAKE2b-256.\n\nSigned-off-by: Daira Hopwood <daira@jacaranda.org>"
+    ],
+    "distinct_authors": [
+      "GitHub",
+      "Daira Hopwood"
+    ],
+    "commit_urls": [
+      "https://github.com/zcash/secant-android-wallet/commit/7cb3021caa46b0c18b1008209da23a16a763f559",
+      "https://github.com/zcash/zips/commit/7bd2845dbddc9080dec26726236e698e4489c00e",
+      "https://github.com/zcash/zips/commit/2a4ab049b9fc34b1e4063cf18d65fa789aa6279e",
+      "https://github.com/zcash/zips/commit/8e2215c577dae83f345118b77b864a7cb4a264a5"
+    ]
+  },
+  "BNT": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "REN": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "RLC": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "XLM": {
+    "commit_count": 5,
+    "lines_of_code": 1238,
+    "commit_messages": [
+      "ingest/ledgerbackend: Check if there are newer ledger when requested ledger does not exist (#4198)\n\nIn `DatabaseBackend.GetLedger(ctx, sequence)` check if there are newer ledgers\r\nthan `sequence` if ledger not found. If there are newer ledgers return an error.\r\n\r\nIf Stellar-Core cursors were manually removed or updated, it's possible it run a\r\nmaintenance removing older ledgers. In such situation\r\n`DatabaseBackend.GetLedger` would loop indefinitely waiting for a ledger to\r\nappear in the DB but it never will.",
+      "services/horizon: Resume ingestion immediately when catching up (#4196)\n\nWhen more than one ingesting instances is running and the current one is behind,\r\ngo to `resumeState` immediately instead of after 1s. Waiting 1s can slow down\r\nmake applying ledgers by Captive-Core slower in catching-up mode.",
+      "Update catch2 to 2.13.8",
+      "ingest/ledgerbackend: Restart Stellar-Core when it's context is cancelled (#4192)\n\nAfter refactoring in #4088 (and as a result of my wrong comment:\r\n#4088#discussion_r764394296) the `CaptiveCoreBackend.isPrepared` method returned\r\n`true` if `stellarCoreRunner` process was shutdown without calling `close()` -\r\nso in case of binary update but also in case of Stellar-Core crash.\r\n\r\nThis commit fixes this bug by checking if `stellarCoreRunner` context was\r\ncancelled (meaning Stellar-Core is closed or closing but not as a result of\r\n`close` call). I also removed `isClose` method because it was simply checking\r\n`close` variable. All test changes are only adding an extra `context()` call\r\nmocks because `isPrepared` now calls it.",
+      "Merge pull request #3328 from SirTyson/update-catch2\n\nUpdate catch2 to 2.13.8\n\nReviewed-by: graydon"
+    ],
+    "distinct_authors": [
+      "GitHub",
+      "Garand Tyson"
+    ],
+    "commit_urls": [
+      "https://github.com/stellar/go/commit/d9a619d4d64216416405bfcdc3024bb0cb6e012e",
+      "https://github.com/stellar/go/commit/d3ce98c95934c614d573e56286f31551e937969d",
+      "https://github.com/stellar/stellar-core/commit/7a8e6b4f9faf1f1170bb925da938d60fbbafa646",
+      "https://github.com/stellar/go/commit/a947f2f1850618bc02f900c302fa1fb86d8a4371",
+      "https://github.com/stellar/stellar-core/commit/a211531148f13ab38725bc176630793d657b7f88"
+    ]
+  },
+  "WBTC": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "LTC": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "EOS": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "KNC": {
+    "commit_count": 1,
+    "lines_of_code": 43,
+    "commit_messages": [
+      "update pnl (#606)\n\nupdate edge case"
+    ],
+    "distinct_authors": [
+      "GitHub"
+    ],
+    "commit_urls": [
+      "https://github.com/KyberNetwork/reserve-stats/commit/e3f3b798a8941c1afc40b07a65656558b6979863"
+    ]
+  },
+  "IMX": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "UMA": {
+    "commit_count": 1,
+    "lines_of_code": 291,
+    "commit_messages": [
+      "feat(monitors): split UI link from other log messages due to length  (#3804)"
+    ],
+    "distinct_authors": [
+      "GitHub"
+    ],
+    "commit_urls": [
+      "https://github.com/UMAprotocol/protocol/commit/523aef41fb5a50159db64e3dbec7d05d327533ca"
+    ]
+  },
+  "ADA": {
+    "commit_count": 15,
+    "lines_of_code": 676,
+    "commit_messages": [
+      "Merge pull request #1364 from Fuma419/master\n\nHolder Coalition Coin - GREEN",
+      "Merge pull request #1365 from dem-ionz/master\n\nDelta Token",
+      "cMETA Token",
+      "Update SECRET",
+      "Add files via upload",
+      "Hodlr-Green",
+      "SHIBADA",
+      "Update a6124329634b5c500fefbbbeb78c76c6a6560806700e234b7a812db04652455941.json",
+      "Create a6124329634b5c500fefbbbeb78c76c6a6560806700e234b7a812db04652455941.json",
+      "Merge pull request #1366 from cardano-tools-nft/7788314b-d8e9-49a9-91c3-30fcabf855b4\n\ncMETA Token",
+      "Merge pull request #1367 from sati-nft/master\n\nUpdate SECRET",
+      "Merge pull request #1369 from Fuma419/master\n\nHodlr-Green",
+      "Merge pull request #1370 from MikeyHawky/master\n\nUpdate image Freya",
+      "Merge pull request #1368 from CFCTtoken/master\n\nCFCT token",
+      "Merge pull request #1371 from mcvetyty/master\n\nSHIBADA"
+    ],
+    "distinct_authors": [
+      "GitHub",
+      "benJamin",
+      "root",
+      "Tyler McVety"
+    ],
+    "commit_urls": [
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/8e2f1eae28664b802b3485635bb4369b9475141c",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/42205ccea2783c134faf74b3fed84c3a9c89944e",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/d50604335ec54fceec31647a2a6ba331c158a356",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/3403716e030784209ced1cc26bd24262b43a5ce2",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/1daa573599522762d9772a9c95da298267ed6cf4",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/b207b7259b724215f4842a7e10e2b7ea24402e2f",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/c6b8d85e71308ce35fe7c807a587340bf20e6acc",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/fa85b9f3773077b7aef17e2eb2c3a47faa62336c",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/8c0dfb19caa68e311d7e53f005abe4d92ab2e19a",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/95effde0a90a5289074d3cc75b45779ed7a0f338",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/425aae07ae9848f49a55d01f479a1dfa56071bb7",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/5b1bd2aa9485a0763fb3037f13997f5409f66792",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/5149e6db78d06aa72b82abb030fda31055b0bea4",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/707d6bbc80c5e8ff73262606c359a447a3eaef72",
+      "https://github.com/cardano-foundation/cardano-token-registry/commit/1a47d74bf40fa92443a79c2f4b2a73c88f42eddb"
+    ]
+  },
+  "ANKR": {
+    "commit_count": 1,
+    "lines_of_code": 447,
+    "commit_messages": [
+      "Merge pull request #1 from Ankr-network/feature/nft-indexer\n\nFeature/nft indexer"
+    ],
+    "distinct_authors": [
+      "GitHub"
+    ],
+    "commit_urls": [
+      "https://github.com/Ankr-network/ankrscan-proto-contract/commit/8f0a399c2068da90a53d8eba62a5aff4f31fcbd5"
+    ]
+  },
+  "ZRX": {
+    "commit_count": 3,
+    "lines_of_code": 167,
+    "commit_messages": [
+      "feat: add curve pools (#409)\n\n* feat: Additional Curve pools\r\n\r\n* more pools\r\n\r\n* fix the format\r\n\r\n* changlog\r\n\r\n* lowercase address\r\n\r\nCo-authored-by: Jacob Evans <jacob@dekz.net>",
+      "Updated CHANGELOGS & MD docs",
+      "Publish\n\n - @0x/asset-swapper@16.49.0"
+    ],
+    "distinct_authors": [
+      "GitHub",
+      "Github Actions"
+    ],
+    "commit_urls": [
+      "https://github.com/0xProject/protocol/commit/5c2255c841e506570130a7454fcc34e2b8d0de7f",
+      "https://github.com/0xProject/protocol/commit/61fbae3ae2e4d2f5ae7e766924cdb51be0b966d0",
+      "https://github.com/0xProject/protocol/commit/e5ed8b2c81eb4f110452fc15a2effc49766f9654"
+    ]
+  },
+  "CTSI": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "UST": {
+    "commit_count": 10,
+    "lines_of_code": 180,
+    "commit_messages": [
+      "Fix spacing for Epoch headline\n\nHi, just found a small typo as I was reading thru the docs and decided to help fix it.",
+      "Merge pull request #247 from jonmwood/patch-1\n\nFix spacing for Epoch headline",
+      "fix: Instantiate contract with code id as number",
+      "Add terrad for m1",
+      "update terrad m1\ncreate admonition",
+      "update terrad m1 security note",
+      "update tabs terrad m1",
+      "add terrad m1 to toctree",
+      "Update commands terrad m1",
+      "Add a meta description"
+    ],
+    "distinct_authors": [
+      "evanorti",
+      "GitHub",
+      "sim"
+    ],
+    "commit_urls": [
+      "https://github.com/terra-money/docs/commit/f8fe79779bef0d0529b7594cd7f35538fd367cd5",
+      "https://github.com/terra-money/docs/commit/995a09a78fc537bd56d696ff070c73af900dc211",
+      "https://github.com/terra-money/station/commit/b5a01eacc0ef1b24cd4bcbda42fda7d5a2d3ffd8",
+      "https://github.com/terra-money/docs/commit/db25d2bd233ab971adcae017f18b50d235664349",
+      "https://github.com/terra-money/docs/commit/d7c5731023dca5e8677998b14bcbf677a30338f8",
+      "https://github.com/terra-money/docs/commit/1d5364f3165086354664c9f5e6c38bb5cbae7b16",
+      "https://github.com/terra-money/docs/commit/12a258568604ece2c10360c167a1452e443008e4",
+      "https://github.com/terra-money/docs/commit/fe868b6e8dea0785335ff1994e68fb3f07725698",
+      "https://github.com/terra-money/docs/commit/fe3ad8e53b24856142a2ed6870e42155de5e381e",
+      "https://github.com/terra-money/station/commit/b8b7b700aebaa9d0983aa02440aeae4d36ca2244"
+    ]
+  },
+  "GNT": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "GRT": {
+    "commit_count": 4,
+    "lines_of_code": 3314,
+    "commit_messages": [
+      "indexer-cli,indexer-common: Setup CLI test harness, create initial tests\n\n- Initial tests added:\n  - Test suite for general indexer cli setup commands\n  - Test suite for indexer rules commands\n- Update createIndexerManagementServer() to return the server instance,\nso it can be properly shutdown after each test.\n- Update workflow CI to use postgres and graph-node container services\nfor tests.",
+      "indexer-service: Fix tests, improve readability, and turn off for CI\n\n- Turning off the indexer-service tests in CI for now until I've\nadded a graph-node container service to the CI test infra.",
+      "New Crowdin updates (#46)\n\n* New translations create-subgraph-hosted.mdx (Arabic)\r\n\r\n* New translations create-subgraph-hosted.mdx (Spanish)\r\n\r\n* New translations indexing.mdx (Arabic)\r\n\r\n* New translations indexing.mdx (Japanese)\r\n\r\n* New translations indexing.mdx (Spanish)\r\n\r\n* New translations curating.mdx (Chinese Simplified)\r\n\r\n* New translations explorer.mdx (Arabic)\r\n\r\n* New translations create-subgraph-hosted.mdx (Chinese Simplified)\r\n\r\n* New translations define-subgraph-hosted.mdx (Arabic)\r\n\r\n* New translations define-subgraph-hosted.mdx (Japanese)\r\n\r\n* New translations deprecating-a-subgraph.mdx (Japanese)\r\n\r\n* New translations developer-faq.mdx (Arabic)\r\n\r\n* New translations developer-faq.mdx (Japanese)\r\n\r\n* New translations developer-faq.mdx (Chinese Simplified)\r\n\r\n* New translations create-subgraph-hosted.mdx (Arabic)\r\n\r\n* New translations network.mdx (Arabic)\r\n\r\n* New translations assemblyscript-api.mdx (Arabic)\r\n\r\n* New translations assemblyscript-api.mdx (Korean)\r\n\r\n* New translations assemblyscript-api.mdx (Chinese Simplified)\r\n\r\n* New translations assemblyscript-migration-guide.mdx (Arabic)\r\n\r\n* New translations assemblyscript-migration-guide.mdx (Korean)\r\n\r\n* New translations assemblyscript-migration-guide.mdx (Chinese Simplified)\r\n\r\n* New translations querying-from-your-app.mdx (Arabic)\r\n\r\n* New translations querying-from-your-app.mdx (Chinese Simplified)\r\n\r\n* New translations quick-start.mdx (Arabic)\r\n\r\n* New translations quick-start.mdx (Japanese)\r\n\r\n* New translations quick-start.mdx (Chinese Simplified)\r\n\r\n* New translations query-the-graph.mdx (Chinese Simplified)\r\n\r\n* New translations matchstick.mdx (Arabic)\r\n\r\n* New translations publish-subgraph.mdx (Chinese Simplified)\r\n\r\n* New translations multisig.mdx (Chinese Simplified)\r\n\r\n* New translations what-is-hosted-service.mdx (Chinese Simplified)\r\n\r\n* New translations indexing.mdx (Korean)\r\n\r\n* New translations indexing.mdx (Chinese Simplified)\r\n\r\n* New translations indexing.mdx (Vietnamese)\r\n\r\n* New translations global.json (Arabic)\r\n\r\n* New translations global.json (Japanese)\r\n\r\n* New translations indexing.mdx (Arabic)\r\n\r\n* New translations index.json (Arabic)\r\n\r\n* New translations index.json (Japanese)\r\n\r\n* New translations index.json (Chinese Simplified)\r\n\r\n* New translations indexing.mdx (Japanese)\r\n\r\n* New translations indexing.mdx (Spanish)\r\n\r\n* New translations delegating.mdx (Arabic)\r\n\r\n* New translations explorer.mdx (Arabic)\r\n\r\n* Fix build errors\r\n\r\n* Run Prettier",
+      "Fixed NPM package license information"
+    ],
+    "distinct_authors": [
+      "GitHub",
+      "Ford",
+      "Matthieu Vachon"
+    ],
+    "commit_urls": [
+      "https://github.com/graphprotocol/indexer/commit/415ab6a70da35d97cd1b42b69b33adbb424df695",
+      "https://github.com/graphprotocol/indexer/commit/5a784d8385dfb6cafa19f29b013d5c2a3a244451",
+      "https://github.com/graphprotocol/docs/commit/836160a5b9b20ef54a4649e8e121e2f65879ab4a",
+      "https://github.com/graphprotocol/graph-cli/commit/1e4ec2c0404d64fc2d39e5c38bbfc5fc5f2500f8"
+    ]
+  },
+  "PLA": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "FET": {
+    "commit_count": 1,
+    "lines_of_code": 122,
+    "commit_messages": [
+      "DP fixes and extension (#212)\n\n* dp fixes and extensions to support running from orchestrator\r\n\r\n* tox\r\n\r\n* tox\r\n\r\n* bugfixes and pr feedback"
+    ],
+    "distinct_authors": [
+      "GitHub"
+    ],
+    "commit_urls": [
+      "https://github.com/fetchai/colearn/commit/aae37dc8ee3c4ba4c620775d86170893a4f127a1"
+    ]
+  },
+  "BADGER": {
+    "commit_count": 13,
+    "lines_of_code": 438,
+    "commit_messages": [
+      "chore: add ops deployer",
+      "set wd fee to 0 on all bsc strats",
+      "chore: fix eth",
+      "Merge pull request #564 from Badger-Finance/fix-eth\n\nchore: fix eth",
+      "Merge pull request #565 from Badger-Finance/development\n\nDevelopment",
+      "chore: update schedule",
+      "Merge pull request #566 from Badger-Finance/fix-eth\n\nchore: update schedule",
+      "Merge pull request #567 from Badger-Finance/development\n\nDevelopment",
+      "chore: update manifest again",
+      "Merge pull request #568 from Badger-Finance/fix-eth\n\nchore: update manifest again",
+      "Merge pull request #569 from Badger-Finance/development\n\nDevelopment",
+      "Merge pull request #62 from Badger-Finance/add-ops-deployer\n\nchore: add ops deployer",
+      "Merge pull request #61 from Badger-Finance/issue/56\n\nset wd fee to 0 on all bsc strats"
+    ],
+    "distinct_authors": [
+      "GitHub",
+      "mitche50",
+      "jorijnsmit"
+    ],
+    "commit_urls": [
+      "https://github.com/Badger-Finance/badger-multisig/commit/68a4e70abbd146e55158ac3c9cabcfa038f58268",
+      "https://github.com/Badger-Finance/badger-multisig/commit/90e648e61d2e729f06a08a5fe2a254f026044429",
+      "https://github.com/Badger-Finance/badger-rewards/commit/38a13fb23baa087c57d4fc347ba21a4411fa5f91",
+      "https://github.com/Badger-Finance/badger-rewards/commit/e99da7e7ee49febb15a46a4669c4fa19dcd8ad98",
+      "https://github.com/Badger-Finance/badger-rewards/commit/70e30b547d979097759a7cc8e5bc109afb64a4ec",
+      "https://github.com/Badger-Finance/badger-rewards/commit/6349f2d0aa594487af54671994e1f4cbc7da8525",
+      "https://github.com/Badger-Finance/badger-rewards/commit/2805bb356a767d8ddbe69dbb758318b99ff2ee06",
+      "https://github.com/Badger-Finance/badger-rewards/commit/70b2e47d1d3e643fc3f2277b7100fc76de239c2c",
+      "https://github.com/Badger-Finance/badger-rewards/commit/20c3dca277e17c4613c0ffa6afcb7bd852f5b76b",
+      "https://github.com/Badger-Finance/badger-rewards/commit/c4bc04f02d3ebb9b318b8ce746f94950ae35acfb",
+      "https://github.com/Badger-Finance/badger-rewards/commit/9c14d2332f13db542f928eddf14adebbf0fc754a",
+      "https://github.com/Badger-Finance/badger-multisig/commit/7cbfce03ca017e374d7fab8bf65fbab177c2f319",
+      "https://github.com/Badger-Finance/badger-multisig/commit/7ff1067bcf61c5aa8523859c9c8a6df5ad25cfef"
+    ]
+  },
+  "ORN": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "SUKU": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "COMP": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "MATIC": {
+    "commit_count": 5,
+    "lines_of_code": 382,
+    "commit_messages": [
+      "Merge pull request #759 from maticnetwork/fix-faq-brokenlink\n\nFix FAQs button",
+      "Merge pull request #757 from maticnetwork/bor-version-to-0.2.14\n\nUpdate Bor version to 0.2.14",
+      "Merge pull request #755 from maticnetwork/gas-station-v2-update\n\nUpdate Gas Station V2",
+      "Merge pull request #760 from thegoldenmule/patch-1\n\nFixing incompatible solidity version",
+      "Merge pull request #309 from maticnetwork/manav/dev-mode\n\nEnable developer mode for new cli"
+    ],
+    "distinct_authors": [
+      "GitHub"
+    ],
+    "commit_urls": [
+      "https://github.com/maticnetwork/matic-docs/commit/ed31c79501644c1dff80d377c9d1b1c0d4232a43",
+      "https://github.com/maticnetwork/matic-docs/commit/c54314f176f5a36738bf14b0d8ed0cd8263b8002",
+      "https://github.com/maticnetwork/matic-docs/commit/ed3d10abdd82bd933f5ffc31ac974f3338e74fb6",
+      "https://github.com/maticnetwork/matic-docs/commit/a8ca98d7bf6623d7317bc391cb019ba45f768197",
+      "https://github.com/maticnetwork/bor/commit/fe21391e89851b049f1ec7bf6c4a7bffa21f336b"
+    ]
+  },
+  "STORJ": {
+    "commit_count": 3,
+    "lines_of_code": 942,
+    "commit_messages": [
+      "cmd/partnerid-to-useragent-migration: add projects migration and tests\n\nChange-Id: I23f931cb6ff8e047aa9b30a45b4e05c41d87c04e",
+      "cmd/partnerid-to-useragent-migration: add api_keys migration and tests\n\nChange-Id: Id8616fb30c09b8f502e506a65cae7367b6e0872e",
+      "cmd/partnerid-to-useragent-migration: add bucket_metainfos migration and tests\n\nChange-Id: I8c207fb4f28f45a30b3ca6e02122dd701f044b03"
+    ],
+    "distinct_authors": [
+      "Cameron"
+    ],
+    "commit_urls": [
+      "https://github.com/storj/storj/commit/6d6d6776d821e71d79c0585b23d6b5a4524b0c17",
+      "https://github.com/storj/storj/commit/1f1a054de46d3bc4b0b16c57e8262709b907179f",
+      "https://github.com/storj/storj/commit/6b6e9901e2afe70e1173e9701f217f2dd0f1a757"
+    ]
+  },
+  "1INCH": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "ZEN": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "OGN": {
+    "commit_count": 2,
+    "lines_of_code": 4242,
+    "commit_messages": [
+      "quick and dirty redesign",
+      "minor updates to litepaper"
+    ],
+    "distinct_authors": [
+      "Josh Fraser"
+    ],
+    "commit_urls": [
+      "https://github.com/OriginProtocol/origin-website/commit/628e794a60155cf6babfbc02b080a0585259b12e",
+      "https://github.com/OriginProtocol/origin-website/commit/4d02e90aca9bd372b796754b00b9281e3bf84be4"
+    ]
+  },
+  "CVC": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "AVAX": {
+    "commit_count": 2,
+    "lines_of_code": 10,
+    "commit_messages": [
+      "wagmi update (#549)",
+      "Missing c in Avalanche (#550)"
+    ],
+    "distinct_authors": [
+      "GitHub"
+    ],
+    "commit_urls": [
+      "https://github.com/ava-labs/avalanche-docs/commit/b171b6031615b9f6c092a8c9cd838ffaf42e6542",
+      "https://github.com/ava-labs/avalanche-docs/commit/2f47360ba850fadbd34c849fb7d55961f8c857cb"
+    ]
+  },
+  "ETC": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "NU": {
+    "commit_count": 1,
+    "lines_of_code": 25,
+    "commit_messages": [
+      "Merge pull request #2849 from KPrasch/docker\n\nUse nucypher/rust-python"
+    ],
+    "distinct_authors": [
+      "GitHub"
+    ],
+    "commit_urls": [
+      "https://github.com/nucypher/nucypher/commit/5d6a270e05adf45768a5ce73f41905bf28158207"
+    ]
+  },
+  "USDC": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "POLS": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "BICO": {
+    "commit_count": 2,
+    "lines_of_code": 817,
+    "commit_messages": [
+      "local testing based changes",
+      "Merge pull request #120 from bcnmy/fallback-and-error-handling\n\nFallback and error handling"
+    ],
+    "distinct_authors": [
+      "livingrockrises",
+      "GitHub"
+    ],
+    "commit_urls": [
+      "https://github.com/bcnmy/mexa-sdk/commit/5737af3102a5f6d4824613efe5720f1c4a137188",
+      "https://github.com/bcnmy/mexa-sdk/commit/e642a4d79338e56ca723e59ac8af298ebeb9e75a"
+    ]
+  },
+  "OMG": {
+    "commit_count": 13,
+    "lines_of_code": 3368,
+    "commit_messages": [
+      "Update yarn.lock",
+      "boba tests",
+      "boba tests",
+      "boba tests",
+      "boba tests",
+      "fix bridge init-owner loophole",
+      "swap params",
+      "Merge branch 'develop' into api-watcher-supports-multiple-assets-bridge",
+      "Merge pull request #327 from omgnetwork/api-watcher-supports-multiple-assets-bridge\n\nSupport multiple assets bridge in api watcher",
+      "Merge branch 'develop' into feat/tab-for-ecosystem-as-link",
+      "changes:\n - changed ecosystem from portal as tab name\n - changes for carousel as per thematically order.",
+      "Merge branch 'feat/tab-for-ecosystem-as-link' of github.com-enya:omgnetwork/optimism-v2 into feat/tab-for-ecosystem-as-link",
+      "Merge pull request #322 from omgnetwork/inomurko/boba-unit-tests\n\nBoba contracts unit tests"
+    ],
+    "distinct_authors": [
+      "CAPtheorem",
+      "GitHub",
+      "Ino Murko",
+      "Sahil Kashetwar"
+    ],
+    "commit_urls": [
+      "https://github.com/omgnetwork/optimism-v2/commit/b93d3a8e338c10cfe591edb90e8c3258965b4ab9",
+      "https://github.com/omgnetwork/optimism-v2/commit/fc390bfd768f9c4bacba8ff7f8a7021ae9ad4426",
+      "https://github.com/omgnetwork/optimism-v2/commit/0e80782583c187275e8304648afaa3402c20ec82",
+      "https://github.com/omgnetwork/optimism-v2/commit/ac2637484a5e35f81a0849a614e9fea2475a9575",
+      "https://github.com/omgnetwork/optimism-v2/commit/b8efdb3a66eeb13e6f2816000240ae5137fa84bc",
+      "https://github.com/omgnetwork/optimism-v2/commit/62c00264962bafe5a2c84f7b9fe30f70803cd66d",
+      "https://github.com/omgnetwork/optimism-v2/commit/324d48deecc2d442d89dd7a12ebe3a20ab458f96",
+      "https://github.com/omgnetwork/optimism-v2/commit/299571adf5a7c5e9264208f57639f84801f26bf8",
+      "https://github.com/omgnetwork/optimism-v2/commit/175270895acd42691c9d7e66f6bad20610acf78c",
+      "https://github.com/omgnetwork/optimism-v2/commit/8c611749c581f22d0666e8dc7b41160df23b0fdd",
+      "https://github.com/omgnetwork/optimism-v2/commit/ff469c326de01463644a1fd0747f919b04dada4d",
+      "https://github.com/omgnetwork/optimism-v2/commit/651555cdcd937dc9d2c50751d5109ba2e1e8f251",
+      "https://github.com/omgnetwork/optimism-v2/commit/fd40d37bc505df87863786ef67642a499f3b8a5c"
+    ]
+  },
+  "ICP": {
+    "commit_count": 17,
+    "lines_of_code": 1875,
+    "commit_messages": [
+      "OR-51: Remove unused code",
+      "Merge branch 'OR-51-remove-unnecessary-code-parts' into 'master'\n\nOR-51: Remove unused code\n\nThis PR:\n\n- restructures code\n- adds more logs\n- removes non-functional code \n\nSee merge request dfinity-lab/public/ic!2785",
+      "Don't consider latencies from failed requests to calculate latency stats",
+      "Merge branch 'skaestle/workload-gen-no-duration-from-failures' into 'master'\n\nDon't consider latencies from failed requests to calculate latency stats\n\nOtherwise, the median is the median of a rejected failed request and will be very low, even for update calls\nas failures are synchronous. \n\nSee merge request dfinity-lab/public/ic!2681",
+      "Simplify Build-ID calculation with newer capsule [moreci]",
+      "Merge branch 'valeryz-build-id' into 'master'\n\nSimplify Build-ID calculation with newer capsule [moreci]\n\n \n\nSee merge request dfinity-lab/public/ic!2863",
+      "Include badge in build (#517)\n\nOtherwise it is not displayed",
+      "Temporarily disable test",
+      "Merge branch 'skaestle/tmp-disable' into 'master'\n\nTemporarily disable test\n\n \n\nSee merge request dfinity-lab/public/ic!2890",
+      "ER-2147: BTC Adapter: Support multiple blocks in GetSuccessors",
+      "Merge branch 'rc/ER-2147' into 'master'\n\nER-2147: BTC Adapter: Support multiple blocks in GetSuccessors\n\nThis PR allows the adapter to respond with multiple blocks in order of provided block hashes. The adapter limits the amount of blocks sent to under 2MB. If the first block added is over 2MB, it will be the only block in the message. \n\nSee merge request dfinity-lab/public/ic!2823",
+      "fix:  insert critical overflow checks preventing heap corruption (#3077)\n\nFixes two classes of `u32`-undetected overflow bugs that could corrupt heap, stable variables, or both:\n\n* ic.rs: `alloc_words` wasn't checking validity of addresses, leading to possible (and observed) heap corruption.\n* compile.ml: `buffer_size` wasn't checking overflow of 32-bit size pre-computation.\n\nThe first is fixed using an overflow detecting add function of Rust.\n\nThe second is checked by using a local `i64` in each type-directed size function. These functions are MV and return two `i32`s (for the data buffer and (vestigial) reference buffer sizes.  I did not modify the functions to return 2 `i64`s because our MultiValue emulation only support `i32` at the moment.\n\nFixes #3068.",
+      "Update Changelog.md (#3080)",
+      "Fix a bug in creating initial ecdsa transcript",
+      "Merge branch 'paulliu/fix-ecdsa-transcript-creation-bug' into 'master'\n\nFix a bug in creating initial ecdsa transcript\n\nThis should fix the hourly test mock_ecdsa_signatures_are_supported. \n\nSee merge request dfinity-lab/public/ic!2891",
+      "feat: generalized imports supporting pattern matching and selective field import (#3076)\n\nResolves #2354, the bulk of it.\n\nWe can now import subsets of modules:\n``` Motoko\nimport { cons; nil = empty } = \"lib/ListM\";\n\nlet s = cons(1, empty());\n```\nYay!\n\nThese will be done separately:\n- importing of `type` fields explicitly,\n- dealing with explicit imports in the `languageServer` (#3078).",
+      "test: drun test for pattern-based imports (#3081)\n\nAdditional test for #3076 (testing wasm execution on IC)"
+    ],
+    "distinct_authors": [
+      "GitHub",
+      "Ryan Croote",
+      "Valeriy Zamaraiev",
+      "Paul Liu",
+      "Christian Müller",
+      "Stefan Kaestle"
+    ],
+    "commit_urls": [
+      "https://github.com/dfinity/ic/commit/2bc6e78cf6ef57567fe9d7366c6ae19b27a6bbf7",
+      "https://github.com/dfinity/ic/commit/ef6ad50d146ca6b76bade74cee3f1fd9cc3c2f45",
+      "https://github.com/dfinity/ic/commit/36aac36206dcea546478bded515003b6cf3cc344",
+      "https://github.com/dfinity/ic/commit/febdc975be619b073594ac11e9d0beb952ea3ff3",
+      "https://github.com/dfinity/ic/commit/5ee0df4201bccdf5186a9e0ddfe60c79f0cfeaa3",
+      "https://github.com/dfinity/ic/commit/dd80bcb23ca4c850b7e61b1c08409ef97cff2b8f",
+      "https://github.com/dfinity/internet-identity/commit/c5709518ce3daaf7fdd9c7994120b66bd613f01b",
+      "https://github.com/dfinity/ic/commit/0c5ef4123354e15e64f72d95237deb737c4599c5",
+      "https://github.com/dfinity/ic/commit/7e0ed1e1767f1019880d145817029079828f3848",
+      "https://github.com/dfinity/ic/commit/3794b490f474d564477c1943ee6484c56822a31a",
+      "https://github.com/dfinity/ic/commit/48f4c131daa42cf2d5c579167c31e27e8eebc425",
+      "https://github.com/dfinity/motoko/commit/0657017d685d43db3fa28667179b7d9a36c3d125",
+      "https://github.com/dfinity/motoko/commit/7437bc1a65cffeffcc83993bc60b55d8a0433d64",
+      "https://github.com/dfinity/ic/commit/261b0f51015bb13a77471d2257aa126cd9e621b4",
+      "https://github.com/dfinity/ic/commit/0d859159546592ff775f618c864060552e1980ca",
+      "https://github.com/dfinity/motoko/commit/09dcba8ce2aeeda3bdf7ca5f0dc3ce62a6cc88e9",
+      "https://github.com/dfinity/motoko/commit/b03bb7ae9230c5cfdc36bed12d71aee3ebb70c52"
+    ]
+  },
+  "LINK": {
+    "commit_count": 19,
+    "lines_of_code": 5045,
+    "commit_messages": [
+      "Update Synthetix Debt Pool adapter to reflect changes in SIP-165 (#1487)\n\n* update synthetix debt pool ea calculations\r\n\r\n* add error handling when zero address detected\r\n\r\n* update tests\r\n\r\n* add changeset\r\n\r\n* add link to synthetix contract addresses\r\n\r\n* make synthetix debt adapter more readable\r\n\r\nCo-authored-by: Austin Born <austinborn212@gmail.com>",
+      "Downgrade ginko (#5878)\n\nFixes integration tests",
+      "Merge pull request #64 from smartcontractkit/log-cleanup\n\nTerra logging cleanup",
+      "Make errors serious",
+      "Fix test",
+      "Cfbenchmarks secondary endpoint (#1506)\n\n* Add support for secondary cfbenchmarks endpoint\r\n\r\n* Add changeset\r\n\r\n* Update unit tests",
+      "Consume changesets (#1507)",
+      "bump version",
+      "Terra txm log cleanup (#5884)\n\n* Make errors serious\r\n\r\n* Bump terra",
+      "Revert \"Tiingo indefinite ws (#1501)\"\n\nThis reverts commit 452ba71f0a7436c77a85037e251de38e2bd95ed9.",
+      "consume changeset",
+      "Build Latest Develop Image for Internal Testing",
+      "Merge pull request #1508 from smartcontractkit/release/v1.9.0\n\nRelease v1.9.0 [develop]",
+      "core/services/relay: expand TestNewOCR2Provider with Terra case for node by name (#5885)\n\n* core/services/relay: expand TestNewOCR2Provider with Terra case for node by name\r\n\r\n* Fix warn\r\n\r\nCo-authored-by: connorwstein <connor.stein@mail.mcgill.ca>",
+      "Document multiplier (#65)",
+      "add support for the optional multiply field in the feed config",
+      "bump chailink-relay to get the multiply feature support",
+      "Nethermind support (#5881)\n\n* Adds error support for nethermind\r\n\r\n* Updates `fatal` regexp error for nethermind\r\n\r\n* Improves nethermind support + tests\r\n\r\n* Improves regexp matching on errors\r\n\r\n* Removes `NonceGap` error support",
+      "Feature flags for Solana/Terra; clean up EVM_DISABLED confusion (#5879)\n\n* Feature flags for Solana/Terra; clean up EVM_DISABLED confusion\r\n\r\n* Address PR comments"
+    ],
+    "distinct_authors": [
+      "connorwstein",
+      "Alexandru Topliceanu",
+      "GitHub",
+      "Jonas Hals"
+    ],
+    "commit_urls": [
+      "https://github.com/smartcontractkit/external-adapters-js/commit/c66aeef1ac8f1fb5abf357670d2cdf97d9f79d44",
+      "https://github.com/smartcontractkit/chainlink/commit/add7f0071aae558002209cdea653a7edca755c26",
+      "https://github.com/smartcontractkit/chainlink-terra/commit/6414879ce5eb8bda6368ee5946d28eb96ed35930",
+      "https://github.com/smartcontractkit/chainlink-terra/commit/376851d97538d191ddeb08a3ee8e9404c18ae4c3",
+      "https://github.com/smartcontractkit/chainlink-terra/commit/3764610bd29bdb1e1e0d5c913a92ae1e59ae1b34",
+      "https://github.com/smartcontractkit/external-adapters-js/commit/a133567b91a67f549a97efa0bd22219ef96a0d65",
+      "https://github.com/smartcontractkit/external-adapters-js/commit/b68c5d3ec217f41944cb1fca991901a3fb2a252e",
+      "https://github.com/smartcontractkit/external-adapters-js/commit/eb88943939d2de218a14a5b616c90acdc878bfc2",
+      "https://github.com/smartcontractkit/chainlink/commit/9bb651312c61d1acd2e404a9fc1f177a58187077",
+      "https://github.com/smartcontractkit/external-adapters-js/commit/d2467fff32ffc52c3276b92eb08ae1a6fbe368b6",
+      "https://github.com/smartcontractkit/external-adapters-js/commit/63b2e4eb462753a391a965962f44fb8148a024b2",
+      "https://github.com/smartcontractkit/chainlink/commit/5c66ada4a4fa654203ac5cad89e67943cc6342cc",
+      "https://github.com/smartcontractkit/external-adapters-js/commit/e6f02ab3c6d8da0e9e0abf29233d3d166d548d45",
+      "https://github.com/smartcontractkit/chainlink/commit/00cb2306677cb8149d8c24429b570e9c2f63c8ab",
+      "https://github.com/smartcontractkit/chainlink-terra/commit/c3d4ba3adecb5a05acac1d7b437c563823979af6",
+      "https://github.com/smartcontractkit/chainlink-solana/commit/d80173896a648f6a11c7e24dd6e0c913422825c4",
+      "https://github.com/smartcontractkit/chainlink-solana/commit/f0c2ef8f8b23794f2b08b5ba12fb2e33c16bfdbb",
+      "https://github.com/smartcontractkit/chainlink/commit/d625b2e01783592a7c6e5b536cd92a2f7e43b925",
+      "https://github.com/smartcontractkit/chainlink/commit/e55d5e3a914a01d3e061b94220b416e43f855bfd"
+    ]
+  },
+  "DOT": {
+    "commit_count": 6,
+    "lines_of_code": 4151,
+    "commit_messages": [
+      "remote ext: make it possible to use an existing ws connection (#10737)\n\n* remote ext: make it possible to pass ws client\n\n* grumbles: introduce `map_uri`",
+      "datetime display on xaxis",
+      "Refactor check_validation_outputs (#4727)\n\n* Move PersistedValidationData check into\r\n\r\n* Address feedback\r\n\r\n* Remove incorrect comment\r\n\r\n* Update runtime/parachains/src/inclusion/mod.rs\r\n\r\n* fmt\r\n\r\n* Add logging\r\n\r\nCo-authored-by: Robert Habermeier <rphmeier@gmail.com>\r\nCo-authored-by: Andronik <write@reusable.software>",
+      "Add attributes and documentation to fork_id (#10746)\n\n* Add attributes and documentation to fork_id\n\n* Update client/chain-spec/src/chain_spec.rs\n\nCo-authored-by: Sacha Lansky <sacha@parity.io>\n\nCo-authored-by: Sacha Lansky <sacha@parity.io>",
+      "wrong if-case (#4798)\n\n* fixup\r\n\r\n* fmt\r\n\r\n* fix tests",
+      "Fix lazy batch contract removal (#10728)\n\n* Fix lazy batch contract removal\n\n* Apply suggestions\n\n* Qualify ChildInfo\n\n* Negligible change to restart pipeline\n\n* Revert \"Negligible change to restart pipeline\"\n\nThis reverts commit b38abb622a17de9f0d19b3eadcea611ead1a7251.\n\n* cargo run --quiet --profile=production  --features=runtime-benchmarks --manifest-path=bin/node/cli/Cargo.toml -- benchmark --chain=dev --steps=50 --repeat=20 --pallet=pallet_contracts --extrinsic=* --execution=wasm --wasm-execution=compiled --heap-pages=4096 --output=./frame/contracts/src/weights.rs --template=./.maintain/frame-weight-template.hbs\n\nCo-authored-by: Parity Bot <admin@parity.io>"
+    ],
+    "distinct_authors": [
+      "GitHub",
+      "Jose Moreno"
+    ],
+    "commit_urls": [
+      "https://github.com/paritytech/substrate/commit/8c3992521c135b8c07e5ec767bbcfabdcc06e090",
+      "https://github.com/paritytech/tracker/commit/1b2bdbc1128e7fa7a4e310c0a9b1d3c4d24338a1",
+      "https://github.com/paritytech/polkadot/commit/e3985d4425bd95ff10daa25688517a1a2d92dd11",
+      "https://github.com/paritytech/substrate/commit/13076478968818443b9bb97425b7db09e00e2fc0",
+      "https://github.com/paritytech/polkadot/commit/1c2a0e2f065e7a03eacc1f8ca9fb64853e289fec",
+      "https://github.com/paritytech/substrate/commit/fb4f3ecb89ce4c3f144636a9ce9766325946dd58"
+    ]
+  },
+  "ACH": {
+    "commit_count": 2,
+    "lines_of_code": 188,
+    "commit_messages": [
+      "Add AllDay and PackNFT contracts (#36)\n\n* import AllDay and PackNFT for mainnet\r\n\r\n* import AllDay and PackNFT for testnet\r\n\r\n* use AllDayPackNFT for variables for better clarity",
+      "Update Geniace NFT to fix rarity metadata value (#37)\n\n* add GeniaceNFT metadata\r\n\r\n* add GeniaceNFT metadata\r\n\r\n* add GeniaceNFT metadata\r\n\r\n* add GeniaceNFT metadata\r\n\r\n* add mimetype dynamically to the metadata\r\n\r\n* update geniaceNFT external domain url\r\n\r\n* update geniaceNFT external domain url\r\n\r\n* update Geniace NFT to fix rarity metadata value\r\n\r\n* update Geniace NFT to fix rarity metadata value\r\n\r\n* Geniace NFT to fix rarity metadata value"
+    ],
+    "distinct_authors": [
+      "GitHub"
+    ],
+    "commit_urls": [
+      "https://github.com/alchemyplatform/alchemy-flow-contracts/commit/ae6c3f00a9e9885c8def1c8019a25f3daf5e7679",
+      "https://github.com/alchemyplatform/alchemy-flow-contracts/commit/dcac979a262f86353a29d3f74be097f46cf7b829"
+    ]
+  },
+  "LPT": {
+    "commit_count": 3,
+    "lines_of_code": 58,
+    "commit_messages": [
+      "Add URL to Arbitrum bridge (#112)\n\nAdd one-liner + URL for bridge to send ETH from L1 to L2.\r\nGood place to make L1 v L2 distinction while playing on testnet.",
+      "cmd: Add Y/N Confirmation when sending a transaction via the CLI",
+      "Uncomment *_DetectionFreq tests (#289)\n\n* Uncomment *_DetectionFreq tests\r\n\r\n* use tensorflow only for cpu because CI does not have GPU\r\n\r\n* TF GPU support is working for both of GPU and CPU device"
+    ],
+    "distinct_authors": [
+      "GitHub"
+    ],
+    "commit_urls": [
+      "https://github.com/livepeer/docs/commit/72eacf297f93e2645065fcf00d75cb24955bf733",
+      "https://github.com/livepeer/go-livepeer/commit/c6563c780f4ce09f0fa76db6f6d0cca636653eb1",
+      "https://github.com/livepeer/lpms/commit/a6bbd24a86f6b25e56e8c64fca692061e30dec5c"
+    ]
+  },
+  "AAVE": {
+    "commit_count": 4,
+    "lines_of_code": 3938,
+    "commit_messages": [
+      "fix: correctly update outdated thegraph state (#383)\n\nthe governance data from thegraph is broken as there aren't events emitted when there's no onchain txn. Therefroe this pr properly sets expired state.",
+      "fix: space in translation (ES) (#384)\n\nactual: \"AAVEResumen de la reserva\"\r\nproposed: \"AAVE Resumen de la reserva\"",
+      "chore(release): publish [ci skip]\n\n - @aave/contract-helpers@0.28.2\n - @aave/math-utils@0.28.2",
+      "Feat/staking helper (#267)\n\n* feat: added staking data provider helper contract\r\n\r\n* fix: updated exports and configs"
+    ],
+    "distinct_authors": [
+      "GitHub Actions Build",
+      "GitHub"
+    ],
+    "commit_urls": [
+      "https://github.com/aave/aave-ui/commit/337030afc3cc63b3d67becb300a13a5166fbc010",
+      "https://github.com/aave/aave-ui/commit/aad2f5ce732c558cd35c34211dd07f4c11748c73",
+      "https://github.com/aave/aave-utilities/commit/1a7e6c185b9e80e13a7e111f48251bd66d8d0767",
+      "https://github.com/aave/aave-utilities/commit/9bc9f98f164f1321a27bdce781767ef271147bda"
+    ]
+  },
+  "ENJ": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "QNT": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "GODS": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "COTI": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "NCT": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "DESO": {
+    "commit_count": 2,
+    "lines_of_code": 5,
+    "commit_messages": [
+      "If offset is greater than top level comment count, don't add comments (#286)",
+      "GitBook: [#141] No subject"
+    ],
+    "distinct_authors": [
+      "GitHub",
+      "gitbook-bot"
+    ],
+    "commit_urls": [
+      "https://github.com/deso-protocol/backend/commit/ecb04939469a61ae1dd3510dbd140d31fc9f5d5d",
+      "https://github.com/deso-protocol/docs/commit/bc52a48effc16c06393a701bde0e7080d087fc8b"
+    ]
+  },
+  "MKR": {
+    "commit_count": 4,
+    "lines_of_code": 375,
+    "commit_messages": [
+      "Remove operator fee (#59)\n\n* remove operator fee\r\n\r\n* return the amount of dai sent to the receiver\r\n\r\n* update gas-snapshot\r\n\r\n* name all return values\r\n\r\n* remove unused arg names; gas-snapshot\r\n\r\n* solhint max line\r\n\r\n* fix line size",
+      "MaxDeposit tests",
+      "Prettier",
+      "Update MIP41c5-SP2.md"
+    ],
+    "distinct_authors": [
+      "GitHub",
+      "Maciek Kamiński"
+    ],
+    "commit_urls": [
+      "https://github.com/makerdao/dss-wormhole/commit/f66640b298250b74c10763321e81172256ccb65d",
+      "https://github.com/makerdao/starknet-dai-bridge/commit/53d4a5622128efdc3e1552a7b64341a36e3173a9",
+      "https://github.com/makerdao/starknet-dai-bridge/commit/91586aacf7e517ccb26573240ab7a541ab104b34",
+      "https://github.com/makerdao/mips/commit/0c6c1fe0be18415418754519efcb66a93d3af9cf"
+    ]
+  },
+  "COVAL": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "FX": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "DAI": {
+    "commit_count": 3,
+    "lines_of_code": 51,
+    "commit_messages": [
+      "MaxDeposit tests",
+      "Prettier",
+      "Update MIP41c5-SP2.md"
+    ],
+    "distinct_authors": [
+      "GitHub",
+      "Maciek Kamiński"
+    ],
+    "commit_urls": [
+      "https://github.com/makerdao/starknet-dai-bridge/commit/53d4a5622128efdc3e1552a7b64341a36e3173a9",
+      "https://github.com/makerdao/starknet-dai-bridge/commit/91586aacf7e517ccb26573240ab7a541ab104b34",
+      "https://github.com/makerdao/mips/commit/0c6c1fe0be18415418754519efcb66a93d3af9cf"
+    ]
+  },
+  "YFII": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "SKL": {
+    "commit_count": 6,
+    "lines_of_code": 5383,
+    "commit_messages": [
+      "Adjust DKG constant",
+      "Adjust DKG constants",
+      "Adjust DKG constants",
+      "Adjust DKG constant",
+      "Adjust DKG constant",
+      "Merge pull request #758 from skalenetwork/update-dependencies\n\nUpdate dependencies"
+    ],
+    "distinct_authors": [
+      "Dmytro Stebaiev",
+      "GitHub"
+    ],
+    "commit_urls": [
+      "https://github.com/skalenetwork/skale-manager/commit/9405ef2d2c7b1f15f4edebd97e781cba09d945a7",
+      "https://github.com/skalenetwork/skale-manager/commit/66e050d470e21e75b83246320de42050333f845d",
+      "https://github.com/skalenetwork/skale-manager/commit/ff468594cd72775c1d1e8f05b9467116fb567d7e",
+      "https://github.com/skalenetwork/skale-manager/commit/81224b5693b213bc4d8bdd9740f81bf6aadc322c",
+      "https://github.com/skalenetwork/skale-manager/commit/f03bb1530eeaf254536f1950a00f643116a4bb94",
+      "https://github.com/skalenetwork/skale-manager/commit/c708e1cb254bcda596636bbedda6ee1e3d4610fd"
+    ]
+  },
+  "PRO": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "TRU": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "SNX": {
+    "commit_count": 14,
+    "lines_of_code": 5398,
+    "commit_messages": [
+      "Use exact version\n- Also added yarnrc to make that default",
+      "Correct url for infura.\nInfure expects optimism- at the start and not -ovm at the end",
+      "Improve is supported network\n- Could aslo remove some type casting",
+      "This make sure you can select optimism in coinbase when metamask have optimism selected.",
+      "Merge pull request #891 from Synthetixio/issue-403/coinbase-wallet-optimism\n\nImplementation of handleSwitchChain function",
+      "Merge branch 'dev' into wallet-connect-optimism",
+      "Just pass id to get infura URL and add tests",
+      "Use the new lookup, and remove synthtix as arg to init onboard",
+      "fix test lints (#1607)\n\n* fix test lints\r\n\r\nsometimes the dual tests fail due to race condition built into the tests\r\n\r\nin addition, a better event is now being used for monitoring transaction relay status.\r\n\r\nWithdrawal tests still don't work because the transaction is not relayed on the L1 side,\r\nI'm guessing because the user has to call `finalize` transaction somehow. Not sure who to talk to if we want to get those tests working.\r\n\r\n* fix lints\r\n\r\n* uncomment\r\n\r\nCo-authored-by: Mark Barrasso <4982406+barrasso@users.noreply.github.com>\r\nCo-authored-by: jj <jj@og.snxdao.io>",
+      "Merge pull request #880 from Synthetixio/wallet-connect-optimism\n\nWallet connect optimism",
+      "Updates based on SIP presentation (#863)",
+      "Update SIP-148 authors",
+      "synthetix@2.58.0-alpha",
+      "v2.58.0-alpha"
+    ],
+    "distinct_authors": [
+      "Jackson",
+      "Joachim Bachstätter",
+      "Synthetix CI",
+      "GitHub"
+    ],
+    "commit_urls": [
+      "https://github.com/Synthetixio/staking/commit/34d0f2456311a899909198875214c7a2e966c847",
+      "https://github.com/Synthetixio/staking/commit/696746be7ae0d2f5fbc9ad79c5a32ab4889dadf4",
+      "https://github.com/Synthetixio/staking/commit/2e181ee5e0862e7e767253b5f5040b24125748c2",
+      "https://github.com/Synthetixio/staking/commit/249d9cd58aa1983cb6fe028f5a91ee4752bf1bd7",
+      "https://github.com/Synthetixio/staking/commit/167ea954e31e7c1c1595cd39962fe0055938a6f8",
+      "https://github.com/Synthetixio/staking/commit/e7ddcb7b249ff898fe2402e2756335ebce505229",
+      "https://github.com/Synthetixio/staking/commit/8b9f1d9ef33db27e426276db2671b1ac870ea13f",
+      "https://github.com/Synthetixio/staking/commit/484120bbacf4a061daa4acc5feb1b6ad5279f8b9",
+      "https://github.com/Synthetixio/synthetix/commit/e53c9c05e1fdf8e530143e9dd843846638538bde",
+      "https://github.com/Synthetixio/staking/commit/49f15ec80e328659dd508698ed818f2d693b2d3b",
+      "https://github.com/Synthetixio/SIPs/commit/e787e991b3ef8aab1ea5c72e73bf37f010ebd53b",
+      "https://github.com/Synthetixio/SIPs/commit/a4a2e9b592d37b451f511b5d35af1bb2cc9b5065",
+      "https://github.com/Synthetixio/js-monorepo/commit/67ffa336808f12846c54c31e9be363fd7c5d2477",
+      "https://github.com/Synthetixio/js-monorepo/commit/ebac46feba43006a068b4d0498b0cb48e056ca6d"
+    ]
+  },
+  "LOOM": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "AUCTION": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "RAI": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "OXT": {
+    "commit_count": 1,
+    "lines_of_code": 38,
+    "commit_messages": [
+      "dapp: Instruction text."
+    ],
+    "distinct_authors": [
+      "Patrick Niemeyer"
+    ],
+    "commit_urls": [
+      "https://github.com/OrchidTechnologies/orchid/commit/8433fd2c567d4382d594fb5bb040d0941718bc41"
+    ]
+  },
+  "BAND": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "DOGE": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "REP": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "XTZ": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "PAX": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "MDT": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "ETH": {
+    "commit_count": 31,
+    "lines_of_code": 33363,
+    "commit_messages": [
+      "Issue 5246 fixed",
+      "tests: external evm benchmarks (#24050)\n\n* tests: add ipsilon/evm-benchmarks git submodule\r\n\r\n* tests: plug-in evm-benchmarks",
+      "Update src/content/developers/docs/nodes-and-clients/client-diversity/index.md\n\nCo-authored-by: Paul Wackerow <54227730+wackerow@users.noreply.github.com>",
+      "Update src/content/developers/docs/nodes-and-clients/client-diversity/index.md\n\nCo-authored-by: Paul Wackerow <54227730+wackerow@users.noreply.github.com>",
+      "Update src/content/developers/docs/nodes-and-clients/client-diversity/index.md\n\nCo-authored-by: Paul Wackerow <54227730+wackerow@users.noreply.github.com>",
+      "Update src/content/developers/docs/nodes-and-clients/client-diversity/index.md\n\nCo-authored-by: Paul Wackerow <54227730+wackerow@users.noreply.github.com>",
+      "Update src/content/developers/docs/nodes-and-clients/client-diversity/index.md\n\nCo-authored-by: Paul Wackerow <54227730+wackerow@users.noreply.github.com>",
+      "Merge pull request #1989 from ethereum/loadingImprove\n\nloading performance improvement",
+      "Merge branch 'master' into fix-parent",
+      "Merge pull request #12591 from ethereum/fuzz-latest-evm-version\n\nCode transform fuzzer: Only test against latest EVM version.",
+      "update according to @wackerow comments",
+      "remove emoji",
+      "Merge pull request #1999 from ethereum/fix-parent\n\nUse plugin calls for toaster and modal.",
+      "Update src/content/developers/docs/nodes-and-clients/client-diversity/index.md\n\nCo-authored-by: Joshua <62268199+minimalsm@users.noreply.github.com>",
+      "Update src/content/developers/docs/nodes-and-clients/client-diversity/index.md\n\nCo-authored-by: Joshua <62268199+minimalsm@users.noreply.github.com>",
+      "Update src/content/developers/docs/nodes-and-clients/client-diversity/index.md\n\nCo-authored-by: Joshua <62268199+minimalsm@users.noreply.github.com>",
+      "Update src/content/developers/docs/nodes-and-clients/client-diversity/index.md\n\nCo-authored-by: Joshua <62268199+minimalsm@users.noreply.github.com>",
+      "Update src/content/developers/docs/nodes-and-clients/client-diversity/index.md\n\nCo-authored-by: Joshua <62268199+minimalsm@users.noreply.github.com>",
+      "Update src/content/developers/docs/nodes-and-clients/client-diversity/index.md\n\nCo-authored-by: Joshua <62268199+minimalsm@users.noreply.github.com>",
+      "update to @minimalsm comments",
+      "Merge pull request #5256 from ethereum/get-involved-patch\n\nFix intl string bug",
+      "Apply suggestions from code review",
+      "Merge pull request #5241 from bskrksyp9/patch-31\n\nFix punctuation on security page",
+      "Finalize ERC-1271 (#4717)\n\n* Fix date\n\n* Automatically merged updates to draft EIP(s) 3416 (#3446)\n\n\nHi, I'm a bot! This change was automatically merged because:\n\n - It only modifies existing Draft, Review, or Last Call EIP(s)\n - The PR was approved or written by at least one author of each modified EIP\n - The build is passing\n\n* Update eip-2315.md (#3760)\n\n* Update eip-2315.md\n\n* Update eip-2315.md\n\n* Update eip-4573.md (#4680)\n\n* Update eip-4573.md\n\n* formatting eqn\n\n* Update eip-4573.md\n\n* EIP-4626: Preview functions (#4705)\n\n* preview functions\n\n* swap preview\n\n* Finalize ERC-1271\n\nWell beyond the last-call deadline. Time to cement this and make it final.\n\nCo-authored-by: hexzorro <80925920+hexzorro@users.noreply.github.com>\nCo-authored-by: Greg Colvin <greg@colvin.org>\nCo-authored-by: Alberto Cuesta Cañada <38806121+alcueca@users.noreply.github.com>",
+      "Merge pull request #5242 from ethereum/eth2-rebrand-cleanup\n\nUpgrades rebrand cleanup",
+      "Merge branch 'dev' into pr/5155",
+      "Merge pull request #5210 from PatrickAlphaC/dapptools-and-engineer\n\nadded dapptools and career focused tutorials",
+      "Merge pull request #5155 from lukassim/fix-mistranslations-of-ethereum\n\nFix typos and mistranslations of Ethereum",
+      "Merge pull request #5234 from ethereum/update-translation-faq\n\nAdd sections on compensation and review process to translation FAQs",
+      "Corresponding code in the .cpp file has been commented instead of begin removed pending preliminary reviews\nCode generators needed fixing of the cleanup process during typecasting of bytes and integers",
+      "Merge pull request #12584 from nishant-sachdeva/indexed_log_topic_differs_between_legacy_and_ir_if_explicitly_downcast\n\nCode generators needed fixing of the cleanup process during typecasting"
+    ],
+    "distinct_authors": [
+      "GitHub",
+      "Paul Wackerow",
+      "nishant-sachdeva",
+      "HursitTarcan",
+      "Joe"
+    ],
+    "commit_urls": [
+      "https://github.com/ethereum/ethereum-org-website/commit/6a075f58e6e504ab731a87f3bceaab411ff0ecb5",
+      "https://github.com/ethereum/go-ethereum/commit/64c53edf836efb1d55b85e841db364a424e95422",
+      "https://github.com/ethereum/ethereum-org-website/commit/5a15db03498e696e4718e7fad0c161623f2c2878",
+      "https://github.com/ethereum/ethereum-org-website/commit/725f8269fe9ce28ed1cd457464c54072f0d72c9e",
+      "https://github.com/ethereum/ethereum-org-website/commit/b1cafe2bdc3fe3b33f42e4d5c64e490149c2e577",
+      "https://github.com/ethereum/ethereum-org-website/commit/8e02b1fe7309ee121a4e9689cc9808c82296c478",
+      "https://github.com/ethereum/ethereum-org-website/commit/ad451486c221ad68ecdfe3efc89bb22dee87dbc4",
+      "https://github.com/ethereum/remix-project/commit/c58a252eaee65e3fcba77c1de4eb0dbdd12435b7",
+      "https://github.com/ethereum/remix-project/commit/c21ec51a651e2f801234b329189d2e322e103756",
+      "https://github.com/ethereum/solidity/commit/b897d5d7c408ef9f6f5f62125394e2b92c93ad08",
+      "https://github.com/ethereum/ethereum-org-website/commit/8bb594baf60756ef9fffe535764352a911e8982b",
+      "https://github.com/ethereum/ethereum-org-website/commit/097644c11ac39da0fe15beda80cfe9899587b227",
+      "https://github.com/ethereum/remix-project/commit/a76a14c30935ec86f537dd4fdb2e35dfa7df95ac",
+      "https://github.com/ethereum/ethereum-org-website/commit/918e70bb48c3ea1b336985ddaf9217d6c46969ce",
+      "https://github.com/ethereum/ethereum-org-website/commit/d68ee9f56d24f98144151bf8fc9f0651f458d16a",
+      "https://github.com/ethereum/ethereum-org-website/commit/9ee45210def3797874db51f7dd1383e8b3d11f50",
+      "https://github.com/ethereum/ethereum-org-website/commit/0a87843deb1b68a0dd99082c9ffc0024a300c41a",
+      "https://github.com/ethereum/ethereum-org-website/commit/45e3b0506f4dd26dd299a57d0b1e5a01f7149726",
+      "https://github.com/ethereum/ethereum-org-website/commit/98475d7243bd3c29c1208319bb969937017ac690",
+      "https://github.com/ethereum/ethereum-org-website/commit/13771264fbe3505640abd56f5a80919154531783",
+      "https://github.com/ethereum/ethereum-org-website/commit/925d19f8c6458ede53d90ae3857fd060a0536205",
+      "https://github.com/ethereum/ethereum-org-website/commit/c0ea21eb7a44069264fd56b695a61fcab7d2dbd4",
+      "https://github.com/ethereum/ethereum-org-website/commit/7bbc429c6d932b7fb08d6faff84763e3771e43d8",
+      "https://github.com/ethereum/EIPs/commit/c8e80baa77fa8ecbd7bad9262f0d5df20d334e3c",
+      "https://github.com/ethereum/ethereum-org-website/commit/95f945cf1b85798dff775a40c9c69fc779a5fef8",
+      "https://github.com/ethereum/ethereum-org-website/commit/c381df125bcbd627ecf8d3a3c6188baf761bcb0b",
+      "https://github.com/ethereum/ethereum-org-website/commit/e59b5d6de8a97956cd18f993109c26e25e7ff879",
+      "https://github.com/ethereum/ethereum-org-website/commit/7ec148d671b8d71d8f5bcb60ab6731f6dc029bdc",
+      "https://github.com/ethereum/ethereum-org-website/commit/139c4fc5c816945523ce9794b8840afab8f512ca",
+      "https://github.com/ethereum/solidity/commit/dec511aad8f7ea748455a2bdc5e3218398f04995",
+      "https://github.com/ethereum/solidity/commit/22116dfd0ae913860f93dcf197b91501d9c36a2b"
+    ]
+  },
+  "SPELL": {
+    "commit_count": 2,
+    "lines_of_code": 7981,
+    "commit_messages": [
+      "Merge branch 'main' into FTM-Expansion",
+      "Merge pull request #49 from Abracadabra-money/FTM-Expansion\n\nFtm expansion"
+    ],
+    "distinct_authors": [
+      "0xCalibur",
+      "GitHub"
+    ],
+    "commit_urls": [
+      "https://github.com/Abracadabra-money/magic-internet-money/commit/4d2ec9ee8523f5251d5ffbb04b1dcf9343047bbe",
+      "https://github.com/Abracadabra-money/magic-internet-money/commit/58c2a9d593efa5e0df7d13a81712312fe34a6a93"
+    ]
+  },
+  "SUPER": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "WCFG": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "BCH": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "CRO": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "POLY": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "YFI": {
+    "commit_count": 8,
+    "lines_of_code": 159,
+    "commit_messages": [
+      "feat: Remove $ from cmd in the README (#463)",
+      "feat: support multi strategies on vault details (#462)",
+      "bump version",
+      "docs: changes letter v in revent to c (#518)\n\nBaseWrapper.sol contains the same description.",
+      "Fix/links yearn state of the vaults > the vaults at yearn (#138)\n\n* fix: corrected relative links to getting-started/products\r\n\r\n* fix: updated previous links not migrated from versioning update\r\n\r\n* fix: update links to vault info\r\n\r\n* fix: update links to vault info, closes #136\r\n\r\n* fix: update links to contributor page, relates to #89\r\n\r\n* fix: add link to registry page\r\n\r\n* fix: typo found by @gmridul\r\n\r\n* fix: revert links to yVault tokens page\r\n\r\n* feat: added image for viewing contract info\r\n\r\n* Update naming-convention.md\r\n\r\n* fix: versioning typo",
+      "fix: rm grey border when searching, closes #132 (#139)\n\n* fix: rm grey border when searching, closes #132\r\n\r\n* fix: rm grey border box from search (previously shows in build)\r\n\r\n* fix: revert rm of lines\r\n\r\n* fix: remove lines when window width between 751 - 1082 px",
+      "refactor: add vaults and strategies intro article (#142)",
+      "refactor: tag non-public links as private (#148)\n\n* refactor: tag non-public links as private\r\n\r\n* fix: add texts for private repo access\r\n\r\nCo-authored-by: KurogeWashu <70884201+KurogeWashu@users.noreply.github.com>"
+    ],
+    "distinct_authors": [
+      "GitHub"
+    ],
+    "commit_urls": [
+      "https://github.com/yearn/yearn-finance-v3/commit/2007fe8047e740dce29a575dac30a406c532f5ca",
+      "https://github.com/yearn/yearn-finance-v3/commit/9051ec6ce53f46c30158dba07aadc691ce9e3fe2",
+      "https://github.com/yearn/yearn-finance-v3/commit/60979a191ded973e296458116f4a4e6c78c997a1",
+      "https://github.com/yearn/yearn-vaults/commit/f591cd6d37a3ca22842ab37f774e7efcbeaa809d",
+      "https://github.com/yearn/yearn-devdocs/commit/fe21e5634851a6989cf34852044a872ba39eeaf1",
+      "https://github.com/yearn/yearn-devdocs/commit/5c6398231a13227d954668d78a8b9b8ce9f0c062",
+      "https://github.com/yearn/yearn-devdocs/commit/79828622aecc2bf52206e06b1b9250bc9ee7d4f0",
+      "https://github.com/yearn/yearn-devdocs/commit/8cc78e36116ce570c5acaee73ac436f209329d8e"
+    ]
+  },
+  "MUSD": {
+    "commit_count": 1,
+    "lines_of_code": 19,
+    "commit_messages": [
+      "chore: Remove olympus message (#130)\n\n* Remove olympus message\r\n\r\n* Fix layout on swap"
+    ],
+    "distinct_authors": [
+      "GitHub"
+    ],
+    "commit_urls": [
+      "https://github.com/mstable/mStable-apps/commit/28c002d158a6c0be6f80ec38ca57916b1944ee18"
+    ]
+  },
+  "XYO": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "UNI": {
+    "commit_count": 5,
+    "lines_of_code": 465,
+    "commit_messages": [
+      "feat(widgets): move uniswap protocol branding from header to bottom of output (#3194)\n\n* move branding from header to bottom of output\r\n\r\n* remove old prop\r\n\r\n* BrandingFooter component\r\n\r\n* pr feedback",
+      "feat: format usd prices, add loading states (#3196)\n\n* format usd prices, add loading states\r\n\r\n* remove tildes, collapse details by default\r\n\r\n* update swap deadline to use seconds\r\n\r\n* update syntax for loading states",
+      "chore(i18n): synchronize translations from crowdin [skip ci]",
+      "chore(i18n): synchronize translations from crowdin [skip ci]",
+      "chore(i18n): synchronize translations from crowdin [skip ci]"
+    ],
+    "distinct_authors": [
+      "GitHub",
+      "Crowdin Bot"
+    ],
+    "commit_urls": [
+      "https://github.com/Uniswap/interface/commit/4a8f1d9b961586c40ca5bbaba31695bd1b4f3ac5",
+      "https://github.com/Uniswap/interface/commit/ed247065a71ad2e6b2a09e781785fd7215861f4a",
+      "https://github.com/Uniswap/interface/commit/0d0ad633fb812eef8742b583db99940b5e59d917",
+      "https://github.com/Uniswap/interface/commit/5bf2b817436e97ac64c0d9084afd33b6f765a3f4",
+      "https://github.com/Uniswap/interface/commit/7aecf5d3980daa09069bb1847fa0cf57aa1f6bd3"
+    ]
+  },
+  "FIL": {
+    "commit_count": 12,
+    "lines_of_code": 2657,
+    "commit_messages": [
+      "Set default value for admin address (#158)\n\n* Set default value for admin address",
+      "fvm: split apply failures into pre-validation and backtraces",
+      "fvm: fix typo\n\nCo-authored-by: raulk <raul@protocol.ai>",
+      "Merge pull request #302 from filecoin-project/steb/improve-backtrace\n\nfvm: remove error tracing from the kernel",
+      "chore: fix clippy lints",
+      "Merge pull request #303 from filecoin-project/steb/clippy-lints\n\nchore: fix clippy lints",
+      "Merge pull request #7999 from filecoin-project/feat/splistore-refactors\n\nsome basic splitstore refactors",
+      "Update storetheindex dependency for compatible signatures",
+      "Automatically Build and attach binaries to published releases\n\nUse goreleaser to build and attach binaries for multiple platform to a\npublished release.\n\nAdd CI job to check goreleaser config for validity on change.",
+      "Bump version to tag and release with binaries attached\n\nBump version file to make a release and have binaries autogenerated.",
+      "Poseidon version of SnapDeals (#1547)\n\n* feat: adds EmptySectorUpdate-Poseidon circuit and paramcache-id\r\n\r\nCo-authored-by: DrPeterVanNostrand <jnz@riseup.net>",
+      "Add a flag to print the unindexed multihashes during verify\n\nIf enabled, print the unindexed multihashes. But only print them if\nconnection to indexer was successful and the multihashes were deemed to\nbe unseen.\n\nCollect errors as part of verification result and print them out for\nbetter traceability."
+    ],
+    "distinct_authors": [
+      "Masih H. Derkani",
+      "GitHub",
+      "Steven Allen",
+      "Andrew Gillis"
+    ],
+    "commit_urls": [
+      "https://github.com/filecoin-project/index-provider/commit/e4800e72312be0ecf94f6f6f9c9b33180fcd2c6c",
+      "https://github.com/filecoin-project/ref-fvm/commit/06bc0a7bcce48d1bd95089055bb96308581169d1",
+      "https://github.com/filecoin-project/ref-fvm/commit/e630b115198a9c0444d672f36a68ab7da8f9e269",
+      "https://github.com/filecoin-project/ref-fvm/commit/8fdfc0cd375a4708f21d693bd0c2963ca68fdc39",
+      "https://github.com/filecoin-project/ref-fvm/commit/e25ee441ca83afda270faac5fff4b178e617a358",
+      "https://github.com/filecoin-project/ref-fvm/commit/1e5998e116f895caab788ebdd659a2556314c97e",
+      "https://github.com/filecoin-project/lotus/commit/ff10e0eaf1357118222f9aec7f872029730d0f26",
+      "https://github.com/filecoin-project/index-provider/commit/4dee1485bfb279d6c71e42866e80bc8a02bfb919",
+      "https://github.com/filecoin-project/index-provider/commit/cdee94c21be987e9915efd3cd8eeaee945378681",
+      "https://github.com/filecoin-project/index-provider/commit/bbc8bdcd2b779f33a5381ec6ff36e1a9fb9338cf",
+      "https://github.com/filecoin-project/rust-fil-proofs/commit/b72bc95cf01a264a7a7e5b8ca9719a99b8293016",
+      "https://github.com/filecoin-project/index-provider/commit/6f8c02da985501feb29273d2afc808e3ac526c37"
+    ]
+  },
+  "CRV": {
+    "commit_count": 6,
+    "lines_of_code": 468,
+    "commit_messages": [
+      "Merge pull request #64 from curvefi/api-fixes\n\nFixes for #63",
+      "Add ability to fetch facto rewards on sidechains",
+      "Add gauge for avax facto 30",
+      "Merge pull request #63 from curvefi/avax-gauge-facto-30\n\nAvax gauge facto 30",
+      "Fix network settings not using default if not set",
+      "Fix"
+    ],
+    "distinct_authors": [
+      "Philippe",
+      "GitHub"
+    ],
+    "commit_urls": [
+      "https://github.com/curvefi/curve-api/commit/87c21677760110a71637b1cbd44cdc498fbbb914",
+      "https://github.com/curvefi/curve-api/commit/da69556dd5a66d42109dee8ffdc150f56e7168aa",
+      "https://github.com/curvefi/curve-api/commit/e4d02ee1623bdcbe8b67f1afa809973e3170ed90",
+      "https://github.com/curvefi/curve-api/commit/7409ac26fc459ebc1de3f1ecd45e551069fa5d32",
+      "https://github.com/curvefi/curve-api/commit/9c2d4468ac4f34b37219e9f57c1af04f73ee70e4",
+      "https://github.com/curvefi/curve-api/commit/e88ad93b2301b29c7fae7f317e71248ef3d19979"
+    ]
+  },
+  "INV": {
+    "commit_count": 6,
+    "lines_of_code": 49700,
+    "commit_messages": [
+      "Packages: fix versions",
+      "Merge pull request #138 from InverseFinance/packages/fix-versions\n\nPackages: fix versions",
+      "Refacto: connectors",
+      "Transparency: add inv supply % staked",
+      "Connection: refacto",
+      "Merge pull request #139 from InverseFinance/misc-changes\n\nMisc changes"
+    ],
+    "distinct_authors": [
+      "GitHub",
+      "webmass"
+    ],
+    "commit_urls": [
+      "https://github.com/InverseFinance/inverse-web/commit/a9f530a0ebf663ca8505d8ead3fa4db79a2419df",
+      "https://github.com/InverseFinance/inverse-web/commit/2b75dd57b2df07ec5c535cef2fd89621e07c08d3",
+      "https://github.com/InverseFinance/inverse-web/commit/a00d11b8890f8516717bc6cdbe1ca27577fd8fed",
+      "https://github.com/InverseFinance/inverse-web/commit/43217dfe6b24ac27708a92608c5ab81a0b8c8f38",
+      "https://github.com/InverseFinance/inverse-web/commit/2b2d1d9e184a0319c491135b01d0cb118356cfef",
+      "https://github.com/InverseFinance/inverse-web/commit/3f0325c4412fa9938fe91c4c0bef51f7bd1e2651"
+    ]
+  },
+  "GFI": {
+    "commit_count": 0,
+    "lines_of_code": 0,
+    "commit_messages": [],
+    "distinct_authors": [],
+    "commit_urls": []
+  },
+  "RARI": {
+    "commit_count": 12,
+    "lines_of_code": 4635,
+    "commit_messages": [
+      "fix: bid collection on lazy items",
+      "Merge pull request #108 from rarible/fix/bid-collection-on-lazy-items\n\nfix: bid collection on lazy items",
+      "chore: bump versions after release",
+      "Fix: collection bid accept type (#102)\n\nfix: collection bid accept asset type",
+      "chore: bump versions after release",
+      "Merge pull request #54 from rarible/fix/FB-486\n\nFix/fb 486",
+      "chore: merge develop > master",
+      "chore: bump versions after release",
+      "test: update biconomy test contract address & domain type",
+      "Merge pull request #109 from rarible/test/biconomy_test_contract_metadata\n\ntest: update biconomy test contract address & domain type",
+      "fix: update flow-sdk - fixes flow scripts error (#104)\n\n* fix: update flow-sdk - fixes flow scripts error",
+      "chore: bump versions after release"
+    ],
+    "distinct_authors": [
+      "GitHub",
+      "Aleksandr",
+      "Aleksandr Sozinov",
+      "Sergei Vychegzhanin",
+      "vitalbadjo",
+      "vzhalnin"
+    ],
+    "commit_urls": [
+      "https://github.com/rarible/ethereum-sdk/commit/243b873023886a6ae4884e5844dbbf3485af13ef",
+      "https://github.com/rarible/ethereum-sdk/commit/a9ff6d35bcabf2d97998d4acb347183505daf83e",
+      "https://github.com/rarible/ethereum-sdk/commit/b267ee52c651bc70c4e495a43cc1335668df122d",
+      "https://github.com/rarible/sdk/commit/c023f3e1535a3865164e8a7497a86040e5b2ca53",
+      "https://github.com/rarible/sdk/commit/41e862072c6f8a2db704dec665a1348216963f0a",
+      "https://github.com/rarible/flow-sdk/commit/7c31869ca89b389346d2e14b4700d2daaa359d64",
+      "https://github.com/rarible/flow-sdk/commit/c3a4bbcd7aa922151f081775199be97b0ab86a99",
+      "https://github.com/rarible/flow-sdk/commit/33bbf29099c738764171eed3c05162102ca14634",
+      "https://github.com/rarible/ethereum-sdk/commit/d6282fa66e8e39656653a9532a0ec51ddb09e3f6",
+      "https://github.com/rarible/ethereum-sdk/commit/a73de4769d8333626663ccfe3de0d735c37bf343",
+      "https://github.com/rarible/sdk/commit/e54352b094d2c01189a721448c68a213464fc014",
+      "https://github.com/rarible/sdk/commit/9f5333e00e2102dc48149c092817ee040e1102d8"
+    ]
+  }
+}

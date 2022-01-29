@@ -1,0 +1,215 @@
+{
+  "tokens_represented": {
+    "ATOM": {
+      "daily_open": 29.99,
+      "daily_close": 29.0,
+      "daily_delta_percentage": -3.3
+    },
+    "BADGER": {
+      "daily_open": 9.06,
+      "daily_close": 11.13,
+      "daily_delta_percentage": 22.85
+    },
+    "SNX": {
+      "daily_open": 4.56,
+      "daily_close": 4.64,
+      "daily_delta_percentage": 1.75
+    },
+    "FIL": {
+      "daily_open": 19.16,
+      "daily_close": 19.51,
+      "daily_delta_percentage": 1.83
+    },
+    "OGN": {
+      "daily_open": 0.313,
+      "daily_close": 0.33,
+      "daily_delta_percentage": 5.43
+    },
+    "ADA": {
+      "daily_open": 1.0429,
+      "daily_close": 1.0471,
+      "daily_delta_percentage": 0.4
+    },
+    "ICP": {
+      "daily_open": 19.58,
+      "daily_close": 20.19,
+      "daily_delta_percentage": 3.12
+    },
+    "BTC": {
+      "daily_open": 37188.37,
+      "daily_close": 37511.34,
+      "daily_delta_percentage": 0.87
+    },
+    "ALGO": {
+      "daily_open": 0.9365,
+      "daily_close": 0.9655,
+      "daily_delta_percentage": 3.1
+    },
+    "OMG": {
+      "daily_open": 4.22,
+      "daily_close": 4.71,
+      "daily_delta_percentage": 11.61
+    },
+    "INV": {
+      "daily_open": 390.75,
+      "daily_close": 430.35,
+      "daily_delta_percentage": 10.13
+    },
+    "SKL": {
+      "daily_open": 0.1128,
+      "daily_close": 0.1188,
+      "daily_delta_percentage": 5.32
+    },
+    "ETH": {
+      "daily_open": 2425.01,
+      "daily_close": 2527.06,
+      "daily_delta_percentage": 4.21
+    },
+    "SOL": {
+      "daily_open": 89.55,
+      "daily_close": 91.14,
+      "daily_delta_percentage": 1.78
+    },
+    "LINK": {
+      "daily_open": 15.23,
+      "daily_close": 16.04,
+      "daily_delta_percentage": 5.32
+    },
+    "SPELL": {
+      "daily_open": 0.00534,
+      "daily_close": 0.00559,
+      "daily_delta_percentage": 4.68
+    },
+    "RARI": {
+      "daily_open": 8.12,
+      "daily_close": 8.5,
+      "daily_delta_percentage": 4.68
+    }
+  },
+  "top_by_num_commits": [
+    {
+      "token": "SOL",
+      "count": 126
+    },
+    {
+      "token": "ETH",
+      "count": 31
+    },
+    {
+      "token": "LINK",
+      "count": 19
+    },
+    {
+      "token": "ICP",
+      "count": 17
+    },
+    {
+      "token": "ADA",
+      "count": 15
+    },
+    {
+      "token": "ALGO",
+      "count": 14
+    },
+    {
+      "token": "SNX",
+      "count": 14
+    },
+    {
+      "token": "BADGER",
+      "count": 13
+    },
+    {
+      "token": "OMG",
+      "count": 13
+    },
+    {
+      "token": "FIL",
+      "count": 12
+    }
+  ],
+  "top_by_new_lines": [
+    {
+      "token": "INV",
+      "count": 49700
+    },
+    {
+      "token": "ETH",
+      "count": 33363
+    },
+    {
+      "token": "SPELL",
+      "count": 7981
+    },
+    {
+      "token": "ATOM",
+      "count": 7233
+    },
+    {
+      "token": "SNX",
+      "count": 5398
+    },
+    {
+      "token": "SKL",
+      "count": 5383
+    },
+    {
+      "token": "SOL",
+      "count": 5185
+    },
+    {
+      "token": "LINK",
+      "count": 5045
+    },
+    {
+      "token": "RARI",
+      "count": 4635
+    },
+    {
+      "token": "OGN",
+      "count": 4242
+    }
+  ],
+  "top_by_num_distinct_authors": [
+    {
+      "token": "SOL",
+      "count": 66
+    },
+    {
+      "token": "ICP",
+      "count": 6
+    },
+    {
+      "token": "RARI",
+      "count": 6
+    },
+    {
+      "token": "ETH",
+      "count": 5
+    },
+    {
+      "token": "ADA",
+      "count": 4
+    },
+    {
+      "token": "OMG",
+      "count": 4
+    },
+    {
+      "token": "LINK",
+      "count": 4
+    },
+    {
+      "token": "SNX",
+      "count": 4
+    },
+    {
+      "token": "FIL",
+      "count": 4
+    },
+    {
+      "token": "BTC",
+      "count": 3
+    }
+  ]
+}

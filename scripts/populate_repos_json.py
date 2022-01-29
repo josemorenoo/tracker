@@ -2,6 +2,9 @@ import json
 import os
 code_root = os.getcwd()
 
+
+### assumes get_coinbase_tickers.py ran and generated tickers_available_on_coinbase.txt
+
 repos_json = json.load(open(f'{code_root}/config/repos.json'))
 
 with open(f'{code_root}/tickers_available_on_coinbase.txt', 'r') as f:

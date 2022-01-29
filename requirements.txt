@@ -6,3 +6,4 @@ pydriller
 gunicorn
 Historic-Crypto
 tweepy
+kaleido

@@ -1,0 +1,210 @@
+{
+  "tokens_represented": {
+    "SUSHI": {
+      "daily_open": 4.53,
+      "daily_close": 4.12,
+      "daily_delta_percentage": -9.05
+    },
+    "API3": {
+      "daily_open": 3.83,
+      "daily_close": 3.58,
+      "daily_delta_percentage": -6.53
+    },
+    "ALGO": {
+      "daily_open": 0.9223,
+      "daily_close": 0.8963,
+      "daily_delta_percentage": -2.82
+    },
+    "SOL": {
+      "daily_open": 94.77,
+      "daily_close": 88.48,
+      "daily_delta_percentage": -6.64
+    },
+    "FIL": {
+      "daily_open": 18.16,
+      "daily_close": 18.33,
+      "daily_delta_percentage": 0.94
+    },
+    "KEEP": {
+      "daily_open": 0.3999,
+      "daily_close": 0.3966,
+      "daily_delta_percentage": -0.83
+    },
+    "ETH": {
+      "daily_open": 2460.4,
+      "daily_close": 2389.78,
+      "daily_delta_percentage": -2.87
+    },
+    "BTC": {
+      "daily_open": 36980.0,
+      "daily_close": 35997.94,
+      "daily_delta_percentage": -2.66
+    },
+    "SKL": {
+      "daily_open": 0.1134,
+      "daily_close": 0.1142,
+      "daily_delta_percentage": 0.71
+    },
+    "RAD": {
+      "daily_open": 4.94,
+      "daily_close": 5.06,
+      "daily_delta_percentage": 2.43
+    },
+    "MASK": {
+      "daily_open": 5.54,
+      "daily_close": 5.36,
+      "daily_delta_percentage": -3.25
+    },
+    "SNX": {
+      "daily_open": 4.28,
+      "daily_close": 4.59,
+      "daily_delta_percentage": 7.24
+    },
+    "ADA": {
+      "daily_open": 1.043,
+      "daily_close": 1.0259,
+      "daily_delta_percentage": -1.64
+    },
+    "LINK": {
+      "daily_open": 15.51,
+      "daily_close": 14.72,
+      "daily_delta_percentage": -5.09
+    },
+    "ICP": {
+      "daily_open": 20.07,
+      "daily_close": 18.62,
+      "daily_delta_percentage": -7.22
+    },
+    "UST": {
+      "daily_open": 1.0,
+      "daily_close": 1.0,
+      "daily_delta_percentage": 0.0
+    }
+  },
+  "top_by_num_commits": [
+    {
+      "token": "ADA",
+      "count": 143
+    },
+    {
+      "token": "SOL",
+      "count": 140
+    },
+    {
+      "token": "LINK",
+      "count": 55
+    },
+    {
+      "token": "ETH",
+      "count": 46
+    },
+    {
+      "token": "API3",
+      "count": 26
+    },
+    {
+      "token": "ICP",
+      "count": 24
+    },
+    {
+      "token": "SUSHI",
+      "count": 17
+    },
+    {
+      "token": "ALGO",
+      "count": 16
+    },
+    {
+      "token": "FIL",
+      "count": 15
+    },
+    {
+      "token": "BTC",
+      "count": 14
+    }
+  ],
+  "top_by_new_lines": [
+    {
+      "token": "LINK",
+      "count": 181353
+    },
+    {
+      "token": "ICP",
+      "count": 24147
+    },
+    {
+      "token": "ADA",
+      "count": 19023
+    },
+    {
+      "token": "MASK",
+      "count": 13066
+    },
+    {
+      "token": "SKL",
+      "count": 12924
+    },
+    {
+      "token": "SNX",
+      "count": 10287
+    },
+    {
+      "token": "KEEP",
+      "count": 9357
+    },
+    {
+      "token": "ETH",
+      "count": 8489
+    },
+    {
+      "token": "SUSHI",
+      "count": 8343
+    },
+    {
+      "token": "UST",
+      "count": 7789
+    }
+  ],
+  "top_by_num_distinct_authors": [
+    {
+      "token": "SOL",
+      "count": 67
+    },
+    {
+      "token": "ICP",
+      "count": 13
+    },
+    {
+      "token": "ETH",
+      "count": 8
+    },
+    {
+      "token": "ADA",
+      "count": 6
+    },
+    {
+      "token": "LINK",
+      "count": 6
+    },
+    {
+      "token": "API3",
+      "count": 5
+    },
+    {
+      "token": "FIL",
+      "count": 5
+    },
+    {
+      "token": "BTC",
+      "count": 4
+    },
+    {
+      "token": "RAD",
+      "count": 4
+    },
+    {
+      "token": "ALGO",
+      "count": 4
+    }
+  ]
+}
