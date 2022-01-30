@@ -16,8 +16,9 @@ def generate_daily_report(day: Optional[datetime]):
     
     if day:
         # generate report for datetime passed in 
-        start_date = day
-        end_date = datetime.combine(start_date + timedelta(days=1), datetime.min.time())
+        end_date = day
+        start_date = datetime.combine(end_date - timedelta(days=1), datetime.min.time())
+        
     else:
         # otherwise, default to today
         today = datetime.combine(date.today(), datetime.min.time())
@@ -47,7 +48,7 @@ def generate_daily_report(day: Optional[datetime]):
             "commit_urls": [create_commit_url(c, token_repos) for c in project_commits]
         }
 
-    report_date_str = start_date.strftime("%Y-%m-%d")
+    report_date_str = day.strftime("%Y-%m-%d")
 
     # create landing dir
     if not os.path.exists(f"{DAILY_REPORTS_PATH}/{report_date_str}"):
@@ -137,17 +138,16 @@ def generate_summary_report(report_date):
     with open(f'{DAILY_REPORTS_PATH}/{report_date_str}/summary.json', 'w', encoding='utf-8') as f:
         json.dump(summary_report, f, ensure_ascii=False, indent=2)
 
-if __name__ == "__main__":
-    report_date = datetime(year=2022, month=1, day=28)
-    report_date_str = report_date.strftime("%Y-%m-%d")
-
-    # generate the daily report, check how long it takes
-    query_start_time = time.time()
-    generate_daily_report(report_date)
-    report_generation_time_secs = time.time() - query_start_time
-    human_readable_duration = str(timedelta(seconds=report_generation_time_secs))
-    print(f"\n\n--- daily report generation ran in {human_readable_duration} ---\n\n" % ())
+def run():
+    today = datetime.today()
+    
+    # generate the daily report
+    generate_daily_report(today)
 
     # generate summary report, used by twitter graphs
-    generate_summary_report(report_date)
+    generate_summary_report(today)
+
+
+if __name__ == "__main__":
+    run()
     
