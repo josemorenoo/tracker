@@ -2,13 +2,15 @@ from datetime import datetime
 import json
 import tweepy
 
+from data import lockbox
+
 DAILY_REPORTS_PATH = "reports/daily"
 
 def setup_api():
-    consumer_key ="lffgQBBwSd8IdJXdQqraDzfDG"
-    consumer_secret ="5BDbCvDFQrjtuPmAghfrrIXw2Tc2R4wZ61L9RibEeqKYAnc3Dy"
-    access_key = "1478755386052292608-apaYloMjsbhLkHOkgWVXqzN3yA1MRY"    
-    access_secret = "hRw5enjUDHMIDYaHOUVa63xMZYStWAcvFzRkRg3NDEdxC"
+    consumer_key = lockbox.TWITTER['consumer_key']
+    consumer_secret = lockbox.TWITTER['consumer_secret']
+    access_key = lockbox.TWITTER['access_key']
+    access_secret = lockbox.TWITTER['access_secret']
 
     auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
     auth.set_access_token(access_key, access_secret)
