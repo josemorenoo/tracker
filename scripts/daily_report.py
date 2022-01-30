@@ -42,7 +42,7 @@ def generate_daily_report(day: Optional[datetime]):
         # populate daily report
         daily_commits_data[token_name] = {
             "commit_count": len(project_commits),
-            "lines_of_code": sum([c.lines for c in project_commits]),
+            "lines_of_code": sum([c.insertions for c in project_commits]),
             "commit_messages": [c.msg for c in project_commits],
             "distinct_authors": list(set([c.committer.name for c in project_commits])),
             "commit_urls": [create_commit_url(c, token_repos) for c in project_commits]

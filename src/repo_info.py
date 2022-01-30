@@ -14,6 +14,8 @@ class RepoInfo:
         self.githubRepoUrl = githubRepoUrl
 
         ch = CommitHandler()
+
+        # get all the commits
         if startDate and endDate:
             self.commits = [ch.create_commit(commit) for commit in tqdm(Repository(self.githubRepoUrl, since=startDate, to=endDate).traverse_commits())]
         else:

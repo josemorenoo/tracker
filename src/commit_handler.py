@@ -4,6 +4,12 @@ from typing import Any, List
 
 from .time_util import datetime_to_ms_timestamp, round_single_commit_by_time
 
+# files we don't want to count towards lines of code
+EXCLUSION_LIST = [
+    'yarn.lock',
+    'package.json'
+]
+
 @dataclass
 class Commit:
     """
@@ -45,6 +51,17 @@ class CommitHandler:
         Commit dataclass object
         '''
         print(" loading commit from {}".format(commit.project_name))
+        
+        # lines is insertions AND deletions
+        deletions, insertions, lines = commit.deletions, commit.insertions, commit.lines
+
+        # if file is in exclusion list by extension, ignore for line count
+        for modified_file in commit.modified_files:
+            if modified_file.filename.endswith(tuple(EXCLUSION_LIST)):
+                deletions -= modified_file.deleted_lines
+                insertions -= modified_file.added_lines
+                lines -= (modified_file.deleted_lines + modified_file.added_lines)
+
         return Commit(
             hash = commit.hash,
             msg = commit.msg,
@@ -60,9 +77,9 @@ class CommitHandler:
             modified_files = commit.modified_files,
             project_name = commit.project_name,
             project_path = commit.project_path,
-            deletions = commit.deletions,
-            insertions = commit.insertions,
-            lines = commit.lines,
+            deletions = deletions,
+            insertions = insertions,
+            lines = lines,
             files = commit.files,
             dmm_unit_size = commit.dmm_unit_size,
             dmm_unit_complexity = commit.dmm_unit_complexity,
