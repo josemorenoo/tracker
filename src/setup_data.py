@@ -134,7 +134,6 @@ def gather_project_commits(repos_commit_dictionary):
 
     # sort chronologically
     sorted_commits = sorted(project_commits, key=lambda c: c.ms_timestamp)
-    print(f"project has {len(sorted_commits)} commits available")
     return sorted_commits
 
 def get_list_of_project_commits(
@@ -148,7 +147,7 @@ def get_list_of_project_commits(
         project_repos (List[str]): [description]
         start_date (Optional[datetime], optional): [description]. Defaults to None.
         end_date (Optional[datetime], optional): [description]. Defaults to None.
-        
+
     Returns:
         [List[commits]]
     """

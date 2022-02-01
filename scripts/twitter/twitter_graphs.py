@@ -3,7 +3,7 @@ from tkinter import Y
 import matplotlib.pyplot as plt
 import pandas as pd
 import plotly.express as px
-from wordcloud import WordCloud
+#from wordcloud import WordCloud
 
 from scripts.twitter.colors import COLORS
 from scripts import daily_report
@@ -172,10 +172,10 @@ def create_word_cloud_daily_graph(report_date):
         "Update", "branch", "in", "a", "of", "is", "and", "test", "token", "automerge", "refactor", "sign", "off"    ]
 
     # Creating word_cloud with text as argument in .generate() method
-    word_cloud = WordCloud(stopwords=word_cloud_exclusions).generate(" ".join(daily_report_word_set))
+    #word_cloud = WordCloud(stopwords=word_cloud_exclusions).generate(" ".join(daily_report_word_set))
     #word_cloud.to_file(f"{REPORT_DIR}/word_cloud.png")
-    test = datetime.today() - timedelta(days=1)
-    word_cloud.to_file(f'{DAILY_REPORTS_PATH}{test.strftime("%Y-%m-%d")}/word_cloud.png')
+    #test = datetime.today() - timedelta(days=1)
+    #word_cloud.to_file(f'{DAILY_REPORTS_PATH}{test.strftime("%Y-%m-%d")}/word_cloud.png')
 
 if __name__ == "__main__":
     #create_word_cloud_daily_graph()

@@ -1,6 +1,6 @@
 data/**
 
-
+scripts/fresh_install_and_run.py
 
 __pycache__/
 *.py[cod]

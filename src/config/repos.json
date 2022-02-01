@@ -171,7 +171,6 @@
       "https://github.com/solana-labs/solana",
       "https://github.com/solana-labs/solana-program-library",
       "https://github.com/solana-labs/dapp-scaffold",
-      "https://github.com/solana-labs/token-list",
       "https://github.com/solana-labs/solana-web3.js"
     ]
   },
@@ -1028,8 +1027,7 @@
       "https://github.com/makerdao/mips",
       "https://github.com/makerdao/migrate-dashboard",
       "https://github.com/makerdao/dss-wormhole",
-      "https://github.com/makerdao/starknet-dai-bridge",
-      "https://github.com/makerdao/governance-manual"
+      "https://github.com/makerdao/starknet-dai-bridge"
     ]
   },
   "COVAL": {
@@ -1062,8 +1060,7 @@
       "https://github.com/makerdao/market-maker-keeper",
       "https://github.com/makerdao/dss",
       "https://github.com/makerdao/mips",
-      "https://github.com/makerdao/starknet-dai-bridge",
-      "https://github.com/makerdao/governance-manual"
+      "https://github.com/makerdao/starknet-dai-bridge"
     ]
   },
   "YFII": {

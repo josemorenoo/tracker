@@ -1,16 +1,17 @@
 from datetime import datetime, timedelta
 from apscheduler.schedulers.background import BackgroundScheduler
+import random
 import time
 
 import scripts.daily_report as daily_report
 import scripts.twitter.post_to_twitter as post
 import scripts.twitter.twitter_graphs as graphs
 
-YESTERDAY = datetime.today() - timedelta(days=1)
+YESTERDAY = datetime.today() - timedelta(hours=24)
 
-def run_daily_report():
+def run_daily_report(report_date):
     """runs the daily report for today"""
-    daily_report.run()
+    daily_report.run(report_date)
 
 def post_loc_daily_chart(post_to_twitter=True):
     """
@@ -30,17 +31,27 @@ def post_commits_daily_chart(post_to_twitter=True):
     if post_to_twitter:
         post.top_commits_daily_chart(YESTERDAY)
 
+def randomize_and_post(funcs, delays_secs):
+    random_order_funcs = random.sample(funcs, len(funcs))
+    for f in random_order_funcs:
+        f()
+        time.sleep(delays_secs)
+
+
 def make_report_and_post_all_charts():
     """
     Creates daily report and posts all the graphs
     """
 
-    #run_daily_report()
-    post_loc_daily_chart(post_to_twitter=False)
-    time.sleep(100)
-    post_authors_daily_chart(post_to_twitter=False)
-    time.sleep(100)
-    post_commits_daily_chart(post_to_twitter=False)
+    run_daily_report(YESTERDAY) 
+
+    randomize_and_post(funcs=[
+        post_loc_daily_chart,
+        post_authors_daily_chart,
+        post_commits_daily_chart
+    ], delays_secs = 300)
+
+    
     
 def show_jobs(sched):
     print(f"\n\njobs: {len(sched.get_jobs())}\n")

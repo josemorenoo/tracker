@@ -8,3 +8,5 @@ Historic-Crypto
 tweepy
 kaleido
 apscheduler
+wordcloud
+pillow

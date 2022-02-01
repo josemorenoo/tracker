@@ -160,15 +160,12 @@ def get_commit_message_word_list(report_date):
     return word_list
 
 
-def run():
-    today = datetime.today()
-    yesterday = today - timedelta(hours=24)
-    
+def run(report_date):    
     # generate the daily report
-    generate_daily_report(yesterday)
+    generate_daily_report(report_date)
 
     # generate summary report, used by twitter graphs
-    generate_summary_report(yesterday)
+    generate_summary_report(report_date)
 
 
 if __name__ == "__main__":

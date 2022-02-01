@@ -32,18 +32,18 @@ class RepoInfo:
             endDate = norm_dt(endDate)
 
         if startDate and endDate:
-            print("filtering through {} commits between start: {}, end: {}".format(str(len(self.commits)), str(startDate), str(endDate)))
+            print("{}: filtering through {} commits between start: {}, end: {}".format(self.githubRepoUrl.split('/')[-1], str(len(self.commits)), str(startDate), str(endDate)))
             filtered = list(filter(lambda c: norm_dt(c.committer_date) > startDate and norm_dt(c.committer_date) < endDate, self.commits))
             print("found {}\n".format(str(len(filtered))))
             return filtered
 
         elif startDate and not endDate:
-            print("filtering through {} commits between start: {}, end: {}".format(str(len(self.commits)), str(startDate), str(datetime.now())))
+            print("{}: filtering through {} commits between start: {}, end: {}".format(self.githubRepoUrl.split('/')[-1], str(len(self.commits)), str(startDate), str(datetime.now())))
             filtered = list(filter(lambda c: norm_dt(c.committer_date) > startDate, self.commits))
             print("found {}\n".format(str(len(filtered))))
             return filtered
         elif not startDate and endDate:
-            print("filtering through {} commits between start: {}, end: {}".format(str(len(self.commits)), str(self.commits[0].committer_date), str(endDate)))
+            print("{}: filtering through {} commits between start: {}, end: {}".format(self.githubRepoUrl.split('/')[-1], str(len(self.commits)), str(self.commits[0].committer_date), str(endDate)))
             filtered = list(filter(lambda c: norm_dt(c.committer_date) < endDate, self.commits))
             print("found {}\n".format(str(len(filtered))))
             return filtered
