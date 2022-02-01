@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 from apscheduler.schedulers.background import BackgroundScheduler
 import time
 
@@ -6,38 +6,43 @@ import scripts.daily_report as daily_report
 import scripts.twitter.post_to_twitter as post
 import scripts.twitter.twitter_graphs as graphs
 
+YESTERDAY = datetime.today() - timedelta(days=1)
+
 def run_daily_report():
     """runs the daily report for today"""
     daily_report.run()
 
-def post_loc_daily_chart():
+def post_loc_daily_chart(post_to_twitter=True):
     """
     creates and posts graph
     """
-    graphs.create_top_by_loc_graph()
-    post.loc_daily_chart(datetime.today())
+    graphs.create_top_by_loc_graph(YESTERDAY)
+    if post_to_twitter:
+        post.loc_daily_chart(YESTERDAY)
 
-def post_authors_daily_chart():
-    graphs.create_top_by_num_authors_graph()
-    post.authors_daily_chart(datetime.today())
+def post_authors_daily_chart(post_to_twitter=True):
+    graphs.create_top_by_num_authors_graph(YESTERDAY)
+    if post_to_twitter:
+        post.authors_daily_chart(YESTERDAY)
 
-def post_commits_daily_chart():
-    graphs.create_top_commits_daily_graph()
-    post.top_commits_daily_chart(datetime.today())
+def post_commits_daily_chart(post_to_twitter=True):
+    graphs.create_top_commits_daily_graph(YESTERDAY)
+    if post_to_twitter:
+        post.top_commits_daily_chart(YESTERDAY)
 
 def make_report_and_post_all_charts():
     """
     Creates daily report and posts all the graphs
     """
 
-    run_daily_report()
-    post_loc_daily_chart()
-    time.sleep(200)
-    post_authors_daily_chart()
-    time.sleep(200)
-    post_commits_daily_chart()
+    #run_daily_report()
+    post_loc_daily_chart(post_to_twitter=False)
+    time.sleep(100)
+    post_authors_daily_chart(post_to_twitter=False)
+    time.sleep(100)
+    post_commits_daily_chart(post_to_twitter=False)
     
-def show_jobs():
+def show_jobs(sched):
     print(f"\n\njobs: {len(sched.get_jobs())}\n")
     for job in sched.get_jobs():
         print("\nname: %s, trigger: %s, next run: %s, handler: %s" % (
@@ -46,12 +51,14 @@ def show_jobs():
 
 
 if __name__ == "__main__":
+    make_report_and_post_all_charts()
+    """
     # Start the scheduler
     sched = BackgroundScheduler()
     sched.start()
 
-    hour='22'
-    minute='01'
+    hour='10'
+    minute='50'
     sched.add_job(make_report_and_post_all_charts, trigger='cron', hour=hour, minute=minute,  day_of_week='*')
     
     # gets job we just created, make sure it starts today if possible
@@ -68,8 +75,10 @@ if __name__ == "__main__":
     try:
         # This is here to simulate application activity (which keeps the main thread alive).
         while True:
-            show_jobs()
+            show_jobs(sched)
             time.sleep(100)
     except (KeyboardInterrupt, SystemExit):
         # Not strictly necessary if daemonic mode is enabled but should be done if possible
         sched.shutdown()
+    """
+    

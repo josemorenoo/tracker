@@ -2,6 +2,7 @@ from datetime import datetime, date, timedelta
 import json
 import os
 import time
+from tqdm import tqdm
 from typing import Optional, List, Any
 
 from src import setup_data
@@ -17,17 +18,17 @@ def generate_daily_report(day: Optional[datetime]):
     if day:
         # generate report for datetime passed in 
         end_date = day
-        start_date = datetime.combine(end_date - timedelta(days=1), datetime.min.time())
+        start_date = datetime.combine(end_date - timedelta(hours=24), datetime.min.time())
         
     else:
         # otherwise, default to today
         today = datetime.combine(date.today(), datetime.min.time())
-        yesterday = datetime.combine(date.today() - timedelta(days=1), datetime.min.time())
+        yesterday = datetime.combine(date.today() - timedelta(hours=24), datetime.min.time())
         start_date = yesterday
         end_date = today
 
     daily_commits_data = {}
-    for token_name, token_data in tokens.items():
+    for token_name, token_data in tqdm(tokens.items()):
         token_repos = token_data['repos']
         if len(token_repos) == 0:
             continue
@@ -87,9 +88,14 @@ def get_top_most_active(report_date_str: str, n=10):
 
     return sorted_by_commit_count[:n], sorted_by_lines_of_code[:n], sorted_by_distinct_authors[:n]
 
-def get_daily_price_deltas(sorted_tokens: List[Any], report_date_str):
+def get_summary_report(report_date):
+    report_date_str = report_date.strftime("%Y-%m-%d")
     with open(f'{DAILY_REPORTS_PATH}/{report_date_str}/summary.json', 'r') as f:
         summary_report = json.load(f)
+    return summary_report
+
+def get_daily_price_deltas(sorted_tokens: List[Any], report_date):
+    summary_report = get_summary_report(report_date)
     return [summary_report["tokens_represented"][token]["daily_delta_percentage"] for token in sorted_tokens]
 
 def generate_summary_report(report_date):
@@ -104,7 +110,7 @@ def generate_summary_report(report_date):
         report_date_str (str): "YYY-MM-DD"
     """
     report_date_str = report_date.strftime("%Y-%m-%d")
-    end_of_date = report_date + timedelta(days=1)
+    end_of_date = report_date + timedelta(hours=24)
 
     # display the top 10 from the daily report
     by_commits, by_LOC, by_distinct_authors = get_top_most_active(report_date_str, n=10)
@@ -138,14 +144,31 @@ def generate_summary_report(report_date):
     with open(f'{DAILY_REPORTS_PATH}/{report_date_str}/summary.json', 'w', encoding='utf-8') as f:
         json.dump(summary_report, f, ensure_ascii=False, indent=2)
 
+def get_commit_message_word_list(report_date):
+    report_date_str = report_date.strftime("%Y-%m-%d")
+    with open(f'{DAILY_REPORTS_PATH}/{report_date_str}/{report_date_str}.json', 'r') as f:
+        daily_report = json.load(f)
+
+    commit_messages_as_list_of_words = []
+    for _, token_data in daily_report.items():
+        commit_messages_as_list_of_words.extend([msg.split(' ') for msg in token_data['commit_messages']])
+    
+    word_list = []
+    for sublist in commit_messages_as_list_of_words:
+        word_list.extend(sublist)
+    print(word_list)
+    return word_list
+
+
 def run():
     today = datetime.today()
+    yesterday = today - timedelta(hours=24)
     
     # generate the daily report
-    generate_daily_report(today)
+    generate_daily_report(yesterday)
 
     # generate summary report, used by twitter graphs
-    generate_summary_report(today)
+    generate_summary_report(yesterday)
 
 
 if __name__ == "__main__":

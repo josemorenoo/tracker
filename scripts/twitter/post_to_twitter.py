@@ -3,6 +3,7 @@ import json
 import tweepy
 
 from data import lockbox
+import scripts.daily_report as daily_report
 
 DAILY_REPORTS_PATH = "reports/daily"
 
@@ -17,16 +18,8 @@ def setup_api():
     api = tweepy.API(auth)
     return api
 
-def get_summary_report(report_date):
-    report_date_str = report_date.strftime("%Y-%m-%d")
-
-    # generate status with hashtags using summary report for this day
-    with open(f'{DAILY_REPORTS_PATH}/{report_date_str}/summary.json', 'r') as f:
-        summary_report = json.load(f)
-    return summary_report
-
 def generate_tweet_text(report_date, metric):
-    summary_report_dict = get_summary_report(report_date)
+    summary_report_dict = daily_report.get_summary_report(report_date)
     token_hashtags = " ".join([f"#{each['token']}" for each in summary_report_dict[metric]])
     if metric == "top_by_num_commits":
         status = "Most active #crypto projects by #github commits today 👨‍💻\n\n"
@@ -70,6 +63,4 @@ def top_commits_daily_chart(report_date):
 
 
 if __name__ == "__main__":
-    #report_date = datetime(year=2022, month=1, day=28)
-    #report_date_str = report_date.strftime("%Y-%m-%d")
     pass
