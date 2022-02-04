@@ -8,25 +8,31 @@ import plotly.express as px
 from scripts.twitter.colors import COLORS
 from scripts import daily_report
 
-DAILY_REPORTS_PATH = 'reports/daily/'
-
 def create_img(image_path, fig):
     fig.write_image(image_path)
     print(f"image saved: {image_path}")
 
-def create_top_by_loc_graph(report_date):
+def create_top_by_loc_graph(report_date, mode="DAILY"):
     report_date_str = report_date.strftime("%Y-%m-%d")
-    REPORT_DIR = f"{DAILY_REPORTS_PATH}{report_date_str}"
+    if mode=="DAILY":
+        REPORT_DIR = f"{daily_report.DAILY_REPORTS_PATH}/{report_date_str}"
+        title = "Today's Top 10 Tokens by New Lines of Code"
+    if mode=="WEEKLY":
+        title = "This Week's Top 10 Tokens by New Lines of Code"
+        REPORT_DIR = f"{daily_report.WEEKLY_REPORTS_PATH}/{report_date_str}"
+    
     # get data
-    _, by_locs, _ = daily_report.get_top_most_active(report_date_str)
+    _, by_locs, _ = daily_report.get_top_most_active(report_date_str, mode=mode)
+    daily_report.get_combined_price_deltas(by_locs, report_date, mode)
 
     # flip so that they show up in descending order on HORIZONTAL bar graph
     by_locs = by_locs[::-1]
 
     by_locs_df = pd.DataFrame(by_locs, columns=["Token", "New Lines of Code"])
+
     fig = px.bar(
         by_locs_df,
-        title=f"Today's Top 10 Tokens by New Lines of Code",
+        title=title,
         x="New Lines of Code",
         y=[f"{token} " for token in by_locs_df['Token']], # Give the damn token label some breathing room
         orientation='h',
@@ -61,11 +67,18 @@ def create_top_by_loc_graph(report_date):
     image_path = f"{REPORT_DIR}/top_loc.png"
     create_img(image_path, fig)
 
-def create_top_by_num_authors_graph(report_date):
+def create_top_by_num_authors_graph(report_date, mode="DAILY"):
     report_date_str = report_date.strftime("%Y-%m-%d")
-    REPORT_DIR = f"{DAILY_REPORTS_PATH}{report_date_str}"
+    if mode=="DAILY":
+        REPORT_DIR = f"{daily_report.DAILY_REPORTS_PATH}/{report_date_str}"
+        title = "Today's Top 10 Tokens by Distinct Developers"
+    if mode=="WEEKLY":
+        title = "This Week's Top 10 Tokens by Distinct Developers"
+        REPORT_DIR = f"{daily_report.WEEKLY_REPORTS_PATH}/{report_date_str}"
+
     # get data
-    _, _, by_authors = daily_report.get_top_most_active(report_date_str)
+    _, _, by_authors = daily_report.get_top_most_active(report_date_str, mode=mode)
+    daily_report.get_combined_price_deltas(by_authors, report_date, mode)
 
     # flip so that they show up in descending order on HORIZONTAL bar graph
     by_authors = by_authors[::-1]
@@ -73,7 +86,7 @@ def create_top_by_num_authors_graph(report_date):
     by_authors_df = pd.DataFrame(by_authors, columns=["Token", "Number of Distinct Developers"])
     fig = px.bar(
         by_authors_df,
-        title=f"Today's Top 10 Tokens by Distinct Developers",
+        title=title,
         x="Number of Distinct Developers",
         y=[f"{token} " for token in by_authors_df['Token']], # Give the damn token label some breathing room
         orientation='h',
@@ -108,12 +121,18 @@ def create_top_by_num_authors_graph(report_date):
     image_path = f"{REPORT_DIR}/top_distinct_authors.png"
     create_img(image_path, fig)
 
-def create_top_commits_daily_graph(report_date):
+def create_top_commits_daily_graph(report_date, mode="DAILY"):
     report_date_str = report_date.strftime("%Y-%m-%d")
-    REPORT_DIR = f"{DAILY_REPORTS_PATH}{report_date_str}"
+    if mode=="DAILY":
+        REPORT_DIR = f"{daily_report.DAILY_REPORTS_PATH}/{report_date_str}"
+        title = "Today's Top 10 Tokens by Most Commits"
+    if mode=="WEEKLY":
+        title = "This Week's Top 10 Tokens by Most Commits"
+        REPORT_DIR = f"{daily_report.WEEKLY_REPORTS_PATH}/{report_date_str}"
 
     # get data
-    by_commits, _, _ = daily_report.get_top_most_active(report_date_str)
+    by_commits, _, _ = daily_report.get_top_most_active(report_date_str, mode=mode)
+    daily_report.get_combined_price_deltas(by_commits, report_date, mode)
 
     # flip so that they show up in descending order on HORIZONTAL bar graph
     by_commits = by_commits[::-1]
@@ -122,7 +141,7 @@ def create_top_commits_daily_graph(report_date):
     by_commits_df = pd.DataFrame(by_commits, columns=["Token", "Number of commits"])
     fig = px.bar(
         by_commits_df,
-        title=f"Today's Top 10 Tokens by Commit Count",
+        title=title,
         x="Number of commits",
         y=[f"{token} " for token in by_commits_df['Token']], # Give the damn token label some breathing room
         orientation='h',

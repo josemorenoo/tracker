@@ -9,48 +9,52 @@ import scripts.twitter.twitter_graphs as graphs
 
 YESTERDAY = datetime.today() - timedelta(hours=24)
 
-def run_daily_report(report_date):
+def run_daily_report(report_date, mode="DAILY"):
     """runs the daily report for today"""
-    daily_report.run(report_date)
+    daily_report.run(report_date, mode)
 
-def post_loc_daily_chart(post_to_twitter=True):
+def post_loc_chart(post_to_twitter=True, mode="DAILY"):
     """
     creates and posts graph
     """
-    graphs.create_top_by_loc_graph(YESTERDAY)
+    graphs.create_top_by_loc_graph(YESTERDAY, mode=mode)
     if post_to_twitter:
-        post.loc_daily_chart(YESTERDAY)
+        post.loc_chart(YESTERDAY, mode=mode)
 
-def post_authors_daily_chart(post_to_twitter=True):
-    graphs.create_top_by_num_authors_graph(YESTERDAY)
+def post_authors_chart(post_to_twitter=True, mode="DAILY"):
+    graphs.create_top_by_num_authors_graph(YESTERDAY, mode=mode)
     if post_to_twitter:
-        post.authors_daily_chart(YESTERDAY)
+        post.authors_chart(YESTERDAY, mode=mode)
 
-def post_commits_daily_chart(post_to_twitter=True):
-    graphs.create_top_commits_daily_graph(YESTERDAY)
+def post_commits_chart(post_to_twitter=True, mode="DAILY"):
+    graphs.create_top_commits_daily_graph(YESTERDAY, mode=mode)
     if post_to_twitter:
-        post.top_commits_daily_chart(YESTERDAY)
+        post.top_commits_chart(YESTERDAY, mode=mode)
 
-def randomize_and_post(funcs, delays_secs):
+def randomize_and_post(funcs, delays_secs, post_to_twitter=True, mode="DAILY"):
     random_order_funcs = random.sample(funcs, len(funcs))
     for f in random_order_funcs:
-        f()
+        f(post_to_twitter, mode=mode)
         time.sleep(delays_secs)
 
 
-def make_report_and_post_all_charts():
+
+def make_report_and_post_all_charts(run_report=True, post_to_twitter=True, mode="DAILY"):
     """
     Creates daily report and posts all the graphs
     """
 
-    run_daily_report(YESTERDAY) 
+    if run_report:
+        run_daily_report(YESTERDAY, mode=mode) 
 
     randomize_and_post(funcs=[
-        post_loc_daily_chart,
-        post_authors_daily_chart,
-        post_commits_daily_chart
-    ], delays_secs = 300)
-
+        post_loc_chart,
+        post_authors_chart,
+        post_commits_chart
+    ], 
+    delays_secs = 30,
+    post_to_twitter=post_to_twitter,
+    mode=mode)
     
     
 def show_jobs(sched):
@@ -62,7 +66,7 @@ def show_jobs(sched):
 
 
 if __name__ == "__main__":
-    make_report_and_post_all_charts()
+    make_report_and_post_all_charts(run_report=False, post_to_twitter=False, mode='WEEKLY')
     """
     # Start the scheduler
     sched = BackgroundScheduler()
