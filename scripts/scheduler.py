@@ -66,7 +66,7 @@ def show_jobs(sched):
 
 
 if __name__ == "__main__":
-    make_report_and_post_all_charts(run_report=False, post_to_twitter=False, mode='WEEKLY')
+    make_report_and_post_all_charts(run_report=True, post_to_twitter=True, mode='DAILY')
     """
     # Start the scheduler
     sched = BackgroundScheduler()

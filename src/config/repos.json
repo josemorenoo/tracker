@@ -12,7 +12,7 @@
     "description": "",
     "repos": [
       "https://github.com/Loopring/loopring-explorer",
-      "https://github.com/Loopring/loopring-web-v2",
+      "https://github.com/Loopring/website",
       "https://github.com/Loopring/loopring_sdk",
       "https://github.com/Loopring/dexwebapp",
       "https://github.com/Loopring/whitepaper"

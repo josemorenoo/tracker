@@ -12,10 +12,10 @@ from src.myplotly.plots import Plots
     
 # setup
 read_from_pickle = True
-token="LRC"
-start_date = datetime(2022, 1, 20, 12, 00, 00)
-end_date = datetime(2022, 1, 25, 12, 00, 00)
-timeframe = "month"
+token="ICP"
+start_date = datetime(2021, 2, 8, 12, 00, 00)
+end_date = datetime(2022, 2, 8, 12, 00, 00)
+timeframe = "year" # [day, week, month, year]
 
 # get repo list
 repos = json.load(open('src/config/repos.json'))
@@ -50,7 +50,7 @@ figures = [Plots.create_commits_plot(token, token_data_df, project_commits_list,
 figures.extend([f(token, token_data_df, project_commits_list) for f in plotting_functions])
 
 # create dash instance
-app = dash.Dash(__name__)
+app = dash.Dash(__name__, title='coincommit.ai', update_title='Searching through the metaverse...')
 server = app.server
 
 
@@ -66,14 +66,9 @@ for fig_id, fig in enumerate(figures):
 
 
 # create the dashboard page
-app.layout = html.Div(children=plot_divs)
-
-
-"""
-# matplotlib
-hp = HairyPlotter()
-hp.show_commmit_plot(token_data_df, project_commits_list)
-"""
+app.layout = html.Div(
+    children=plot_divs,
+    style={'width': '66%'})
 
 if __name__ == '__main__':
     app.run_server(debug=True)

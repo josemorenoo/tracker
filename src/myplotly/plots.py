@@ -39,7 +39,7 @@ class Plots:
             yaxis2 = go.layout.YAxis(title="# Files Modified Per Commit",
             overlaying='y',
             side='right',
-            type='log'))
+            type='linear'))
         fig.update_layout(
             hoverlabel_align='left')
         return fig
@@ -89,7 +89,7 @@ class Plots:
             yaxis2 = go.layout.YAxis(title=f"Lines of Code",
             overlaying='y',
             side='right',
-            type='log'))
+            type='linear'))
         fig.update_layout(
             hoverlabel_align='left')
         return fig
