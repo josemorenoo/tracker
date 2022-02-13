@@ -1,20 +1,19 @@
-from calendar import day_abbr
+from collections import Counter
 from datetime import datetime, date, timedelta
 import json
 import os
-import time
 from tqdm import tqdm
 from typing import Optional, List, Any
 
-from src import setup_data
-from src.crypto_oracle import CryptoOracle
+from scripts.reporter.paths import PATHS
+import scripts.reporter.report_util as util
 
-REPOS_FILE = 'repos.json'
-DAILY_REPORTS_PATH = 'reports/daily'
-WEEKLY_REPORTS_PATH = 'reports/weekly'
+from webapp import setup_data
+from webapp.token_prices import CryptoOracle
+
 
 def generate_weekly_report(end_date: datetime):
-    with open(f"src/config/{REPOS_FILE}", "r") as f:
+    with open(PATHS.REPOS_FILE, "r") as f:
         tokens = json.load(f)
 
     start_date = datetime.combine(end_date - timedelta(days=7), datetime.min.time())
@@ -38,21 +37,22 @@ def generate_weekly_report(end_date: datetime):
             "lines_of_code": sum([c.insertions for c in project_commits]),
             "commit_messages": [c.msg for c in project_commits],
             "distinct_authors": list(set([c.committer.name for c in project_commits])),
-            "commit_urls": [create_commit_url(c, token_repos) for c in project_commits]
+            "commit_urls": [create_commit_url(c, token_repos) for c in project_commits],
+            "file_extensions": [ext for commit_list in [c.file_extensions for c in project_commits] for ext in commit_list]
         }
 
     report_date_str = end_date.strftime("%Y-%m-%d")
 
     # create landing dir
-    if not os.path.exists(f"{WEEKLY_REPORTS_PATH}/{report_date_str}"):
-        os.makedirs(f"{WEEKLY_REPORTS_PATH}/{report_date_str}")
+    if not os.path.exists(f"{PATHS['WEEKLY_REPORTS_PATH']}/{report_date_str}"):
+        os.makedirs(f"{PATHS['WEEKLY_REPORTS_PATH']}/{report_date_str}")
 
     # dump daily report
-    with open(f'{WEEKLY_REPORTS_PATH}/{report_date_str}/{report_date_str}.json', 'w', encoding='utf-8') as f:
+    with open(f"{PATHS['WEEKLY_REPORTS_PATH']}/{report_date_str}/{report_date_str}.json", 'w', encoding='utf-8') as f:
         json.dump(weekly_commits_data, f, ensure_ascii=False, indent=2)
 
 def generate_daily_report(day: Optional[datetime]):
-    with open(f"src/config/{REPOS_FILE}", "r") as f:
+    with open(f"{PATHS['REPOS_FILE']}", "r") as f:
         tokens = json.load(f)
     
     if day:
@@ -86,73 +86,20 @@ def generate_daily_report(day: Optional[datetime]):
             "lines_of_code": sum([c.insertions for c in project_commits]),
             "commit_messages": [c.msg for c in project_commits],
             "distinct_authors": list(set([c.committer.name for c in project_commits])),
-            "commit_urls": [create_commit_url(c, token_repos) for c in project_commits]
+            "commit_urls": [create_commit_url(c, token_repos) for c in project_commits],
+            "file_extensions": [ext for commit_list in [c.file_extensions for c in project_commits] for ext in commit_list]
         }
 
     report_date_str = day.strftime("%Y-%m-%d")
 
     # create landing dir
-    if not os.path.exists(f"{DAILY_REPORTS_PATH}/{report_date_str}"):
-        os.makedirs(f"{DAILY_REPORTS_PATH}/{report_date_str}")
+    if not os.path.exists(f"{PATHS['DAILY_REPORTS_PATH']}/{report_date_str}"):
+        os.makedirs(f"{PATHS['DAILY_REPORTS_PATH']}/{report_date_str}")
 
     # dump daily report
-    with open(f'{DAILY_REPORTS_PATH}/{report_date_str}/{report_date_str}.json', 'w', encoding='utf-8') as f:
+    with open(f"{PATHS['DAILY_REPORTS_PATH']}/{report_date_str}/{report_date_str}.json", 'w', encoding='utf-8') as f:
         json.dump(daily_commits_data, f, ensure_ascii=False, indent=2)
 
-def get_top_most_active(report_date_str: str, n=10, mode="DAILY"):
-    """Sorts tokens by most active to least active
-
-    Args:
-        report_date_str ([type]): [YYYY-MM-DD]
-        n ([type]): [the top n to add to the list]
-
-    Returns:
-        [List[tuple(token_name, commit_count)], List[tuple(token_name, lines_of_code)]]: two lists containing tuples of (token name, metric)
-    """
-    if mode=="DAILY":
-        report_json_path = f"{DAILY_REPORTS_PATH}/{report_date_str}/{report_date_str}.json"
-    elif mode=="WEEKLY":
-        report_json_path = f"{WEEKLY_REPORTS_PATH}/{report_date_str}/{report_date_str}.json"
-
-    with open(report_json_path, "r") as f:
-        report = json.load(f)
-    
-    # sort in descending order, [(token_name, commit_count or lines_of_code), ...]
-    sort_by_metric = lambda report_list: sorted(report_list, key=lambda x: x[1], reverse=True)
-
-    daily_report_by_commits_as_list = [(token_name, int(token_data['commit_count'])) for token_name, token_data in report.items()]
-    sorted_by_commit_count = sort_by_metric(daily_report_by_commits_as_list)
-
-    daily_report_by_LOC_as_list = [(token_name, int(token_data['lines_of_code'])) for token_name, token_data in report.items()]
-    sorted_by_lines_of_code = sort_by_metric(daily_report_by_LOC_as_list)
-
-    daily_report_by_distinct_authors = [(token_name, int(len(token_data['distinct_authors']))) for token_name, token_data in report.items()]
-    sorted_by_distinct_authors = sort_by_metric(daily_report_by_distinct_authors)
-
-    return sorted_by_commit_count[:n], sorted_by_lines_of_code[:n], sorted_by_distinct_authors[:n]
-
-def get_summary_report(report_date, mode="DAILY"):
-    report_date_str = report_date.strftime("%Y-%m-%d")
-    if mode=="DAILY":
-        with open(f'{DAILY_REPORTS_PATH}/{report_date_str}/summary.json', 'r') as f:
-            summary_report = json.load(f)
-    if mode=="WEEKLY":
-        with open(f'{WEEKLY_REPORTS_PATH}/{report_date_str}/summary.json', 'r') as f:
-            summary_report = json.load(f)
-    return summary_report
-
-def get_combined_price_deltas(sorted_tokens: List[Any], report_date, mode="DAILY"):
-    price_deltas = get_daily_price_deltas([x[0] for x in sorted_tokens], report_date, mode)
-    avg_delta = sum(price_deltas) / len(price_deltas)
-    print(f"average cumulative return for {sorted_tokens} is {avg_delta} | {mode}")
-    return avg_delta
-
-def get_daily_price_deltas(sorted_tokens: List[Any], report_date, mode="DAILY"):
-    summary_report = get_summary_report(report_date, mode)
-    if mode=="DAILY":
-        return [summary_report["tokens_represented"][token]["daily_delta_percentage"] for token in sorted_tokens]
-    if mode=="WEEKLY":
-        return [summary_report["tokens_represented"][token]["weekly_delta_percentage"] for token in sorted_tokens]
 
 def generate_summary_report(report_date, mode="DAILY"):
     """Displays the top 10 projects across multiple categories
@@ -174,10 +121,11 @@ def generate_summary_report(report_date, mode="DAILY"):
 
 
     # display the top 10 from the daily report
-    by_commits, by_LOC, by_distinct_authors = get_top_most_active(report_date_str, n=10, mode=mode)
-    print("\nTop projects by # of commits", *by_commits, sep="\n")
-    print("\nTop projects by new lines of code", *by_LOC, sep="\n")
-    print("\nTop projects by distinct authors", *by_distinct_authors, sep="\n")
+    by_commits = util.get_most_active_by_commits(report_date_str, n=10, mode=mode)
+    by_LOC = util.get_most_active_by_loc(report_date_str, n=10, mode=mode)
+    by_distinct_authors = util.get_most_active_by_author(report_date_str, n=10, mode=mode)
+    file_extensions_by_token = util.get_file_extensions_by_token(report_date_str, mode=mode)
+    
 
     summary_report = {"tokens_represented": {}}
 
@@ -205,37 +153,19 @@ def generate_summary_report(report_date, mode="DAILY"):
                 "weekly_delta_percentage": delta_percentage
             }
 
+        # tally up the file extensions modified for each file
+        summary_report["tokens_represented"][token]['file_extensions'] = Counter(file_extensions_by_token[token])
+
     summary_report["top_by_num_commits"] = [{"token": token, "count": count} for token, count in by_commits]
     summary_report["top_by_new_lines"] = [{"token": token, "count": count} for token, count in by_LOC]
     summary_report["top_by_num_distinct_authors"] = [{"token": token, "count": count} for token, count in by_distinct_authors]
 
     if mode=="DAILY":
-        with open(f'{DAILY_REPORTS_PATH}/{report_date_str}/summary.json', 'w', encoding='utf-8') as f:
+        with open(f'{PATHS["DAILY_REPORTS_PATH"]}/{report_date_str}/summary.json', 'w', encoding='utf-8') as f:
             json.dump(summary_report, f, ensure_ascii=False, indent=2)
     if mode=="WEEKLY":
-        with open(f'{WEEKLY_REPORTS_PATH}/{report_date_str}/summary.json', 'w', encoding='utf-8') as f:
+        with open(f'{PATHS["WEEKLY_REPORTS_PATH"]}/{report_date_str}/summary.json', 'w', encoding='utf-8') as f:
             json.dump(summary_report, f, ensure_ascii=False, indent=2)
-
-def get_commit_message_word_list(report_date, mode="DAILY"):
-    report_date_str = report_date.strftime("%Y-%m-%d")
-
-    if mode=="DAILY":
-        with open(f'{DAILY_REPORTS_PATH}/{report_date_str}/{report_date_str}.json', 'r') as f:
-            report = json.load(f)
-    if mode=="WEEKLY":
-        with open(f'{WEEKLY_REPORTS_PATH}/{report_date_str}/{report_date_str}.json', 'r') as f:
-            report = json.load(f)
-
-
-    commit_messages_as_list_of_words = []
-    for _, token_data in report.items():
-        commit_messages_as_list_of_words.extend([msg.split(' ') for msg in token_data['commit_messages']])
-    
-    word_list = []
-    for sublist in commit_messages_as_list_of_words:
-        word_list.extend(sublist)
-    print(word_list)
-    return word_list
 
 
 def run(report_date, mode="DAILY"):    

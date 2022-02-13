@@ -42,6 +42,7 @@ class Commit:
     dmm_unit_complexity: float
     dmm_unit_interfacing: float
     rounded_commit_time_5min: str # custom
+    file_extensions: List[str] # custom
 
 class CommitHandler:
 
@@ -84,8 +85,31 @@ class CommitHandler:
             dmm_unit_size = commit.dmm_unit_size,
             dmm_unit_complexity = commit.dmm_unit_complexity,
             dmm_unit_interfacing = commit.dmm_unit_interfacing,
-            rounded_commit_time_5min = round_single_commit_by_time(commit.committer_date, granularity_min = 5)
+            rounded_commit_time_5min = round_single_commit_by_time(commit.committer_date, granularity_min = 5),
+            file_extensions = self.get_commit_file_extensions(commit)
         )
+
+    def get_commit_file_extensions(self, commit) -> List[str]:
+        return [f.filename.split('.')[-1] for f in commit.modified_files]
+
+    
+    """
+    def classify_commit(self, commit) -> List[str]:
+        '''
+        Try to classify commit into one of the following categories
+        [frontend, documentation, backend, bugfix, feature, cleanup, json]
+
+        A single commit can belong to more than one category
+        '''
+        classifications = []
+
+        for file in commit.modified_files:
+            extension = file.filename.split('.')[-1]
+            if extension in ["js, "]
+    """
+    
+
+
 
         
         

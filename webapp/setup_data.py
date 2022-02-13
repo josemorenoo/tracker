@@ -5,8 +5,8 @@ import pandas as pd
 import pickle
 from typing import Any, List, Optional
 
-from .crypto_oracle import CryptoOracle
-from .repo_info import RepoInfo
+from .token_prices import CryptoOracle
+from .repo_crawler import RepoInfo
 from .time_util import datetime_to_ms_timestamp
 
 def create_token_data_directory(token):

@@ -7,18 +7,18 @@ import dash
 from dash import dcc
 from dash import html
 
-from src.setup_data import load_data
-from src.myplotly.plots import Plots
+from webapp.setup_data import load_data
+from webapp.frontend.plots import Plots
     
 # setup
-read_from_pickle = True
-token="ICP"
+read_from_pickle = False
+token="API3"
 start_date = datetime(2021, 2, 8, 12, 00, 00)
 end_date = datetime(2022, 2, 8, 12, 00, 00)
 timeframe = "year" # [day, week, month, year]
 
 # get repo list
-repos = json.load(open('src/config/repos.json'))
+repos = json.load(open('config/repos.json'))
 project_repos = repos[token]['repos']
 
 

@@ -1,17 +1,15 @@
-from datetime import datetime
-import json
 import tweepy
 
-from data import lockbox
-import scripts.daily_report as daily_report
+from config.lockbox import TWITTER_KEYS
+import scripts.reporter.report_util as util
 
 DAILY_REPORTS_PATH = "reports/daily"
 
 def setup_api():
-    consumer_key = lockbox.TWITTER['consumer_key']
-    consumer_secret = lockbox.TWITTER['consumer_secret']
-    access_key = lockbox.TWITTER['access_key']
-    access_secret = lockbox.TWITTER['access_secret']
+    consumer_key = TWITTER_KEYS['consumer_key']
+    consumer_secret = TWITTER_KEYS['consumer_secret']
+    access_key = TWITTER_KEYS['access_key']
+    access_secret = TWITTER_KEYS['access_secret']
 
     auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
     auth.set_access_token(access_key, access_secret)
@@ -19,7 +17,7 @@ def setup_api():
     return api
 
 def generate_tweet_text(report_date, metric, mode="DAILY"):
-    summary_report_dict = daily_report.get_summary_report(report_date, mode)
+    summary_report_dict = util.get_summary_report(report_date, mode)
     token_hashtags = " ".join([f"#{each['token']}" for each in summary_report_dict[metric]])
 
     if mode == "DAILY":

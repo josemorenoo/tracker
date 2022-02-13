@@ -6,7 +6,8 @@ import plotly.express as px
 #from wordcloud import WordCloud
 
 from scripts.twitter.colors import COLORS
-from scripts import daily_report
+import scripts.reporter.paths as report_paths
+import scripts.reporter.report_util as report_util
 
 def create_img(image_path, fig):
     fig.write_image(image_path)
@@ -15,15 +16,16 @@ def create_img(image_path, fig):
 def create_top_by_loc_graph(report_date, mode="DAILY"):
     report_date_str = report_date.strftime("%Y-%m-%d")
     if mode=="DAILY":
-        REPORT_DIR = f"{daily_report.DAILY_REPORTS_PATH}/{report_date_str}"
+        REPORT_DIR = f"{report_paths['DAILY_REPORTS_PATH']}/{report_date_str}"
         title = "Today's Top 10 Tokens by New Lines of Code"
     if mode=="WEEKLY":
         title = "This Week's Top 10 Tokens by New Lines of Code"
-        REPORT_DIR = f"{daily_report.WEEKLY_REPORTS_PATH}/{report_date_str}"
+        REPORT_DIR = f"{report_paths['WEEKLY_REPORTS_PATH']}/{report_date_str}"
     
     # get data
-    _, by_locs, _ = daily_report.get_top_most_active(report_date_str, mode=mode)
-    daily_report.get_combined_price_deltas(by_locs, report_date, mode)
+    by_locs = report_util.get_most_active_by_loc(report_date_str, mode=mode)
+    report_util.get_combined_price_deltas(by_locs, report_date, mode)
+    #report_util.get_combined_price_deltas(by_locs, report_date, mode)
 
     # flip so that they show up in descending order on HORIZONTAL bar graph
     by_locs = by_locs[::-1]
@@ -70,15 +72,15 @@ def create_top_by_loc_graph(report_date, mode="DAILY"):
 def create_top_by_num_authors_graph(report_date, mode="DAILY"):
     report_date_str = report_date.strftime("%Y-%m-%d")
     if mode=="DAILY":
-        REPORT_DIR = f"{daily_report.DAILY_REPORTS_PATH}/{report_date_str}"
+        REPORT_DIR = f"{report_paths['DAILY_REPORTS_PATH']}/{report_date_str}"
         title = "Today's Top 10 Tokens by Distinct Developers"
     if mode=="WEEKLY":
         title = "This Week's Top 10 Tokens by Distinct Developers"
-        REPORT_DIR = f"{daily_report.WEEKLY_REPORTS_PATH}/{report_date_str}"
+        REPORT_DIR = f"{report_paths['WEEKLY_REPORTS_PATH']}/{report_date_str}"
 
     # get data
-    _, _, by_authors = daily_report.get_top_most_active(report_date_str, mode=mode)
-    daily_report.get_combined_price_deltas(by_authors, report_date, mode)
+    by_authors = report_util.get_most_active_by_author(report_date_str, mode=mode)
+    #report_util.get_combined_price_deltas(by_authors, report_date, mode)
 
     # flip so that they show up in descending order on HORIZONTAL bar graph
     by_authors = by_authors[::-1]
@@ -124,15 +126,15 @@ def create_top_by_num_authors_graph(report_date, mode="DAILY"):
 def create_top_commits_daily_graph(report_date, mode="DAILY"):
     report_date_str = report_date.strftime("%Y-%m-%d")
     if mode=="DAILY":
-        REPORT_DIR = f"{daily_report.DAILY_REPORTS_PATH}/{report_date_str}"
+        REPORT_DIR = f"{report_paths['DAILY_REPORTS_PATH']}/{report_date_str}"
         title = "Today's Top 10 Tokens by Most Commits"
     if mode=="WEEKLY":
         title = "This Week's Top 10 Tokens by Most Commits"
-        REPORT_DIR = f"{daily_report.WEEKLY_REPORTS_PATH}/{report_date_str}"
+        REPORT_DIR = f"{report_paths['WEEKLY_REPORTS_PATH']}/{report_date_str}"
 
     # get data
-    by_commits, _, _ = daily_report.get_top_most_active(report_date_str, mode=mode)
-    daily_report.get_combined_price_deltas(by_commits, report_date, mode)
+    by_commits = report_util.get_most_active_by_commits(report_date_str, mode=mode)
+    #report_util.get_combined_price_deltas(by_commits, report_date, mode)
 
     # flip so that they show up in descending order on HORIZONTAL bar graph
     by_commits = by_commits[::-1]
@@ -178,7 +180,7 @@ def create_top_commits_daily_graph(report_date, mode="DAILY"):
 
 def create_word_cloud_daily_graph(report_date):
     """not very useful visually, we would need to filter for unusual words"""
-    daily_report_word_set = daily_report.get_commit_message_word_list(report_date)
+    daily_report_word_set = report_util.get_commit_message_word_list(report_date)
 
     from collections import Counter
 

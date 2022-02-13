@@ -3,7 +3,7 @@ from apscheduler.schedulers.background import BackgroundScheduler
 import random
 import time
 
-import scripts.daily_report as daily_report
+import scripts.reporter.periodic_report as periodic_report
 import scripts.twitter.post_to_twitter as post
 import scripts.twitter.twitter_graphs as graphs
 
@@ -11,7 +11,7 @@ YESTERDAY = datetime.today() - timedelta(hours=24)
 
 def run_daily_report(report_date, mode="DAILY"):
     """runs the daily report for today"""
-    daily_report.run(report_date, mode)
+    periodic_report.run(report_date, mode)
 
 def post_loc_chart(post_to_twitter=True, mode="DAILY"):
     """
@@ -66,7 +66,7 @@ def show_jobs(sched):
 
 
 if __name__ == "__main__":
-    make_report_and_post_all_charts(run_report=True, post_to_twitter=True, mode='DAILY')
+    make_report_and_post_all_charts(run_report=True, post_to_twitter=False, mode='DAILY')
     """
     # Start the scheduler
     sched = BackgroundScheduler()
