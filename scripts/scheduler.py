@@ -31,15 +31,15 @@ def post_commits_chart(post_to_twitter=True, mode="DAILY"):
     if post_to_twitter:
         post.top_commits_chart(YESTERDAY, mode=mode)
 
-def randomize_and_post(funcs, delays_secs, post_to_twitter=True, mode="DAILY"):
+def randomize_and_post(funcs, delay_secs, post_to_twitter=True, mode="DAILY"):
     random_order_funcs = random.sample(funcs, len(funcs))
     for f in random_order_funcs:
         f(post_to_twitter, mode=mode)
-        time.sleep(delays_secs)
+        time.sleep(delay_secs)
 
 
 
-def make_report_and_post_all_charts(run_report=True, post_to_twitter=True, mode="DAILY"):
+def make_report_and_post_all_charts(run_report=True, post_to_twitter=True, mode="DAILY", delay_secs=30):
     """
     Creates daily report and posts all the graphs
     """
@@ -52,7 +52,7 @@ def make_report_and_post_all_charts(run_report=True, post_to_twitter=True, mode=
         post_authors_chart,
         post_commits_chart
     ], 
-    delays_secs = 30,
+    delay_secs = delay_secs,
     post_to_twitter=post_to_twitter,
     mode=mode)
     
@@ -66,7 +66,7 @@ def show_jobs(sched):
 
 
 if __name__ == "__main__":
-    make_report_and_post_all_charts(run_report=True, post_to_twitter=False, mode='DAILY')
+    make_report_and_post_all_charts(run_report=False, post_to_twitter=False, mode='DAILY', delay_secs=0)
     """
     # Start the scheduler
     sched = BackgroundScheduler()

@@ -124,7 +124,7 @@ def generate_summary_report(report_date, mode="DAILY"):
     by_commits = util.get_most_active_by_commits(report_date_str, n=10, mode=mode)
     by_LOC = util.get_most_active_by_loc(report_date_str, n=10, mode=mode)
     by_distinct_authors = util.get_most_active_by_author(report_date_str, n=10, mode=mode)
-    file_extensions_by_token = util.get_file_extensions_by_token(report_date_str, mode=mode)
+    file_extensions_by_token = util.get_raw_file_extensions_by_token(report_date_str, mode=mode)
     
 
     summary_report = {"tokens_represented": {}}

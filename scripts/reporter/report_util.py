@@ -80,9 +80,11 @@ def get_most_active_by_loc(report_date_str: str, n=10, mode="DAILY"):
     print("\nTop projects by new lines of code", *by_LOC, sep="\n")
     return by_LOC
 
-def get_file_extensions_by_token(report_date_str: str, mode="DAILY"):
+def get_raw_file_extensions_by_token(report_date_str: str, mode="DAILY"):
     """
-    For tokens represented in the report, return a list of file extensions that were modified
+    For tokens represented in the report, return a list of file extensions that were modified.
+
+    Scraped from daily report, returns raw counts
     """
     if mode=="DAILY":
         report_json_path = f"{PATHS['DAILY_REPORTS_PATH']}/{report_date_str}/{report_date_str}.json"
@@ -94,6 +96,24 @@ def get_file_extensions_by_token(report_date_str: str, mode="DAILY"):
 
     file_extensions_by_token = {token_name: token_data['file_extensions'] for token_name, token_data in report.items()}
     return file_extensions_by_token
+
+def get_tallied_file_raw_extensions_by_token(report_date_str: str, mode="DAILY"):
+    """
+    return a dict of file extensions that were modified, and their count. Pulled from summary report
+    """
+    if mode=="DAILY":
+        report_json_path = f"{PATHS['DAILY_REPORTS_PATH']}/{report_date_str}/summary.json"
+    elif mode=="WEEKLY":
+        report_json_path = f"{PATHS['WEEKLY_REPORTS_PATH']}/{report_date_str}/summary.json"
+
+    with open(report_json_path, "r") as f:
+        summary_report = json.load(f)
+
+    extension_count_dict = {}
+    for token, metadata in summary_report['tokens_represented'].items():
+        extension_count_dict[token] = sorted(metadata['file_extensions'].items(), key=lambda x: x[1], reverse=True)
+    return extension_count_dict
+
 
 ### ### ### ### ### ### vvv PRICE vvv ### ### ### ### ### ### 
 

@@ -3,7 +3,7 @@ from datetime import datetime
 import os
 from PIL import Image, ImageDraw
 
-import scripts.daily_report as daily_report
+import scripts.reporter.periodic_report as periodic_report
 
 print("\nWelcome to Nini's sandbox. \n")
 
@@ -29,7 +29,7 @@ def add_price_deltas_to_existing_img(img_date: datetime):
     # first get the name of the top 10 coins (Jose)
 
     # first, load the summary report for the same date the img was made
-    summary_report = daily_report.get_summary_report(img_date)
+    summary_report = periodic_report.get_summary_report(img_date)
 
     # each of these lists contains 10 token names,
     # there are three lists because there are three graphs we support, currently
