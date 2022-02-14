@@ -54,7 +54,7 @@ def generate_weekly_report(end_date: datetime):
 
     end = time.time()
     duration = end-start
-    print(f"~~~ {report_date_str} weekly report generated in {duration.strftime('%H:%M:%S')}~~~")
+    print(f"~~~ {report_date_str} daily report generated in {str(timedelta(seconds=duration))}~~~")
 
 def generate_daily_report(day: Optional[datetime]):
     start = time.time()
@@ -108,7 +108,7 @@ def generate_daily_report(day: Optional[datetime]):
 
     end = time.time()
     duration = end-start
-    print(f"~~~ {report_date_str} daily report generated in {duration.strftime('%H:%M:%S')}~~~")
+    print(f"~~~ {report_date_str} daily report generated in {str(timedelta(seconds=duration))}~~~")
 
 
 def generate_summary_report(report_date, mode="DAILY"):
@@ -173,14 +173,16 @@ def generate_summary_report(report_date, mode="DAILY"):
             json.dump(summary_report, f, ensure_ascii=False, indent=2)
 
 
-def run(report_date, mode="DAILY"):    
-    if mode=="DAILY":
-        generate_daily_report(report_date)
-    if mode=="WEEKLY":
-        generate_weekly_report(report_date)
+def run(report_date, mode="DAILY", make_raw_report:bool=True, make_summary_report=True):   
+    if make_raw_report: 
+        if mode=="DAILY":
+            generate_daily_report(report_date)
+        if mode=="WEEKLY":
+            generate_weekly_report(report_date)
 
-    # generate summary report, used by twitter graphs
-    generate_summary_report(report_date, mode)
+    if make_summary_report:
+        # generate summary report, used by twitter graphs
+        generate_summary_report(report_date, mode)
 
 
 if __name__ == "__main__":

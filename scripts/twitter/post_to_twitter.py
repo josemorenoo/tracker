@@ -3,6 +3,8 @@ import tweepy
 from config.lockbox import TWITTER_KEYS
 import scripts.reporter.report_util as util
 
+from scripts.twitter.graph_names import GRAPH_NAMES
+
 DAILY_REPORTS_PATH = "reports/daily"
 
 def setup_api():
@@ -43,7 +45,7 @@ def post_chart_tweet(api, img_path, tweet_text):
 def loc_chart(report_date, mode="DAILY"):
     api = setup_api()
 
-    top_loc_img_path = f'reports/{mode.lower()}/{report_date.strftime("%Y-%m-%d")}/top_loc.png'
+    top_loc_img_path = f'reports/{mode.lower()}/{report_date.strftime("%Y-%m-%d")}/{GRAPH_NAMES["LOC_AND_PRICE"]}'
     loc_tweet_text = generate_tweet_text(report_date, "top_by_new_lines", mode=mode)
 
     post_chart_tweet(api, top_loc_img_path, loc_tweet_text)
@@ -52,7 +54,7 @@ def loc_chart(report_date, mode="DAILY"):
 def authors_chart(report_date, mode="DAILY"):
     api = setup_api()
 
-    top_distinct_authors_img_path = f'reports/{mode.lower()}/{report_date.strftime("%Y-%m-%d")}/top_distinct_authors.png'
+    top_distinct_authors_img_path = f'reports/{mode.lower()}/{report_date.strftime("%Y-%m-%d")}/{GRAPH_NAMES["AUTHORS_AND_PRICE"]}'
     authors_tweet_text = generate_tweet_text(report_date, "top_by_num_distinct_authors", mode=mode)
 
     post_chart_tweet(api, top_distinct_authors_img_path, authors_tweet_text)
@@ -60,7 +62,7 @@ def authors_chart(report_date, mode="DAILY"):
 def top_commits_chart(report_date, mode="DAILY"):
     api = setup_api()
 
-    top_commits_img_path = f'reports/{mode.lower()}/{report_date.strftime("%Y-%m-%d")}/top_commits.png'
+    top_commits_img_path = f'reports/{mode.lower()}/{report_date.strftime("%Y-%m-%d")}/{GRAPH_NAMES[""]}'
     commits_tweet_text = generate_tweet_text(report_date, "top_by_num_commits", mode=mode)
 
     post_chart_tweet(api, top_commits_img_path, commits_tweet_text)

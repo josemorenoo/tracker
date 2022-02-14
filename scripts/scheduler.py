@@ -9,9 +9,9 @@ import scripts.twitter.twitter_graphs as graphs
 
 YESTERDAY = datetime.today() - timedelta(hours=24)
 
-def run_daily_report(report_date, mode="DAILY"):
+def make_report(report_date, mode="DAILY", make_raw_report=True, make_summary_report=True):
     """runs the daily report for today"""
-    periodic_report.run(report_date, mode)
+    periodic_report.run(report_date, mode, make_raw_report=make_raw_report, make_summary_report=make_summary_report)
 
 def post_loc_chart(post_to_twitter=True, mode="DAILY"):
     """
@@ -39,13 +39,23 @@ def randomize_and_post(funcs, delay_secs, post_to_twitter=True, mode="DAILY"):
 
 
 
-def make_report_and_post_all_charts(run_report=True, post_to_twitter=True, mode="DAILY", delay_secs=30, day=YESTERDAY):
+def make_report_and_post_all_charts(run_report=True,
+    post_to_twitter=True,
+    mode="DAILY",
+    delay_secs=30,
+    day=YESTERDAY,
+    make_raw_report=True,
+    make_summary_report=False):
     """
     Creates daily report and posts all the graphs
     """
 
     if run_report:
-        run_daily_report(day, mode=mode) 
+        make_report(day, 
+            mode=mode, 
+            make_raw_report=make_raw_report, 
+            make_summary_report=make_summary_report
+        ) 
 
     randomize_and_post(funcs=[
         post_loc_chart,
@@ -66,7 +76,13 @@ def show_jobs(sched):
 
 
 if __name__ == "__main__":
-    make_report_and_post_all_charts(run_report=True, post_to_twitter=False, mode='DAILY', delay_secs=0, day=datetime(2022, 2, 13))
+    make_report_and_post_all_charts(
+        run_report=True,
+        post_to_twitter=False,
+        mode='DAILY',
+        delay_secs=0,
+        day=datetime(2022, 2, 13),
+        make_raw_report=False)
     """
     # Start the scheduler
     sched = BackgroundScheduler()

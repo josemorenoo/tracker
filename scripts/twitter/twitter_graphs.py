@@ -11,6 +11,9 @@ from tkinter import Y
 
 
 from scripts.twitter.colors import COLORS
+from scripts.twitter.graph_names import GRAPH_NAMES
+import scripts.twitter.price_delta_supplement as price_delta
+
 from scripts.reporter.paths import PATHS as report_paths
 import scripts.reporter.report_util as report_util
 
@@ -48,6 +51,7 @@ def create_file_extension_graphs(tokens_represented, report_date, mode="DAILY", 
 
 
 def create_top_by_loc_graph(report_date, mode="DAILY"):
+
     report_date_str = report_date.strftime("%Y-%m-%d")
     if mode=="DAILY":
         REPORT_DIR = f"{report_paths['DAILY_REPORTS_PATH']}/{report_date_str}"
@@ -100,8 +104,15 @@ def create_top_by_loc_graph(report_date, mode="DAILY"):
     )
 
     # save to image
-    image_path = f"{REPORT_DIR}/top_loc.png"
+    image_path = f"{REPORT_DIR}/{GRAPH_NAMES['LOC']}"
     create_img(image_path, fig)
+
+    # add price supplement image
+    price_delta.add_price_deltas(
+        existing_img_name=GRAPH_NAMES['LOC'],
+        new_graph_name=GRAPH_NAMES['LOC_AND_PRICE'],
+        report_date=report_date, 
+        mode=mode)
 
 def create_top_by_num_authors_graph(report_date, mode="DAILY"):
     report_date_str = report_date.strftime("%Y-%m-%d")
@@ -154,8 +165,15 @@ def create_top_by_num_authors_graph(report_date, mode="DAILY"):
     )
 
     # save to image
-    image_path = f"{REPORT_DIR}/top_distinct_authors.png"
+    image_path = f"{REPORT_DIR}/{GRAPH_NAMES['AUTHORS']}"
     create_img(image_path, fig)
+
+    # add price supplement image
+    price_delta.add_price_deltas(
+        existing_img_name=GRAPH_NAMES['AUTHORS'],
+        new_graph_name=GRAPH_NAMES['AUTHORS_AND_PRICE'],
+        report_date=report_date, 
+        mode=mode)
 
 def create_top_commits_daily_graph(report_date, mode="DAILY"):
     report_date_str = report_date.strftime("%Y-%m-%d")
@@ -209,37 +227,19 @@ def create_top_commits_daily_graph(report_date, mode="DAILY"):
     )
 
     # save to image
-    image_path = f"{REPORT_DIR}/top_commits.png"
+    image_path = f"{REPORT_DIR}/{GRAPH_NAMES['COMMITS']}"
     create_img(image_path, fig)
 
-def create_word_cloud_daily_graph(report_date):
-    """not very useful visually, we would need to filter for unusual words"""
-    daily_report_word_set = report_util.get_commit_message_word_list(report_date)
+    # add price supplement image
+    price_delta.add_price_deltas(
+        existing_img_name=GRAPH_NAMES['COMMITS'],
+        new_graph_name=GRAPH_NAMES['COMMITS_AND_PRICE'],
+        report_date=report_date, 
+        mode=mode)
 
-    from collections import Counter
-
-    print(*Counter(daily_report_word_set).most_common(40), sep="\n")
-
-    word_cloud_exclusions = [
-        "Close", "Co", "Authored", "update", "fix", "build", "by", "github",
-        "Closes", "output", "com", "tar", "gz", "json", "[", "]", "fix", "fix:",
-        "to", "for", "add", "from", "for", "-", "Merge", "the", "request", "pull", "chore",
-        "Update", "branch", "in", "a", "of", "is", "and", "test", "token", "automerge", "refactor", "sign", "off"    ]
-
-    # Creating word_cloud with text as argument in .generate() method
-    #word_cloud = WordCloud(stopwords=word_cloud_exclusions).generate(" ".join(daily_report_word_set))
-    #word_cloud.to_file(f"{REPORT_DIR}/word_cloud.png")
-    #test = datetime.today() - timedelta(days=1)
-    #word_cloud.to_file(f'{DAILY_REPORTS_PATH}{test.strftime("%Y-%m-%d")}/word_cloud.png')
 
 if __name__ == "__main__":
-    #create_word_cloud_daily_graph()
     '''
-    # get associated price deltas for each of the top 10 lists from the summary report
-    by_commits_price_deltas = daily_report.get_daily_price_deltas([x[0] for x in by_commits], report_date)
-    by_loc_price_deltas = daily_report.get_daily_price_deltas([x[0] for x in by_loc], report_date)
-    by_authors_price_deltas = daily_report.get_daily_price_deltas([x[0] for x in by_authors], report_date)
-
     create_top_commits_daily_graph()
     create_top_by_num_authors_graph()
     create_top_by_loc_graph()
