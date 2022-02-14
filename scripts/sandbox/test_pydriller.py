@@ -1,9 +1,10 @@
 from pydriller import Repository
+from datetime import datetime
 
 if __name__ == "__main__":
     
-    for commit in Repository('https://github.com/Loopring/loopring-web-v2').traverse_commits():
+    for commit in Repository('https://github.com/Loopring/loopring-explorer', since=datetime(2022, 2, 11)).traverse_commits():
         print(
-        'commit author:{}\n{}\n{}\n{}\n{}\n{}\n\n\n'.format(commit.msg, commit.committer_date, commit.insertions, commit.deletions, commit.dmm_unit_complexity, commit.dmm_unit_interfacing)
+        'hash: {}\ncommit msg: {}\ncommitter_date: {}\ninsertions: {}\ndeletions: {}\n modified_files: {}\n\n\n'.format(commit.hash, commit.msg, commit.committer_date, commit.insertions, commit.deletions, commit.modified_files)
         )
         

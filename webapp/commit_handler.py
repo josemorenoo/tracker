@@ -67,6 +67,14 @@ class CommitHandler:
                 deletions -= modified_file.deleted_lines
                 insertions -= modified_file.added_lines
                 lines -= (modified_file.deleted_lines + modified_file.added_lines)
+        
+        if 'transaction' in commit.msg:
+
+            print(len(commit.modified_files))
+            print(commit.modified_files)
+            
+            print(self.get_commit_file_extensions(commit))
+            print(self.get_loc_changed_by_file_extension(commit))
 
         return Commit(
             hash = commit.hash,

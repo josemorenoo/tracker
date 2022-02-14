@@ -111,8 +111,9 @@ def get_file_extensions_and_lines_of_code_modified(project_commits):
                 project_ext_count_and_loc_affected[ext]['extension_count'] += commit_ext_count
 
         # count the number of lines of code affected for each respective file extension
+        print(commit.loc_changed_by_file_extension)
         for ext, loc_modified_for_extension in commit.loc_changed_by_file_extension.items():
-            project_ext_count_and_loc_affected[ext]['loc_modified'] = loc_modified_for_extension[ext]
+            project_ext_count_and_loc_affected[ext]['loc_modified'] = loc_modified_for_extension
 
     return project_ext_count_and_loc_affected
 
