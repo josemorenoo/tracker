@@ -1,0 +1,421 @@
+{
+  "tokens_represented": {
+    "API3": {
+      "daily_open": 4.03,
+      "daily_close": 4.29,
+      "daily_delta_percentage": 6.45,
+      "file_extensions": {
+        "styl": 1,
+        "js": 2,
+        "json": 7,
+        "lock": 1,
+        "md": 18,
+        "vue": 2,
+        "redirects": 1,
+        "zip": 3
+      }
+    },
+    "ICP": {
+      "daily_open": 19.96,
+      "daily_close": 20.09,
+      "daily_delta_percentage": 0.65,
+      "file_extensions": {
+        "py": 10,
+        "md": 1,
+        "hb": 2,
+        "ini": 1,
+        "yml": 6,
+        "rs": 47,
+        "proto": 3,
+        "sh": 4,
+        "Dockerfile": 2,
+        "ts": 3,
+        "wasm": 1,
+        "ml": 2,
+        "mo": 1,
+        "did": 4,
+        "lock": 1,
+        "toml": 1,
+        "nix": 1
+      }
+    },
+    "YFI": {
+      "daily_open": 23302.92,
+      "daily_close": 23199.74,
+      "daily_delta_percentage": -0.44,
+      "file_extensions": {
+        "json": 191,
+        "py": 2,
+        "mjs": 3,
+        "ts": 6,
+        "md": 1
+      }
+    },
+    "SOL": {
+      "daily_open": 96.12,
+      "daily_close": 95.79,
+      "daily_delta_percentage": -0.34,
+      "file_extensions": {
+        "rs": 48,
+        "md": 2,
+        "lock": 5,
+        "toml": 6,
+        "sh": 1
+      }
+    },
+    "RARI": {
+      "daily_open": 9.08,
+      "daily_close": 8.76,
+      "daily_delta_percentage": -3.52,
+      "file_extensions": {
+        "md": 16,
+        "json": 18,
+        "ts": 31,
+        "lock": 2,
+        "eslintignore": 1
+      }
+    },
+    "BTC": {
+      "daily_open": 42296.23,
+      "daily_close": 42293.1,
+      "daily_delta_percentage": -0.01,
+      "file_extensions": {
+        "yml": 1
+      }
+    },
+    "XYO": {
+      "daily_open": 0.022302,
+      "daily_close": 0.02197,
+      "daily_delta_percentage": -1.49,
+      "file_extensions": {
+        "json": 15,
+        "tsx": 11,
+        "ts": 27,
+        "yml": 8,
+        "Dockerfile": 1,
+        "md": 1,
+        "lock": 5,
+        "resolved": 1,
+        "swift": 6
+      }
+    },
+    "LPT": {
+      "daily_open": 29.73,
+      "daily_close": 27.15,
+      "daily_delta_percentage": -8.68,
+      "file_extensions": {
+        "ts": 5,
+        "chainId": 3,
+        "json": 16,
+        "sh": 1,
+        "md": 4,
+        "go": 8,
+        "VERSION": 1,
+        "js": 3,
+        "tsx": 9,
+        "gql": 1,
+        "mdx": 1
+      }
+    },
+    "DOT": {
+      "daily_open": 18.78,
+      "daily_close": 19.11,
+      "daily_delta_percentage": 1.76,
+      "file_extensions": {
+        "wat": 2,
+        "rs": 89,
+        "lock": 7,
+        "toml": 179
+      }
+    },
+    "ZEN": {
+      "daily_open": 40.49,
+      "daily_close": 40.81,
+      "daily_delta_percentage": 0.79,
+      "file_extensions": {
+        "toml": 11,
+        "sh": 1
+      }
+    },
+    "MKR": {
+      "daily_open": 2017.06,
+      "daily_close": 1992.84,
+      "daily_delta_percentage": -1.2,
+      "file_extensions": {
+        "json": 2,
+        "lock": 3,
+        "md": 11
+      }
+    },
+    "STORJ": {
+      "daily_open": 1.16,
+      "daily_close": 1.14,
+      "daily_delta_percentage": -1.72,
+      "file_extensions": {
+        "go": 5,
+        "sh": 2,
+        "mod": 2,
+        "sum": 2
+      }
+    },
+    "LINK": {
+      "daily_open": 16.13,
+      "daily_close": 15.98,
+      "daily_delta_percentage": -0.93,
+      "file_extensions": {
+        "yml": 8,
+        "go": 35,
+        "md": 6,
+        "cjs": 2,
+        "zip": 19,
+        "json": 14,
+        "ts": 41,
+        "snap": 2,
+        "lock": 3,
+        "tsx": 2,
+        "yaml": 1,
+        "Makefile": 1,
+        "go_core_tests": 1,
+        "install_terrad": 1,
+        "sh": 1,
+        "native_solc_compile_all": 1,
+        "sol": 2,
+        "txt": 1,
+        "example": 1,
+        "mod": 1,
+        "sum": 1
+      }
+    },
+    "OMG": {
+      "daily_open": 4.68,
+      "daily_close": 4.71,
+      "daily_delta_percentage": 0.64,
+      "file_extensions": {
+        "json": 2,
+        "js": 1,
+        "lock": 3,
+        "yml": 1,
+        "ts": 1
+      }
+    },
+    "OXT": {
+      "daily_open": 0.2555,
+      "daily_close": 0.2549,
+      "daily_delta_percentage": -0.23,
+      "file_extensions": {
+        "lock": 2,
+        "boringtun": 2,
+        "flutter-desktop-embedding": 1,
+        "glib": 1,
+        "gnulib": 1,
+        "libiconv": 1,
+        "icu": 1,
+        "trace_event": 1,
+        "v8": 1,
+        "abseil-cpp": 1,
+        "crc32c": 1,
+        "openssl": 1,
+        "sctp-idata": 1,
+        "mk": 7,
+        "usrsctp": 1,
+        "webrtc": 1,
+        "h": 1,
+        "wireshark": 1,
+        "modules": 1,
+        "SHA3IUF": 1,
+        "boost": 1,
+        "c-ares": 1,
+        "chains": 1,
+        "challenge-bypass-ristretto-ffi": 1,
+        "ctre": 1,
+        "curl": 1,
+        "intx": 1,
+        "jsoncpp": 1,
+        "lwip": 1,
+        "lz4": 1,
+        "openvpn3": 1,
+        "protobuf": 1,
+        "pugixml": 1,
+        "secp256k1": 1,
+        "snappy": 1,
+        "cpp": 7,
+        "hpp": 2,
+        "sqlite": 1,
+        "di": 1,
+        "json": 1,
+        "libuv": 1,
+        "yaml-cpp": 1,
+        "leveldb": 1,
+        "libevent": 1,
+        "libmaxminddb": 1,
+        "libssh": 1,
+        "tor": 1,
+        "dart": 25,
+        "makefile": 1
+      }
+    },
+    "CGLD": {
+      "daily_open": 3.04,
+      "daily_close": 3.02,
+      "daily_delta_percentage": -0.66,
+      "file_extensions": {
+        "md": 4,
+        "js": 2,
+        "tsx": 30,
+        "snap": 29,
+        "ts": 1
+      }
+    },
+    "ETH": {
+      "daily_open": 2928.67,
+      "daily_close": 2915.42,
+      "daily_delta_percentage": -0.45,
+      "file_extensions": {
+        "example": 1,
+        "js": 1,
+        "lock": 1,
+        "toml": 1,
+        "rs": 5,
+        "md": 3
+      }
+    },
+    "FIL": {
+      "daily_open": 21.04,
+      "daily_close": 20.77,
+      "daily_delta_percentage": -1.28,
+      "file_extensions": {
+        "gz": 3,
+        "go": 1,
+        "md": 3,
+        "toml": 18,
+        "rs": 1
+      }
+    }
+  },
+  "top_by_num_commits": [
+    {
+      "token": "ICP",
+      "count": 37
+    },
+    {
+      "token": "LINK",
+      "count": 29
+    },
+    {
+      "token": "YFI",
+      "count": 25
+    },
+    {
+      "token": "XYO",
+      "count": 22
+    },
+    {
+      "token": "DOT",
+      "count": 20
+    },
+    {
+      "token": "API3",
+      "count": 18
+    },
+    {
+      "token": "SOL",
+      "count": 17
+    },
+    {
+      "token": "MKR",
+      "count": 16
+    },
+    {
+      "token": "LPT",
+      "count": 14
+    },
+    {
+      "token": "OMG",
+      "count": 11
+    }
+  ],
+  "top_by_new_lines": [
+    {
+      "token": "ZEN",
+      "count": 26104
+    },
+    {
+      "token": "OXT",
+      "count": 12372
+    },
+    {
+      "token": "DOT",
+      "count": 11408
+    },
+    {
+      "token": "CGLD",
+      "count": 9843
+    },
+    {
+      "token": "LPT",
+      "count": 9281
+    },
+    {
+      "token": "LINK",
+      "count": 6325
+    },
+    {
+      "token": "ICP",
+      "count": 3372
+    },
+    {
+      "token": "OMG",
+      "count": 3038
+    },
+    {
+      "token": "SOL",
+      "count": 3033
+    },
+    {
+      "token": "FIL",
+      "count": 2623
+    }
+  ],
+  "top_by_num_distinct_authors": [
+    {
+      "token": "ICP",
+      "count": 13
+    },
+    {
+      "token": "LINK",
+      "count": 7
+    },
+    {
+      "token": "BTC",
+      "count": 4
+    },
+    {
+      "token": "API3",
+      "count": 4
+    },
+    {
+      "token": "STORJ",
+      "count": 4
+    },
+    {
+      "token": "RARI",
+      "count": 4
+    },
+    {
+      "token": "ZEN",
+      "count": 3
+    },
+    {
+      "token": "OMG",
+      "count": 3
+    },
+    {
+      "token": "LPT",
+      "count": 3
+    },
+    {
+      "token": "ETH",
+      "count": 3
+    }
+  ]
+}
