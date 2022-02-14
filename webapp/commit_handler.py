@@ -1,6 +1,7 @@
+from collections import defaultdict
 from dataclasses import dataclass
 from datetime import datetime
-from typing import Any, List
+from typing import Any, Dict, List
 
 from .time_util import datetime_to_ms_timestamp, round_single_commit_by_time
 
@@ -41,8 +42,12 @@ class Commit:
     dmm_unit_size: float
     dmm_unit_complexity: float
     dmm_unit_interfacing: float
-    rounded_commit_time_5min: str # custom
-    file_extensions: List[str] # custom
+
+    # non pydriller.Commit custom attributes below
+    rounded_commit_time_5min: str
+    file_extensions: List[str]
+    loc_changed_by_file_extension: Dict[str, int]
+    methods_modified: List[str] 
 
 class CommitHandler:
 
@@ -86,31 +91,39 @@ class CommitHandler:
             dmm_unit_complexity = commit.dmm_unit_complexity,
             dmm_unit_interfacing = commit.dmm_unit_interfacing,
             rounded_commit_time_5min = round_single_commit_by_time(commit.committer_date, granularity_min = 5),
-            file_extensions = self.get_commit_file_extensions(commit)
+            file_extensions = self.get_commit_file_extensions(commit),
+            loc_changed_by_file_extension = self.get_loc_changed_by_file_extension(commit),
+            methods_modified = self.get_methods_modified(commit)
         )
 
     def get_commit_file_extensions(self, commit) -> List[str]:
+        """
+        Returns a list of the file extensions of files changed in a single commit
+        """
         return [f.filename.split('.')[-1] for f in commit.modified_files]
 
-    
-    """
-    def classify_commit(self, commit) -> List[str]:
-        '''
-        Try to classify commit into one of the following categories
-        [frontend, documentation, backend, bugfix, feature, cleanup, json]
+    def get_loc_changed_by_file_extension(self, commit) -> Dict[str, int]:
+        """
+        Returns a dictionary which counts the lines of code changed by all files with the same file extension in a single commit
 
-        A single commit can belong to more than one category
-        '''
-        classifications = []
+        # example of single commit
+        a.json +5
+        aa.json +5
+        aaa.json +5
+        b.py +4
+        c.js +90
 
-        for file in commit.modified_files:
-            extension = file.filename.split('.')[-1]
-            if extension in ["js, "]
-    """
-    
+        returns: 
+        {json: 15, py: 4, js: 90}
+        """
+        tally_dictionary = defaultdict(int)
+        for f in commit.modified_files:
+            extension_name = f.filename.split('.')[-1]
+            tally_dictionary[extension_name] += (f.added_lines - f.deleted_lines)
+        return tally_dictionary
 
-
-
-        
-        
+    def get_methods_modified(self, commit) -> List[str]:
+        changed_methods_nested = [f.changed_methods for f in commit.modified_files]
+        #unpack list of lists into single list
+        return [item for sublist in changed_methods_nested for item in sublist]
 

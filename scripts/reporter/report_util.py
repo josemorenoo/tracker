@@ -1,5 +1,8 @@
+from collections import Counter, defaultdict
 import json
 from typing import Any, List
+
+from matplotlib import lines
 
 from scripts.reporter.paths import PATHS
 
@@ -80,39 +83,56 @@ def get_most_active_by_loc(report_date_str: str, n=10, mode="DAILY"):
     print("\nTop projects by new lines of code", *by_LOC, sep="\n")
     return by_LOC
 
-def get_raw_file_extensions_by_token(report_date_str: str, mode="DAILY"):
+
+def get_file_extensions_and_lines_of_code_modified(project_commits):
     """
-    For tokens represented in the report, return a list of file extensions that were modified.
+    USED TO POPULATE THE DAILY/WEEKLY REPORT
 
-    Scraped from daily report, returns raw counts
+    For a single token, 
+
+    returns a count of how many times each file type shows up,
+    and a count of how many files were affected by each respective file extension
+
+    ABC: {
+        json: {extension_count: 4, loc_modified: 233},
+        py: {extension_count: 3, loc_modified: -4}
+    }
     """
-    if mode=="DAILY":
-        report_json_path = f"{PATHS['DAILY_REPORTS_PATH']}/{report_date_str}/{report_date_str}.json"
-    elif mode=="WEEKLY":
-        report_json_path = f"{PATHS['WEEKLY_REPORTS_PATH']}/{report_date_str}/{report_date_str}.json"
+    
 
-    with open(report_json_path, "r") as f:
-        report = json.load(f)
+    project_ext_count_and_loc_affected = {}  
+    for commit in project_commits:
 
-    file_extensions_by_token = {token_name: token_data['file_extensions'] for token_name, token_data in report.items()}
-    return file_extensions_by_token
+        # count how many times each file extension was modified for this token
+        for ext, commit_ext_count in Counter(commit.file_extensions).items():
+            if ext not in project_ext_count_and_loc_affected:
+                project_ext_count_and_loc_affected[ext]['extension_count'] = commit_ext_count
+            else:
+                project_ext_count_and_loc_affected[ext]['extension_count'] += commit_ext_count
 
-def get_tallied_file_raw_extensions_by_token(report_date_str: str, mode="DAILY"):
+        # count the number of lines of code affected for each respective file extension
+        for ext, loc_modified_for_extension in commit.loc_changed_by_file_extension.items():
+            project_ext_count_and_loc_affected[ext]['loc_modified'] = loc_modified_for_extension[ext]
+
+    return project_ext_count_and_loc_affected
+
+
+def get_file_extension_breakdown_from_summary_report(token, report_date, mode="DAILY"):
     """
-    return a dict of file extensions that were modified, and their count. Pulled from summary report
+    PULLS FROM DAILY/WEEKLY REPORT
+
+    for a single token,
+
+    return a dict of file extensions that were modified, and their count, as well as the number of files affected
+
+    # sort by number of file extensions updated
     """
-    if mode=="DAILY":
-        report_json_path = f"{PATHS['DAILY_REPORTS_PATH']}/{report_date_str}/summary.json"
-    elif mode=="WEEKLY":
-        report_json_path = f"{PATHS['WEEKLY_REPORTS_PATH']}/{report_date_str}/summary.json"
-
-    with open(report_json_path, "r") as f:
-        summary_report = json.load(f)
-
-    extension_count_dict = {}
-    for token, metadata in summary_report['tokens_represented'].items():
-        extension_count_dict[token] = sorted(metadata['file_extensions'].items(), key=lambda x: x[1], reverse=True)
-    return extension_count_dict
+    raw_report = get_raw_report(report_date=report_date, mode=mode) # raw means daily/weekly
+    sorted_by_extension_count = sorted(
+        raw_report[token]['file_extensions'],
+        key=lambda x: x['extension_count'], 
+        reverse=True)
+    return sorted_by_extension_count
 
 
 ### ### ### ### ### ### vvv PRICE vvv ### ### ### ### ### ### 
@@ -143,6 +163,16 @@ def get_summary_report(report_date, mode="DAILY"):
         with open(f"{PATHS['WEEKLY_REPORTS_PATH']}/{report_date_str}/summary.json", 'r') as f:
             summary_report = json.load(f)
     return summary_report
+
+def get_raw_report(report_date, mode="DAILY"):
+    report_date_str = report_date.strftime("%Y-%m-%d")
+    if mode=="DAILY":
+        with open(f"{PATHS['DAILY_REPORTS_PATH']}/{report_date_str}/{report_date_str}.json", 'r') as f:
+            raw_report = json.load(f)
+    if mode=="WEEKLY":
+        with open(f"{PATHS['WEEKLY_REPORTS_PATH']}/{report_date_str}/{report_date_str}.json", 'r') as f:
+            raw_report = json.load(f)
+    return raw_report
 
 
 def get_commit_message_word_list(report_date, mode="DAILY"):

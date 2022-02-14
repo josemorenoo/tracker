@@ -2,6 +2,7 @@ from collections import Counter
 from datetime import datetime, date, timedelta
 import json
 import os
+import time
 from tqdm import tqdm
 from typing import Optional, List, Any
 
@@ -11,8 +12,8 @@ import scripts.reporter.report_util as util
 from webapp import setup_data
 from webapp.token_prices import CryptoOracle
 
-
 def generate_weekly_report(end_date: datetime):
+    start = time.time()
     with open(PATHS.REPOS_FILE, "r") as f:
         tokens = json.load(f)
 
@@ -38,7 +39,7 @@ def generate_weekly_report(end_date: datetime):
             "commit_messages": [c.msg for c in project_commits],
             "distinct_authors": list(set([c.committer.name for c in project_commits])),
             "commit_urls": [create_commit_url(c, token_repos) for c in project_commits],
-            "file_extensions": [ext for commit_list in [c.file_extensions for c in project_commits] for ext in commit_list]
+            "file_extensions": util.get_file_extensions_and_lines_of_code_modified(project_commits)
         }
 
     report_date_str = end_date.strftime("%Y-%m-%d")
@@ -51,7 +52,12 @@ def generate_weekly_report(end_date: datetime):
     with open(f"{PATHS['WEEKLY_REPORTS_PATH']}/{report_date_str}/{report_date_str}.json", 'w', encoding='utf-8') as f:
         json.dump(weekly_commits_data, f, ensure_ascii=False, indent=2)
 
+    end = time.time()
+    duration = end-start
+    print(f"~~~ {report_date_str} weekly report generated in {duration.strftime('%H:%M:%S')}~~~")
+
 def generate_daily_report(day: Optional[datetime]):
+    start = time.time()
     with open(f"{PATHS['REPOS_FILE']}", "r") as f:
         tokens = json.load(f)
     
@@ -87,7 +93,7 @@ def generate_daily_report(day: Optional[datetime]):
             "commit_messages": [c.msg for c in project_commits],
             "distinct_authors": list(set([c.committer.name for c in project_commits])),
             "commit_urls": [create_commit_url(c, token_repos) for c in project_commits],
-            "file_extensions": [ext for commit_list in [c.file_extensions for c in project_commits] for ext in commit_list]
+            "file_extensions": util.get_file_extensions_and_lines_of_code_modified(project_commits)
         }
 
     report_date_str = day.strftime("%Y-%m-%d")
@@ -99,6 +105,10 @@ def generate_daily_report(day: Optional[datetime]):
     # dump daily report
     with open(f"{PATHS['DAILY_REPORTS_PATH']}/{report_date_str}/{report_date_str}.json", 'w', encoding='utf-8') as f:
         json.dump(daily_commits_data, f, ensure_ascii=False, indent=2)
+
+    end = time.time()
+    duration = end-start
+    print(f"~~~ {report_date_str} daily report generated in {duration.strftime('%H:%M:%S')}~~~")
 
 
 def generate_summary_report(report_date, mode="DAILY"):
@@ -124,8 +134,6 @@ def generate_summary_report(report_date, mode="DAILY"):
     by_commits = util.get_most_active_by_commits(report_date_str, n=10, mode=mode)
     by_LOC = util.get_most_active_by_loc(report_date_str, n=10, mode=mode)
     by_distinct_authors = util.get_most_active_by_author(report_date_str, n=10, mode=mode)
-    file_extensions_by_token = util.get_raw_file_extensions_by_token(report_date_str, mode=mode)
-    
 
     summary_report = {"tokens_represented": {}}
 
@@ -152,9 +160,6 @@ def generate_summary_report(report_date, mode="DAILY"):
                 "weekly_close": close_price[0],
                 "weekly_delta_percentage": delta_percentage
             }
-
-        # tally up the file extensions modified for each file
-        summary_report["tokens_represented"][token]['file_extensions'] = Counter(file_extensions_by_token[token])
 
     summary_report["top_by_num_commits"] = [{"token": token, "count": count} for token, count in by_commits]
     summary_report["top_by_new_lines"] = [{"token": token, "count": count} for token, count in by_LOC]
