@@ -1,9 +1,8 @@
 from datetime import datetime, timedelta
-import dataframe_image as dfi
-import numpy as np
+import dataframe_image as df_image
 import os
-import matplotlib.pyplot as plt
 import pandas as pd
+from PIL import Image, ImageDraw, ImageFont
 import plotly.express as px
 from tkinter import Y
 #from wordcloud import WordCloud
@@ -21,33 +20,46 @@ def create_img(image_path, fig):
     fig.write_image(image_path)
     print(f"image saved: {image_path}")
 
-def create_file_extension_graphs(tokens_represented, report_date, mode="DAILY", limit=6):
+def create_file_extension_base_img(tokens_represented, report_date, mode="DAILY", limit=6):
+    """creates an image representing the top 6 files modified for each project by converting a dataframe into an image"""
     report_date_str = report_date.strftime("%Y-%m-%d")
-    if mode=="DAILY":
-        title = "Most Modified File Extensions by Project Today"
-    if mode=="WEEKLY":
-        title = "Most Modified File Extensions by Project This Week"
 
     for token in tokens_represented:
-        # get data
-        extension_counts_and_loc_by_token = report_util.get_file_extension_breakdown_from_summary_report(report_date, mode=mode)
-        for token, metadata in extension_counts_and_loc_by_token.items():
+        # get_data, sorted list of: [{extension: 'abc', extension_count: 4, loc_modified: 34}, {...}, ...]
+        extension_counts_and_loc_by_token = report_util.get_file_extension_breakdown_from_summary_report(token, report_date, mode=mode)
 
-            # save most common file extensions to dataframe
-            token_specific_df = pd.DataFrame(
-                metadata[:limit],
-                columns=['file extension', 'extension count', 'lines of code affected' ])
+        # convert to list of lists (each sub list is a df row): [[.ext_name, extension count, loc modified]]
+        create_df_row = lambda row_list: [f".{row_list[0]}", row_list[1], row_list[2]]
+        extension_data = [create_df_row(list(v.values())) for v in extension_counts_and_loc_by_token]
 
-            # styling
-            token_specific_df.style.set_caption(title)
-            df_styled = token_specific_df.style.background_gradient()
-            
-            # save to image
-            TOKEN_SPECIFIC_DIR = f'reports/{mode.lower()}/{report_date_str}/token_specific/'
-            if not os.path.exists(TOKEN_SPECIFIC_DIR):
-                os.mkdir(TOKEN_SPECIFIC_DIR)
-            IMG_PATH = TOKEN_SPECIFIC_DIR + f"{token}_file_extensions.png"
-            dfi.export(df_styled, IMG_PATH)
+        # save most common file extensions to dataframe
+        token_specific_df = pd.DataFrame(
+            extension_data[:limit],
+            columns=['file extension', 'extension count', 'lines of code added' ]
+        )
+
+        # styling
+        styled_df = token_specific_df.style.background_gradient()
+        
+        TOKEN_SPECIFIC_DIR = f'reports/{mode.lower()}/{report_date_str}/token_specific/'
+        IMG_PATH = TOKEN_SPECIFIC_DIR + f"{token}_file_extensions_base_img.png"
+        IMG_PATH_TMP = IMG_PATH + '.tmp'
+
+        # make directory if it doesn't exist
+        if not os.path.exists(TOKEN_SPECIFIC_DIR):
+            os.mkdir(TOKEN_SPECIFIC_DIR)
+
+        # save to tmp image so we can crop after
+        df_image.export(styled_df, IMG_PATH_TMP)
+
+        # now crop the image to remove the index on the left side of the image
+        # crop: left, top, right, bottom
+        tmp_img = Image.open(IMG_PATH_TMP)
+        cropped_img = tmp_img.crop((50, 0, tmp_img.width, tmp_img.height))
+        cropped_img.save(IMG_PATH)
+        os.remove(IMG_PATH_TMP)
+        
+
 
 
 def create_top_by_loc_graph(report_date, mode="DAILY"):
@@ -114,6 +126,9 @@ def create_top_by_loc_graph(report_date, mode="DAILY"):
         report_date=report_date, 
         mode=mode)
 
+    # remove graph without price delta
+    os.remove(image_path)
+
 def create_top_by_num_authors_graph(report_date, mode="DAILY"):
     report_date_str = report_date.strftime("%Y-%m-%d")
     if mode=="DAILY":
@@ -174,6 +189,9 @@ def create_top_by_num_authors_graph(report_date, mode="DAILY"):
         new_graph_name=GRAPH_NAMES['AUTHORS_AND_PRICE'],
         report_date=report_date, 
         mode=mode)
+
+    # remove graph without price delta
+    os.remove(image_path)
 
 def create_top_commits_daily_graph(report_date, mode="DAILY"):
     report_date_str = report_date.strftime("%Y-%m-%d")
@@ -237,6 +255,9 @@ def create_top_commits_daily_graph(report_date, mode="DAILY"):
         report_date=report_date, 
         mode=mode)
 
+    # remove graph without price delta
+    os.remove(image_path)
+
 
 if __name__ == "__main__":
     '''
@@ -244,4 +265,4 @@ if __name__ == "__main__":
     create_top_by_num_authors_graph()
     create_top_by_loc_graph()
     '''
-    create_file_extension_graphs(['IPC', 'ETH'], datetime(2022, 2, 12), "DAILY")
+    create_file_extension_base_img(['ICP', 'ETH'], datetime(2022, 2, 13), "DAILY")

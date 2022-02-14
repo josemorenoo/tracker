@@ -67,7 +67,5 @@ def top_commits_chart(report_date, mode="DAILY"):
 
     post_chart_tweet(api, top_commits_img_path, commits_tweet_text)
 
-
-
 if __name__ == "__main__":
     pass

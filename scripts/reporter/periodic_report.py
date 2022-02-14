@@ -9,6 +9,8 @@ from typing import Optional, List, Any
 from scripts.reporter.paths import PATHS
 import scripts.reporter.report_util as util
 
+import scripts.twitter.twitter_graphs as graphs
+
 from webapp import setup_data
 from webapp.token_prices import CryptoOracle
 
@@ -164,6 +166,10 @@ def generate_summary_report(report_date, mode="DAILY"):
     summary_report["top_by_num_commits"] = [{"token": token, "count": count} for token, count in by_commits]
     summary_report["top_by_new_lines"] = [{"token": token, "count": count} for token, count in by_LOC]
     summary_report["top_by_num_distinct_authors"] = [{"token": token, "count": count} for token, count in by_distinct_authors]
+
+    # generate file extension breakdown for the top five projects by lines of code
+    top_5_tokens_by_commits = [x['token'] for x in summary_report["top_by_new_lines"][:5]]
+    graphs.create_file_extension_base_img(top_5_tokens_by_commits, report_date, mode)
 
     if mode=="DAILY":
         with open(f'{PATHS["DAILY_REPORTS_PATH"]}/{report_date_str}/summary.json', 'w', encoding='utf-8') as f:

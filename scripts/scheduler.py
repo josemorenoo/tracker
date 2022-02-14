@@ -45,7 +45,7 @@ def make_report_and_post_all_charts(run_report=True,
     delay_secs=30,
     day=YESTERDAY,
     make_raw_report=True,
-    make_summary_report=False):
+    make_summary_report=True):
     """
     Creates daily report and posts all the graphs
     """
@@ -82,7 +82,8 @@ if __name__ == "__main__":
         mode='DAILY',
         delay_secs=0,
         day=datetime(2022, 2, 13),
-        make_raw_report=False)
+        make_raw_report=False, 
+        make_summary_report=True)
     """
     # Start the scheduler
     sched = BackgroundScheduler()

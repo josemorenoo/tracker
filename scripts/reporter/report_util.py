@@ -129,8 +129,13 @@ def get_file_extension_breakdown_from_summary_report(token, report_date, mode="D
     # sort by number of file extensions updated
     """
     raw_report = get_raw_report(report_date=report_date, mode=mode) # raw means daily/weekly
+
+    def combine_dicts(d1, d2):
+        return dict(list(d1.items()) + list(d2.items()))
+    token_specific_extension_data = [combine_dicts({'extension': extension}, metadata) for extension, metadata in raw_report[token]['file_extensions'].items()]
+
     sorted_by_extension_count = sorted(
-        raw_report[token]['file_extensions'],
+        token_specific_extension_data,
         key=lambda x: x['extension_count'], 
         reverse=True)
     return sorted_by_extension_count
