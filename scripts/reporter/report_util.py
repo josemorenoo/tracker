@@ -106,7 +106,7 @@ def get_file_extensions_and_lines_of_code_modified(project_commits):
         # count how many times each file extension was modified for this token
         for ext, commit_ext_count in Counter(commit.file_extensions).items():
             if ext not in project_ext_count_and_loc_affected:
-                project_ext_count_and_loc_affected[ext]['extension_count'] = commit_ext_count
+                project_ext_count_and_loc_affected[ext] = {'extension_count': commit_ext_count}
             else:
                 project_ext_count_and_loc_affected[ext]['extension_count'] += commit_ext_count
 
