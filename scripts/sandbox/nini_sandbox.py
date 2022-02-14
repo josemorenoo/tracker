@@ -8,6 +8,7 @@ import scripts.reporter.periodic_report as periodic_report
 print("\nWelcome to Nini's sandbox. \n")
 
 wdir = os.getcwd()
+wdir = wdir.replace(os.sep, '/')
 output_dir = wdir[0:-7] + "junk/"
 
 print("output dir: ", output_dir)
@@ -22,11 +23,8 @@ drawing.text( (10, 10), "Hello da nene", fill = (0, 0, 0))
 img_name = "redbox.png"
 img.save(output_dir + "redbox.png")
 
-# pseudocode
 
 def add_price_deltas_to_existing_img(img_date: datetime):
-
-    # first get the name of the top 10 coins (Jose)
 
     # first, load the summary report for the same date the img was made
     summary_report = periodic_report.get_summary_report(img_date)
