@@ -18,34 +18,33 @@ def create_img(image_path, fig):
     fig.write_image(image_path)
     print(f"image saved: {image_path}")
 
-def create_file_extension_graph(report_date, mode="DAILY", limit=6):
+def create_file_extension_graphs(tokens_represented, report_date, mode="DAILY", limit=6):
     report_date_str = report_date.strftime("%Y-%m-%d")
     if mode=="DAILY":
-        REPORT_DIR = f"{report_paths['DAILY_REPORTS_PATH']}/{report_date_str}"
         title = "Most Modified File Extensions by Project Today"
     if mode=="WEEKLY":
         title = "Most Modified File Extensions by Project This Week"
-        REPORT_DIR = f"{report_paths['WEEKLY_REPORTS_PATH']}/{report_date_str}"
 
-    # get data
-    extensions_by_token = report_util.get_tallied_file_raw_extensions_by_token(report_date_str, mode=mode)
-    for token, ext_counts in extensions_by_token.items():
+    for token in tokens_represented:
+        # get data
+        extension_counts_and_loc_by_token = report_util.get_file_extension_breakdown_from_summary_report(report_date, mode=mode)
+        for token, metadata in extension_counts_and_loc_by_token.items():
 
-        # save most common extensions to dataframe
-        token_specific_df = pd.DataFrame(
-            ext_counts[:limit],
-            columns=['file extension', 'count'])
+            # save most common file extensions to dataframe
+            token_specific_df = pd.DataFrame(
+                metadata[:limit],
+                columns=['file extension', 'extension count', 'lines of code affected' ])
 
-        # styling
-        token_specific_df.style.set_caption(title)
-        df_styled = token_specific_df.style.background_gradient()
-        
-        # save to image
-        TOKEN_SPECIFIC_DIR = f'reports/{mode.lower()}/{report_date_str}/token_specific/'
-        if not os.path.exists(TOKEN_SPECIFIC_DIR):
-            os.mkdir(TOKEN_SPECIFIC_DIR)
-        IMG_PATH = TOKEN_SPECIFIC_DIR + f"{token}_file_extensions.png"
-        dfi.export(df_styled, IMG_PATH)
+            # styling
+            token_specific_df.style.set_caption(title)
+            df_styled = token_specific_df.style.background_gradient()
+            
+            # save to image
+            TOKEN_SPECIFIC_DIR = f'reports/{mode.lower()}/{report_date_str}/token_specific/'
+            if not os.path.exists(TOKEN_SPECIFIC_DIR):
+                os.mkdir(TOKEN_SPECIFIC_DIR)
+            IMG_PATH = TOKEN_SPECIFIC_DIR + f"{token}_file_extensions.png"
+            dfi.export(df_styled, IMG_PATH)
 
 
 def create_top_by_loc_graph(report_date, mode="DAILY"):
@@ -245,4 +244,4 @@ if __name__ == "__main__":
     create_top_by_num_authors_graph()
     create_top_by_loc_graph()
     '''
-    create_file_extension_graph(datetime(2022, 2, 12), "DAILY")
+    create_file_extension_graphs(['IPC', 'ETH'], datetime(2022, 2, 12), "DAILY")

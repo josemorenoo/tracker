@@ -39,13 +39,13 @@ def randomize_and_post(funcs, delay_secs, post_to_twitter=True, mode="DAILY"):
 
 
 
-def make_report_and_post_all_charts(run_report=True, post_to_twitter=True, mode="DAILY", delay_secs=30):
+def make_report_and_post_all_charts(run_report=True, post_to_twitter=True, mode="DAILY", delay_secs=30, day=YESTERDAY):
     """
     Creates daily report and posts all the graphs
     """
 
     if run_report:
-        run_daily_report(YESTERDAY, mode=mode) 
+        run_daily_report(day, mode=mode) 
 
     randomize_and_post(funcs=[
         post_loc_chart,
@@ -66,7 +66,7 @@ def show_jobs(sched):
 
 
 if __name__ == "__main__":
-    make_report_and_post_all_charts(run_report=False, post_to_twitter=False, mode='DAILY', delay_secs=0)
+    make_report_and_post_all_charts(run_report=True, post_to_twitter=False, mode='DAILY', delay_secs=0, day=datetime(2022, 2, 13))
     """
     # Start the scheduler
     sched = BackgroundScheduler()
