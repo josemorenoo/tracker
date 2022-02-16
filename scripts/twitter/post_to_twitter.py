@@ -30,7 +30,7 @@ def generate_tweet_text(report_date, metric, mode="DAILY"):
     if metric == "top_by_num_commits":
         status = f"Most active #crypto projects by #github commits {when} 👨‍💻\n\n"
     if metric == "top_by_num_distinct_authors":
-        status = f"#crypto project with most developers working on it {when} 👩‍💻\n\n"
+        status = f"#crypto projects with most active developers {when} 👩‍💻\n\n"
     if metric == "top_by_new_lines":
         status = f"Most active #crypto project by new lines of code {when} 📈\n\n"
     return status + token_hashtags
@@ -62,7 +62,7 @@ def authors_chart(report_date, mode="DAILY"):
 def top_commits_chart(report_date, mode="DAILY"):
     api = setup_api()
 
-    top_commits_img_path = f'reports/{mode.lower()}/{report_date.strftime("%Y-%m-%d")}/{GRAPH_NAMES[""]}'
+    top_commits_img_path = f'reports/{mode.lower()}/{report_date.strftime("%Y-%m-%d")}/{GRAPH_NAMES["COMMITS_AND_PRICE"]}'
     commits_tweet_text = generate_tweet_text(report_date, "top_by_num_commits", mode=mode)
 
     post_chart_tweet(api, top_commits_img_path, commits_tweet_text)

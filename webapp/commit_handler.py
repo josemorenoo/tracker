@@ -67,14 +67,6 @@ class CommitHandler:
                 deletions -= modified_file.deleted_lines
                 insertions -= modified_file.added_lines
                 lines -= (modified_file.deleted_lines + modified_file.added_lines)
-        
-        if 'transaction' in commit.msg:
-
-            print(len(commit.modified_files))
-            print(commit.modified_files)
-            
-            print(self.get_commit_file_extensions(commit))
-            print(self.get_loc_changed_by_file_extension(commit))
 
         return Commit(
             hash = commit.hash,
@@ -104,6 +96,9 @@ class CommitHandler:
             methods_modified = self.get_methods_modified(commit)
         )
 
+    # Note: because of how Git works, modified_files will be empty for merge commits
+    # - file_extensions will also be empty
+
     def get_commit_file_extensions(self, commit) -> List[str]:
         """
         Returns a list of the file extensions of files changed in a single commit
@@ -130,7 +125,7 @@ class CommitHandler:
             tally_dictionary[extension_name] += (f.added_lines - f.deleted_lines)
         return tally_dictionary
 
-    def get_methods_modified(self, commit) -> List[str]:
+    def get_methods_modified(self, commit) -> List[Any]: #List[Method]
         changed_methods_nested = [f.changed_methods for f in commit.modified_files]
         #unpack list of lists into single list
         return [item for sublist in changed_methods_nested for item in sublist]

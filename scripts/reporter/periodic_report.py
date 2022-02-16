@@ -41,7 +41,8 @@ def generate_weekly_report(end_date: datetime):
             "commit_messages": [c.msg for c in project_commits],
             "distinct_authors": list(set([c.committer.name for c in project_commits])),
             "commit_urls": [create_commit_url(c, token_repos) for c in project_commits],
-            "file_extensions": util.get_file_extensions_and_lines_of_code_modified(project_commits)
+            "file_extensions": util.get_file_extensions_and_lines_of_code_modified(project_commits),
+            "changed_methods": util.get_changed_methods(project_commits)
         }
 
     report_date_str = end_date.strftime("%Y-%m-%d")
@@ -95,7 +96,8 @@ def generate_daily_report(day: Optional[datetime]):
             "commit_messages": [c.msg for c in project_commits],
             "distinct_authors": list(set([c.committer.name for c in project_commits])),
             "commit_urls": [create_commit_url(c, token_repos) for c in project_commits],
-            "file_extensions": util.get_file_extensions_and_lines_of_code_modified(project_commits)
+            "file_extensions": util.get_file_extensions_and_lines_of_code_modified(project_commits),
+            "changed_methods": util.get_changed_methods(project_commits)
         }
 
     report_date_str = day.strftime("%Y-%m-%d")
@@ -167,9 +169,9 @@ def generate_summary_report(report_date, mode="DAILY"):
     summary_report["top_by_new_lines"] = [{"token": token, "count": count} for token, count in by_LOC]
     summary_report["top_by_num_distinct_authors"] = [{"token": token, "count": count} for token, count in by_distinct_authors]
 
-    # generate file extension breakdown for the top five projects by lines of code
-    top_5_tokens_by_commits = [x['token'] for x in summary_report["top_by_new_lines"][:5]]
-    graphs.create_file_extension_base_img(top_5_tokens_by_commits, report_date, mode)
+    # generate file extension breakdown for all tokens represented
+    tokens_represented = summary_report["tokens_represented"].keys()
+    graphs.create_file_extension_base_img(tokens_represented, report_date, mode)
 
     if mode=="DAILY":
         with open(f'{PATHS["DAILY_REPORTS_PATH"]}/{report_date_str}/summary.json', 'w', encoding='utf-8') as f:

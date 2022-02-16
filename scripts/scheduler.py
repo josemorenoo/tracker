@@ -68,7 +68,7 @@ def make_report_and_post_all_charts(run_report=True,
     
     
 def show_jobs(sched):
-    print(f"\n\njobs: {len(sched.get_jobs())}\n")
+    #print(f"\n\njobs: {len(sched.get_jobs())}\n")
     for job in sched.get_jobs():
         print("\nname: %s, trigger: %s, next run: %s, handler: %s" % (
           job.name, job.trigger, job.next_run_time, job.func))
@@ -80,9 +80,8 @@ if __name__ == "__main__":
         run_report=True,
         post_to_twitter=False,
         mode='DAILY',
-        delay_secs=0,
-        day=datetime(2022, 2, 13),
-        make_raw_report=False, 
+        delay_secs=30,
+        make_raw_report=True, 
         make_summary_report=True)
     """
     # Start the scheduler

@@ -140,6 +140,21 @@ def get_file_extension_breakdown_from_summary_report(token, report_date, mode="D
         reverse=True)
     return sorted_by_extension_count
 
+def get_changed_methods(project_commits) -> List[str]:
+    """
+    Used to populate the DAILY/WEEKLY reports, gets a list of 
+    method names that were changed.
+
+    Note: Removes duplicates from list, sometimes same method is touched in more than one commit
+    """
+    project_changed_methods = []
+    for commit in project_commits:
+        for file in commit.modified_files:
+            method_names = [m.name for m in file.changed_methods]
+            project_changed_methods.extend(method_names)
+    print(*project_changed_methods, sep="\n")
+    return list(set(project_changed_methods))
+
 
 ### ### ### ### ### ### vvv PRICE vvv ### ### ### ### ### ### 
 
@@ -157,7 +172,7 @@ def get_daily_price_deltas(sorted_tokens: List[Any], report_date, mode="DAILY"):
         return [summary_report["tokens_represented"][token]["weekly_delta_percentage"] for token in sorted_tokens]
 
 
-### ### ### ### ### ### vvv MISCELLANEOUS vvv
+### ### ### ### ### ### vvv REPORTS vvv
 # 
 #  ### ### ### ### ### ### 
 def get_summary_report(report_date, mode="DAILY"):
