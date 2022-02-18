@@ -4,6 +4,7 @@ from typing import Any, List
 
 from matplotlib import lines
 
+from assets.file_extension_imgs.file_extensions import FILE_EXTENSIONS
 from scripts.reporter.paths import PATHS
 
 ### ### ### ### ### vvv METRICS vvv ### ### ### ### ### 
@@ -110,6 +111,10 @@ def get_file_extensions_and_lines_of_code_modified(project_commits):
             else:
                 project_ext_count_and_loc_affected[ext]['extension_count'] += commit_ext_count
 
+            # log out if extension is new so we can add a picture of it
+            if ext not in FILE_EXTENSIONS:
+                print(f"NEW EXTENSIONS ALERT: {ext}")
+
         # count the number of lines of code affected for each respective file extension
         print(commit.loc_changed_by_file_extension)
         for ext, loc_modified_for_extension in commit.loc_changed_by_file_extension.items():
@@ -170,7 +175,6 @@ def get_daily_price_deltas(sorted_tokens: List[Any], report_date, mode="DAILY"):
         return [summary_report["tokens_represented"][token]["daily_delta_percentage"] for token in sorted_tokens]
     if mode=="WEEKLY":
         return [summary_report["tokens_represented"][token]["weekly_delta_percentage"] for token in sorted_tokens]
-
 
 ### ### ### ### ### ### vvv REPORTS vvv
 # 

@@ -7,7 +7,7 @@ from .time_util import datetime_to_ms_timestamp, round_single_commit_by_time
 
 # files we don't want to count towards lines of code
 EXCLUSION_LIST = [
-    'yarn.lock',
+    '.lock',
     'package.json'
 ]
 

@@ -78,9 +78,9 @@ def show_jobs(sched):
 if __name__ == "__main__":
     make_report_and_post_all_charts(
         run_report=True,
-        post_to_twitter=False,
+        post_to_twitter=True,
         mode='DAILY',
-        delay_secs=30,
+        delay_secs=37,
         make_raw_report=True, 
         make_summary_report=True)
     """

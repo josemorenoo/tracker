@@ -12,6 +12,7 @@ from tkinter import Y
 from scripts.twitter.colors import COLORS
 from scripts.twitter.graph_names import GRAPH_NAMES
 import scripts.twitter.price_delta_supplement as price_delta
+import scripts.twitter.file_extension_supplement as extensions
 
 from scripts.reporter.paths import PATHS as report_paths
 import scripts.reporter.report_util as report_util
@@ -75,7 +76,6 @@ def create_top_by_loc_graph(report_date, mode="DAILY"):
     # get data
     by_locs = report_util.get_most_active_by_loc(report_date_str, mode=mode)
     report_util.get_combined_price_deltas(by_locs, report_date, mode)
-    #report_util.get_combined_price_deltas(by_locs, report_date, mode)
 
     # flip so that they show up in descending order on HORIZONTAL bar graph
     by_locs = by_locs[::-1]
@@ -120,11 +120,26 @@ def create_top_by_loc_graph(report_date, mode="DAILY"):
     create_img(image_path, fig)
 
     # add price supplement image
-    price_delta.add_price_deltas(
+    combined_img = price_delta.add_price_deltas(
         existing_img_name=GRAPH_NAMES['LOC'],
         new_graph_name=GRAPH_NAMES['LOC_AND_PRICE'],
         report_date=report_date, 
         mode=mode)
+
+    # get each bar in the graph as a percentage of the largest bar in the graph.
+    # used to figure out where to put the file extension images on the graph
+    bar_percentages = [x[1]/by_locs[-1][1] for x in by_locs[::-1]]
+
+    tokens_represented = [metadata[0] for metadata in by_locs]
+    with_extension_logos = extensions.add_ext_imgs_to_graph(
+        bar_graph_img=combined_img,
+        tokens_represented_in_graph=tokens_represented,
+        bar_percentages=bar_percentages,
+        report_date=report_date,
+        mode=mode
+    )
+
+    with_extension_logos.save(f"{REPORT_DIR}/{GRAPH_NAMES['LOC_AND_EXT']}")
 
     # remove graph without price delta
     os.remove(image_path)
@@ -140,7 +155,6 @@ def create_top_by_num_authors_graph(report_date, mode="DAILY"):
 
     # get data
     by_authors = report_util.get_most_active_by_author(report_date_str, mode=mode)
-    #report_util.get_combined_price_deltas(by_authors, report_date, mode)
 
     # flip so that they show up in descending order on HORIZONTAL bar graph
     by_authors = by_authors[::-1]
@@ -184,11 +198,26 @@ def create_top_by_num_authors_graph(report_date, mode="DAILY"):
     create_img(image_path, fig)
 
     # add price supplement image
-    price_delta.add_price_deltas(
+    combined_img = price_delta.add_price_deltas(
         existing_img_name=GRAPH_NAMES['AUTHORS'],
         new_graph_name=GRAPH_NAMES['AUTHORS_AND_PRICE'],
         report_date=report_date, 
         mode=mode)
+
+    # get each bar in the graph as a percentage of the largest bar in the graph.
+    # used to figure out where to put the file extension images on the graph
+    bar_percentages = [x[1]/by_authors[-1][1] for x in by_authors[::-1]]
+
+    tokens_represented = [metadata[0] for metadata in by_authors]
+    with_extension_logos = extensions.add_ext_imgs_to_graph(
+        bar_graph_img=combined_img,
+        tokens_represented_in_graph=tokens_represented,
+        bar_percentages=bar_percentages,
+        report_date=report_date,
+        mode=mode
+    )
+
+    with_extension_logos.save(f"{REPORT_DIR}/{GRAPH_NAMES['AUTHORS_AND_EXT']}")
 
     # remove graph without price delta
     os.remove(image_path)
@@ -204,7 +233,6 @@ def create_top_commits_daily_graph(report_date, mode="DAILY"):
 
     # get data
     by_commits = report_util.get_most_active_by_commits(report_date_str, mode=mode)
-    #report_util.get_combined_price_deltas(by_commits, report_date, mode)
 
     # flip so that they show up in descending order on HORIZONTAL bar graph
     by_commits = by_commits[::-1]
@@ -220,7 +248,7 @@ def create_top_commits_daily_graph(report_date, mode="DAILY"):
         template="plotly_dark" # fig dark background
     )
     fig.update_layout(
-        margin=dict(l=150),
+        margin=dict(l=130),
         plot_bgcolor=COLORS['background_blue'], # plot dark background
         title = dict(x=0.5, font_size=22), # center title
         font = dict(family='courier'),
@@ -249,11 +277,26 @@ def create_top_commits_daily_graph(report_date, mode="DAILY"):
     create_img(image_path, fig)
 
     # add price supplement image
-    price_delta.add_price_deltas(
+    combined_img = price_delta.add_price_deltas(
         existing_img_name=GRAPH_NAMES['COMMITS'],
         new_graph_name=GRAPH_NAMES['COMMITS_AND_PRICE'],
         report_date=report_date, 
         mode=mode)
+
+    # get each bar in the graph as a percentage of the largest bar in the graph.
+    # used to figure out where to put the file extension images on the graph
+    bar_percentages = [x[1]/by_commits[-1][1] for x in by_commits[::-1]]
+
+    tokens_represented = [metadata[0] for metadata in by_commits]
+    with_extension_logos = extensions.add_ext_imgs_to_graph(
+        bar_graph_img=combined_img,
+        bar_percentages=bar_percentages,
+        tokens_represented_in_graph=tokens_represented,
+        report_date=report_date,
+        mode=mode
+    )
+
+    with_extension_logos.save(f"{REPORT_DIR}/{GRAPH_NAMES['COMMITS_AND_EXT']}")
 
     # remove graph without price delta
     os.remove(image_path)
@@ -265,4 +308,7 @@ if __name__ == "__main__":
     create_top_by_num_authors_graph()
     create_top_by_loc_graph()
     '''
-    create_file_extension_base_img(['ICP', 'ETH'], datetime(2022, 2, 13), "DAILY")
+    #create_file_extension_base_img(['ICP', 'ETH'], datetime(2022, 2, 13), "DAILY")
+    create_top_by_num_authors_graph(datetime(2022, 2, 17), mode="DAILY")
+    create_top_commits_daily_graph(datetime(2022, 2, 17), mode="DAILY")
+    create_top_by_loc_graph(datetime(2022, 2, 17), mode="DAILY")

@@ -7,7 +7,7 @@ from scripts.reporter.paths import PATHS
 
 from scripts.twitter.colors import COLORS
 
-FONT_ASSET = 'config/arial.ttf'
+FONT_ASSET = 'assets/arial.ttf'
 
 def add_price_deltas(existing_img_name: str, new_graph_name: str, report_date: datetime, mode: str):
     report_date_str = report_date.strftime("%Y-%m-%d")
@@ -29,6 +29,7 @@ def add_price_deltas(existing_img_name: str, new_graph_name: str, report_date: d
     # combine images and save
     combined_img = combine_graph_and_price_img(existing_img_cropped, price_img)
     combined_img.save(f"{reports_path}/{report_date_str}/{new_graph_name}")
+    return combined_img
 
 
 def open_existing_img(chart_name: str, report_date_str: str, mode: str):
