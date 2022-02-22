@@ -51,10 +51,13 @@ class Commit:
 
 class CommitHandler:
 
-    def create_commit(self, commit):
+    def create_commit(self, commit, repo_cloning_tmp_dir: str):
         '''
         Takes in a raw pydriller commit object and extracts the relevant fields into a new
         Commit dataclass object
+
+        :param clone_repo_to: temporary directory, made accessible so we can pass flags
+        and get merge commits which pydriller can't handle natively.
         '''
         print(" loading commit from {}".format(commit.project_name))
         
@@ -129,4 +132,3 @@ class CommitHandler:
         changed_methods_nested = [f.changed_methods for f in commit.modified_files]
         #unpack list of lists into single list
         return [item for sublist in changed_methods_nested for item in sublist]
-

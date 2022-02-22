@@ -10,41 +10,49 @@ from .commit_handler import CommitHandler
 
 class RepoInfo:
 
-    def __init__(self, githubRepoUrl: str, startDate: Optional[datetime] = None, endDate: Optional[datetime] = None):
-        self.githubRepoUrl = githubRepoUrl
+    def __init__(self,
+        github_repo_url: str,
+        start_date: Optional[datetime] = None,
+        end_date: Optional[datetime] = None):
+
+        self.github_repo_url = github_repo_url
 
         ch = CommitHandler()
 
         # get all the commits
-        if startDate and endDate:
-            self.commits = [ch.create_commit(commit) for commit in tqdm(Repository(self.githubRepoUrl, since=startDate, to=endDate).traverse_commits())]
+        if start_date and end_date:
+            self.commits = [ch.create_commit(commit) for commit in tqdm(Repository(
+                self.github_repo_url,
+                since=start_date,
+                to=end_date).traverse_commits())]
         else:
-            self.commits = [ch.create_commit(commit) for commit in tqdm(Repository(self.githubRepoUrl).traverse_commits())]
+            self.commits = [ch.create_commit(commit) for commit in tqdm(Repository(
+                self.github_repo_url).traverse_commits())]
 
     def get_commits(self) -> List[Any]:
         return self.commits
 
-    def get_commits_by_date(self, startDate = None, endDate = None) -> List[Any]:
+    def get_commits_by_date(self, start_date = None, end_date = None) -> List[Any]:
         norm_dt = lambda dt: dt.replace(tzinfo=pytz.UTC)
-        if startDate:
-            startDate = norm_dt(startDate)
-        if endDate:
-            endDate = norm_dt(endDate)
+        if start_date:
+            start_date = norm_dt(start_date)
+        if end_date:
+            end_date = norm_dt(end_date)
 
-        if startDate and endDate:
-            print("{}: filtering through {} commits between start: {}, end: {}".format(self.githubRepoUrl.split('/')[-1], str(len(self.commits)), str(startDate), str(endDate)))
-            filtered = list(filter(lambda c: norm_dt(c.committer_date) > startDate and norm_dt(c.committer_date) < endDate, self.commits))
+        if start_date and end_date:
+            print("{}: filtering through {} commits between start: {}, end: {}".format(self.github_repo_url.split('/')[-1], str(len(self.commits)), str(start_date), str(end_date)))
+            filtered = list(filter(lambda c: norm_dt(c.committer_date) > start_date and norm_dt(c.committer_date) < end_date, self.commits))
             print("found {}\n".format(str(len(filtered))))
             return filtered
 
-        elif startDate and not endDate:
-            print("{}: filtering through {} commits between start: {}, end: {}".format(self.githubRepoUrl.split('/')[-1], str(len(self.commits)), str(startDate), str(datetime.now())))
-            filtered = list(filter(lambda c: norm_dt(c.committer_date) > startDate, self.commits))
+        elif start_date and not end_date:
+            print("{}: filtering through {} commits between start: {}, end: {}".format(self.github_repo_url.split('/')[-1], str(len(self.commits)), str(start_date), str(datetime.now())))
+            filtered = list(filter(lambda c: norm_dt(c.committer_date) > start_date, self.commits))
             print("found {}\n".format(str(len(filtered))))
             return filtered
-        elif not startDate and endDate:
-            print("{}: filtering through {} commits between start: {}, end: {}".format(self.githubRepoUrl.split('/')[-1], str(len(self.commits)), str(self.commits[0].committer_date), str(endDate)))
-            filtered = list(filter(lambda c: norm_dt(c.committer_date) < endDate, self.commits))
+        elif not start_date and end_date:
+            print("{}: filtering through {} commits between start: {}, end: {}".format(self.github_repo_url.split('/')[-1], str(len(self.commits)), str(self.commits[0].committer_date), str(end_date)))
+            filtered = list(filter(lambda c: norm_dt(c.committer_date) < end_date, self.commits))
             print("found {}\n".format(str(len(filtered))))
             return filtered
         else:
@@ -57,6 +65,6 @@ class RepoInfo:
         """
 
         commit_messages = [c.msg for c in commits]
-        print("{} most common commit messages for {} are:\n".format(n, self.githubRepoUrl))
+        print("{} most common commit messages for {} are:\n".format(n, self.github_repo_url))
         print(*list(Counter(commit_messages).most_common(n)), sep="\n")
         
