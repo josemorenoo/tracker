@@ -13,28 +13,28 @@ def make_report(report_date, mode="DAILY", make_raw_report=True, make_summary_re
     """runs the daily report for today"""
     periodic_report.run(report_date, mode, make_raw_report=make_raw_report, make_summary_report=make_summary_report)
 
-def post_loc_chart(post_to_twitter=True, mode="DAILY"):
+def post_loc_chart(post_to_twitter=True, mode="DAILY", day=YESTERDAY):
     """
     creates and posts graph
     """
-    graphs.create_top_by_loc_graph(YESTERDAY, mode=mode)
+    graphs.create_top_by_loc_graph(day, mode=mode)
     if post_to_twitter:
-        post.loc_chart(YESTERDAY, mode=mode)
+        post.loc_chart(day, mode=mode)
 
-def post_authors_chart(post_to_twitter=True, mode="DAILY"):
-    graphs.create_top_by_num_authors_graph(YESTERDAY, mode=mode)
+def post_authors_chart(post_to_twitter=True, mode="DAILY", day=YESTERDAY):
+    graphs.create_top_by_num_authors_graph(day, mode=mode)
     if post_to_twitter:
-        post.authors_chart(YESTERDAY, mode=mode)
+        post.authors_chart(day, mode=mode)
 
-def post_commits_chart(post_to_twitter=True, mode="DAILY"):
-    graphs.create_top_commits_daily_graph(YESTERDAY, mode=mode)
+def post_commits_chart(post_to_twitter=True, mode="DAILY", day=YESTERDAY):
+    graphs.create_top_commits_daily_graph(day, mode=mode)
     if post_to_twitter:
-        post.top_commits_chart(YESTERDAY, mode=mode)
+        post.top_commits_chart(day, mode=mode)
 
-def randomize_and_post(funcs, delay_secs, post_to_twitter=True, mode="DAILY"):
+def randomize_and_post(funcs, delay_secs, post_to_twitter=True, mode="DAILY", day=YESTERDAY):
     random_order_funcs = random.sample(funcs, len(funcs))
     for f in random_order_funcs:
-        f(post_to_twitter, mode=mode)
+        f(post_to_twitter, mode=mode, day=day)
         time.sleep(delay_secs)
 
 
@@ -49,9 +49,14 @@ def make_report_and_post_all_charts(run_report=True,
     """
     Creates daily report and posts all the graphs
     """
+    assert mode in ["WEEKLY", "DAILY"]
+
+    if mode=="WEEKLY":
+        day = day - timedelta(days=7)
 
     if run_report:
-        make_report(day, 
+        make_report(
+            report_date=day, 
             mode=mode, 
             make_raw_report=make_raw_report, 
             make_summary_report=make_summary_report
@@ -64,7 +69,8 @@ def make_report_and_post_all_charts(run_report=True,
     ], 
     delay_secs = delay_secs,
     post_to_twitter=post_to_twitter,
-    mode=mode)
+    mode=mode,
+    day=day)
     
     
 def show_jobs(sched):
@@ -76,12 +82,13 @@ def show_jobs(sched):
 
 
 if __name__ == "__main__":
+
     make_report_and_post_all_charts(
-        run_report=True,
+        run_report=False,
         post_to_twitter=True,
-        mode='DAILY',
+        mode='WEEKLY',
         delay_secs=37,
-        make_raw_report=True, 
+        make_raw_report=False, 
         make_summary_report=True)
     """
     # Start the scheduler

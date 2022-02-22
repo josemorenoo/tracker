@@ -1,8 +1,7 @@
 from collections import Counter, defaultdict
+from datetime import timedelta
 import json
 from typing import Any, List
-
-from matplotlib import lines
 
 from assets.file_extension_imgs.file_extensions import FILE_EXTENSIONS
 from scripts.reporter.paths import PATHS
@@ -116,14 +115,13 @@ def get_file_extensions_and_lines_of_code_modified(project_commits):
                 print(f"NEW EXTENSIONS ALERT: {ext}")
 
         # count the number of lines of code affected for each respective file extension
-        print(commit.loc_changed_by_file_extension)
         for ext, loc_modified_for_extension in commit.loc_changed_by_file_extension.items():
             project_ext_count_and_loc_affected[ext]['loc_modified'] = loc_modified_for_extension
 
     return project_ext_count_and_loc_affected
 
 
-def get_file_extension_breakdown_from_summary_report(token, report_date, mode="DAILY"):
+def get_file_extension_breakdown_from_summary_report(token, report_date, mode="DAILY", verbose=False):
     """
     PULLS FROM DAILY/WEEKLY REPORT
 
@@ -143,6 +141,9 @@ def get_file_extension_breakdown_from_summary_report(token, report_date, mode="D
         token_specific_extension_data,
         key=lambda x: x['extension_count'], 
         reverse=True)
+    if verbose:
+        print(f"Most popular file extensions for {token}")
+        print(*sorted_by_extension_count, sep="\n")
     return sorted_by_extension_count
 
 def get_changed_methods(project_commits) -> List[str]:
@@ -171,10 +172,7 @@ def get_combined_price_deltas(sorted_tokens: List[Any], report_date, mode="DAILY
 
 def get_daily_price_deltas(sorted_tokens: List[Any], report_date, mode="DAILY"):
     summary_report = get_summary_report(report_date, mode)
-    if mode=="DAILY":
-        return [summary_report["tokens_represented"][token]["daily_delta_percentage"] for token in sorted_tokens]
-    if mode=="WEEKLY":
-        return [summary_report["tokens_represented"][token]["weekly_delta_percentage"] for token in sorted_tokens]
+    return [summary_report["tokens_represented"][token]["delta_percentage"] for token in sorted_tokens]
 
 ### ### ### ### ### ### vvv REPORTS vvv
 # 
@@ -198,25 +196,3 @@ def get_raw_report(report_date, mode="DAILY"):
         with open(f"{PATHS['WEEKLY_REPORTS_PATH']}/{report_date_str}/{report_date_str}.json", 'r') as f:
             raw_report = json.load(f)
     return raw_report
-
-
-def get_commit_message_word_list(report_date, mode="DAILY"):
-    report_date_str = report_date.strftime("%Y-%m-%d")
-
-    if mode=="DAILY":
-        with open(f"{PATHS['DAILY_REPORTS_PATH']}/{report_date_str}/{report_date_str}.json", 'r') as f:
-            report = json.load(f)
-    if mode=="WEEKLY":
-        with open(f"{PATHS['WEEKLY_REPORTS_PATH']}/{report_date_str}/{report_date_str}.json", 'r') as f:
-            report = json.load(f)
-
-
-    commit_messages_as_list_of_words = []
-    for _, token_data in report.items():
-        commit_messages_as_list_of_words.extend([msg.split(' ') for msg in token_data['commit_messages']])
-    
-    word_list = []
-    for sublist in commit_messages_as_list_of_words:
-        word_list.extend(sublist)
-    print(word_list)
-    return word_list

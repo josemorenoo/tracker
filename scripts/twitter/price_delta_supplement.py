@@ -6,16 +6,16 @@ import scripts.reporter.report_util as report_util
 from scripts.reporter.paths import PATHS
 
 from scripts.twitter.colors import COLORS
+from scripts.twitter.graph_names import GRAPH_NAMES
 
 FONT_ASSET = 'assets/arial.ttf'
 
 def add_price_deltas(existing_img_name: str, new_graph_name: str, report_date: datetime, mode: str):
-    report_date_str = report_date.strftime("%Y-%m-%d")
-
     if mode == 'DAILY':
         reports_path = PATHS['DAILY_REPORTS_PATH']
     if mode == 'WEEKLY':
         reports_path = PATHS['WEEKLY_REPORTS_PATH']
+    report_date_str = report_date.strftime("%Y-%m-%d")
     
     # open and crop existing bar graph image
     existing_img = open_existing_img(existing_img_name, report_date_str, mode)
@@ -23,7 +23,7 @@ def add_price_deltas(existing_img_name: str, new_graph_name: str, report_date: d
     
     # get price deltas for each token in graph, create price img supplement
     _, height = existing_img_cropped.size
-    price_deltas = get_price_deltas_from_summary_report(existing_img_name, report_date)
+    price_deltas = get_price_deltas_from_summary_report(existing_img_name, report_date, mode)
     price_img = create_price_supplemental_image(price_deltas, height)
 
     # combine images and save
@@ -42,19 +42,20 @@ def crop_original_photo(original_img):
     return original_img.crop((0, 0, 630, original_img.height))
 
 
-def get_price_deltas_from_summary_report(existing_img_name: str, report_date: datetime):
-    summary_report = report_util.get_summary_report(report_date)
-
-    if existing_img_name == 'top_commits.png':
+def get_price_deltas_from_summary_report(existing_img_name: str, report_date: datetime, mode: str="DAILY"):
+    summary_report = report_util.get_summary_report(report_date, mode=mode)
+    if existing_img_name == GRAPH_NAMES['COMMITS']:
         summary_report_key = 'top_by_num_commits'
-    if existing_img_name == 'top_distinct_authors.png':
+    elif existing_img_name == GRAPH_NAMES['AUTHORS']:
         summary_report_key = 'top_by_num_distinct_authors'
-    if existing_img_name == 'top_loc.png':
+    elif existing_img_name == GRAPH_NAMES['LOC']:
         summary_report_key = 'top_by_new_lines'
+    else:
+        raise ValueError(f"{existing_img_name} is not in {[GRAPH_NAMES['COMMITS'], GRAPH_NAMES['AUTHORS'], GRAPH_NAMES['LOC']]}")
 
     # reverse so that tokens show up in correct order
     tokens_represented_on_chart = [token_info['token'] for token_info in summary_report[summary_report_key]][::-1]
-    get_price_percentage_delta = lambda token: summary_report['tokens_represented'][token]['daily_delta_percentage']
+    get_price_percentage_delta = lambda token: summary_report['tokens_represented'][token]['delta_percentage']
     price_deltas = [get_price_percentage_delta(token) for token in tokens_represented_on_chart]
 
     print(f"tokens represented in {existing_img_name}:")

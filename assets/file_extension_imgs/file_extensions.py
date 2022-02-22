@@ -5,6 +5,10 @@ FILE_EXTENSIONS = {
         'path': BASE_PATH + 'c.png',
         'classification': 'backend'
     },
+    'css': {
+        'path': BASE_PATH + 'css.png',
+        'classification': 'frontend'
+    },
     'csv': {
         'path': BASE_PATH + 'csv.png',
         'classification': 'config'
@@ -60,6 +64,10 @@ FILE_EXTENSIONS = {
     'rs': {
         'path': BASE_PATH + 'rs.png',
         'classification': 'backend'
+    },
+    'scss': {
+        'path': BASE_PATH + 'css.png',
+        'classification': 'frontend'
     },
     'sh': {
         'path': BASE_PATH + 'sh.png',

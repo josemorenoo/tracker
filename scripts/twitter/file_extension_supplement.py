@@ -13,9 +13,9 @@ def add_ext_imgs_to_graph(bar_graph_img, bar_percentages: List[float], tokens_re
     only add the top 5 to each bar graph
     """
 
-    get_ext_for_token = lambda token: [ext['extension'] for ext in report_util.get_file_extension_breakdown_from_summary_report(token, report_date, mode)]
+    get_ext_for_token = lambda token: [ext['extension'] for ext in report_util.get_file_extension_breakdown_from_summary_report(token, report_date, mode, verbose=False)]
 
-    extensions: List[List[str]] = [get_ext_for_token(token) for token in tokens_represented_in_graph]
+    extensions: List[List[str]] = [get_ext_for_token(token) for token in tokens_represented_in_graph][::-1]
 
     for bar_idx in range(len(extensions)):
         num_ext_for_this_bar = len(extensions[bar_idx])

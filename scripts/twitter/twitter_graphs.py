@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+from datetime import datetime
 import dataframe_image as df_image
 import os
 import pandas as pd
@@ -64,11 +64,10 @@ def create_file_extension_base_img(tokens_represented, report_date, mode="DAILY"
 
 
 def create_top_by_loc_graph(report_date, mode="DAILY"):
-
     report_date_str = report_date.strftime("%Y-%m-%d")
     if mode=="DAILY":
-        REPORT_DIR = f"{report_paths['DAILY_REPORTS_PATH']}/{report_date_str}"
         title = "Today's Top 10 Tokens by New Lines of Code"
+        REPORT_DIR = f"{report_paths['DAILY_REPORTS_PATH']}/{report_date_str}"
     if mode=="WEEKLY":
         title = "This Week's Top 10 Tokens by New Lines of Code"
         REPORT_DIR = f"{report_paths['WEEKLY_REPORTS_PATH']}/{report_date_str}"
@@ -147,11 +146,12 @@ def create_top_by_loc_graph(report_date, mode="DAILY"):
 def create_top_by_num_authors_graph(report_date, mode="DAILY"):
     report_date_str = report_date.strftime("%Y-%m-%d")
     if mode=="DAILY":
-        REPORT_DIR = f"{report_paths['DAILY_REPORTS_PATH']}/{report_date_str}"
         title = "Today's Top 10 Tokens by Distinct Developers"
+        REPORT_DIR = f"{report_paths['DAILY_REPORTS_PATH']}/{report_date_str}"
     if mode=="WEEKLY":
         title = "This Week's Top 10 Tokens by Distinct Developers"
         REPORT_DIR = f"{report_paths['WEEKLY_REPORTS_PATH']}/{report_date_str}"
+    
 
     # get data
     by_authors = report_util.get_most_active_by_author(report_date_str, mode=mode)
@@ -223,10 +223,11 @@ def create_top_by_num_authors_graph(report_date, mode="DAILY"):
     os.remove(image_path)
 
 def create_top_commits_daily_graph(report_date, mode="DAILY"):
+    print(report_date)
     report_date_str = report_date.strftime("%Y-%m-%d")
     if mode=="DAILY":
-        REPORT_DIR = f"{report_paths['DAILY_REPORTS_PATH']}/{report_date_str}"
         title = "Today's Top 10 Tokens by Most Commits"
+        REPORT_DIR = f"{report_paths['DAILY_REPORTS_PATH']}/{report_date_str}"
     if mode=="WEEKLY":
         title = "This Week's Top 10 Tokens by Most Commits"
         REPORT_DIR = f"{report_paths['WEEKLY_REPORTS_PATH']}/{report_date_str}"
@@ -309,6 +310,6 @@ if __name__ == "__main__":
     create_top_by_loc_graph()
     '''
     #create_file_extension_base_img(['ICP', 'ETH'], datetime(2022, 2, 13), "DAILY")
-    create_top_by_num_authors_graph(datetime(2022, 2, 17), mode="DAILY")
-    create_top_commits_daily_graph(datetime(2022, 2, 17), mode="DAILY")
-    create_top_by_loc_graph(datetime(2022, 2, 17), mode="DAILY")
+    create_top_by_num_authors_graph(datetime(2022, 2, 14), mode="DAILY")
+    create_top_commits_daily_graph(datetime(2022, 2, 14), mode="DAILY")
+    create_top_by_loc_graph(datetime(2022, 2, 14), mode="DAILY")

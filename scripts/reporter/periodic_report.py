@@ -14,12 +14,14 @@ import scripts.twitter.twitter_graphs as graphs
 from webapp import setup_data
 from webapp.token_prices import CryptoOracle
 
-def generate_weekly_report(end_date: datetime):
+def generate_weekly_report(start_date: datetime):
     start = time.time()
-    with open(PATHS.REPOS_FILE, "r") as f:
+    with open(PATHS['REPOS_FILE'], "r") as f:
         tokens = json.load(f)
 
-    start_date = datetime.combine(end_date - timedelta(days=7), datetime.min.time())
+    start_date = datetime.combine(start_date, datetime.min.time())
+    end_date = start_date + timedelta(days=7)
+    print(f"generating WEEKLY report, start: {start_date}, end: {end_date}")
 
     weekly_commits_data = {}
     for token_name, token_data in tqdm(tokens.items()):
@@ -45,7 +47,7 @@ def generate_weekly_report(end_date: datetime):
             "changed_methods": util.get_changed_methods(project_commits)
         }
 
-    report_date_str = end_date.strftime("%Y-%m-%d")
+    report_date_str = start_date.strftime("%Y-%m-%d")
 
     # create landing dir
     if not os.path.exists(f"{PATHS['WEEKLY_REPORTS_PATH']}/{report_date_str}"):
@@ -68,13 +70,14 @@ def generate_daily_report(day: Optional[datetime]):
         # generate report for datetime passed in 
         end_date = day
         start_date = datetime.combine(end_date - timedelta(hours=24), datetime.min.time())
-        
+        print(f"generating DAILY report, start: {start_date}, end: {end_date}")
     else:
         # otherwise, default to today
         today = datetime.combine(date.today(), datetime.min.time())
         yesterday = datetime.combine(date.today() - timedelta(hours=24), datetime.min.time())
         start_date = yesterday
         end_date = today
+        print(f"generating DAILY report, start: {start_date}, end: {end_date}")
 
     daily_commits_data = {}
     for token_name, token_data in tqdm(tokens.items()):
@@ -126,12 +129,13 @@ def generate_summary_report(report_date, mode="DAILY"):
     Args:
         report_date_str (str): "YYY-MM-DD"
     """
-    report_date_str = report_date.strftime("%Y-%m-%d")
     if mode=="DAILY":
         end_of_date = report_date + timedelta(hours=24)
+        report_date_str = report_date.strftime("%Y-%m-%d")
     if mode=="WEEKLY":
-        end_of_date = report_date
-        report_date = end_of_date - timedelta(days = 7)
+        end_of_date = report_date + timedelta(days = 7)
+        report_date_str = report_date.strftime("%Y-%m-%d")
+   
 
 
     # display the top 10 from the daily report
@@ -156,13 +160,13 @@ def generate_summary_report(report_date, mode="DAILY"):
             summary_report["tokens_represented"][token] = {
                 "daily_open": open_price[0], # unpack single value tuple
                 "daily_close": close_price[0],
-                "daily_delta_percentage": delta_percentage
+                "delta_percentage": delta_percentage
             }
         if mode=="WEEKLY":
             summary_report["tokens_represented"][token] = {
                 "weekly_open": open_price[0], # unpack single value tuple
                 "weekly_close": close_price[0],
-                "weekly_delta_percentage": delta_percentage
+                "delta_percentage": delta_percentage
             }
 
     summary_report["top_by_num_commits"] = [{"token": token, "count": count} for token, count in by_commits]
@@ -181,7 +185,7 @@ def generate_summary_report(report_date, mode="DAILY"):
             json.dump(summary_report, f, ensure_ascii=False, indent=2)
 
 
-def run(report_date, mode="DAILY", make_raw_report:bool=True, make_summary_report=True):   
+def run(report_date, mode="DAILY", make_raw_report:bool=True, make_summary_report=True):
     if make_raw_report: 
         if mode=="DAILY":
             generate_daily_report(report_date)
