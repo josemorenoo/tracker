@@ -1725,5 +1725,48 @@
       "https://github.com/cardstack/card-pay-protocol"
 
     ]
+  },
+  "ROSE": {
+    "name": "Oasis Network",
+    "description": "A better internet is only a matter of time",
+    "available_on_coinbase": false,
+    "repos": [
+      "https://github.com/oasisprotocol/oasis-core",
+      "https://github.com/oasisprotocol/deoxysii",
+      "https://github.com/oasisprotocol/oasis-sdk",
+      "https://github.com/oasisprotocol/deoxysii-rust",
+      "https://github.com/oasisprotocol/curve25519-voi",
+      "https://github.com/oasisprotocol/community",
+      "https://github.com/oasisprotocol/docs",
+      "https://github.com/oasisprotocol/docs-api"
+    ]
+  },
+  "LYXE": {
+    "name": "LUKSO",
+    "description": "EVM based Blockchain for the New Digital Lifestyle",
+    "available_on_coinbase": false,
+    "repos": [
+      "https://github.com/lukso-network/LIPs",
+      "https://github.com/lukso-network/rICO-smart-contracts",
+      "https://github.com/lukso-network/vanguard-consensus-engine",
+      "https://github.com/lukso-network/pandora-execution-engine",
+      "https://github.com/lukso-network/lukso-orchestrator",
+      "https://github.com/lukso-network/docs"
+    ]
+  },
+  "HOT": {
+    "name": "Holo",
+    "description": "Scalable framework for P2P distributed apps. For all those projects you wish you could take from centralized web servers but you know can't scale on blockchain.",
+    "available_on_coinbase": false,
+    "repos": [
+      "https://github.com/holochain/holochain",
+      "https://github.com/holochain/cryptographic-autonomy-license",
+      "https://github.com/holochain/elemental-chat",
+      "https://github.com/holochain/happ-build-tutorial",
+      "https://github.com/holochain/holochain-client-js",
+      "https://github.com/holochain/elemental-chat-ui",
+      "https://github.com/holochain/holochain-client-rust",
+      "https://github.com/holochain/scaffolding"
+    ]
   }
 }
