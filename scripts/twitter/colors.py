@@ -4,6 +4,6 @@ COLORS = {
     'text_green': '#54F041',
     'dev_purple': '#ab52c5',
     'loc_pink': '#f6c6fa',
-    'great_depression_red': '#C90705'
-
+    'great_depression_red': '#C90705',
+    'walter_white': '#FFFFFF'
 }

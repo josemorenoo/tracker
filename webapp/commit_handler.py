@@ -51,7 +51,7 @@ class Commit:
 
 class CommitHandler:
 
-    def create_commit(self, commit, repo_cloning_tmp_dir: str):
+    def create_commit(self, commit):
         '''
         Takes in a raw pydriller commit object and extracts the relevant fields into a new
         Commit dataclass object

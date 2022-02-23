@@ -88,11 +88,15 @@ def create_price_supplemental_image(price_deltas: List[float], height: int = 500
     # insert the price deltas
     for i in range(0, len(price_deltas)): # num tokens
         price_change = price_deltas[-i - 1]
-        
-        # make font red for negative changes, green for positive changes
-        color = COLORS['text_green'] if price_change >= 0 else COLORS['great_depression_red']
-        price_drawing.text((x_offset, y_offset + spacing*i), str(price_change)+" %", fill=color, font=my_font)
-        
+        if price_change:
+            # make font red for negative changes, green for positive changes
+            color = COLORS['text_green'] if price_change >= 0 else COLORS['great_depression_red']
+            price_drawing.text((x_offset, y_offset + spacing*i), f"{price_change} %", fill=color, font=my_font)
+        else:
+            # price change unavailable, probable coin not supported by coinbase
+            color = COLORS['walter_white']
+            price_drawing.text((x_offset, y_offset + spacing*i), "N/A", fill=color, font=my_font)
+
     return price_image
 
 

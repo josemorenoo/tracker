@@ -1,1436 +1,1729 @@
 {
-    "AMP": {
-      "name": "AmpToken",
-      "description": "",
-      "repos": [
-        "https://github.com/amptoken/snapshot-strategies",
-        "https://github.com/amptoken/amp-token-contracts"
-      ]
-    },
-    "LRC": {
-      "name": "Loopring",
-      "description": "",
-      "repos": [
-        "https://github.com/Loopring/loopring-explorer",
-        "https://github.com/Loopring/website",
-        "https://github.com/Loopring/loopring_sdk",
-        "https://github.com/Loopring/dexwebapp",
-        "https://github.com/Loopring/whitepaper"
-      ]
-    },
-    "BTC": {
-      "name": "Bitcoin",
-      "description": "",
-      "repos": [
-        "https://github.com/bitcoin/bitcoin",
-        "https://github.com/bitcoin/bips"
-      ]
-    },
-    "CGLD": {
-      "name": "Celo",
-      "description": "",
-      "repos": [
-        "https://github.com/celo-org/celo-blockchain",
-        "https://github.com/celo-org/celo-monorepo",
-        "https://github.com/celo-org/website",
-        "https://github.com/celo-org/docs"
-      ]
-    },
-    "RAD": {
-      "name": "Radicle",
-      "description": "",
-      "repos": [
-        "https://github.com/radicle-dev/radicle-interface",
-        "https://github.com/radicle-dev/radicle-grants",
-        "https://github.com/radicle-dev/workstreams-app",
-        "https://github.com/radicle-dev/radicle-upstream"
-      ]
-    },
-    "ALGO": {
-      "name": "Algorand",
-      "description": "",
-      "repos": [
-        "https://github.com/algorand/algorand-wallet",
-        "https://github.com/algorand/docs",
-        "https://github.com/algorand/go-algorand",
-        "https://github.com/algorand/indexer",
-        "https://github.com/algorand/py-algorand-sdk"
-      ]
-    },
-    "MASK": {
-      "name": "Mask",
-      "description": "",
-      "repos": ["https://github.com/DimensionDev/Maskbook",
-      "https://github.com/DimensionDev/Holoflows-Kit"]
-    },
-    "QUICK": {
-      "name": "Quick",
-      "description": "",
-      "repos": ["https://github.com/QuickSwap/quickswap-core",
-        "https://github.com/QuickSwap/QuickSwap-subgraph",
-        "https://github.com/QuickSwap/quickswap-docs",
-        "https://github.com/QuickSwap/QuickSwap-sdk",
-        "https://github.com/QuickSwap/QuickSwap-periphery",
-        "https://github.com/QuickSwap/megapool"
-      ]
-    },
-    "MIR": {
-      "name": "Mirror",
-      "description": "",
-      "repos": [
-        "https://github.com/Mirror-Protocol/mirror.js",
-        "https://github.com/Mirror-Protocol/mirrorcli",
-        "https://github.com/Mirror-Protocol/docs",
-        "https://github.com/Mirror-Protocol/mirror-contracts"
-      ]
-    },
-    "DASH": {
-      "name": "Dash",
-      "description": "",
-      "repos": ["https://github.com/dashpay/dash",
-      "https://github.com/dashpay/dash-roadmap",
-      "https://github.com/dashpay/docs"
+  "AMP": {
+    "name": "AmpToken",
+    "description": "",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/amptoken/snapshot-strategies",
+      "https://github.com/amptoken/amp-token-contracts"
     ]
-    },
-    "JASMY": {
-      "name": "JasmyCoin",
-      "description": "",
-      "repos": ["https://github.com/JasmyCoin/JasmyCoin"]
-    },
-    "REQ": {
-      "name": "RequestNetwork",
-      "description": "",
-      "repos": [
-        "https://github.com/RequestNetwork/requestNetwork",
-        "https://github.com/RequestNetwork/request-apps",
-        "https://github.com/RequestNetwork/onboard-extra"
-      ]
-    },
-    "TRAC": {
-      "name": "OriginTrail",
-      "description": "",
-      "repos": [
-        "https://github.com/OriginTrail/ot-node",
-        "https://github.com/OriginTrail/dkg-client",
-        "https://github.com/OriginTrail/OT-RFC-repository"
-  
-      ]
-    },
-    "TRIBE": {
-      "name": "TRIBE",
-      "description": "",
-      "repos": [
-        "https://github.com/TribeBsc/Tribe-Core",
-        "https://github.com/TribeBsc/Tribe-Token"
-      ]
-    },
-    "MLN": {
-      "name": "Enzyme Finance",
-      "description": "",
-      "repos": [
-        "https://github.com/enzymefinance/aip",
-        "https://github.com/enzymefinance/protocol",
-        "https://github.com/enzymefinance/enzyme-subgraph"
-      ]
-    },
-    "NMR": {
-      "name": "Numerai",
-      "description": "A global artificial intelligence tournament to predict the stock market.",
-      "repos": [
-        "https://github.com/numerai/numerapi",
-        "https://github.com/numerai/docs",
-        "https://github.com/numerai/example-scripts"
-      ]
-    },
-    "BAL": {
-      "name": "Balancer Labs",
-      "description": "Balancer is a protocol for programmable liquidity",
-      "repos": [
-        "https://github.com/balancer-labs/balancer-core",
-        "https://github.com/balancer-labs/balancer-sor",
-        "https://github.com/balancer-labs/balancer-v2-monorepo",
-        "https://github.com/balancer-labs/frontend-v2",
-        "https://github.com/balancer-labs/balancer-subgraph-v2"
-      ]
-    },
-    "TRB": {
-      "name": "Tellor",
-      "description": "The decentralized oracle",
-      "repos": [
-        "https://github.com/tellor-io/usingtellor",
-        "https://github.com/tellor-io/tellorX",
-        "https://github.com/tellor-io/dataSpecs",
-        "https://github.com/tellor-io/sampleUsingTellor",
-        "https://github.com/tellor-io/telliot-core"
-      ]
-    },
-    "SOL": {
-      "name": "Solano",
-      "description": "Solana is a decentralized blockchain built to enable scalable, user-friendly apps for the world.",
-      "repos": [
-        "https://github.com/solana-labs/solana",
-        "https://github.com/solana-labs/solana-program-library",
-        "https://github.com/solana-labs/dapp-scaffold",
-        "https://github.com/solana-labs/solana-web3.js"
-      ]
-    },
-    "IDEX": {
-      "name": "IDEX",
-      "description": "Hybrid Liquidity DEX: Order Book + AMM",
-      "repos": [
-        "https://github.com/idexio/idex-sdk-js",
-        "https://github.com/idexio/idex-contracts-silverton",
-        "https://github.com/idexio/idex-farm"
-      ]
-    },
-    "IOTX": {
-      "name": "IoTeX Network",
-      "description": "A Decentralized Network for Internet of Trusted Things",
-      "repos": [
-        "https://github.com/iotexproject/iotex-core",
-        "https://github.com/iotexproject/halogrants",
-        "https://github.com/iotexproject/iotex-dapp-sample",
-        "https://github.com/iotexproject/iotex-bootstrap"
-      ]
-    },
-    "CHZ": {
-      "name": "Chiliz",
-      "description": "The world's leading blockchain fintech provider for sports & entertainment",
-      "repos": [
-        "https://github.com/chiliz/nativescript-wikitude",
-        "https://github.com/chiliz/dist",
-        "https://github.com/chiliz/nativescript-jumio"
-      ]
-    },
-    "ALCX": {
-      "name": "Alchemix",
-      "description": "SELF-REPAYING LOANS",
-      "repos": [
-        "https://github.com/alchemix-finance/alchemix-protocol",
-        "https://github.com/alchemix-finance/alkeeper-v1",
-        "https://github.com/alchemix-finance/contract-addresses",
-        "https://github.com/alchemix-finance/alchemix-newsletter"
-      ]
-    },
-    "RGT": {
-      "name": "Rari Capital",
-      "description": "Rari Capital empowers individuals to break free by creating new opportunities, communities and financial products.",
-      "repos": [
-        "https://github.com/Rari-Capital/solcurity",
-        "https://github.com/Rari-Capital/solmate",
-        "https://github.com/Rari-Capital/nova",
-        "https://github.com/Rari-Capital/rari-dApp",
-        "https://github.com/Rari-Capital/vaults",
-        "https://github.com/Rari-Capital/compound-protocol"
-      ]
-    },
-    "ATOM": {
-      "name": "COSMOS",
-      "description": "The Internet of Blockchains",
-      "repos": [
-        "https://github.com/cosmos/cosmos-sdk",
-        "https://github.com/cosmos/gaia",
-        "https://github.com/cosmos/cosmos",
-        "https://github.com/cosmos/gravity-bridge",
-        "https://github.com/cosmos/ibc",
-        "https://github.com/cosmos/ethermint"
-      ]
-    },
-    "FORTH": {
-      "name": "Ampleforth",
-      "description": "The elastic supply protocol",
-      "repos": [
-        "https://github.com/ampleforth/ampleforth-contracts",
-        "https://github.com/ampleforth/market-oracle",
-        "https://github.com/ampleforth/ampleforth-audits",
-        "https://github.com/ampleforth/Forth",
-        "https://github.com/ampleforth/AIPs"
-      ]
-    },
-    "SUSHI": {
-      "name": "",
-      "description": "Swap, earn, stack yields, lend, borrow, leverage all on one decentralized, community driven platform. Welcome home to DeFi.",
-      "repos": [
-        "https://github.com/sushiswap/sushiswap",
-        "https://github.com/sushiswap/sushiswap-interface",
-        "https://github.com/sushiswap/bentobox",
-        "https://github.com/sushiswap/sushiswap-sdk",
-        "https://github.com/sushiswap/shoyu",
-        "https://github.com/sushiswap/sushiswap-subgraph"
-      ]
-    },
-    "API3": {
-      "name": "API3",
-      "description": "Decentralized APIs for Web 3.0",
-      "repos": [
-        "https://github.com/api3dao/airnode",
-        "https://github.com/api3dao/api3-docs",
-        "https://github.com/api3dao/api3-dao",
-        "https://github.com/api3dao/airnode-starter",
-        "https://github.com/api3dao/api3-whitepaper",
-        "https://github.com/api3dao/api3-contracts"
-      ]
-    },
-    "MANA": {
-      "name": "Decentraland",
-      "description": "A virtual world owned by its users.",
-      "repos": [
-        "https://github.com/decentraland/marketplace",
-        "https://github.com/decentraland/builder",
-        "https://github.com/decentraland/catalyst",
-        "https://github.com/decentraland/js-sdk-toolchain",
-        "https://github.com/decentraland/unity-renderer",
-        "https://github.com/decentraland/ui",
-        "https://github.com/decentraland/explorer-desktop"
-      ]
-    },
-    "XRP": {
-      "name": "Ripple",
-      "description": "Open Source from Ripple, Inc.",
-      "repos": [
-        "https://github.com/ripple/rippled",
-        "https://github.com/ripple/explorer",
-        "https://github.com/ripple/xrp-batch-payout-cli"
-      ]
-    },
-    "BAT": {
-      "name": "Basic Attention Token",
-      "description": "Making Crypto and DeFi accessible and useable for everyone",
-      "repos": [
-        "https://github.com/brave-intl/basic-attention-token-crowdsale",
-        "https://github.com/brave-intl/publishers",
-        "https://github.com/brave-intl/bat-ledger",
-        "https://github.com/brave-intl/challenge-bypass-ristretto",
-        "https://github.com/brave-intl/bat-go",
-        "https://github.com/brave-intl/bat-publisher",
-        "https://github.com/brave-intl/currency"
-      ]
-    },
-    "BTRST": {
-      "name": "Braintrust",
-      "description": "The first decentralized talent network.",
-      "repos": [
-        "https://github.com/Snowfork/snowbridge",
-        "https://github.com/Snowfork/snowbridge-web",
-        "https://github.com/Snowfork/BTRST-Contracts",
-        "https://github.com/Snowfork/braintrust-fee-converter"
-      ]
-    },
-    "NKN": {
-      "name": "NKN",
-      "description": "Infrastructure for a Decentralized Internet",
-      "repos": [
-        "https://github.com/nknorg/nkn",
-        "https://github.com/nknorg/nnet",
-        "https://github.com/nknorg/nMobile",
-        "https://github.com/nknorg/nkn-sdk-js",
-        "https://github.com/nknorg/nkn-sdk-go",
-        "https://github.com/nknorg/nconnect",
-        "https://github.com/nknorg/documentations"
-      ]
-    },
-    "DNT": {
-      "name": "district0x",
-      "description": "A network of decentralized markets and communities. Create, operate, and govern. Powered by Ethereum, Aragon, and IPFS.",
-      "repos": [
-        "https://github.com/district0x/district0x-network-token",
-        "https://github.com/district0x/district-proposals",
-        "https://github.com/district0x/name-bazaar",
-        "https://github.com/district0x/memefactory",
-        "https://github.com/district0x/d0x-INFRA",
-        "https://github.com/district0x/ethlance"
-      ]
-    },
-    "KRL": {
-      "name": "Kryll",
-      "description": "The most powerful strategy editor",
-      "repos": [
-        "https://github.com/Cryptense/KryllToken"
-      ]
-    },
-    "BOND": {
-      "name": "BarnBridge",
-      "description": "Tokenized Risk Protocol | Smart Bonds on Ethereum",
-      "repos": [
-        "https://github.com/BarnBridge/BarnBridge-PM",
-        "https://github.com/BarnBridge/BarnBridge-Whitepaper",
-        "https://github.com/BarnBridge/BBIP",
-        "https://github.com/BarnBridge/barnbridge-frontend"
-      ]
-    },
-    "CLV": {
-      "name": "Clover Network",
-      "description": "A foundational layer for cross-chain compatibility",
-      "repos": [
-        "https://github.com/clover-network/clover",
-        "https://github.com/clover-network/clover.finance",
-        "https://github.com/clover-network/clover-rosetta-service",
-        "https://github.com/clover-network/clover-docs",
-        "https://github.com/clover-network/clover-bridge-contracts",
-        "https://github.com/clover-network/web-wallet-sdk",
-        "https://github.com/clover-network/oneland-home"
-      ]
-    },
-    "LQTY": {
-      "name": "Liquity",
-      "description": "Decentralized Borrowing Protocol",
-      "repos": [
-        "https://github.com/liquity/dev",
-        "https://github.com/liquity/frontend-registry",
-        "https://github.com/liquity/community-proxy-scripts",
-        "https://github.com/liquity/lqty-circulating-supply"
-      ]
-    },
-    "KEEP": {
-      "name": "keep.network",
-      "description": "Stake on Ethereum's first private computer and earn up to 52% APY.",
-      "repos": [
-        "https://github.com/keep-network/keep-core",
-        "https://github.com/keep-network/tbtc.js",
-        "https://github.com/keep-network/keep-ecdsa",
-        "https://github.com/keep-network/tbtc-dapp",
-        "https://github.com/keep-network/whitepaper",
-        "https://github.com/keep-network/tbtc-v2",
-        "https://github.com/keep-network/website"
-      ]
-    },
-    "ENS": {
-      "name": "Ethereum Name Service",
-      "description": "Decentralised naming for wallets, websites, & more.",
-      "repos": [
-        "https://github.com/ensdomains/ens",
-        "https://github.com/ensdomains/ensjs",
-        "https://github.com/ensdomains/governance",
-        "https://github.com/ensdomains/ens-app",
-        "https://github.com/ensdomains/ens-contracts",
-        "https://github.com/ensdomains/subdomain-registrar",
-        "https://github.com/ensdomains/ens-metadata-service",
-        "https://github.com/ensdomains/ensdomains-v2",
-        "https://github.com/ensdomains/docs"
-      ]
-    },
-    "RBN": {
-      "name": "Ribbon Finance",
-      "description": "Ribbon Finance is a new protocol that creates crypto structured products for DeFi.",
-      "repos": [
-        "https://github.com/ribbon-finance/ribbon-frontend",
-        "https://github.com/ribbon-finance/ribbon-v2",
-        "https://github.com/ribbon-finance/rvol",
-        "https://github.com/ribbon-finance/governance",
-        "https://github.com/ribbon-finance/metavault",
-        "https://github.com/ribbon-finance/ribbon-subgraph",
-        "https://github.com/ribbon-finance/ribbonomics"
-      ]
-    },
-    "ZEC": {
-      "name": "Zcash",
-      "description": "Internet money",
-      "repos": [
-        "https://github.com/zcash/librustzcash",
-        "https://github.com/zcash/zips",
-        "https://github.com/zcash/halo2",
-        "https://github.com/zcash/libsnark",
-        "https://github.com/zcash/mpc",
-        "https://github.com/zcash/secant-android-wallet"
-      ]
-    },
-    "BNT": {
-      "name": "Bancor",
-      "description": "Bancor is a protocol for the creation of Smart Tokens, a new standard for cryptocurrencies convertible directly through their smart contracts.",
-      "repos": [
-        "https://github.com/bancorprotocol/contracts-solidity",
-        "https://github.com/bancorprotocol/contracts_eos",
-        "https://github.com/bancorprotocol/webapp-v2",
-        "https://github.com/bancorprotocol/sdk",
-        "https://github.com/bancorprotocol/translations",
-        "https://github.com/bancorprotocol/webapp",
-        "https://github.com/bancorprotocol/docs"
-      ]
-    },
-    "REN": {
-      "name": "RenBridge",
-      "description": "an open protocol providing access to inter-blockchain liquidity for all decentralized applications.",
-      "repos": [
-        "https://github.com/renproject/multichain",
-        "https://github.com/renproject/ren-js",
-        "https://github.com/renproject/darknode-sol",
-        "https://github.com/renproject/ren",
-        "https://github.com/renproject/hyperdrive",
-        "https://github.com/renproject/darknode-cli"
-      ]
-    },
-    "RLC": {
-      "name": "iExec RLC",
-      "description": "Blockchain-Based Fully Distributed Cloud Computing",
-      "repos": [
-        "https://github.com/iExecBlockchainComputing/iexec-sdk",
-        "https://github.com/iExecBlockchainComputing/PoCo",
-        "https://github.com/iExecBlockchainComputing/iexec-dapps-registry",
-        "https://github.com/iExecBlockchainComputing/iexec-apps",
-        "https://github.com/iExecBlockchainComputing/iexec-worker",
-        "https://github.com/iExecBlockchainComputing/iexec-core",
-        "https://github.com/iExecBlockchainComputing/iexec-common",
-        "https://github.com/iExecBlockchainComputing/iexec-blockchain-adapter-api"
-      ]
-    },
-    "XLM": {
-      "name": "Stellar",
-      "description": "Stellar is an open network for storing and moving money, creating equitable access to the global financial system.",
-      "repos": [
-        "https://github.com/stellar/stellar-protocol",
-        "https://github.com/stellar/stellar-core",
-        "https://github.com/stellar/go",
-        "https://github.com/stellar/new-docs",
-        "https://github.com/stellar/js-stellar-sdk",
-        "https://github.com/stellar/dashboard",
-        "https://github.com/stellar/starbridge"
-      ]
-    },
-    "WBTC": {
-      "name": "Wrapped Bitcoin",
-      "description": "Do more with your Bitcoin",
-      "repos": [
-        "https://github.com/WrappedBTC/bitcoin-token-smart-contracts",
-        "https://github.com/WrappedBTC/DAO",
-        "https://github.com/WrappedBTC/website"
-      ]
-    },
-    "LTC": {
-      "name": "Litecoin",
-      "description": "The cryptocurrency for payments",
-      "repos": [
-        "https://github.com/litecoin-project/litecoin",
-        "https://github.com/litecoin-project/liteaddress.org",
-        "https://github.com/litecoin-project/p2sh-convert",
-        "https://github.com/litecoin-project/lips",
-        "https://github.com/litecoin-project/liteaddress.org-old",
-        "https://github.com/litecoin-project/litecoin.org-ancient",
-        "https://github.com/litecoin-project/gui"
-      ]
-    },
-    "EOS": {
-      "name": "EOS",
-      "description": "EOSIO is a next-generation, open-source blockchain protocol with industry-leading transaction speed and flexible utility.",
-      "repos": [
-        "https://github.com/EOSIO/eos",
-        "https://github.com/EOSIO/eosjs",
-        "https://github.com/EOSIO/eosio.cdt",
-        "https://github.com/EOSIO/demux-js",
-        "https://github.com/EOSIO/eosio.contracts",
-        "https://github.com/EOSIO/EEPs"
-      ]
-    },
-    "KNC": {
-      "name": "Kyber Network Crystal v2",
-      "description": "Kyber's On-Chain Liquidity Protocol powers instant and seamless inter-token transactions between platforms, ecosystems and other use cases",
-      "repos": [
-        "https://github.com/KyberNetwork/KyberSwap",
-        "https://github.com/KyberNetwork/smart-contracts",
-        "https://github.com/KyberNetwork/dao_sc",
-        "https://github.com/KyberNetwork/reserve-stats"
-      ]
-    },
-    "IMX": {
-      "name": "Impermax-Finance",
-      "description": "Impermax gives one-click access to DeFi yield farming with no risk of impermanent loss.",
-      "repos": [
-        "https://github.com/Impermax-Finance/impermax-x-uniswapv2-core",
-        "https://github.com/Impermax-Finance/staked-lp-token",
-        "https://github.com/Impermax-Finance/impermax-x-uniswap-v2-interface",
-        "https://github.com/Impermax-Finance/impermax-x-uniswapv2-periphery",
-        "https://github.com/Impermax-Finance/simple-uniswap-oracle"
-      ]
-    },
-    "UMA": {
-      "name": "UMA",
-      "description": "A decentralized financial contracts platform built to enable Universal Market Access—UMA.",
-      "repos": [
-        "https://github.com/UMAprotocol/protocol",
-        "https://github.com/UMAprotocol/whitepaper",
-        "https://github.com/UMAprotocol/UMIPs",
-        "https://github.com/UMAprotocol/optimistic-oracle-dapp",
-        "https://github.com/UMAprotocol/docs",
-        "https://github.com/UMAprotocol/website"
-      ]
-    },
-    "ADA": {
-      "name": "Cardano",
-      "description": "Cardano is a proof-of-stake blockchain platform: the first to be founded on peer-reviewed research and developed through evidence-based methods. ",
-      "repos": [
-        "https://github.com/cardano-foundation/CIPs",
-        "https://github.com/cardano-foundation/docs-cardano-org",
-        "https://github.com/cardano-foundation/testnets-cardano-org"
-      ]
-    },
-    "ANKR": {
-      "name": "Ankr",
-      "description": "Web3 Infrastructure",
-      "repos": [
-        "https://github.com/Ankr-network/dccn-common",
-        "https://github.com/Ankr-network/ankrctl",
-        "https://github.com/Ankr-network/ankrscan-proto-contract",
-        "https://github.com/Ankr-network/academy-api",
-        "https://github.com/Ankr-network/curve-assets",
-        "https://github.com/Ankr-network/erigon"
-      ]
-    },
-    "ZRX": {
-      "name": "0x",
-      "description": "Exchange Infrastructure for the Internet",
-      "repos": [
-        "https://github.com/0xProject/0x-mesh",
-        "https://github.com/0xProject/OpenZKP",
-        "https://github.com/0xProject/0x-api",
-        "https://github.com/0xProject/protocol",
-        "https://github.com/0xProject/tools",
-        "https://github.com/0xProject/quote-server",
-        "https://github.com/0xProject/website"
-      ]
-    },
-    "CTSI": {
-      "name": "Caresi",
-      "description": "Build smart contracts with mainstream software stacks. Take a productive leap from Solidity to the vast universe of software components supported by Linux.",
-      "repos": [
-        "https://github.com/cartesi/machine-solidity-step",
-        "https://github.com/cartesi/descartes",
-        "https://github.com/cartesi/machine-emulator",
-        "https://github.com/cartesi/noether",
-        "https://github.com/cartesi/arbitration-dlib",
-        "https://github.com/cartesi/docs",
-        "https://github.com/cartesi/rollups"
-      ]
-    },
-    "UST": {
-      "name": "Terra",
-      "description": "Terra is a public blockchain protocol deploying a suite of algorithmic decentralized stablecoins which underpin a thriving ecosystem that brings DeFi to the masses.",
-      "repos": [
-        "https://github.com/terra-money/core",
-        "https://github.com/terra-money/awesome-terra",
-        "https://github.com/terra-money/mainnet",
-        "https://github.com/terra-money/terra.js",
-        "https://github.com/terra-money/terra.py",
-        "https://github.com/terra-money/LocalTerra",
-        "https://github.com/terra-money/station",
-        "https://github.com/terra-money/docs"
-      ]
-    },
-    "GNT": {
-      "name": "GreenTrustToken",
-      "description": "GreenTrust is conceived as a sustainable DeFi application providing advanced features via a highly generalized programming language based on Binance Smart Chain",
-      "repos": [
-        "https://github.com/GreenTrusttoken/green-contract",
-        "https://github.com/GreenTrusttoken/Audit"
-      ]
-    },
-    "GRT": {
-      "name": "The Graph",
-      "description": "Protocol for building decentralized applications quickly on Ethereum and IPFS using GraphQL",
-      "repos": [
-        "https://github.com/graphprotocol/contracts",
-        "https://github.com/graphprotocol/graph-node",
-        "https://github.com/graphprotocol/indexer",
-        "https://github.com/graphprotocol/graph-cli",
-        "https://github.com/graphprotocol/docs"
-      ]
-    },
-    "PLA": {
-      "name": "PlayDapp",
-      "description": "PlayDapp From dApp to Blockchain-Powered Gaming Entertainment Ecosystem",
-      "repos": [
-        "https://github.com/playdapp/eth-contract-metadata",
-        "https://github.com/playdapp/PLA"
-      ]
-    },
-    "FET": {
-      "name": "Fetch.ai",
-      "description": "An artificial intelligence and machine learning based blockchain platform populated with your digital twins - intelligent digital twins who learn and deliver solutions to make your life easier.",
-      "repos": [
-        "https://github.com/fetchai/agents-aea",
-        "https://github.com/fetchai/fetchd",
-        "https://github.com/fetchai/colearn",
-        "https://github.com/fetchai/cosmpy",
-        "https://github.com/fetchai/keplr-extension",
-        "https://github.com/fetchai/docs"
-      ]
-    },
-    "BADGER": {
-      "name": "Badger DAO",
-      "description": "BadgerDAO makes it easy to bring your Bitcoin to DeFi and start earning yield today.",
-      "repos": [
-        "https://github.com/Badger-Finance/badger-system",
-        "https://github.com/Badger-Finance/digg-core",
-        "https://github.com/Badger-Finance/badger-strategy-mix-v1",
-        "https://github.com/Badger-Finance/wBTC-AAVE-Rewards-Farm-Badger-V1-Strategy",
-        "https://github.com/Badger-Finance/strategy-convex-staking-optimizer",
-        "https://github.com/Badger-Finance/badger-multisig",
-        "https://github.com/Badger-Finance/badger-rewards"
-      ]
-    },
-    "ORN": {
-      "name": "Orion Protocol",
-      "description": "Orion Protocol aggregates the liquidity of every single crypto exchange into one decentralized platform",
-      "repos": [
-        "https://github.com/orionprotocol/web3-react",
-        "https://github.com/orionprotocol/orion-holochain",
-        "https://github.com/orionprotocol/orion-exchange",
-        "https://github.com/orionprotocol/orn-liquidity-mining-ui",
-        "https://github.com/orionprotocol/trading-terminal",
-        "https://github.com/orionprotocol/trading-sdk",
-        "https://github.com/orionprotocol/wiki",
-        "https://github.com/orionprotocol/web3-react"
-      ]
-    },
-    "SUKU": {
-      "name": "Suku",
-      "description": "Web3 tools designed to empower innovative Brands & Creators to engage with their audience in entirely new ways and places, including the Metaverse.",
-      "repos": [
-        "https://github.com/SukuLab/suku-ethereum-node-api",
-        "https://github.com/SukuLab/liquidity-mining-rewards-script",
-        "https://github.com/SukuLab/defi-evm-scripts",
-        "https://github.com/SukuLab/suku-ethereum-node-api-client-lib",
-        "https://github.com/SukuLab/ethereum-price-feeds",
-        "https://github.com/SukuLab/suku-web-components-browser"
-      ]
-    },
-    "COMP": {
-      "name": "Compound",
-      "description": "Compound is an algorithmic, autonomous interest rate protocol built for developers, to unlock a universe of open financial applications.",
-      "repos": [
-        "https://github.com/compound-finance/compound-protocol",
-        "https://github.com/compound-finance/open-oracle",
-        "https://github.com/compound-finance/compound-js",
-        "https://github.com/compound-finance/gateway",
-        "https://github.com/compound-finance/compound-config",
-        "https://github.com/compound-finance/compound-money-market"
-      ]
-    },
-    "MATIC": {
-      "name": "Polygon",
-      "description": "Polygon is a protocol and a framework for building and connecting Ethereum-compatible blockchain networks. Aggregating scalable solutions on Ethereum supporting a multi-chain Ethereum ecosystem.",
-      "repos": [
-        "https://github.com/maticnetwork/contracts",
-        "https://github.com/maticnetwork/bor",
-        "https://github.com/maticnetwork/pos-portal",
-        "https://github.com/maticnetwork/subgraphs",
-        "https://github.com/maticnetwork/matic.js",
-        "https://github.com/maticnetwork/launch",
-        "https://github.com/maticnetwork/maticjs-plasma",
-        "https://github.com/maticnetwork/matic-docs"
-      ]
-    },
-    "STORJ": {
-      "name": "Storj",
-      "description": "With Storj DCS (Decentralized Cloud Storage) files aren't stored in centralized data centers— instead, they're encrypted, split into pieces, and distributed on a global cloud network.",
-      "repos": [
-        "https://github.com/storj/storj",
-        "https://github.com/storj/uplink",
-        "https://github.com/storj/gateway-st",
-        "https://github.com/storj/common",
-        "https://github.com/storj/awesome-storj"
-      ]
-    },
-    "1INCH": {
-      "name": "1Inch Network",
-      "description": "The 1inch Network unites decentralized protocols whose synergy enables the most lucrative, fastest and protected operations in the DeFi space.",
-      "repos": [
-        "https://github.com/1inch/1inch-token",
-        "https://github.com/1inch/liquidity-protocol",
-        "https://github.com/1inch/1inch-v2-contracts",
-        "https://github.com/1inch/1IPs",
-        "https://github.com/1inch/desktop-dapp",
-        "https://github.com/1inch/1inch-docs"
-      ]
-    },
-    "ZEN": {
-      "name": "Horizen",
-      "description": "Horizen's cross-chain protocol, Zendoo, is designed for developers to build blockchains and applications that solve today's real-world problems with the flexibility to capture tomorrow's opportunities",
-      "repos": [
-        "https://github.com/HorizenOfficial/zen",
-        "https://github.com/HorizenOfficial/lambo-registry",
-        "https://github.com/HorizenOfficial/Sidechains-SDK",
-        "https://github.com/HorizenOfficial/ginger-lib",
-        "https://github.com/HorizenOfficial/Sphere_by_Horizen",
-        "https://github.com/HorizenOfficial/nodetracker"
-      ]
-    },
-    "OGN": {
-      "name": "Origin Protocol",
-      "description": "Origin Protocol is bringing NFTs and DeFi to the masses. Origin's flagship products are Origin Story which has supported numerous high-profile NFT drops, and Origin Dollar (OUSD), the first stablecoin that earns a yield automatically in users' wallets. Origin's platform and governance token is OGN.",
-      "repos": [
-        "https://github.com/OriginProtocol/origin-dollar",
-        "https://github.com/OriginProtocol/ousd-analytics",
-        "https://github.com/OriginProtocol/nft-launchpad",
-        "https://github.com/OriginProtocol/origin-dollar-docs",
-        "https://github.com/OriginProtocol/ousd-flipper",
-        "https://github.com/OriginProtocol/origin-website"
-      ]
-    },
-    "CVC": {
-      "name": "Civic",
-      "description": "Meet KYC & AML requirements with Civic's compliance tools for decentralized finance (DeFi), public blockchains, NFTs, and businesses.",
-      "repos": [
-        "https://github.com/civicteam/npm-civic-sip-api",
-        "https://github.com/civicteam/identity-swap",
-        "https://github.com/civicteam/serverless-offline-direct-lambda",
-        "https://github.com/civicteam/reliquary",
-        "https://github.com/civicteam/lambda-wrapper",
-        "https://github.com/civicteam/token-guard",
-        "https://github.com/civicteam/metaplex"
-      ]
-    },
-    "AVAX": {
-      "name": "Avalanche",
-      "description": "",
-      "repos": [
-        "https://github.com/ava-labs/avalanchego",
-        "https://github.com/ava-labs/avalanchejs",
-        "https://github.com/ava-labs/avalanche-smart-contract-quickstart",
-        "https://github.com/ava-labs/coreth",
-        "https://github.com/ava-labs/avalanche-wallet",
-        "https://github.com/ava-labs/avalanche-docs"
-      ]
-    },
-    "ETC": {
-      "name": "Ethereum Classic",
-      "description": "Keep the original censorship-resistant Ethereum going!",
-      "repos": [
-        "https://github.com/ethereumclassic/ethereumclassic.github.io",
-        "https://github.com/ethereumclassic/etherwallet",
-        "https://github.com/ethereumclassic/faq",
-        "https://github.com/ethereumclassic/ECIPs",
-        "https://github.com/ethereumclassic/explorer"
-      ]
-    },
-    "NU": {
-      "name": "NuCypher",
-      "description": "Cryptographic Infrastructure for Privacy-Preserving Applications",
-      "repos": [
-        "https://github.com/nucypher/nucypher",
-        "https://github.com/nucypher/pyUmbral",
-        "https://github.com/nucypher/NuBLS",
-        "https://github.com/nucypher/validator-profiles",
-        "https://github.com/nucypher/nucypher-core",
-        "https://github.com/nucypher/rust-umbral",
-        "https://github.com/nucypher/nucypher-ts"
-      ]
-    },
-    "USDC": {
-      "name": "USD Coin",
-      "description": "CENTRE is a governed network powered by price-stable crypto assets.",
-      "repos": [
-        "https://github.com/centrehq/centre-tokens",
-        "https://github.com/centrehq/centre-ecosystem",
-        "https://github.com/centrehq/usdc-subgraph",
-        "https://github.com/centrehq/oidc-client-bound-assertions-spec",
-        "https://github.com/centrehq/presentation-exchange"
-      ]
-    },
-    "POLS": {
-      "name": "Polkastarter",
-      "description": "Get early access to the ideas of tomorrow. Highly-vetted ideas and teams you can trust. Supported by industry-leading creators and funds.",
-      "repos": [
-        "https://github.com/polkastarter/polkastarter-js",
-        "https://github.com/polkastarter/polkastarter-crowdloan",
-        "https://github.com/polkastarter/polkastarter-lottery",
-        "https://github.com/polkastarter/staking-pols",
-        "https://github.com/polkastarter/PolkastarterToken",
-        "https://github.com/polkastarter/Open-Grants-Program"
-      ]
-    },
-    "BICO": {
-      "name": "Biconomy",
-      "description": "Biconomy is a multichain relayer protocol that aims to improve the user onboarding and transaction experience on decentralized applications (DApps). The project's declared goal is to make web3 products as intuitive and easy to use as web2 products.",
-      "repos": [
-        "https://github.com/bcnmy/metatx-standard",
-        "https://github.com/bcnmy/mexa-sdk",
-        "https://github.com/bcnmy/mexa",
-        "https://github.com/bcnmy/dapp-demo",
-        "https://github.com/bcnmy/wallet-integrations",
-        "https://github.com/bcnmy/biconomy-contracts"
-      ]
-    },
-    "OMG": {
-      "name": "OMG Network",
-      "description": "OMG Network is a Layer-2 scaling solution, built on plasma + optimistic rollups. The value transfer layer for Ethereum.",
-      "repos": [
-        "https://github.com/omgnetwork/optimism-v2",
-        "https://github.com/omgnetwork/optimism",
-        "https://github.com/omgnetwork/boba-docs",
-        "https://github.com/omgnetwork/safe-react"
-      ]
-    },
-    "ICP": {
-      "name": "Internet Computer",
-      "description": "The Internet Computer aims to reinvent the internet as a computer to host secure software and a new breed of open internet services.",
-      "repos": [
-        "https://github.com/dfinity/ic",
-        "https://github.com/dfinity/motoko-base",
-        "https://github.com/dfinity/awesome-dfinity",
-        "https://github.com/dfinity/internet-identity",
-        "https://github.com/dfinity/motoko",
-        "https://github.com/dfinity/cdk-rs"
-      ]
-    },
-    "LINK": {
-      "name": "Chainlink",
-      "description": "Chainlink is a blockchain abstraction layer that enables universally connected smart contracts.",
-      "repos": [
-        "https://github.com/smartcontractkit/chainlink",
-        "https://github.com/smartcontractkit/hardhat-starter-kit",
-        "https://github.com/smartcontractkit/full-blockchain-solidity-course-py",
-        "https://github.com/smartcontractkit/chainlink-mix",
-        "https://github.com/smartcontractkit/truffle-starter-kit",
-        "https://github.com/smartcontractkit/external-adapters-js",
-        "https://github.com/smartcontractkit/chainlink-solana",
-        "https://github.com/smartcontractkit/chainlink-terra",
-        "https://github.com/smartcontractkit/documentation"
-      ]
-    },
-    "DOT": {
-      "name": "Polkadot",
-      "description": "Solutions for a trust-free world",
-      "repos": [
-        "https://github.com/paritytech/substrate",
-        "https://github.com/paritytech/ink",
-        "https://github.com/paritytech/polkadot",
-        "https://github.com/paritytech/wasmi",
-        "https://github.com/paritytech/cumulus",
-        "https://github.com/paritytech/parity-zcash",
-        "https://github.com/paritytech/ink-docs"
-      ]
-    },
-    "ACH": {
-      "name": "Alchemy Pay",
-      "description": "Alchemy Pay is the pioneer of the world's first payment gateway solution to bridge the gap between fiat and crypto economies.",
-      "repos": [
-        "https://github.com/alchemyplatform/alchemy-web3",
-        "https://github.com/alchemyplatform/nft-minter-tutorial",
-        "https://github.com/alchemyplatform/alchemy-docs",
-        "https://github.com/alchemyplatform/alchemy-flow-contracts",
-        "https://github.com/alchemyplatform/eth-provider-benchmark"
-      ]
-    },
-    "LPT": {
-      "name": "Livepeer",
-      "description": "a decentralized video streaming network built on the Ethereum blockchain.",
-      "repos": [
-        "https://github.com/livepeer/go-livepeer",
-        "https://github.com/livepeer/protocol",
-        "https://github.com/livepeer/livepeerjs",
-        "https://github.com/livepeer/lpms",
-        "https://github.com/livepeer/docs",
-        "https://github.com/livepeer/cli-transcoder",
-        "https://github.com/livepeer/livepeer-com",
-        "https://github.com/livepeer/arbitrum-lpt-bridge"
-      ]
-    },
-    "AAVE": {
-      "name": "Aave",
-      "description": "Aave is an open source and non-custodial liquidity protocol for earning interest on deposits and borrowing assets.",
-      "repos": [
-        "https://github.com/aave/aave-protocol",
-        "https://github.com/aave/protocol-v2",
-        "https://github.com/aave/flashloan-box",
-        "https://github.com/aave/aave-js",
-        "https://github.com/aave/aave-ui",
-        "https://github.com/aave/aave-utilities",
-        "https://github.com/aave/aip"
-      ]
-    },
-    "ENJ": {
-      "name": "Enjin Coin",
-      "description": "We're building a product ecosystem that will help humanity create advanced virtual economies through the power of blockchain technology.",
-      "repos": [
-        "https://github.com/enjin/erc-1155",
-        "https://github.com/enjin/enjin-java-sdk",
-        "https://github.com/enjin/enjin-cpp-sdk",
-        "https://github.com/enjin/enjin-csharp-sdk",
-        "https://github.com/enjin/claims-substrate"
-      ]
-    },
-    "QNT": {
-      "name": "Quant Network",
-      "description": "Quant connects the world's networks to Blockchain.",
-      "repos": [
-        "https://github.com/quantnetwork/overledger-sdk-javascript",
-        "https://github.com/quantnetwork/overledger-network-gateway",
-        "https://github.com/quantnetwork/quant-demo-application",
-        "https://github.com/quantnetwork/overledger-sdk-java",
-        "https://github.com/quantnetwork/overledger-treasury-community",
-        "https://github.com/quantnetwork/overledger-tutorial",
-        "https://github.com/quantnetwork/overledger-sdks"
-      ]
-    },
-    "GODS": {
-      "name": "Gods Unchained",
-      "description": "Experience zero gas fees, instant trades, and carbon neutral NFTs for marketplaces, games, and applications without compromise. Build your NFT business in hours with our APIs.",
-      "repos": [
-        "https://github.com/immutable/imx-contracts",
-        "https://github.com/immutable/gods-unchained-api",
-        "https://github.com/immutable/imx-reactjs-integration-example",
-        "https://github.com/immutable/platform-contracts",
-        "https://github.com/immutable/gu-composited-card",
-        "https://github.com/immutable/imx-examples",
-        "https://github.com/immutable/snapshot-strategies"
-      ]
-    },
-    "COTI": {
-      "name": "COTI",
-      "description": "urrency Of The Internet - DAG-based infrastructure optimized for payment networks and stable coins",
-      "repos": [
-        "https://github.com/coti-io/coti-node",
-        "https://github.com/coti-io/coti-ledger",
-        "https://github.com/coti-io/coti-crypto",
-        "https://github.com/coti-io/coti-node-monitoring",
-        "https://github.com/coti-io/coti-db-app",
-        "https://github.com/coti-io/cvi-contracts",
-        "https://github.com/coti-io/coti-encryption-library"
-      ]
-    },
-    "NCT": {
-      "name": "PolySwarm",
-      "description": "Threat Intelligence Marketplace",
-      "repos": [
-        "https://github.com/polyswarm/polyswarm-cli",
-        "https://github.com/polyswarm/autopsy-module",
-        "https://github.com/polyswarm/polyswarm-api",
-        "https://github.com/polyswarm/threatconnect-playbooks",
-        "https://github.com/polyswarm/microengine-webhooks-py",
-        "https://github.com/polyswarm/polyswarm-wazuh"
-      ]
-    },
-    "DESO": {
-      "name": "Decentralized Social",
-      "description": "DeSo is a new layer-1 blockchain built from the ground up to scale decentralized social applications to one billion users.",
-      "repos": [
-        "https://github.com/deso-protocol/run",
-        "https://github.com/deso-protocol/core",
-        "https://github.com/deso-protocol/docs",
-        "https://github.com/deso-protocol/backend",
-        "https://github.com/deso-protocol/dips",
-        "https://github.com/deso-protocol/frontend",
-        "https://github.com/deso-protocol/identity"
-      ]
-    },
-    "MKR": {
-      "name": "Maker",
-      "description": "Maker (MKR) is the governance token of the MakerDAO and Maker Protocol — respectively a decentralized organization and a software platform, both based on the Ethereum blockchain — that allows users to issue and manage the DAI stablecoin.",
-      "repos": [
-        "https://github.com/makerdao/awesome-makerdao",
-        "https://github.com/makerdao/market-maker-keeper",
-        "https://github.com/makerdao/developerguides",
-        "https://github.com/makerdao/dss",
-        "https://github.com/makerdao/integration-examples",
-        "https://github.com/makerdao/governance-portal-v2",
-        "https://github.com/makerdao/mips",
-        "https://github.com/makerdao/migrate-dashboard",
-        "https://github.com/makerdao/dss-wormhole",
-        "https://github.com/makerdao/starknet-dai-bridge"
-      ]
-    },
-    "COVAL": {
-      "name": "Circuits of Value",
-      "description": "Ciruits of Value Main Repository",
-      "repos": [
-        "https://github.com/DecentricCorp/EmblemHDScheme",
-        "https://github.com/DecentricCorp/Coval.js",
-        "https://github.com/DecentricCorp/Coval-Unspecified-Ml-Blockchain"
-      ]
-    },
-    "FX": {
-      "name": "Function X",
-      "description": "Function X token is the governance token for the Function X project. Users may use Function X token to vote, as collateral (soon), to generate synthetic assets (soon) delegate, securing the core network and more.",
-      "repos": [
-        "https://github.com/FunctionX/fx-core",
-        "https://github.com/FunctionX/fx-docs",
-        "https://github.com/FunctionX/fx-bridge-rust",
-        "https://github.com/FunctionX/fx-bridge-contract",
-        "https://github.com/FunctionX/tendermint"
-      ]
-    },
-    "DAI": {
-      "name": "Dai",
-      "description": "DAI is an Ethereum-based stablecoin (stable-price cryptocurrency) whose issuance and development is managed by the Maker Protocol and the MakerDAO decentralized autonomous organization.",
-      "repos": [
-        "https://github.com/makerdao/awesome-makerdao",
-        "https://github.com/makerdao/developerguides",
-        "https://github.com/makerdao/integration-examples",
-        "https://github.com/makerdao/market-maker-keeper",
-        "https://github.com/makerdao/dss",
-        "https://github.com/makerdao/mips",
-        "https://github.com/makerdao/starknet-dai-bridge"
-      ]
-    },
-    "YFII": {
-      "name": "DFI.Money",
-      "description": "A DeFi-farming aggregator that automatically puts your crypto assets to work for high yield profits.",
-      "repos": [
-        "https://github.com/yfii/yvault",
-        "https://github.com/yfii/vault",
-        "https://github.com/yfii/dfi",
-        "https://github.com/yfii/yficontract",
-        "https://github.com/yfii/yfii-finance",
-        "https://github.com/yfii/docs",
-        "https://github.com/yfii/yfiiapi"
-      ]
-    },
-    "SKL": {
-      "name": "SKALE Network",
-      "description": "SKALE is the only containerized network capable of running an unlimited number of secure, decentralized, high-performance blockchains that are native to Ethereum.",
-      "repos": [
-        "https://github.com/skalenetwork/skale-network",
-        "https://github.com/skalenetwork/skaled",
-        "https://github.com/skalenetwork/skale-consensus",
-        "https://github.com/skalenetwork/sgxwallet",
-        "https://github.com/skalenetwork/libBLS",
-        "https://github.com/skalenetwork/skale-manager"
-      ]
-    },
-    "PRO": {
-      "name": "Propy",
-      "description": "Real estate transactions made easy",
-      "repos": [
-        "https://github.com/Propy/ethereum",
-        "https://github.com/Propy/lightgallery.js",
-        "https://github.com/Propy/lg-fullscreen.js",
-        "https://github.com/Propy/ethereum-etl"
-      ]
-    },
-    "TRU": {
-      "name": "TrueFi",
-      "description": "Tokenization you can Trust",
-      "repos": [
-        "https://github.com/trusttoken/truefi-registry",
-        "https://github.com/trusttoken/truefi-spec"
-      ]
-    },
-    "SNX": {
-      "name": "Synthetix",
-      "description": "Crypto backed synthetic asset platform.",
-      "repos": [
-        "https://github.com/Synthetixio/synthetix",
-        "https://github.com/Synthetixio/synthetix-mintr",
-        "https://github.com/Synthetixio/SIPs",
-        "https://github.com/Synthetixio/synthetix-exchange",
-        "https://github.com/Synthetixio/synthetix-data",
-        "https://github.com/Synthetixio/js-monorepo",
-        "https://github.com/Synthetixio/staking",
-        "https://github.com/Synthetixio/synthetix-website"
-      ]
-    },
-    "LOOM": {
-      "name": "Loom Network",
-      "description": "Loom Network blockchain",
-      "repos": [
-        "https://github.com/loomnetwork/loomchain",
-        "https://github.com/loomnetwork/go-loom",
-        "https://github.com/loomnetwork/loom-js",
-        "https://github.com/loomnetwork/truffle-dappchain-example",
-        "https://github.com/loomnetwork/cryptozombie-lessons",
-        "https://github.com/loomnetwork/unity-sdk"
-      ]
-    },
-    "AUCTION": {
-      "name": "Bounce Finance Governance Token",
-      "description": "Bounce powers an ecosystem of products for matching economic activities. Bounce effectively utilises a decentralized financial platform to orchestrate buyer and seller matching in decentralized auctions.",
-      "repos": [
-        "https://github.com/bouncefinance/bounce-market",
-        "https://github.com/bouncefinance/bounce-network",
-        "https://github.com/bouncefinance/bounce-market-manage",
-        "https://github.com/bouncefinance/bounce-contract-v2",
-        "https://github.com/bouncefinance/bounce-kyc",
-        "https://github.com/bouncefinance/Bounce_V3"
-      ]
-    },
-    "RAI": {
-      "name": "Rai Reflex Index",
-      "description": "RAI is an Ethereum token that aims to maintain a stable value.",
-      "repos": [
-        "https://github.com/reflexer-labs/whitepapers",
-        "https://github.com/reflexer-labs/GIPs",
-        "https://github.com/reflexer-labs/geb",
-        "https://github.com/reflexer-labs/geb-simulations",
-        "https://github.com/reflexer-labs/geb-safe-saviours",
-        "https://github.com/reflexer-labs/geb-changelog",
-        "https://github.com/reflexer-labs/geb-distros"
-      ]
-    },
-    "OXT": {
-      "name": "Orchid",
-      "description": "Orchid (OXT) is the native token of Orchid, a cryptocurrency-powered virtual private network (VPN).",
-      "repos": [
-        "https://github.com/OrchidTechnologies/orchid"
-      ]
-    },
-    "BAND": {
-      "name": "Band Protocol",
-      "description": "An open standard for decentralized management of data in Web3 stack",
-      "repos": [
-        "https://github.com/bandprotocol/chain",
-        "https://github.com/bandprotocol/pyband",
-        "https://github.com/bandprotocol/bandchain.js",
-        "https://github.com/bandprotocol/bandchain-docs",
-        "https://github.com/bandprotocol/band.js"
-      ]
-    },
-    "DOGE": {
-      "name": "Dogecoin",
-      "description": "Dogecoin is an open source peer-to-peer digital currency, favored by Shiba Inus worldwide.",
-      "repos": [
-        "https://github.com/dogecoin/dogecoin",
-        "https://github.com/dogecoin/dogecoin.com",
-        "https://github.com/dogecoin/dips"
-      ]
-    },
-    "REP": {
-      "name": "Augur",
-      "description": "Augur: Your global, no-limit betting platform",
-      "repos": [
-        "https://github.com/AugurProject/augur-app",
-        "https://github.com/AugurProject/docs",
-        "https://github.com/AugurProject/turbo",
-        "https://github.com/AugurProject/augur",
-        "https://github.com/AugurProject/augur-core",
-        "https://github.com/AugurProject/augur-ui"
-      ]
-    },
-    "XTZ": {
-      "name": "Tezos",
-      "description": "Tezos is a blockchain network that's based on smart contracts, in a way that's not too dissimilar to Ethereum. However, there's a big difference: Tezos aims to offer infrastructure that is more advanced — meaning it can evolve and improve over time without there ever being a danger of a hard fork.",
-      "repos": [
-        "https://github.com/tezos/tezos",
-        "https://github.com/tezos/tezos-papers",
-        "https://github.com/tezos/tezoscoq",
-        "https://github.com/tezos/optimal_stack",
-        "https://github.com/tezos/tezos-explorer",
-        "https://github.com/tezos/irmin"
-      ]
-    },
-    "PAX": {
-      "name": "Paxos",
-      "description": "Building the Future of Financial Services with Blockchain Technology",
-      "repos": [
-        "https://github.com/paxosglobal/subconscious",
-        "https://github.com/paxosglobal/pastey",
-        "https://github.com/paxosglobal/busd-contract",
-        "https://github.com/paxosglobal/usdp-contracts",
-        "https://github.com/paxosglobal/moneroutil",
-        "https://github.com/paxosglobal/paxos-gold-contract"
-      ]
-    },
-    "MDT": {
-      "name": "Measurable Data Token",
-      "description": "Measurable Data Token, a decentralized data exchange economy that rewards users for sharing anonymous data.",
-      "repos": [
-        "https://github.com/measurabledatatoken/mymdt",
-        "https://github.com/measurabledatatoken/Whitepaper",
-        "https://github.com/measurabledatatoken/contracts",
-        "https://github.com/measurabledatatoken/mefi-client",
-        "https://github.com/measurabledatatoken/vue-material",
-        "https://github.com/measurabledatatoken/mai-website"
-      ]
-    },
-    "ETH": {
-      "name": "Ethereum",
-      "description": "Ethereum is the community-run technology powering the cryptocurrency ether (ETH) and thousands of decentralized applications.",
-      "repos": [
-        "https://github.com/ethereum/go-ethereum",
-        "https://github.com/ethereum/EIPs",
-        "https://github.com/ethereum/solidity",
-        "https://github.com/ethereum/ethereum-org-website",
-        "https://github.com/ethereum/remix-project",
-        "https://github.com/ethereum/clrfund",
-        "https://github.com/ethereum/fe",
-        "https://github.com/ethereum/trin"
-      ]
-    },
-    "SPELL": {
-      "name": "Spell Token",
-      "description": "Spell Token (SPELL) is a reward token associated with abracadabra.money, a lending platform that uses interest-bearing tokens (ibTKNs) as collateral to borrow a USD-pegged stablecoin called Magic Internet Money (MIM).",
-      "repos": [
-        "https://github.com/Abracadabra-money/magic-internet-money",
-        "https://github.com/Abracadabra-money/user-interface",
-        "https://github.com/Abracadabra-money/bentobox-strategies",
-        "https://github.com/Abracadabra-money/avalanche-bridge-resources",
-        "https://github.com/Abracadabra-money/snapshot-spaces"
-      ]
-    },
-    "SUPER": {
-      "name": "SuperFarm",
-      "description": "SuperFarm is a cross-chain DeFi protocol that allows users to deploy crypto and NFT farms with no code required!",
-      "repos": [
-        "https://github.com/SuperFarmDAO/SuperFarm-Contracts",
-        "https://github.com/SuperFarmDAO/SuperFarm-Sample",
-        "https://github.com/SuperFarmDAO/wip-contracts"
-      ]
-    },
-    "WCFG": {
-      "name": "Wrapped Centrifuge",
-      "description": "Unlocking liquidity for real world assets",
-      "repos": [
-        "https://github.com/centrifuge/go-centrifuge",
-        "https://github.com/centrifuge/precise-proofs",
-        "https://github.com/centrifuge/protocol",
-        "https://github.com/centrifuge/centrifuge-chain",
-        "https://github.com/centrifuge/documentation",
-        "https://github.com/centrifuge/privacy-enabled-erc721",
-        "https://github.com/centrifuge/apps"
-      ]
-    },
-    "BCH": {
-      "name": "Bitcoin Cash",
-      "description": "Peer-to-Peer Electronic Cash",
-      "repos": [
-        "https://github.com/bitcoin-cash-node/bitcoin-cash-node",
-        "https://github.com/bitcoin-cash-node/bchnode-web",
-        "https://github.com/bitcoin-cash-node/checkstyle2junit",
-        "https://github.com/bitcoin-cash-node/docker-bcn-buildenv"
-      ]
-    },
-    "CRO": {
-      "name": "Crypto.com Coin",
-      "description": "Crypto.org Chain is a public, open-source and permissionless blockchain - a fully decentralized network with high speed and low fees, designed to be a public good that helps drive mass adoption of blockchain technology through use cases like Payments, DeFi and NFTs.",
-      "repos": [
-        "https://github.com/crypto-org-chain/chain-main",
-        "https://github.com/crypto-org-chain/cronos",
-        "https://github.com/crypto-org-chain/cassini",
-        "https://github.com/crypto-org-chain/chain-docs",
-        "https://github.com/crypto-org-chain/chain-jslib",
-        "https://github.com/crypto-org-chain/awesome"
-      ]
-    },
-    "POLY": {
-      "name": "Polymath",
-      "description": "The Securities Token Platform",
-      "repos": [
-        "https://github.com/PolymathNetwork/polymath-core",
-        "https://github.com/PolymathNetwork/Polymesh",
-        "https://github.com/PolymathNetwork/polymath-apps",
-        "https://github.com/PolymathNetwork/polymath-sdk"
-      ]
-    },
-    "YFI": {
-      "name": "yearn.finance",
-      "description": "Yearn.finance is an aggregator service for decentralized finance (DeFi) investors, using automation to allow them to maximize profits from yield farming.",
-      "repos": [
-        "https://github.com/yearn/yearn-vaults",
-        "https://github.com/yearn/yearn-finance-v3",
-        "https://github.com/yearn/brownie-strategy-mix",
-        "https://github.com/yearn/yearn-devdocs",
-        "https://github.com/yearn/brownie-wrapper-mix",
-        "https://github.com/yearn/yearn-security",
-        "https://github.com/yearn/yearn-exporter",
-        "https://github.com/yearn/yearn-meta",
-        "https://github.com/yearn/yearn-api",
-        "https://github.com/yearn/yearn-sdk"
-      ]
-    },
-    "MUSD": {
-      "name": "mStable",
-      "description": "mStable unites stablecoins, lending and swapping into one standard.",
-      "repos": [
-        "https://github.com/mstable/mStable-apps",
-        "https://github.com/mstable/mStable-landing",
-        "https://github.com/mstable/mStable-QuestBook",
-        "https://github.com/mstable/mStable-contracts",
-        "https://github.com/mstable/MIPs",
-        "https://github.com/mstable/mStable-subgraphs-monorepo"
-      ]
-    },
-    "XYO": {
-      "name": "XYO",
-      "description": "An open, secure crypto-location oracle network.",
-      "repos": [
-        "https://github.com/XYOracleNetwork/xyo-foundation",
-        "https://github.com/XYOracleNetwork/sdk-xyo-client-js",
-        "https://github.com/XYOracleNetwork/papers-xyonetwork",
-        "https://github.com/XYOracleNetwork/sdk-xyo-client-swift",
-        "https://github.com/XYOracleNetwork/sdk-xyo-client-android",
-        "https://github.com/XYOracleNetwork/xyo-version-1",
-        "https://github.com/XYOracleNetwork/api-archivist-nodejs",
-        "https://github.com/XYOracleNetwork/sdk-xyo-react-js",
-        "https://github.com/XYOracleNetwork/sdk-xyo-js"
-      ]
-    },
-    "UNI": {
-      "name": "Uniswap",
-      "description": "Uniswap is a popular decentralized trading protocol, known for its role in facilitating automated trading of decentralized finance (DeFi) tokens.",
-      "repos": [
-        "https://github.com/Uniswap/v3-core",
-        "https://github.com/Uniswap/v3-sdk",
-        "https://github.com/Uniswap/v3-periphery",
-        "https://github.com/Uniswap/v2-core",
-        "https://github.com/Uniswap/interface",
-        "https://github.com/Uniswap/v2-periphery",
-        "https://github.com/Uniswap/docs"
-      ]
-    },
-    "FIL": {
-      "name": "Filecoin",
-      "description": "Filecoin is a decentralized storage system that aims to “store humanity's most important information.”",
-      "repos": [
-        "https://github.com/filecoin-project/community",
-        "https://github.com/filecoin-project/lotus",
-        "https://github.com/filecoin-project/specs",
-        "https://github.com/filecoin-project/rust-fil-proofs",
-        "https://github.com/filecoin-project/FIPs",
-        "https://github.com/filecoin-project/specs-actors",
-        "https://github.com/filecoin-project/index-provider",
-        "https://github.com/filecoin-project/ref-fvm"
-      ]
-    },
-    "CRV": {
-      "name": "Curve DAO Token",
-      "description": "Curve is an exchange liquidity pool on Ethereum designed for: extremely efficient stablecoin trading, low risk, supplemental fee income for liquidity.",
-      "repos": [
-        "https://github.com/curvefi/curve-contract",
-        "https://github.com/curvefi/curve-dao-contracts",
-        "https://github.com/curvefi/curve-crypto-contract",
-        "https://github.com/curvefi/curve-pool-registry",
-        "https://github.com/curvefi/brownie-tutorial",
-        "https://github.com/curvefi/curve-contract-polygon",
-        "https://github.com/curvefi/curve-api",
-        "https://github.com/curvefi/curve-assets",
-        "https://github.com/curvefi/curve-js"
-      ]
-    },
-    "INV": {
-      "name": "Inverse Finance",
-      "description": "Welcome to Inverse, part of the new wave of decentralized banking & finance. From a capital-efficient money market, to tokenized synthetic assets, our mission is to grow your wealth. Start earning with Inverse.",
-      "repos": [
-        "https://github.com/InverseFinance/inverse-protocol",
-        "https://github.com/InverseFinance/anchor",
-        "https://github.com/InverseFinance/witch-hunt",
-        "https://github.com/InverseFinance/inverse-web",
-        "https://github.com/InverseFinance/inverse-data",
-        "https://github.com/InverseFinance/dutch-auctions"
-      ]
-    },
-    "GFI": {
-      "name": "Goldfinch",
-      "description": "Goldfinch is a decentralized credit protocol for crypto loans without collateral.",
-      "repos": [
-        "https://github.com/goldfinch-eng/goldfinch-contracts",
-        "https://github.com/goldfinch-eng/mono",
-        "https://github.com/goldfinch-eng/buidler-deploy",
-        "https://github.com/goldfinch-eng/community-docs",
-        "https://github.com/goldfinch-eng/solhint-plugin-modifiers",
-        "https://github.com/goldfinch-eng/depay-web3-mock"
-      ]
-    },
-    "RARI": {
-      "name": "Rarible",
-      "description": "Rarible is a creator-centric NFT marketplace and issuance platform that utilizes the RARI token to empower users who actively interact with the protocol.",
-      "repos": [
-        "https://github.com/rarible/protocol-contracts",
-        "https://github.com/rarible/ethereum-example",
-        "https://github.com/rarible/protocol",
-        "https://github.com/rarible/ethereum-sdk",
-        "https://github.com/rarible/ethereum-e2e-tests",
-        "https://github.com/rarible/sdk",
-        "https://github.com/rarible/flow-sdk",
-        "https://github.com/rarible/flow-nft-indexer",
-        "https://github.com/rarible/flow-protocol-api"
-      ]
-    }
+  },
+  "LRC": {
+    "name": "Loopring",
+    "description": "",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/Loopring/loopring-explorer",
+      "https://github.com/Loopring/website",
+      "https://github.com/Loopring/loopring_sdk",
+      "https://github.com/Loopring/dexwebapp",
+      "https://github.com/Loopring/whitepaper"
+    ]
+  },
+  "BTC": {
+    "name": "Bitcoin",
+    "description": "",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/bitcoin/bitcoin",
+      "https://github.com/bitcoin/bips"
+    ]
+  },
+  "CGLD": {
+    "name": "Celo",
+    "description": "",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/celo-org/celo-blockchain",
+      "https://github.com/celo-org/celo-monorepo",
+      "https://github.com/celo-org/website",
+      "https://github.com/celo-org/docs"
+    ]
+  },
+  "RAD": {
+    "name": "Radicle",
+    "description": "",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/radicle-dev/radicle-interface",
+      "https://github.com/radicle-dev/radicle-grants",
+      "https://github.com/radicle-dev/workstreams-app",
+      "https://github.com/radicle-dev/radicle-upstream"
+    ]
+  },
+  "ALGO": {
+    "name": "Algorand",
+    "description": "",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/algorand/algorand-wallet",
+      "https://github.com/algorand/docs",
+      "https://github.com/algorand/go-algorand",
+      "https://github.com/algorand/indexer",
+      "https://github.com/algorand/py-algorand-sdk"
+    ]
+  },
+  "MASK": {
+    "name": "Mask",
+    "description": "",
+    "available_on_coinbase": true,
+    "repos": ["https://github.com/DimensionDev/Maskbook",
+    "https://github.com/DimensionDev/Holoflows-Kit"]
+  },
+  "QUICK": {
+    "name": "Quick",
+    "description": "",
+    "available_on_coinbase": true,
+    "repos": ["https://github.com/QuickSwap/quickswap-core",
+      "https://github.com/QuickSwap/QuickSwap-subgraph",
+      "https://github.com/QuickSwap/quickswap-docs",
+      "https://github.com/QuickSwap/QuickSwap-sdk",
+      "https://github.com/QuickSwap/QuickSwap-periphery",
+      "https://github.com/QuickSwap/megapool"
+    ]
+  },
+  "MIR": {
+    "name": "Mirror",
+    "description": "",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/Mirror-Protocol/mirror.js",
+      "https://github.com/Mirror-Protocol/mirrorcli",
+      "https://github.com/Mirror-Protocol/docs",
+      "https://github.com/Mirror-Protocol/mirror-contracts"
+    ]
+  },
+  "DASH": {
+    "name": "Dash",
+    "description": "",
+    "available_on_coinbase": true,
+    "repos": ["https://github.com/dashpay/dash",
+    "https://github.com/dashpay/dash-roadmap",
+    "https://github.com/dashpay/docs"
+  ]
+  },
+  "JASMY": {
+    "name": "JasmyCoin",
+    "description": "",
+    "available_on_coinbase": true,
+    "repos": ["https://github.com/JasmyCoin/JasmyCoin"]
+  },
+  "REQ": {
+    "name": "RequestNetwork",
+    "description": "",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/RequestNetwork/requestNetwork",
+      "https://github.com/RequestNetwork/request-apps",
+      "https://github.com/RequestNetwork/onboard-extra"
+    ]
+  },
+  "TRAC": {
+    "name": "OriginTrail",
+    "description": "",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/OriginTrail/ot-node",
+      "https://github.com/OriginTrail/dkg-client",
+      "https://github.com/OriginTrail/OT-RFC-repository"
+
+    ]
+  },
+  "TRIBE": {
+    "name": "TRIBE",
+    "description": "",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/TribeBsc/Tribe-Core",
+      "https://github.com/TribeBsc/Tribe-Token"
+    ]
+  },
+  "MLN": {
+    "name": "Enzyme Finance",
+    "description": "",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/enzymefinance/aip",
+      "https://github.com/enzymefinance/protocol",
+      "https://github.com/enzymefinance/enzyme-subgraph"
+    ]
+  },
+  "NMR": {
+    "name": "Numerai",
+    "description": "A global artificial intelligence tournament to predict the stock market.",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/numerai/numerapi",
+      "https://github.com/numerai/docs",
+      "https://github.com/numerai/example-scripts"
+    ]
+  },
+  "BAL": {
+    "name": "Balancer Labs",
+    "description": "Balancer is a protocol for programmable liquidity",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/balancer-labs/balancer-core",
+      "https://github.com/balancer-labs/balancer-sor",
+      "https://github.com/balancer-labs/balancer-v2-monorepo",
+      "https://github.com/balancer-labs/frontend-v2",
+      "https://github.com/balancer-labs/balancer-subgraph-v2"
+    ]
+  },
+  "TRB": {
+    "name": "Tellor",
+    "description": "The decentralized oracle",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/tellor-io/usingtellor",
+      "https://github.com/tellor-io/tellorX",
+      "https://github.com/tellor-io/dataSpecs",
+      "https://github.com/tellor-io/sampleUsingTellor",
+      "https://github.com/tellor-io/telliot-core"
+    ]
+  },
+  "SOL": {
+    "name": "Solano",
+    "description": "Solana is a decentralized blockchain built to enable scalable, user-friendly apps for the world.",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/solana-labs/solana",
+      "https://github.com/solana-labs/solana-program-library",
+      "https://github.com/solana-labs/dapp-scaffold",
+      "https://github.com/solana-labs/solana-web3.js"
+    ]
+  },
+  "IDEX": {
+    "name": "IDEX",
+    "description": "Hybrid Liquidity DEX: Order Book + AMM",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/idexio/idex-sdk-js",
+      "https://github.com/idexio/idex-contracts-silverton",
+      "https://github.com/idexio/idex-farm"
+    ]
+  },
+  "IOTX": {
+    "name": "IoTeX Network",
+    "description": "A Decentralized Network for Internet of Trusted Things",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/iotexproject/iotex-core",
+      "https://github.com/iotexproject/halogrants",
+      "https://github.com/iotexproject/iotex-dapp-sample",
+      "https://github.com/iotexproject/iotex-bootstrap"
+    ]
+  },
+  "CHZ": {
+    "name": "Chiliz",
+    "description": "The world's leading blockchain fintech provider for sports & entertainment",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/chiliz/nativescript-wikitude",
+      "https://github.com/chiliz/dist",
+      "https://github.com/chiliz/nativescript-jumio"
+    ]
+  },
+  "ALCX": {
+    "name": "Alchemix",
+    "description": "SELF-REPAYING LOANS",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/alchemix-finance/alchemix-protocol",
+      "https://github.com/alchemix-finance/alkeeper-v1",
+      "https://github.com/alchemix-finance/contract-addresses",
+      "https://github.com/alchemix-finance/alchemix-newsletter"
+    ]
+  },
+  "RGT": {
+    "name": "Rari Capital",
+    "description": "Rari Capital empowers individuals to break free by creating new opportunities, communities and financial products.",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/Rari-Capital/solcurity",
+      "https://github.com/Rari-Capital/solmate",
+      "https://github.com/Rari-Capital/nova",
+      "https://github.com/Rari-Capital/rari-dApp",
+      "https://github.com/Rari-Capital/vaults",
+      "https://github.com/Rari-Capital/compound-protocol"
+    ]
+  },
+  "ATOM": {
+    "name": "COSMOS",
+    "description": "The Internet of Blockchains",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/cosmos/cosmos-sdk",
+      "https://github.com/cosmos/gaia",
+      "https://github.com/cosmos/cosmos",
+      "https://github.com/cosmos/gravity-bridge",
+      "https://github.com/cosmos/ibc",
+      "https://github.com/cosmos/ethermint"
+    ]
+  },
+  "FORTH": {
+    "name": "Ampleforth",
+    "description": "The elastic supply protocol",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/ampleforth/ampleforth-contracts",
+      "https://github.com/ampleforth/market-oracle",
+      "https://github.com/ampleforth/ampleforth-audits",
+      "https://github.com/ampleforth/Forth",
+      "https://github.com/ampleforth/AIPs"
+    ]
+  },
+  "SUSHI": {
+    "name": "",
+    "description": "Swap, earn, stack yields, lend, borrow, leverage all on one decentralized, community driven platform. Welcome home to DeFi.",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/sushiswap/sushiswap",
+      "https://github.com/sushiswap/sushiswap-interface",
+      "https://github.com/sushiswap/bentobox",
+      "https://github.com/sushiswap/sushiswap-sdk",
+      "https://github.com/sushiswap/shoyu",
+      "https://github.com/sushiswap/sushiswap-subgraph"
+    ]
+  },
+  "API3": {
+    "name": "API3",
+    "description": "Decentralized APIs for Web 3.0",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/api3dao/airnode",
+      "https://github.com/api3dao/api3-docs",
+      "https://github.com/api3dao/api3-dao",
+      "https://github.com/api3dao/airnode-starter",
+      "https://github.com/api3dao/api3-whitepaper",
+      "https://github.com/api3dao/api3-contracts"
+    ]
+  },
+  "MANA": {
+    "name": "Decentraland",
+    "description": "A virtual world owned by its users.",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/decentraland/marketplace",
+      "https://github.com/decentraland/builder",
+      "https://github.com/decentraland/catalyst",
+      "https://github.com/decentraland/js-sdk-toolchain",
+      "https://github.com/decentraland/unity-renderer",
+      "https://github.com/decentraland/ui",
+      "https://github.com/decentraland/explorer-desktop"
+    ]
+  },
+  "XRP": {
+    "name": "Ripple",
+    "description": "Open Source from Ripple, Inc.",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/ripple/rippled",
+      "https://github.com/ripple/explorer",
+      "https://github.com/ripple/xrp-batch-payout-cli"
+    ]
+  },
+  "BAT": {
+    "name": "Basic Attention Token",
+    "description": "Making Crypto and DeFi accessible and useable for everyone",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/brave-intl/basic-attention-token-crowdsale",
+      "https://github.com/brave-intl/publishers",
+      "https://github.com/brave-intl/bat-ledger",
+      "https://github.com/brave-intl/challenge-bypass-ristretto",
+      "https://github.com/brave-intl/bat-go",
+      "https://github.com/brave-intl/bat-publisher",
+      "https://github.com/brave-intl/currency"
+    ]
+  },
+  "BTRST": {
+    "name": "Braintrust",
+    "description": "The first decentralized talent network.",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/Snowfork/snowbridge",
+      "https://github.com/Snowfork/snowbridge-web",
+      "https://github.com/Snowfork/BTRST-Contracts",
+      "https://github.com/Snowfork/braintrust-fee-converter"
+    ]
+  },
+  "NKN": {
+    "name": "NKN",
+    "description": "Infrastructure for a Decentralized Internet",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/nknorg/nkn",
+      "https://github.com/nknorg/nnet",
+      "https://github.com/nknorg/nMobile",
+      "https://github.com/nknorg/nkn-sdk-js",
+      "https://github.com/nknorg/nkn-sdk-go",
+      "https://github.com/nknorg/nconnect",
+      "https://github.com/nknorg/documentations"
+    ]
+  },
+  "DNT": {
+    "name": "district0x",
+    "description": "A network of decentralized markets and communities. Create, operate, and govern. Powered by Ethereum, Aragon, and IPFS.",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/district0x/district0x-network-token",
+      "https://github.com/district0x/district-proposals",
+      "https://github.com/district0x/name-bazaar",
+      "https://github.com/district0x/memefactory",
+      "https://github.com/district0x/d0x-INFRA",
+      "https://github.com/district0x/ethlance"
+    ]
+  },
+  "KRL": {
+    "name": "Kryll",
+    "description": "The most powerful strategy editor",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/Cryptense/KryllToken"
+    ]
+  },
+  "BOND": {
+    "name": "BarnBridge",
+    "description": "Tokenized Risk Protocol | Smart Bonds on Ethereum",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/BarnBridge/BarnBridge-PM",
+      "https://github.com/BarnBridge/BarnBridge-Whitepaper",
+      "https://github.com/BarnBridge/BBIP",
+      "https://github.com/BarnBridge/barnbridge-frontend"
+    ]
+  },
+  "CLV": {
+    "name": "Clover Network",
+    "description": "A foundational layer for cross-chain compatibility",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/clover-network/clover",
+      "https://github.com/clover-network/clover.finance",
+      "https://github.com/clover-network/clover-rosetta-service",
+      "https://github.com/clover-network/clover-docs",
+      "https://github.com/clover-network/clover-bridge-contracts",
+      "https://github.com/clover-network/web-wallet-sdk",
+      "https://github.com/clover-network/oneland-home"
+    ]
+  },
+  "LQTY": {
+    "name": "Liquity",
+    "description": "Decentralized Borrowing Protocol",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/liquity/dev",
+      "https://github.com/liquity/frontend-registry",
+      "https://github.com/liquity/community-proxy-scripts",
+      "https://github.com/liquity/lqty-circulating-supply"
+    ]
+  },
+  "KEEP": {
+    "name": "keep.network",
+    "description": "Stake on Ethereum's first private computer and earn up to 52% APY.",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/keep-network/keep-core",
+      "https://github.com/keep-network/tbtc.js",
+      "https://github.com/keep-network/keep-ecdsa",
+      "https://github.com/keep-network/tbtc-dapp",
+      "https://github.com/keep-network/whitepaper",
+      "https://github.com/keep-network/tbtc-v2",
+      "https://github.com/keep-network/website"
+    ]
+  },
+  "ENS": {
+    "name": "Ethereum Name Service",
+    "description": "Decentralised naming for wallets, websites, & more.",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/ensdomains/ens",
+      "https://github.com/ensdomains/ensjs",
+      "https://github.com/ensdomains/governance",
+      "https://github.com/ensdomains/ens-app",
+      "https://github.com/ensdomains/ens-contracts",
+      "https://github.com/ensdomains/subdomain-registrar",
+      "https://github.com/ensdomains/ens-metadata-service",
+      "https://github.com/ensdomains/ensdomains-v2",
+      "https://github.com/ensdomains/docs"
+    ]
+  },
+  "RBN": {
+    "name": "Ribbon Finance",
+    "description": "Ribbon Finance is a new protocol that creates crypto structured products for DeFi.",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/ribbon-finance/ribbon-frontend",
+      "https://github.com/ribbon-finance/ribbon-v2",
+      "https://github.com/ribbon-finance/rvol",
+      "https://github.com/ribbon-finance/governance",
+      "https://github.com/ribbon-finance/metavault",
+      "https://github.com/ribbon-finance/ribbon-subgraph",
+      "https://github.com/ribbon-finance/ribbonomics"
+    ]
+  },
+  "ZEC": {
+    "name": "Zcash",
+    "description": "Internet money",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/zcash/librustzcash",
+      "https://github.com/zcash/zips",
+      "https://github.com/zcash/halo2",
+      "https://github.com/zcash/libsnark",
+      "https://github.com/zcash/mpc",
+      "https://github.com/zcash/secant-android-wallet"
+    ]
+  },
+  "BNT": {
+    "name": "Bancor",
+    "description": "Bancor is a protocol for the creation of Smart Tokens, a new standard for cryptocurrencies convertible directly through their smart contracts.",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/bancorprotocol/contracts-solidity",
+      "https://github.com/bancorprotocol/contracts_eos",
+      "https://github.com/bancorprotocol/webapp-v2",
+      "https://github.com/bancorprotocol/sdk",
+      "https://github.com/bancorprotocol/translations",
+      "https://github.com/bancorprotocol/webapp",
+      "https://github.com/bancorprotocol/docs"
+    ]
+  },
+  "REN": {
+    "name": "RenBridge",
+    "description": "an open protocol providing access to inter-blockchain liquidity for all decentralized applications.",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/renproject/multichain",
+      "https://github.com/renproject/ren-js",
+      "https://github.com/renproject/darknode-sol",
+      "https://github.com/renproject/ren",
+      "https://github.com/renproject/hyperdrive",
+      "https://github.com/renproject/darknode-cli"
+    ]
+  },
+  "RLC": {
+    "name": "iExec RLC",
+    "description": "Blockchain-Based Fully Distributed Cloud Computing",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/iExecBlockchainComputing/iexec-sdk",
+      "https://github.com/iExecBlockchainComputing/PoCo",
+      "https://github.com/iExecBlockchainComputing/iexec-dapps-registry",
+      "https://github.com/iExecBlockchainComputing/iexec-apps",
+      "https://github.com/iExecBlockchainComputing/iexec-worker",
+      "https://github.com/iExecBlockchainComputing/iexec-core",
+      "https://github.com/iExecBlockchainComputing/iexec-common",
+      "https://github.com/iExecBlockchainComputing/iexec-blockchain-adapter-api"
+    ]
+  },
+  "XLM": {
+    "name": "Stellar",
+    "description": "Stellar is an open network for storing and moving money, creating equitable access to the global financial system.",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/stellar/stellar-protocol",
+      "https://github.com/stellar/stellar-core",
+      "https://github.com/stellar/go",
+      "https://github.com/stellar/new-docs",
+      "https://github.com/stellar/js-stellar-sdk",
+      "https://github.com/stellar/dashboard",
+      "https://github.com/stellar/starbridge"
+    ]
+  },
+  "WBTC": {
+    "name": "Wrapped Bitcoin",
+    "description": "Do more with your Bitcoin",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/WrappedBTC/bitcoin-token-smart-contracts",
+      "https://github.com/WrappedBTC/DAO",
+      "https://github.com/WrappedBTC/website"
+    ]
+  },
+  "LTC": {
+    "name": "Litecoin",
+    "description": "The cryptocurrency for payments",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/litecoin-project/litecoin",
+      "https://github.com/litecoin-project/liteaddress.org",
+      "https://github.com/litecoin-project/p2sh-convert",
+      "https://github.com/litecoin-project/lips",
+      "https://github.com/litecoin-project/liteaddress.org-old",
+      "https://github.com/litecoin-project/litecoin.org-ancient",
+      "https://github.com/litecoin-project/gui"
+    ]
+  },
+  "EOS": {
+    "name": "EOS",
+    "description": "EOSIO is a next-generation, open-source blockchain protocol with industry-leading transaction speed and flexible utility.",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/EOSIO/eos",
+      "https://github.com/EOSIO/eosjs",
+      "https://github.com/EOSIO/eosio.cdt",
+      "https://github.com/EOSIO/demux-js",
+      "https://github.com/EOSIO/eosio.contracts",
+      "https://github.com/EOSIO/EEPs"
+    ]
+  },
+  "KNC": {
+    "name": "Kyber Network Crystal v2",
+    "description": "Kyber's On-Chain Liquidity Protocol powers instant and seamless inter-token transactions between platforms, ecosystems and other use cases",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/KyberNetwork/KyberSwap",
+      "https://github.com/KyberNetwork/smart-contracts",
+      "https://github.com/KyberNetwork/dao_sc",
+      "https://github.com/KyberNetwork/reserve-stats"
+    ]
+  },
+  "IMX": {
+    "name": "Impermax-Finance",
+    "description": "Impermax gives one-click access to DeFi yield farming with no risk of impermanent loss.",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/Impermax-Finance/impermax-x-uniswapv2-core",
+      "https://github.com/Impermax-Finance/staked-lp-token",
+      "https://github.com/Impermax-Finance/impermax-x-uniswap-v2-interface",
+      "https://github.com/Impermax-Finance/impermax-x-uniswapv2-periphery",
+      "https://github.com/Impermax-Finance/simple-uniswap-oracle"
+    ]
+  },
+  "UMA": {
+    "name": "UMA",
+    "description": "A decentralized financial contracts platform built to enable Universal Market Access—UMA.",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/UMAprotocol/protocol",
+      "https://github.com/UMAprotocol/whitepaper",
+      "https://github.com/UMAprotocol/UMIPs",
+      "https://github.com/UMAprotocol/optimistic-oracle-dapp",
+      "https://github.com/UMAprotocol/docs",
+      "https://github.com/UMAprotocol/website"
+    ]
+  },
+  "ADA": {
+    "name": "Cardano",
+    "description": "Cardano is a proof-of-stake blockchain platform: the first to be founded on peer-reviewed research and developed through evidence-based methods. ",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/cardano-foundation/CIPs",
+      "https://github.com/cardano-foundation/docs-cardano-org",
+      "https://github.com/cardano-foundation/testnets-cardano-org"
+    ]
+  },
+  "ANKR": {
+    "name": "Ankr",
+    "description": "Web3 Infrastructure",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/Ankr-network/dccn-common",
+      "https://github.com/Ankr-network/ankrctl",
+      "https://github.com/Ankr-network/ankrscan-proto-contract",
+      "https://github.com/Ankr-network/academy-api",
+      "https://github.com/Ankr-network/curve-assets",
+      "https://github.com/Ankr-network/erigon"
+    ]
+  },
+  "ZRX": {
+    "name": "0x",
+    "description": "Exchange Infrastructure for the Internet",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/0xProject/0x-mesh",
+      "https://github.com/0xProject/OpenZKP",
+      "https://github.com/0xProject/0x-api",
+      "https://github.com/0xProject/protocol",
+      "https://github.com/0xProject/tools",
+      "https://github.com/0xProject/quote-server",
+      "https://github.com/0xProject/website"
+    ]
+  },
+  "CTSI": {
+    "name": "Caresi",
+    "description": "Build smart contracts with mainstream software stacks. Take a productive leap from Solidity to the vast universe of software components supported by Linux.",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/cartesi/machine-solidity-step",
+      "https://github.com/cartesi/descartes",
+      "https://github.com/cartesi/machine-emulator",
+      "https://github.com/cartesi/noether",
+      "https://github.com/cartesi/arbitration-dlib",
+      "https://github.com/cartesi/docs",
+      "https://github.com/cartesi/rollups"
+    ]
+  },
+  "UST": {
+    "name": "Terra",
+    "description": "Terra is a public blockchain protocol deploying a suite of algorithmic decentralized stablecoins which underpin a thriving ecosystem that brings DeFi to the masses.",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/terra-money/core",
+      "https://github.com/terra-money/awesome-terra",
+      "https://github.com/terra-money/mainnet",
+      "https://github.com/terra-money/terra.js",
+      "https://github.com/terra-money/terra.py",
+      "https://github.com/terra-money/LocalTerra",
+      "https://github.com/terra-money/station",
+      "https://github.com/terra-money/docs"
+    ]
+  },
+  "GNT": {
+    "name": "GreenTrustToken",
+    "description": "GreenTrust is conceived as a sustainable DeFi application providing advanced features via a highly generalized programming language based on Binance Smart Chain",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/GreenTrusttoken/green-contract",
+      "https://github.com/GreenTrusttoken/Audit"
+    ]
+  },
+  "GRT": {
+    "name": "The Graph",
+    "description": "Protocol for building decentralized applications quickly on Ethereum and IPFS using GraphQL",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/graphprotocol/contracts",
+      "https://github.com/graphprotocol/graph-node",
+      "https://github.com/graphprotocol/indexer",
+      "https://github.com/graphprotocol/graph-cli",
+      "https://github.com/graphprotocol/docs"
+    ]
+  },
+  "PLA": {
+    "name": "PlayDapp",
+    "description": "PlayDapp From dApp to Blockchain-Powered Gaming Entertainment Ecosystem",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/playdapp/eth-contract-metadata",
+      "https://github.com/playdapp/PLA"
+    ]
+  },
+  "FET": {
+    "name": "Fetch.ai",
+    "description": "An artificial intelligence and machine learning based blockchain platform populated with your digital twins - intelligent digital twins who learn and deliver solutions to make your life easier.",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/fetchai/agents-aea",
+      "https://github.com/fetchai/fetchd",
+      "https://github.com/fetchai/colearn",
+      "https://github.com/fetchai/cosmpy",
+      "https://github.com/fetchai/keplr-extension",
+      "https://github.com/fetchai/docs"
+    ]
+  },
+  "BADGER": {
+    "name": "Badger DAO",
+    "description": "BadgerDAO makes it easy to bring your Bitcoin to DeFi and start earning yield today.",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/Badger-Finance/badger-system",
+      "https://github.com/Badger-Finance/digg-core",
+      "https://github.com/Badger-Finance/badger-strategy-mix-v1",
+      "https://github.com/Badger-Finance/wBTC-AAVE-Rewards-Farm-Badger-V1-Strategy",
+      "https://github.com/Badger-Finance/strategy-convex-staking-optimizer",
+      "https://github.com/Badger-Finance/badger-multisig",
+      "https://github.com/Badger-Finance/badger-rewards"
+    ]
+  },
+  "ORN": {
+    "name": "Orion Protocol",
+    "description": "Orion Protocol aggregates the liquidity of every single crypto exchange into one decentralized platform",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/orionprotocol/web3-react",
+      "https://github.com/orionprotocol/orion-holochain",
+      "https://github.com/orionprotocol/orion-exchange",
+      "https://github.com/orionprotocol/orn-liquidity-mining-ui",
+      "https://github.com/orionprotocol/trading-terminal",
+      "https://github.com/orionprotocol/trading-sdk",
+      "https://github.com/orionprotocol/wiki",
+      "https://github.com/orionprotocol/web3-react"
+    ]
+  },
+  "SUKU": {
+    "name": "Suku",
+    "description": "Web3 tools designed to empower innovative Brands & Creators to engage with their audience in entirely new ways and places, including the Metaverse.",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/SukuLab/suku-ethereum-node-api",
+      "https://github.com/SukuLab/liquidity-mining-rewards-script",
+      "https://github.com/SukuLab/defi-evm-scripts",
+      "https://github.com/SukuLab/suku-ethereum-node-api-client-lib",
+      "https://github.com/SukuLab/ethereum-price-feeds",
+      "https://github.com/SukuLab/suku-web-components-browser"
+    ]
+  },
+  "COMP": {
+    "name": "Compound",
+    "description": "Compound is an algorithmic, autonomous interest rate protocol built for developers, to unlock a universe of open financial applications.",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/compound-finance/compound-protocol",
+      "https://github.com/compound-finance/open-oracle",
+      "https://github.com/compound-finance/compound-js",
+      "https://github.com/compound-finance/gateway",
+      "https://github.com/compound-finance/compound-config",
+      "https://github.com/compound-finance/compound-money-market"
+    ]
+  },
+  "MATIC": {
+    "name": "Polygon",
+    "description": "Polygon is a protocol and a framework for building and connecting Ethereum-compatible blockchain networks. Aggregating scalable solutions on Ethereum supporting a multi-chain Ethereum ecosystem.",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/maticnetwork/contracts",
+      "https://github.com/maticnetwork/bor",
+      "https://github.com/maticnetwork/pos-portal",
+      "https://github.com/maticnetwork/subgraphs",
+      "https://github.com/maticnetwork/matic.js",
+      "https://github.com/maticnetwork/launch",
+      "https://github.com/maticnetwork/maticjs-plasma",
+      "https://github.com/maticnetwork/matic-docs"
+    ]
+  },
+  "STORJ": {
+    "name": "Storj",
+    "description": "With Storj DCS (Decentralized Cloud Storage) files aren't stored in centralized data centers— instead, they're encrypted, split into pieces, and distributed on a global cloud network.",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/storj/storj",
+      "https://github.com/storj/uplink",
+      "https://github.com/storj/gateway-st",
+      "https://github.com/storj/common",
+      "https://github.com/storj/awesome-storj"
+    ]
+  },
+  "1INCH": {
+    "name": "1Inch Network",
+    "description": "The 1inch Network unites decentralized protocols whose synergy enables the most lucrative, fastest and protected operations in the DeFi space.",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/1inch/1inch-token",
+      "https://github.com/1inch/liquidity-protocol",
+      "https://github.com/1inch/1inch-v2-contracts",
+      "https://github.com/1inch/1IPs",
+      "https://github.com/1inch/desktop-dapp",
+      "https://github.com/1inch/1inch-docs"
+    ]
+  },
+  "ZEN": {
+    "name": "Horizen",
+    "description": "Horizen's cross-chain protocol, Zendoo, is designed for developers to build blockchains and applications that solve today's real-world problems with the flexibility to capture tomorrow's opportunities",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/HorizenOfficial/zen",
+      "https://github.com/HorizenOfficial/lambo-registry",
+      "https://github.com/HorizenOfficial/Sidechains-SDK",
+      "https://github.com/HorizenOfficial/ginger-lib",
+      "https://github.com/HorizenOfficial/Sphere_by_Horizen",
+      "https://github.com/HorizenOfficial/nodetracker"
+    ]
+  },
+  "OGN": {
+    "name": "Origin Protocol",
+    "description": "Origin Protocol is bringing NFTs and DeFi to the masses. Origin's flagship products are Origin Story which has supported numerous high-profile NFT drops, and Origin Dollar (OUSD), the first stablecoin that earns a yield automatically in users' wallets. Origin's platform and governance token is OGN.",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/OriginProtocol/origin-dollar",
+      "https://github.com/OriginProtocol/ousd-analytics",
+      "https://github.com/OriginProtocol/nft-launchpad",
+      "https://github.com/OriginProtocol/origin-dollar-docs",
+      "https://github.com/OriginProtocol/ousd-flipper",
+      "https://github.com/OriginProtocol/origin-website"
+    ]
+  },
+  "CVC": {
+    "name": "Civic",
+    "description": "Meet KYC & AML requirements with Civic's compliance tools for decentralized finance (DeFi), public blockchains, NFTs, and businesses.",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/civicteam/npm-civic-sip-api",
+      "https://github.com/civicteam/identity-swap",
+      "https://github.com/civicteam/serverless-offline-direct-lambda",
+      "https://github.com/civicteam/reliquary",
+      "https://github.com/civicteam/lambda-wrapper",
+      "https://github.com/civicteam/token-guard",
+      "https://github.com/civicteam/metaplex"
+    ]
+  },
+  "AVAX": {
+    "name": "Avalanche",
+    "description": "",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/ava-labs/avalanchego",
+      "https://github.com/ava-labs/avalanchejs",
+      "https://github.com/ava-labs/avalanche-smart-contract-quickstart",
+      "https://github.com/ava-labs/coreth",
+      "https://github.com/ava-labs/avalanche-wallet",
+      "https://github.com/ava-labs/avalanche-docs"
+    ]
+  },
+  "ETC": {
+    "name": "Ethereum Classic",
+    "description": "Keep the original censorship-resistant Ethereum going!",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/ethereumclassic/ethereumclassic.github.io",
+      "https://github.com/ethereumclassic/etherwallet",
+      "https://github.com/ethereumclassic/faq",
+      "https://github.com/ethereumclassic/ECIPs",
+      "https://github.com/ethereumclassic/explorer"
+    ]
+  },
+  "NU": {
+    "name": "NuCypher",
+    "description": "Cryptographic Infrastructure for Privacy-Preserving Applications",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/nucypher/nucypher",
+      "https://github.com/nucypher/pyUmbral",
+      "https://github.com/nucypher/NuBLS",
+      "https://github.com/nucypher/validator-profiles",
+      "https://github.com/nucypher/nucypher-core",
+      "https://github.com/nucypher/rust-umbral",
+      "https://github.com/nucypher/nucypher-ts"
+    ]
+  },
+  "USDC": {
+    "name": "USD Coin",
+    "description": "CENTRE is a governed network powered by price-stable crypto assets.",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/centrehq/centre-tokens",
+      "https://github.com/centrehq/centre-ecosystem",
+      "https://github.com/centrehq/usdc-subgraph",
+      "https://github.com/centrehq/oidc-client-bound-assertions-spec",
+      "https://github.com/centrehq/presentation-exchange"
+    ]
+  },
+  "POLS": {
+    "name": "Polkastarter",
+    "description": "Get early access to the ideas of tomorrow. Highly-vetted ideas and teams you can trust. Supported by industry-leading creators and funds.",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/polkastarter/polkastarter-js",
+      "https://github.com/polkastarter/polkastarter-crowdloan",
+      "https://github.com/polkastarter/polkastarter-lottery",
+      "https://github.com/polkastarter/staking-pols",
+      "https://github.com/polkastarter/PolkastarterToken",
+      "https://github.com/polkastarter/Open-Grants-Program"
+    ]
+  },
+  "BICO": {
+    "name": "Biconomy",
+    "description": "Biconomy is a multichain relayer protocol that aims to improve the user onboarding and transaction experience on decentralized applications (DApps). The project's declared goal is to make web3 products as intuitive and easy to use as web2 products.",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/bcnmy/metatx-standard",
+      "https://github.com/bcnmy/mexa-sdk",
+      "https://github.com/bcnmy/mexa",
+      "https://github.com/bcnmy/wallet-integrations",
+      "https://github.com/bcnmy/hyphen-contract",
+      "https://github.com/bcnmy/hyphen-ui",
+      "https://github.com/bcnmy/safety-module"
+    ]
+  },
+  "OMG": {
+    "name": "OMG Network",
+    "description": "OMG Network is a Layer-2 scaling solution, built on plasma + optimistic rollups. The value transfer layer for Ethereum.",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/omgnetwork/optimism-v2",
+      "https://github.com/omgnetwork/optimism",
+      "https://github.com/omgnetwork/boba-docs",
+      "https://github.com/omgnetwork/safe-react"
+    ]
+  },
+  "ICP": {
+    "name": "Internet Computer",
+    "description": "The Internet Computer aims to reinvent the internet as a computer to host secure software and a new breed of open internet services.",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/dfinity/ic",
+      "https://github.com/dfinity/motoko-base",
+      "https://github.com/dfinity/awesome-dfinity",
+      "https://github.com/dfinity/internet-identity",
+      "https://github.com/dfinity/motoko",
+      "https://github.com/dfinity/cdk-rs"
+    ]
+  },
+  "LINK": {
+    "name": "Chainlink",
+    "description": "Chainlink is a blockchain abstraction layer that enables universally connected smart contracts.",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/smartcontractkit/chainlink",
+      "https://github.com/smartcontractkit/hardhat-starter-kit",
+      "https://github.com/smartcontractkit/full-blockchain-solidity-course-py",
+      "https://github.com/smartcontractkit/chainlink-mix",
+      "https://github.com/smartcontractkit/truffle-starter-kit",
+      "https://github.com/smartcontractkit/external-adapters-js",
+      "https://github.com/smartcontractkit/chainlink-solana",
+      "https://github.com/smartcontractkit/chainlink-terra",
+      "https://github.com/smartcontractkit/documentation"
+    ]
+  },
+  "DOT": {
+    "name": "Polkadot",
+    "description": "Solutions for a trust-free world",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/paritytech/substrate",
+      "https://github.com/paritytech/ink",
+      "https://github.com/paritytech/polkadot",
+      "https://github.com/paritytech/wasmi",
+      "https://github.com/paritytech/cumulus",
+      "https://github.com/paritytech/parity-zcash",
+      "https://github.com/paritytech/ink-docs"
+    ]
+  },
+  "ACH": {
+    "name": "Alchemy Pay",
+    "description": "Alchemy Pay is the pioneer of the world's first payment gateway solution to bridge the gap between fiat and crypto economies.",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/alchemyplatform/alchemy-web3",
+      "https://github.com/alchemyplatform/nft-minter-tutorial",
+      "https://github.com/alchemyplatform/alchemy-docs",
+      "https://github.com/alchemyplatform/alchemy-flow-contracts",
+      "https://github.com/alchemyplatform/eth-provider-benchmark"
+    ]
+  },
+  "LPT": {
+    "name": "Livepeer",
+    "description": "a decentralized video streaming network built on the Ethereum blockchain.",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/livepeer/go-livepeer",
+      "https://github.com/livepeer/protocol",
+      "https://github.com/livepeer/livepeerjs",
+      "https://github.com/livepeer/lpms",
+      "https://github.com/livepeer/docs",
+      "https://github.com/livepeer/cli-transcoder",
+      "https://github.com/livepeer/livepeer-com",
+      "https://github.com/livepeer/arbitrum-lpt-bridge"
+    ]
+  },
+  "AAVE": {
+    "name": "Aave",
+    "description": "Aave is an open source and non-custodial liquidity protocol for earning interest on deposits and borrowing assets.",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/aave/aave-protocol",
+      "https://github.com/aave/protocol-v2",
+      "https://github.com/aave/flashloan-box",
+      "https://github.com/aave/aave-js",
+      "https://github.com/aave/aave-ui",
+      "https://github.com/aave/aave-utilities",
+      "https://github.com/aave/aip"
+    ]
+  },
+  "ENJ": {
+    "name": "Enjin Coin",
+    "description": "We're building a product ecosystem that will help humanity create advanced virtual economies through the power of blockchain technology.",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/enjin/erc-1155",
+      "https://github.com/enjin/enjin-java-sdk",
+      "https://github.com/enjin/enjin-cpp-sdk",
+      "https://github.com/enjin/enjin-csharp-sdk",
+      "https://github.com/enjin/claims-substrate"
+    ]
+  },
+  "QNT": {
+    "name": "Quant Network",
+    "description": "Quant connects the world's networks to Blockchain.",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/quantnetwork/overledger-sdk-javascript",
+      "https://github.com/quantnetwork/overledger-network-gateway",
+      "https://github.com/quantnetwork/quant-demo-application",
+      "https://github.com/quantnetwork/overledger-sdk-java",
+      "https://github.com/quantnetwork/overledger-treasury-community",
+      "https://github.com/quantnetwork/overledger-tutorial",
+      "https://github.com/quantnetwork/overledger-sdks"
+    ]
+  },
+  "GODS": {
+    "name": "Gods Unchained",
+    "description": "Experience zero gas fees, instant trades, and carbon neutral NFTs for marketplaces, games, and applications without compromise. Build your NFT business in hours with our APIs.",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/immutable/imx-contracts",
+      "https://github.com/immutable/gods-unchained-api",
+      "https://github.com/immutable/imx-reactjs-integration-example",
+      "https://github.com/immutable/platform-contracts",
+      "https://github.com/immutable/gu-composited-card",
+      "https://github.com/immutable/imx-examples",
+      "https://github.com/immutable/snapshot-strategies"
+    ]
+  },
+  "COTI": {
+    "name": "COTI",
+    "description": "urrency Of The Internet - DAG-based infrastructure optimized for payment networks and stable coins",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/coti-io/coti-node",
+      "https://github.com/coti-io/coti-ledger",
+      "https://github.com/coti-io/coti-crypto",
+      "https://github.com/coti-io/coti-node-monitoring",
+      "https://github.com/coti-io/coti-db-app",
+      "https://github.com/coti-io/cvi-contracts",
+      "https://github.com/coti-io/coti-encryption-library"
+    ]
+  },
+  "NCT": {
+    "name": "PolySwarm",
+    "description": "Threat Intelligence Marketplace",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/polyswarm/polyswarm-cli",
+      "https://github.com/polyswarm/autopsy-module",
+      "https://github.com/polyswarm/polyswarm-api",
+      "https://github.com/polyswarm/threatconnect-playbooks",
+      "https://github.com/polyswarm/microengine-webhooks-py",
+      "https://github.com/polyswarm/polyswarm-wazuh"
+    ]
+  },
+  "DESO": {
+    "name": "Decentralized Social",
+    "description": "DeSo is a new layer-1 blockchain built from the ground up to scale decentralized social applications to one billion users.",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/deso-protocol/run",
+      "https://github.com/deso-protocol/core",
+      "https://github.com/deso-protocol/docs",
+      "https://github.com/deso-protocol/backend",
+      "https://github.com/deso-protocol/dips",
+      "https://github.com/deso-protocol/frontend",
+      "https://github.com/deso-protocol/identity"
+    ]
+  },
+  "MKR": {
+    "name": "Maker",
+    "description": "Maker (MKR) is the governance token of the MakerDAO and Maker Protocol — respectively a decentralized organization and a software platform, both based on the Ethereum blockchain — that allows users to issue and manage the DAI stablecoin.",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/makerdao/awesome-makerdao",
+      "https://github.com/makerdao/market-maker-keeper",
+      "https://github.com/makerdao/developerguides",
+      "https://github.com/makerdao/dss",
+      "https://github.com/makerdao/integration-examples",
+      "https://github.com/makerdao/governance-portal-v2",
+      "https://github.com/makerdao/mips",
+      "https://github.com/makerdao/migrate-dashboard",
+      "https://github.com/makerdao/dss-wormhole",
+      "https://github.com/makerdao/starknet-dai-bridge"
+    ]
+  },
+  "COVAL": {
+    "name": "Circuits of Value",
+    "description": "Ciruits of Value Main Repository",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/DecentricCorp/EmblemHDScheme",
+      "https://github.com/DecentricCorp/Coval.js",
+      "https://github.com/DecentricCorp/Coval-Unspecified-Ml-Blockchain"
+    ]
+  },
+  "FX": {
+    "name": "Function X",
+    "description": "Function X token is the governance token for the Function X project. Users may use Function X token to vote, as collateral (soon), to generate synthetic assets (soon) delegate, securing the core network and more.",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/FunctionX/fx-core",
+      "https://github.com/FunctionX/fx-docs",
+      "https://github.com/FunctionX/fx-bridge-rust",
+      "https://github.com/FunctionX/fx-bridge-contract",
+      "https://github.com/FunctionX/tendermint"
+    ]
+  },
+  "DAI": {
+    "name": "Dai",
+    "description": "DAI is an Ethereum-based stablecoin (stable-price cryptocurrency) whose issuance and development is managed by the Maker Protocol and the MakerDAO decentralized autonomous organization.",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/makerdao/awesome-makerdao",
+      "https://github.com/makerdao/developerguides",
+      "https://github.com/makerdao/integration-examples",
+      "https://github.com/makerdao/market-maker-keeper",
+      "https://github.com/makerdao/dss",
+      "https://github.com/makerdao/mips",
+      "https://github.com/makerdao/starknet-dai-bridge"
+    ]
+  },
+  "YFII": {
+    "name": "DFI.Money",
+    "description": "A DeFi-farming aggregator that automatically puts your crypto assets to work for high yield profits.",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/yfii/yvault",
+      "https://github.com/yfii/vault",
+      "https://github.com/yfii/dfi",
+      "https://github.com/yfii/yficontract",
+      "https://github.com/yfii/yfii-finance",
+      "https://github.com/yfii/docs",
+      "https://github.com/yfii/yfiiapi"
+    ]
+  },
+  "SKL": {
+    "name": "SKALE Network",
+    "description": "SKALE is the only containerized network capable of running an unlimited number of secure, decentralized, high-performance blockchains that are native to Ethereum.",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/skalenetwork/skale-network",
+      "https://github.com/skalenetwork/skaled",
+      "https://github.com/skalenetwork/skale-consensus",
+      "https://github.com/skalenetwork/sgxwallet",
+      "https://github.com/skalenetwork/libBLS",
+      "https://github.com/skalenetwork/skale-manager"
+    ]
+  },
+  "PRO": {
+    "name": "Propy",
+    "description": "Real estate transactions made easy",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/Propy/ethereum",
+      "https://github.com/Propy/lightgallery.js",
+      "https://github.com/Propy/lg-fullscreen.js",
+      "https://github.com/Propy/ethereum-etl"
+    ]
+  },
+  "TRU": {
+    "name": "TrueFi",
+    "description": "Tokenization you can Trust",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/trusttoken/truefi-registry",
+      "https://github.com/trusttoken/truefi-spec"
+    ]
+  },
+  "SNX": {
+    "name": "Synthetix",
+    "description": "Crypto backed synthetic asset platform.",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/Synthetixio/synthetix",
+      "https://github.com/Synthetixio/synthetix-mintr",
+      "https://github.com/Synthetixio/SIPs",
+      "https://github.com/Synthetixio/synthetix-exchange",
+      "https://github.com/Synthetixio/synthetix-data",
+      "https://github.com/Synthetixio/js-monorepo",
+      "https://github.com/Synthetixio/staking",
+      "https://github.com/Synthetixio/synthetix-website"
+    ]
+  },
+  "LOOM": {
+    "name": "Loom Network",
+    "description": "Loom Network blockchain",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/loomnetwork/loomchain",
+      "https://github.com/loomnetwork/go-loom",
+      "https://github.com/loomnetwork/loom-js",
+      "https://github.com/loomnetwork/truffle-dappchain-example",
+      "https://github.com/loomnetwork/cryptozombie-lessons",
+      "https://github.com/loomnetwork/unity-sdk"
+    ]
+  },
+  "AUCTION": {
+    "name": "Bounce Finance Governance Token",
+    "description": "Bounce powers an ecosystem of products for matching economic activities. Bounce effectively utilises a decentralized financial platform to orchestrate buyer and seller matching in decentralized auctions.",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/bouncefinance/bounce-market",
+      "https://github.com/bouncefinance/bounce-network",
+      "https://github.com/bouncefinance/bounce-market-manage",
+      "https://github.com/bouncefinance/bounce-contract-v2",
+      "https://github.com/bouncefinance/bounce-kyc",
+      "https://github.com/bouncefinance/Bounce_V3"
+    ]
+  },
+  "RAI": {
+    "name": "Rai Reflex Index",
+    "description": "RAI is an Ethereum token that aims to maintain a stable value.",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/reflexer-labs/whitepapers",
+      "https://github.com/reflexer-labs/GIPs",
+      "https://github.com/reflexer-labs/geb",
+      "https://github.com/reflexer-labs/geb-simulations",
+      "https://github.com/reflexer-labs/geb-safe-saviours",
+      "https://github.com/reflexer-labs/geb-changelog",
+      "https://github.com/reflexer-labs/geb-distros"
+    ]
+  },
+  "OXT": {
+    "name": "Orchid",
+    "description": "Orchid (OXT) is the native token of Orchid, a cryptocurrency-powered virtual private network (VPN).",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/OrchidTechnologies/orchid"
+    ]
+  },
+  "BAND": {
+    "name": "Band Protocol",
+    "description": "An open standard for decentralized management of data in Web3 stack",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/bandprotocol/chain",
+      "https://github.com/bandprotocol/pyband",
+      "https://github.com/bandprotocol/bandchain.js",
+      "https://github.com/bandprotocol/bandchain-docs",
+      "https://github.com/bandprotocol/band.js"
+    ]
+  },
+  "DOGE": {
+    "name": "Dogecoin",
+    "description": "Dogecoin is an open source peer-to-peer digital currency, favored by Shiba Inus worldwide.",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/dogecoin/dogecoin",
+      "https://github.com/dogecoin/dogecoin.com",
+      "https://github.com/dogecoin/dips"
+    ]
+  },
+  "REP": {
+    "name": "Augur",
+    "description": "Augur: Your global, no-limit betting platform",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/AugurProject/augur-app",
+      "https://github.com/AugurProject/docs",
+      "https://github.com/AugurProject/turbo",
+      "https://github.com/AugurProject/augur",
+      "https://github.com/AugurProject/augur-core",
+      "https://github.com/AugurProject/augur-ui"
+    ]
+  },
+  "XTZ": {
+    "name": "Tezos",
+    "description": "Tezos is a blockchain network that's based on smart contracts, in a way that's not too dissimilar to Ethereum. However, there's a big difference: Tezos aims to offer infrastructure that is more advanced — meaning it can evolve and improve over time without there ever being a danger of a hard fork.",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/tezos/tezos",
+      "https://github.com/tezos/tezos-papers",
+      "https://github.com/tezos/tezoscoq",
+      "https://github.com/tezos/optimal_stack",
+      "https://github.com/tezos/tezos-explorer",
+      "https://github.com/tezos/irmin"
+    ]
+  },
+  "PAX": {
+    "name": "Paxos",
+    "description": "Building the Future of Financial Services with Blockchain Technology",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/paxosglobal/subconscious",
+      "https://github.com/paxosglobal/pastey",
+      "https://github.com/paxosglobal/busd-contract",
+      "https://github.com/paxosglobal/usdp-contracts",
+      "https://github.com/paxosglobal/moneroutil",
+      "https://github.com/paxosglobal/paxos-gold-contract"
+    ]
+  },
+  "MDT": {
+    "name": "Measurable Data Token",
+    "description": "Measurable Data Token, a decentralized data exchange economy that rewards users for sharing anonymous data.",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/measurabledatatoken/mymdt",
+      "https://github.com/measurabledatatoken/Whitepaper",
+      "https://github.com/measurabledatatoken/contracts",
+      "https://github.com/measurabledatatoken/mefi-client",
+      "https://github.com/measurabledatatoken/vue-material",
+      "https://github.com/measurabledatatoken/mai-website"
+    ]
+  },
+  "ETH": {
+    "name": "Ethereum",
+    "description": "Ethereum is the community-run technology powering the cryptocurrency ether (ETH) and thousands of decentralized applications.",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/ethereum/go-ethereum",
+      "https://github.com/ethereum/EIPs",
+      "https://github.com/ethereum/solidity",
+      "https://github.com/ethereum/ethereum-org-website",
+      "https://github.com/ethereum/remix-project",
+      "https://github.com/ethereum/clrfund",
+      "https://github.com/ethereum/fe",
+      "https://github.com/ethereum/trin"
+    ]
+  },
+  "SPELL": {
+    "name": "Spell Token",
+    "description": "Spell Token (SPELL) is a reward token associated with abracadabra.money, a lending platform that uses interest-bearing tokens (ibTKNs) as collateral to borrow a USD-pegged stablecoin called Magic Internet Money (MIM).",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/Abracadabra-money/magic-internet-money",
+      "https://github.com/Abracadabra-money/user-interface",
+      "https://github.com/Abracadabra-money/bentobox-strategies",
+      "https://github.com/Abracadabra-money/avalanche-bridge-resources",
+      "https://github.com/Abracadabra-money/snapshot-spaces"
+    ]
+  },
+  "SUPER": {
+    "name": "SuperFarm",
+    "description": "SuperFarm is a cross-chain DeFi protocol that allows users to deploy crypto and NFT farms with no code required!",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/SuperFarmDAO/SuperFarm-Contracts",
+      "https://github.com/SuperFarmDAO/SuperFarm-Sample",
+      "https://github.com/SuperFarmDAO/wip-contracts"
+    ]
+  },
+  "WCFG": {
+    "name": "Wrapped Centrifuge",
+    "description": "Unlocking liquidity for real world assets",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/centrifuge/go-centrifuge",
+      "https://github.com/centrifuge/precise-proofs",
+      "https://github.com/centrifuge/protocol",
+      "https://github.com/centrifuge/centrifuge-chain",
+      "https://github.com/centrifuge/documentation",
+      "https://github.com/centrifuge/privacy-enabled-erc721",
+      "https://github.com/centrifuge/apps"
+    ]
+  },
+  "BCH": {
+    "name": "Bitcoin Cash",
+    "description": "Peer-to-Peer Electronic Cash",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/bitcoin-cash-node/bitcoin-cash-node",
+      "https://github.com/bitcoin-cash-node/bchnode-web",
+      "https://github.com/bitcoin-cash-node/checkstyle2junit",
+      "https://github.com/bitcoin-cash-node/docker-bcn-buildenv"
+    ]
+  },
+  "CRO": {
+    "name": "Crypto.com Coin",
+    "description": "Crypto.org Chain is a public, open-source and permissionless blockchain - a fully decentralized network with high speed and low fees, designed to be a public good that helps drive mass adoption of blockchain technology through use cases like Payments, DeFi and NFTs.",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/crypto-org-chain/chain-main",
+      "https://github.com/crypto-org-chain/cronos",
+      "https://github.com/crypto-org-chain/cassini",
+      "https://github.com/crypto-org-chain/chain-docs",
+      "https://github.com/crypto-org-chain/chain-jslib",
+      "https://github.com/crypto-org-chain/awesome"
+    ]
+  },
+  "POLY": {
+    "name": "Polymath",
+    "description": "The Securities Token Platform",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/PolymathNetwork/polymath-core",
+      "https://github.com/PolymathNetwork/Polymesh",
+      "https://github.com/PolymathNetwork/polymath-apps",
+      "https://github.com/PolymathNetwork/polymath-sdk"
+    ]
+  },
+  "YFI": {
+    "name": "yearn.finance",
+    "description": "Yearn.finance is an aggregator service for decentralized finance (DeFi) investors, using automation to allow them to maximize profits from yield farming.",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/yearn/yearn-vaults",
+      "https://github.com/yearn/yearn-finance-v3",
+      "https://github.com/yearn/brownie-strategy-mix",
+      "https://github.com/yearn/yearn-devdocs",
+      "https://github.com/yearn/brownie-wrapper-mix",
+      "https://github.com/yearn/yearn-security",
+      "https://github.com/yearn/yearn-exporter",
+      "https://github.com/yearn/yearn-meta",
+      "https://github.com/yearn/yearn-api",
+      "https://github.com/yearn/yearn-sdk"
+    ]
+  },
+  "MUSD": {
+    "name": "mStable",
+    "description": "mStable unites stablecoins, lending and swapping into one standard.",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/mstable/mStable-apps",
+      "https://github.com/mstable/mStable-landing",
+      "https://github.com/mstable/mStable-QuestBook",
+      "https://github.com/mstable/mStable-contracts",
+      "https://github.com/mstable/MIPs",
+      "https://github.com/mstable/mStable-subgraphs-monorepo"
+    ]
+  },
+  "XYO": {
+    "name": "XYO",
+    "description": "An open, secure crypto-location oracle network.",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/XYOracleNetwork/xyo-foundation",
+      "https://github.com/XYOracleNetwork/sdk-xyo-client-js",
+      "https://github.com/XYOracleNetwork/papers-xyonetwork",
+      "https://github.com/XYOracleNetwork/sdk-xyo-client-swift",
+      "https://github.com/XYOracleNetwork/sdk-xyo-client-android",
+      "https://github.com/XYOracleNetwork/xyo-version-1",
+      "https://github.com/XYOracleNetwork/api-archivist-nodejs",
+      "https://github.com/XYOracleNetwork/sdk-xyo-react-js",
+      "https://github.com/XYOracleNetwork/sdk-xyo-js"
+    ]
+  },
+  "UNI": {
+    "name": "Uniswap",
+    "description": "Uniswap is a popular decentralized trading protocol, known for its role in facilitating automated trading of decentralized finance (DeFi) tokens.",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/Uniswap/v3-core",
+      "https://github.com/Uniswap/v3-sdk",
+      "https://github.com/Uniswap/v3-periphery",
+      "https://github.com/Uniswap/v2-core",
+      "https://github.com/Uniswap/interface",
+      "https://github.com/Uniswap/v2-periphery",
+      "https://github.com/Uniswap/docs"
+    ]
+  },
+  "FIL": {
+    "name": "Filecoin",
+    "description": "Filecoin is a decentralized storage system that aims to “store humanity's most important information.”",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/filecoin-project/community",
+      "https://github.com/filecoin-project/lotus",
+      "https://github.com/filecoin-project/specs",
+      "https://github.com/filecoin-project/rust-fil-proofs",
+      "https://github.com/filecoin-project/FIPs",
+      "https://github.com/filecoin-project/specs-actors",
+      "https://github.com/filecoin-project/index-provider",
+      "https://github.com/filecoin-project/ref-fvm"
+    ]
+  },
+  "CRV": {
+    "name": "Curve DAO Token",
+    "description": "Curve is an exchange liquidity pool on Ethereum designed for: extremely efficient stablecoin trading, low risk, supplemental fee income for liquidity.",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/curvefi/curve-contract",
+      "https://github.com/curvefi/curve-dao-contracts",
+      "https://github.com/curvefi/curve-crypto-contract",
+      "https://github.com/curvefi/curve-pool-registry",
+      "https://github.com/curvefi/brownie-tutorial",
+      "https://github.com/curvefi/curve-contract-polygon",
+      "https://github.com/curvefi/curve-api",
+      "https://github.com/curvefi/curve-assets",
+      "https://github.com/curvefi/curve-js"
+    ]
+  },
+  "INV": {
+    "name": "Inverse Finance",
+    "description": "Welcome to Inverse, part of the new wave of decentralized banking & finance. From a capital-efficient money market, to tokenized synthetic assets, our mission is to grow your wealth. Start earning with Inverse.",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/InverseFinance/inverse-protocol",
+      "https://github.com/InverseFinance/anchor",
+      "https://github.com/InverseFinance/witch-hunt",
+      "https://github.com/InverseFinance/inverse-web",
+      "https://github.com/InverseFinance/inverse-data",
+      "https://github.com/InverseFinance/dutch-auctions"
+    ]
+  },
+  "GFI": {
+    "name": "Goldfinch",
+    "description": "Goldfinch is a decentralized credit protocol for crypto loans without collateral.",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/goldfinch-eng/goldfinch-contracts",
+      "https://github.com/goldfinch-eng/mono",
+      "https://github.com/goldfinch-eng/buidler-deploy",
+      "https://github.com/goldfinch-eng/community-docs",
+      "https://github.com/goldfinch-eng/solhint-plugin-modifiers",
+      "https://github.com/goldfinch-eng/depay-web3-mock"
+    ]
+  },
+  "RARI": {
+    "name": "Rarible",
+    "description": "Rarible is a creator-centric NFT marketplace and issuance platform that utilizes the RARI token to empower users who actively interact with the protocol.",
+    "available_on_coinbase": true,
+    "repos": [
+      "https://github.com/rarible/protocol-contracts",
+      "https://github.com/rarible/ethereum-example",
+      "https://github.com/rarible/protocol",
+      "https://github.com/rarible/ethereum-sdk",
+      "https://github.com/rarible/ethereum-e2e-tests",
+      "https://github.com/rarible/sdk",
+      "https://github.com/rarible/flow-sdk",
+      "https://github.com/rarible/flow-nft-indexer",
+      "https://github.com/rarible/flow-protocol-api"
+    ]
+  },
+  "NEAR": {
+    "name": "NEAR",
+    "description": "Developer platform to create apps that put users back in control of their data and assets.",
+    "available_on_coinbase": false,
+    "repos": [
+      "https://github.com/near/nearcore",
+      "https://github.com/near/near-api-js",
+      "https://github.com/near/docs",
+      "https://github.com/near/near-wallet",
+      ""
+    ]
+  },
+  "QRDO": {
+    "name": "Qredo",
+    "description": "Secure and fast movement of digital assets",
+    "available_on_coinbase": false,
+    "repos": [
+      "https://github.com/qredo/partner-api-sign",
+      "https://github.com/qredo/BabySploit",
+      "https://github.com/qredo/incubator"
+    ]
+  },
+  "SAND": {
+    "name": "The Sandbox",
+    "description": "The Sandbox is a virtual world where players can build, own and moneize their own voxel gaming experiences on the Ethereum Blockchain.",
+    "available_on_coinbase": false,
+    "repos": [
+      "https://github.com/thesandboxgame/sandbox-smart-contracts",
+      "https://github.com/thesandboxgame/sandbox-subgraph"
+    ]
+  },
+  "FLOW": {
+    "name": "Flow",
+    "description": "A fast, secure, and developer-friendly blockchain built to support the next generation of games, apps, and the digital assets that power them.",
+    "available_on_coinbase": false,
+    "repos": [
+      "https://github.com/onflow/flow-go",
+      "https://github.com/onflow/cadence",
+      "https://github.com/onflow/kitty-items",
+      "https://github.com/onflow/flow",
+      "https://github.com/onflow/flow-multisig",
+      "https://github.com/onflow/flow-cli",
+      "https://github.com/onflow/fcl-dev-wallet"
+    ]
+  },
+  "MINA": {
+    "name": "Mina",
+    "description": "",
+    "available_on_coinbase": false,
+    "repos": [
+      "https://github.com/MinaProtocol/mina",
+      "https://github.com/MinaProtocol/gpu-groth16-prover-3x",
+      "https://github.com/MinaProtocol/docs",
+      "https://github.com/MinaProtocol/MIPs"
+    ]
+  },
+  "OCT": {
+    "name": "OracleChain",
+    "description": "Oulian Technology focus on smart contract, oracle data service, and decentralized application in blockchain field.",
+    "available_on_coinbase": false,
+    "repos": [
+      "https://github.com/OracleChain/EOSDevHelper",
+      "https://github.com/OracleChain/EOSBenchTool",
+      "https://github.com/OracleChain/PocketEOS-Android",
+      "https://github.com/OracleChain/EosProxyServer",
+      "https://github.com/OracleChain/PocketEOS-IOS",
+      "https://github.com/OracleChain/chainkit"
+    ]
+  },
+  "BOA": {
+    "name": "BOSAGORA",
+    "description": "BOSAGORA focuses on building an open decentralized blockchain that ensures transparency of the consensus algorithm and clarity of contracts.",
+    "available_on_coinbase": false,
+    "repos": [
+      "https://github.com/bosagora/agora",
+      "https://github.com/bosagora/stoa",
+      "https://github.com/bosagora/crypto",
+      "https://github.com/bosagora/boa-sdk-ts",
+      "https://github.com/bosagora/bosagora-erc20",
+      "https://github.com/bosagora/faucet",
+      ""
+    ]
+  },
+  "NEST": {
+    "name": "NEST Protocol",
+    "description": "NEST Protocol: A decentralized network of price fact oracles.",
+    "available_on_coinbase": false,
+    "repos": [
+      "https://github.com/NEST-Protocol/NEST-Protocol-Website",
+      "https://github.com/NEST-Protocol/NEST-Oracle-V3.6",
+      "https://github.com/NEST-Protocol/NEST-Oracle-V3.6-minner",
+      "https://github.com/NEST-Protocol/NEST-oracle-V3.6-verifier",
+      "https://github.com/NEST-Protocol/NEST-Oracle-Web-V3.6",
+      "https://github.com/NEST-Protocol/NEST-Improvement-Proposals",
+      "https://github.com/NEST-Protocol/NEST-Announcement",
+      "https://github.com/NEST-Protocol/NEST-Oracle-V4.0",
+      "https://github.com/NEST-Protocol/NEST-Channel-Web"
+    ]
+  },
+  "HIGH": {
+    "name": "Highstreet",
+    "description": "Highstreet Market is a limited edition marketplace catered to influencer lead brands or product collaboration between celebrities and artists.",
+    "available_on_coinbase": false,
+    "repos": [
+      "https://github.com/TravisBuilds/HighStreet"
+    ]
+  },
+  "RBC": {
+    "name": "Rubic",
+    "description": "Rubic is the Multi-Chain Swaps Protocol which enables you to swap any of 15,000+ assets, on and between 11 blockchains in one click.",
+    "available_on_coinbase": false,
+    "repos": [
+      "https://github.com/Cryptorubic/rubic-app",
+      "https://github.com/Cryptorubic/rubic-sdk",
+      "https://github.com/Cryptorubic/rubic-widget",
+      "https://github.com/Cryptorubic/DeFi-Pulse-Adapters"
+    ]
+  },
+  "REF": {
+    "name": "Ref Finance",
+    "description": "Ref Finance is one of the core projects in the DeFi ecosystem on NEAR Protocol",
+    "available_on_coinbase": false,
+    "repos": [
+      "https://github.com/ref-finance/ref-contracts",
+      "https://github.com/ref-finance/ref-ui",
+      "https://github.com/ref-finance/guide",
+      "https://github.com/ref-finance/landing-page"
+    ]
+  },
+  "FEI": {
+    "name": "FEI USD",
+    "description": "Fei is a decentralized, scalable, and DeFi-native stablecoin protocol",
+    "available_on_coinbase": false,
+    "repos": [
+      "https://github.com/fei-protocol/fei-protocol-core",
+      "https://github.com/fei-protocol/tribe-turbo",
+      "https://github.com/fei-protocol/checkthechain",
+      "https://github.com/fei-protocol/ERC4626",
+      "https://github.com/fei-protocol/fei-docs"
+    ]
+  },
+  "TWT": {
+    "name": "Trust Wallet Token",
+    "description": "The most trusted & secure crypto wallet",
+    "available_on_coinbase": false,
+    "repos": [
+      "https://github.com/trustwallet/trust-web3-provider",
+      "https://github.com/trustwallet/developer",
+      "https://github.com/trustwallet/wallet-core",
+      "https://github.com/trustwallet/go-primitives",
+      "https://github.com/trustwallet/go-libs",
+      "https://github.com/trustwallet/assets-go-libs",
+      ""
+    ]
+  },
+  "CARD": {
+    "name": "Cardstack",
+    "description": "The Collaborative OS for Web3",
+    "available_on_coinbase": false,
+    "repos": [
+      "https://github.com/cardstack/cardstack",
+      "https://github.com/cardstack/cardwallet",
+      "https://github.com/cardstack/subgraph-extractor",
+      "https://github.com/cardstack/card-pay-protocol"
+
+    ]
   }
+}

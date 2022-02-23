@@ -3,11 +3,13 @@ from datetime import datetime, date, timedelta
 import json
 import os
 import time
+from pandas import DataFrame
 from tqdm import tqdm
 from typing import Optional, List, Any
 
+import config.config_util as config_util 
 from scripts.reporter.paths import PATHS
-import scripts.reporter.report_util as util
+import scripts.reporter.report_util as report_util
 
 import scripts.twitter.twitter_graphs as graphs
 
@@ -43,8 +45,8 @@ def generate_weekly_report(start_date: datetime):
             "commit_messages": [c.msg for c in project_commits],
             "distinct_authors": list(set([c.committer.name for c in project_commits])),
             "commit_urls": [create_commit_url(c, token_repos) for c in project_commits],
-            "file_extensions": util.get_file_extensions_and_lines_of_code_modified(project_commits),
-            "changed_methods": util.get_changed_methods(project_commits)
+            "file_extensions": report_util.get_file_extensions_and_lines_of_code_modified(project_commits),
+            "changed_methods": report_util.get_changed_methods(project_commits)
         }
 
     report_date_str = start_date.strftime("%Y-%m-%d")
@@ -99,8 +101,8 @@ def generate_daily_report(day: Optional[datetime]):
             "commit_messages": [c.msg for c in project_commits],
             "distinct_authors": list(set([c.committer.name for c in project_commits])),
             "commit_urls": [create_commit_url(c, token_repos) for c in project_commits],
-            "file_extensions": util.get_file_extensions_and_lines_of_code_modified(project_commits),
-            "changed_methods": util.get_changed_methods(project_commits)
+            "file_extensions": report_util.get_file_extensions_and_lines_of_code_modified(project_commits),
+            "changed_methods": report_util.get_changed_methods(project_commits)
         }
 
     report_date_str = day.strftime("%Y-%m-%d")
@@ -139,9 +141,9 @@ def generate_summary_report(report_date, mode="DAILY"):
 
 
     # display the top 10 from the daily report
-    by_commits = util.get_most_active_by_commits(report_date_str, n=10, mode=mode)
-    by_LOC = util.get_most_active_by_loc(report_date_str, n=10, mode=mode)
-    by_distinct_authors = util.get_most_active_by_author(report_date_str, n=10, mode=mode)
+    by_commits = report_util.get_most_active_by_commits(report_date_str, n=10, mode=mode)
+    by_LOC = report_util.get_most_active_by_loc(report_date_str, n=10, mode=mode)
+    by_distinct_authors = report_util.get_most_active_by_author(report_date_str, n=10, mode=mode)
 
     summary_report = {"tokens_represented": {}}
 
@@ -149,25 +151,41 @@ def generate_summary_report(report_date, mode="DAILY"):
     tokens_represented = set([x[0] for x in by_commits] + [x[0] for x in by_LOC] + [x[0] for x in by_distinct_authors])
     for token in tokens_represented:
         co = CryptoOracle(token)
-        token_price_df = co.get_token_price_df(report_date, end_of_date, interval_sec=6*60*60)
 
-        # add price data for each token in top 10 across all categories
-        open_price = token_price_df["open"][0],
-        close_price = token_price_df["close"][-1],
-        delta_percentage = round(100 * (close_price[0] - open_price[0]) / open_price[0], 2)
+        if config_util.get_repos()[token]['available_on_coinbase']:
+            token_price_df = co.get_token_price_df(report_date, end_of_date, interval_sec=6*60*60)
 
-        if mode=="DAILY":
-            summary_report["tokens_represented"][token] = {
-                "daily_open": open_price[0], # unpack single value tuple
-                "daily_close": close_price[0],
-                "delta_percentage": delta_percentage
-            }
-        if mode=="WEEKLY":
-            summary_report["tokens_represented"][token] = {
-                "weekly_open": open_price[0], # unpack single value tuple
-                "weekly_close": close_price[0],
-                "delta_percentage": delta_percentage
-            }
+            # add price data for each token in top 10 across all categories
+            open_price = token_price_df["open"][0],
+            close_price = token_price_df["close"][-1],
+            delta_percentage = round(100 * (close_price[0] - open_price[0]) / open_price[0], 2)
+
+            if mode=="DAILY":
+                summary_report["tokens_represented"][token] = {
+                    "daily_open": open_price[0], # unpack single value tuple
+                    "daily_close": close_price[0],
+                    "delta_percentage": delta_percentage
+                }
+            if mode=="WEEKLY":
+                summary_report["tokens_represented"][token] = {
+                    "weekly_open": open_price[0], # unpack single value tuple
+                    "weekly_close": close_price[0],
+                    "delta_percentage": delta_percentage
+                }
+        else:
+            if mode=="DAILY":
+                summary_report["tokens_represented"][token] = {
+                    "daily_open": None,
+                    "daily_close": None,
+                    "delta_percentage": None
+                }
+            if mode=="WEEKLY":
+                summary_report["tokens_represented"][token] = {
+                    "weekly_open": None,
+                    "weekly_close": None,
+                    "delta_percentage": None
+                }
+
 
     summary_report["top_by_num_commits"] = [{"token": token, "count": count} for token, count in by_commits]
     summary_report["top_by_new_lines"] = [{"token": token, "count": count} for token, count in by_LOC]

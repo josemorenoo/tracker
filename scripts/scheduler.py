@@ -63,7 +63,7 @@ def make_report_and_post_all_charts(run_report=True,
         ) 
 
     randomize_and_post(funcs=[
-        post_loc_chart,
+        #post_loc_chart,
         post_authors_chart,
         post_commits_chart
     ], 
@@ -84,10 +84,10 @@ def show_jobs(sched):
 if __name__ == "__main__":
 
     make_report_and_post_all_charts(
-        run_report=False,
+        run_report=True,
         post_to_twitter=True,
-        mode='WEEKLY',
-        delay_secs=37,
+        mode='DAILY',
+        delay_secs=30,
         make_raw_report=False, 
         make_summary_report=True)
     """

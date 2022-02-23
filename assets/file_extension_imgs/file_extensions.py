@@ -13,6 +13,10 @@ FILE_EXTENSIONS = {
         'path': BASE_PATH + 'csv.png',
         'classification': 'config'
     },
+    'd': {
+        'path': BASE_PATH + 'd.png',
+        'classification': 'backend'
+    },
     'dockerfile': {
         'path': BASE_PATH + 'docker.png',
         'classification': 'config'
@@ -23,6 +27,10 @@ FILE_EXTENSIONS = {
     },
     'go': {
         'path': BASE_PATH + 'golang.png',
+        'classification': 'backend'
+    },
+    'h': {
+        'path': BASE_PATH + 'c.png',
         'classification': 'backend'
     },
     'html': {
@@ -37,8 +45,16 @@ FILE_EXTENSIONS = {
         'path': BASE_PATH + 'js.png',
         'classification': 'frontend'
     },
+    'jsx': {
+        'path': BASE_PATH + 'react.png',
+        'classification': 'frontend'
+    },
     'json': {
         'path': BASE_PATH + 'json.png',
+        'classification': 'config'
+    },
+    'jpg': {
+        'path': BASE_PATH + 'image.png',
         'classification': 'config'
     },
     'md': {
