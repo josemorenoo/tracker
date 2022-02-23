@@ -19,7 +19,7 @@ tickers = set(tickers)
 print(f"{len(tickers)} tickers available")
 print(*tickers, sep="\n")
 
-output_file = 'tickers_available_on_coinbase.txt'
+output_file = 'scripts/sandbox/output/tickers_available_on_coinbase.txt'
 print(f'writing tickers to {output_file}')
 os.system(f'touch {output_file}')
 with open(output_file, 'w') as f:

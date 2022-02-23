@@ -46,7 +46,7 @@ def generate_weekly_report(start_date: datetime):
             "distinct_authors": list(set([c.committer.name for c in project_commits])),
             "commit_urls": [create_commit_url(c, token_repos) for c in project_commits],
             "file_extensions": report_util.get_file_extensions_and_lines_of_code_modified(project_commits),
-            "changed_methods": report_util.get_changed_methods(project_commits)
+            "changed_methods": list(set(report_util.get_changed_methods(project_commits)))
         }
 
     report_date_str = start_date.strftime("%Y-%m-%d")
@@ -102,7 +102,7 @@ def generate_daily_report(day: Optional[datetime]):
             "distinct_authors": list(set([c.committer.name for c in project_commits])),
             "commit_urls": [create_commit_url(c, token_repos) for c in project_commits],
             "file_extensions": report_util.get_file_extensions_and_lines_of_code_modified(project_commits),
-            "changed_methods": report_util.get_changed_methods(project_commits)
+            "changed_methods": list(set(report_util.get_changed_methods(project_commits)))
         }
 
     report_date_str = day.strftime("%Y-%m-%d")
