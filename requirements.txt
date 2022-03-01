@@ -9,4 +9,5 @@ tweepy
 kaleido
 apscheduler
 wordcloud
+pandas_datareader
 pillow

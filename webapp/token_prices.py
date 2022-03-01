@@ -1,3 +1,5 @@
+import pandas_datareader as web
+import datetime as dt
 from Historic_Crypto import HistoricalData
 
 class CryptoOracle:
@@ -11,6 +13,24 @@ class CryptoOracle:
         return "{}-{}-{}-{}-{}".format(dt.year, dt.month, dt.day, dt.hour, dt.minute)
 
     def get_token_price_df(self, startDate, endDate, interval_sec = 300):
+        startDate = self._stringify_datetime(startDate)
+        if endDate:
+            endDate = self._stringify_datetime(endDate)
+        
+        if startDate and endDate:
+            usd_pair_df = web.DataReader(self.pair, 'yahoo', startDate, endDate)
+        if not endDate:
+            usd_pair_df = web.DataReader(self.pair, 'yahoo', startDate, dt.today())
+
+        if not len(usd_pair_df.index):
+            print(f"\nMissing price info for {self.pair}")
+        else:
+            print("\nFound data for {}:".format(self.pair))
+            print(usd_pair_df.head())
+        return usd_pair_df
+
+
+    def get_token_price_df_old(self, startDate, endDate, interval_sec = 300):
         """returns a dataframe containing price data for a given token
         given that Coinbase the price stored somewhere.
         Returns a dataframe:

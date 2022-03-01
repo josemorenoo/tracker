@@ -74,7 +74,6 @@ def create_top_by_loc_graph(report_date, mode="DAILY"):
     
     # get data
     by_locs = report_util.get_most_active_by_loc(report_date_str, mode=mode)
-    report_util.get_combined_price_deltas(by_locs, report_date, mode)
 
     # flip so that they show up in descending order on HORIZONTAL bar graph
     by_locs = by_locs[::-1]

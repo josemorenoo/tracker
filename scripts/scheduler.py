@@ -63,7 +63,7 @@ def make_report_and_post_all_charts(run_report=True,
         ) 
 
     randomize_and_post(funcs=[
-        #post_loc_chart,
+        post_loc_chart,
         post_authors_chart,
         post_commits_chart
     ], 
@@ -85,9 +85,9 @@ if __name__ == "__main__":
 
     make_report_and_post_all_charts(
         run_report=True,
-        post_to_twitter=True,
+        post_to_twitter=False,
         mode='DAILY',
-        delay_secs=30,
+        delay_secs=3,
         make_raw_report=False, 
         make_summary_report=True)
     """

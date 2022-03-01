@@ -152,12 +152,13 @@ def generate_summary_report(report_date, mode="DAILY"):
     for token in tokens_represented:
         co = CryptoOracle(token)
 
-        if config_util.get_repos()[token]['available_on_coinbase']:
-            token_price_df = co.get_token_price_df(report_date, end_of_date, interval_sec=6*60*60)
-
+        token_price_df = co.get_token_price_df(report_date, end_of_date, interval_sec=6*60*60)
+        if len(token_price_df.index): # not empty
+        
             # add price data for each token in top 10 across all categories
-            open_price = token_price_df["open"][0],
-            close_price = token_price_df["close"][-1],
+            daily_df = token_price_df.loc[[report_date_str]]
+            open_price = daily_df['Open'].values[0], #token_price_df["Open"][0],
+            close_price = daily_df['Close'].values[0], #token_price_df["Close"][-1]
             delta_percentage = round(100 * (close_price[0] - open_price[0]) / open_price[0], 2)
 
             if mode=="DAILY":

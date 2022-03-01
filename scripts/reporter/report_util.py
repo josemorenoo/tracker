@@ -164,12 +164,6 @@ def get_changed_methods(project_commits) -> List[str]:
 
 ### ### ### ### ### ### vvv PRICE vvv ### ### ### ### ### ### 
 
-def get_combined_price_deltas(sorted_tokens: List[Any], report_date, mode="DAILY"):
-    price_deltas = get_daily_price_deltas([x[0] for x in sorted_tokens], report_date, mode)
-    avg_delta = sum(price_deltas) / len(price_deltas)
-    print(f"average cumulative return for {sorted_tokens} is {avg_delta} | {mode}")
-    return avg_delta
-
 def get_daily_price_deltas(sorted_tokens: List[Any], report_date, mode="DAILY"):
     summary_report = get_summary_report(report_date, mode)
     return [summary_report["tokens_represented"][token]["delta_percentage"] for token in sorted_tokens]
