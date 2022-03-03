@@ -16,6 +16,7 @@ import scripts.twitter.file_extension_supplement as extensions
 
 from scripts.reporter.paths import PATHS as report_paths
 import scripts.reporter.report_util as report_util
+from scripts.reporter.authors import get_all_authors_count
 
 def create_img(image_path, fig):
     fig.write_image(image_path)
@@ -145,10 +146,10 @@ def create_top_by_loc_graph(report_date, mode="DAILY"):
 def create_top_by_num_authors_graph(report_date, mode="DAILY"):
     report_date_str = report_date.strftime("%Y-%m-%d")
     if mode=="DAILY":
-        title = "Today's Top 10 Tokens by Distinct Developers"
+        title = "Today's Top 10 Tokens by Dev Team Activity"
         REPORT_DIR = f"{report_paths['DAILY_REPORTS_PATH']}/{report_date_str}"
     if mode=="WEEKLY":
-        title = "This Week's Top 10 Tokens by Distinct Developers"
+        title = "This Week's Top 10 Tokens by Dev Team Activity"
         REPORT_DIR = f"{report_paths['WEEKLY_REPORTS_PATH']}/{report_date_str}"
     
 
@@ -157,12 +158,13 @@ def create_top_by_num_authors_graph(report_date, mode="DAILY"):
 
     # flip so that they show up in descending order on HORIZONTAL bar graph
     by_authors = by_authors[::-1]
+    tokens_represented = [metadata[0] for metadata in by_authors]
 
-    by_authors_df = pd.DataFrame(by_authors, columns=["Token", "Number of Distinct Developers"])
+    by_authors_df = pd.DataFrame(by_authors, columns=["Token", "Number of Distinct Developers", "Active Team Ratio", "Label"])
     fig = px.bar(
         by_authors_df,
         title=title,
-        x="Number of Distinct Developers",
+        x="Active Team Ratio",
         y=[f"{token} " for token in by_authors_df['Token']], # Give the damn token label some breathing room
         orientation='h',
         template="plotly_dark" # fig dark background
@@ -188,7 +190,7 @@ def create_top_by_num_authors_graph(report_date, mode="DAILY"):
     fig.update_traces(
         marker_color=COLORS['dev_purple'],
         textposition='inside',
-        text = by_authors_df["Number of Distinct Developers"],
+        text = by_authors_df["Label"],
         textfont = dict(color=COLORS['background_blue'], size=20)
     )
 
@@ -205,9 +207,9 @@ def create_top_by_num_authors_graph(report_date, mode="DAILY"):
 
     # get each bar in the graph as a percentage of the largest bar in the graph.
     # used to figure out where to put the file extension images on the graph
-    bar_percentages = [x[1]/by_authors[-1][1] for x in by_authors[::-1]]
+    bar_percentages = [x[2]/by_authors[-1][2] for x in by_authors[::-1]]
 
-    tokens_represented = [metadata[0] for metadata in by_authors]
+    
     with_extension_logos = extensions.add_ext_imgs_to_graph(
         bar_graph_img=combined_img,
         tokens_represented_in_graph=tokens_represented,
@@ -222,7 +224,6 @@ def create_top_by_num_authors_graph(report_date, mode="DAILY"):
     os.remove(image_path)
 
 def create_top_commits_daily_graph(report_date, mode="DAILY"):
-    print(report_date)
     report_date_str = report_date.strftime("%Y-%m-%d")
     if mode=="DAILY":
         title = "Today's Top 10 Tokens by Most Commits"

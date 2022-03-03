@@ -41,7 +41,7 @@ def load_data(
         
         # get the crypto token price data as a dataframe
         crypto_oracle = CryptoOracle(token)
-        token_data: pd.DataFrame = crypto_oracle.get_token_price_df(start_date, end_date)
+        token_data: pd.DataFrame = crypto_oracle.get_token_price_df(start_date)
         
         # add a column with datetime format
         token_data = create_datetime_and_ts_column(token_data)

@@ -1767,5 +1767,19 @@
       "https://github.com/holochain/holochain-client-rust",
       "https://github.com/holochain/scaffolding"
     ]
+  },
+  "KDA": {
+    "name": "Kadena",
+    "description": "Kadena has the only scalable layer 1 PoW blockchain along with Pact, the safest smart contract language",
+    "available_on_coinbase": false,
+    "repos": [
+      "https://github.com/kadena-io/pact",
+      "https://github.com/kadena-io/chainweb-node",
+      "https://github.com/kadena-io/chainweaver",
+      "https://github.com/kadena-io/kadena-docs",
+      "https://github.com/kadena-io/kadenaswap",
+      "https://github.com/kadena-io/pact-lang-api",
+      "https://github.com/kadena-io/marmalade"
+    ]
   }
 }

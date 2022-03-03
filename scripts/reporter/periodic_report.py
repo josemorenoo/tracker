@@ -152,45 +152,47 @@ def generate_summary_report(report_date, mode="DAILY"):
     for token in tokens_represented:
         co = CryptoOracle(token)
 
-        token_price_df = co.get_token_price_df(report_date, end_of_date, interval_sec=6*60*60)
-        if len(token_price_df.index): # not empty
-        
-            # add price data for each token in top 10 across all categories
+                
+        # add price data for each token in top 10 across all categories
+        try: # primary source, pandas webreader
+            token_price_df = co.get_token_price_df(report_date)
             daily_df = token_price_df.loc[[report_date_str]]
             open_price = daily_df['Open'].values[0], #token_price_df["Open"][0],
             close_price = daily_df['Close'].values[0], #token_price_df["Close"][-1]
             delta_percentage = round(100 * (close_price[0] - open_price[0]) / open_price[0], 2)
+        except:
+            open_price = [None]
+            close_price = [None]
+            delta_percentage = None
+        
+        if not delta_percentage:
+            try: # coinbase
+                daily_df = co.get_token_price_from_coinbase(start_date=report_date, end_date=end_of_date)
+                open_price = daily_df['open'].values[0],
+                close_price = daily_df['close'].values[-1]
+                delta_percentage = round(100 * (close_price[0] - open_price[0]) / open_price[0], 2)
+            except:
+                open_price = [None]
+                close_price = [None]
+                delta_percentage = None
 
-            if mode=="DAILY":
-                summary_report["tokens_represented"][token] = {
-                    "daily_open": open_price[0], # unpack single value tuple
-                    "daily_close": close_price[0],
-                    "delta_percentage": delta_percentage
-                }
-            if mode=="WEEKLY":
-                summary_report["tokens_represented"][token] = {
-                    "weekly_open": open_price[0], # unpack single value tuple
-                    "weekly_close": close_price[0],
-                    "delta_percentage": delta_percentage
-                }
-        else:
-            if mode=="DAILY":
-                summary_report["tokens_represented"][token] = {
-                    "daily_open": None,
-                    "daily_close": None,
-                    "delta_percentage": None
-                }
-            if mode=="WEEKLY":
-                summary_report["tokens_represented"][token] = {
-                    "weekly_open": None,
-                    "weekly_close": None,
-                    "delta_percentage": None
-                }
+        if mode=="DAILY":
+            summary_report["tokens_represented"][token] = {
+                "daily_open": open_price[0], # unpack single value tuple
+                "daily_close": close_price[0],
+                "delta_percentage": delta_percentage
+            }
+        if mode=="WEEKLY":
+            summary_report["tokens_represented"][token] = {
+                "weekly_open": open_price[0], # unpack single value tuple
+                "weekly_close": close_price[0],
+                "delta_percentage": delta_percentage
+            }
 
 
     summary_report["top_by_num_commits"] = [{"token": token, "count": count} for token, count in by_commits]
     summary_report["top_by_new_lines"] = [{"token": token, "count": count} for token, count in by_LOC]
-    summary_report["top_by_num_distinct_authors"] = [{"token": token, "count": count} for token, count in by_distinct_authors]
+    summary_report["top_by_num_distinct_authors"] = [{"token": token, "count": count, "active_ratio": active_ratio, "label": label} for token, count, active_ratio, label in by_distinct_authors]
 
     # generate file extension breakdown for all tokens represented
     tokens_represented = summary_report["tokens_represented"].keys()

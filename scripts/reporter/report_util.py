@@ -4,6 +4,7 @@ import json
 from typing import Any, List
 
 from assets.file_extension_imgs.file_extensions import FILE_EXTENSIONS
+from scripts.reporter.authors import get_all_authors_count
 from scripts.reporter.paths import PATHS
 
 ### ### ### ### ### vvv METRICS vvv ### ### ### ### ### 
@@ -51,11 +52,33 @@ def get_most_active_by_author(report_date_str: str, n=10, mode="DAILY"):
     with open(report_json_path, "r") as f:
         report = json.load(f)
 
+    def _get_all_authors_count(token): 
+        c = get_all_authors_count(token)
+        if c == 0:
+            return None
+        else:
+            return c  
+
+    def get_active_dev_ratio(token_name, token_data):
+        if _get_all_authors_count(token_name):
+            ratio = float(len(token_data['distinct_authors'])) / _get_all_authors_count(token_name)
+            return ratio
+        else:
+            return None
+
+
     # sort in descending order, [(token_name, commit_count or lines_of_code), ...]
-    sort_by_metric = lambda report_list: sorted(report_list, key=lambda x: x[1], reverse=True)
-    report_by_most_authors = [(token_name, int(len(token_data['distinct_authors']))) for token_name, token_data in report.items()]
+    sort_by_metric = lambda report_list: sorted(report_list, key=lambda x: x[2], reverse=True)
+    get_num_authors = lambda token_data: int(len(token_data['distinct_authors']))
+
+    report_by_most_authors = [(
+        token_name,
+        get_num_authors(token_data),
+        get_active_dev_ratio(token_name, token_data),
+        f'{get_num_authors(token_data)}/{_get_all_authors_count(token_name)}👨‍💻'
+    ) for token_name, token_data in report.items() if get_active_dev_ratio(token_name, token_data) and _get_all_authors_count(token_name) > 1]
     by_distinct_authors = sort_by_metric(report_by_most_authors)[:n]
-    print("\nTop projects by distinct authors", *by_distinct_authors, sep="\n")
+ 
     return by_distinct_authors
 
 def get_most_active_by_loc(report_date_str: str, n=10, mode="DAILY"):

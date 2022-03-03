@@ -85,9 +85,10 @@ if __name__ == "__main__":
 
     make_report_and_post_all_charts(
         run_report=True,
-        post_to_twitter=False,
+        post_to_twitter=True,
         mode='DAILY',
-        delay_secs=3,
+        #day=datetime(2022, 2, 28),
+        delay_secs=10,
         make_raw_report=False, 
         make_summary_report=True)
     """
