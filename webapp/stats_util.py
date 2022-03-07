@@ -14,7 +14,7 @@ GRANULARITY_MIN = {"5min": 5, "15min": 15, "1hour": 60, "1day": 24*60, "1week": 
 
 class Stats:
 
-    def calculate_day_token_close(token_data: pd.DataFrame):
+    def calculate_day_token_close(self, token_data: pd.DataFrame):
         """
         Gets the closing price for each unique day, returns list of tuples.
         Example: 
@@ -65,7 +65,7 @@ class Stats:
 
 
 
-    def calculate_commit_count_in_range(commits: List[Any], granularity: str):
+    def calculate_commit_count_in_range(self, commits: List[Any], granularity: str):
         if len(commits) == 0:
             return [], []
 
