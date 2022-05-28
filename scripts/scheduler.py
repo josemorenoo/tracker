@@ -2,7 +2,9 @@ from datetime import datetime, timedelta
 from apscheduler.schedulers.background import BackgroundScheduler
 import random
 import time
+import yaml
 
+from scripts.paths import RUNTIME_PATHS
 import scripts.reporter.periodic_report as periodic_report
 import scripts.twitter.post_to_twitter as post
 import scripts.twitter.twitter_graphs as graphs
@@ -81,43 +83,25 @@ def show_jobs(sched):
 
 
 
+
 if __name__ == "__main__":
 
+    # get config values for this runtime (daily, weekly, etc)
+    with open(RUNTIME_PATHS['DAILY_RUNTIME'], 'r') as file:
+        config = yaml.safe_load(file)
+        run_report: bool = config['run_report']
+        post_to_twitter: bool = config['post_to_twitter']
+        mode: str = config['mode']
+        delay_secs: int =config['delay_secs']
+        make_raw_report: bool =config['make_raw_report']
+        make_summary_report: bool =config['make_summary_report']
+
+    # run everything
     make_report_and_post_all_charts(
-        run_report=True,
-        post_to_twitter=True,
-        mode='DAILY',
-        #day=datetime(2022, 2, 28),
-        delay_secs=10,
-        make_raw_report=False, 
-        make_summary_report=True)
-    """
-    # Start the scheduler
-    sched = BackgroundScheduler()
-    sched.start()
-
-    hour='10'
-    minute='50'
-    sched.add_job(make_report_and_post_all_charts, trigger='cron', hour=hour, minute=minute,  day_of_week='*')
-    
-    # gets job we just created, make sure it starts today if possible
-    for job in sched.get_jobs():
-        today = datetime.today()
-        next_run_time = datetime(
-            year = today.year,
-            month = today.month,
-            day=today.day,
-            hour=int(hour),
-            minute=int(minute))
-        job.modify(next_run_time=next_run_time)
-
-    try:
-        # This is here to simulate application activity (which keeps the main thread alive).
-        while True:
-            show_jobs(sched)
-            time.sleep(100)
-    except (KeyboardInterrupt, SystemExit):
-        # Not strictly necessary if daemonic mode is enabled but should be done if possible
-        sched.shutdown()
-    """
+        run_report=run_report,
+        post_to_twitter=post_to_twitter,
+        mode=mode,
+        delay_secs=delay_secs,
+        make_raw_report=make_raw_report, 
+        make_summary_report=make_summary_report)
     

@@ -12,9 +12,9 @@ from webapp.frontend.plots import Plots
     
 # setup
 read_from_pickle = False
-token="XYO"
-start_date = datetime(2021, 2, 20, 12, 00, 00)
-end_date = datetime(2022, 2, 28, 12, 00, 00)
+token="INV"
+start_date = datetime(2022, 1, 1, 12, 00, 00)
+end_date = datetime(2022, 3, 22, 12, 00, 00)
 timeframe = "year" # [day, week, month, year]
 
 # get repo list

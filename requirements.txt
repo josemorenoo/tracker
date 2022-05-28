@@ -11,3 +11,4 @@ apscheduler
 wordcloud
 pandas_datareader
 pillow
+pyyaml

@@ -154,22 +154,26 @@ def generate_summary_report(report_date, mode="DAILY"):
 
                 
         # add price data for each token in top 10 across all categories
-        try: # primary source, pandas webreader
-            token_price_df = co.get_token_price_df(report_date)
-            daily_df = token_price_df.loc[[report_date_str]]
-            open_price = daily_df['Open'].values[0], #token_price_df["Open"][0],
-            close_price = daily_df['Close'].values[0], #token_price_df["Close"][-1]
+        try: # primary source, coinbase
+            print(f'{token}, trying coinbase for price data')
+            daily_df = co.get_token_price_from_coinbase(start_date=report_date, end_date=end_of_date)
+            open_price = daily_df['open'].values[0],
+            close_price = daily_df['close'].values[-1]
             delta_percentage = round(100 * (close_price[0] - open_price[0]) / open_price[0], 2)
-        except:
+        except Exception as e:
+            print(e)
             open_price = [None]
             close_price = [None]
             delta_percentage = None
         
         if not delta_percentage:
-            try: # coinbase
-                daily_df = co.get_token_price_from_coinbase(start_date=report_date, end_date=end_of_date)
-                open_price = daily_df['open'].values[0],
-                close_price = daily_df['close'].values[-1]
+            try: # pandas webreader
+                print(f'{token}, trying webreader for price data')
+
+                token_price_df = co.get_token_price_df(report_date)
+                daily_df = token_price_df.loc[[report_date_str]]
+                open_price = daily_df['Open'].values[0], #token_price_df["Open"][0],
+                close_price = daily_df['Close'].values[0], #token_price_df["Close"][-1]
                 delta_percentage = round(100 * (close_price[0] - open_price[0]) / open_price[0], 2)
             except:
                 open_price = [None]

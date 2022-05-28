@@ -125,7 +125,7 @@ class Plots:
             name=f"{token} Price",
             mode="lines",
             x=Plots.float_epoch_ts_to_datetime(token_data_df["ms_timestamp"]),
-            y=token_data_df["close"],
+            y=token_data_df["Close"],
             hovertemplate='<br><b>Price: </b> %{y}<br>'+'<extra></extra>'
         ))
         fig.layout.update(yaxis = go.layout.YAxis(title=f"{token} price in USD", side="left"))

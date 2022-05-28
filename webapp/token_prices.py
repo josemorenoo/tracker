@@ -23,7 +23,6 @@ class CryptoOracle:
     def get_token_price_df(self, report_date, interval_sec = 300):
         report_date_str = self._stringify_datetime(report_date)
         usd_pair_df = web.DataReader(self.pair, 'yahoo', start=report_date_str)
-
         if not len(usd_pair_df.index):
             print(f"\nMissing price info for {self.pair}")
         else:

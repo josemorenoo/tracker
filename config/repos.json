@@ -922,8 +922,7 @@
       "https://github.com/bcnmy/mexa",
       "https://github.com/bcnmy/wallet-integrations",
       "https://github.com/bcnmy/hyphen-contract",
-      "https://github.com/bcnmy/hyphen-ui",
-      "https://github.com/bcnmy/safety-module"
+      "https://github.com/bcnmy/hyphen-ui"
     ]
   },
   "OMG": {
@@ -1038,10 +1037,8 @@
     "description": "Quant connects the world's networks to Blockchain.",
     "available_on_coinbase": true,
     "repos": [
-      "https://github.com/quantnetwork/overledger-sdk-javascript",
       "https://github.com/quantnetwork/overledger-network-gateway",
       "https://github.com/quantnetwork/quant-demo-application",
-      "https://github.com/quantnetwork/overledger-sdk-java",
       "https://github.com/quantnetwork/overledger-treasury-community",
       "https://github.com/quantnetwork/overledger-tutorial",
       "https://github.com/quantnetwork/overledger-sdks"
@@ -1780,6 +1777,18 @@
       "https://github.com/kadena-io/kadenaswap",
       "https://github.com/kadena-io/pact-lang-api",
       "https://github.com/kadena-io/marmalade"
+    ]
+  },
+  "CKB": {
+    "name": "Nervos Network",
+    "description": "Godwoken, our EVM compatible layer is live, providing a fast, scalable and familiar platform for decentralized applications.",
+    "available_on_coinbase": false,
+    "repos": [
+      "https://github.com/nervosnetwork/neuron",
+      "https://github.com/nervosnetwork/rfcs",
+      "https://github.com/nervosnetwork/ckb",
+      "https://github.com/nervosnetwork/ckb-vm",
+      "https://github.com/nervosnetwork/axon"
     ]
   }
 }

@@ -1,0 +1,7 @@
+run_report: True
+post_to_twitter: True
+mode: "WEEKLY"
+delay_secs: 31
+day: "YESTERDAY"
+make_raw_report: True
+make_summary_report: True
