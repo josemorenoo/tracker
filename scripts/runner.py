@@ -1,5 +1,4 @@
 from datetime import datetime, timedelta
-from apscheduler.schedulers.background import BackgroundScheduler
 import random
 import time
 import yaml
