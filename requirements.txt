@@ -1,5 +1,6 @@
 pandas
 dash
+dataframe-image
 matplotlib
 tqdm
 pydriller
@@ -12,3 +13,4 @@ wordcloud
 pandas_datareader
 pillow
 pyyaml
+
