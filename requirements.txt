@@ -9,6 +9,7 @@ Historic-Crypto
 tweepy
 kaleido
 apscheduler
+requests
 wordcloud
 pandas_datareader
 pillow

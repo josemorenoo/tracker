@@ -3,11 +3,17 @@ from datetime import datetime
 import os
 import pandas as pd
 import pickle
+import requests
 from typing import Any, List, Optional
 
 from .token_prices import CryptoOracle
 from .repo_crawler import RepoInfo
 from .time_util import datetime_to_ms_timestamp
+
+def repo_exists(repo: str) -> bool:
+    api_endpoint = repo.replace('github.com/', 'api.github.com/repos/')
+    response = requests.get(api_endpoint).json()
+    return not ('message' in response and "Not Found" in response['message'])
 
 def create_token_data_directory(token):
     if not os.path.exists(f"data/{token}"):
@@ -109,18 +115,21 @@ def get_commits_from_all_repos_into_dict(
     repos_commit_dictionary = defaultdict(list)
 
     for repo_url in project_repos:
-        if startDate and endDate:
-            # faster, doesn't load EVERY commit:
-            repo_info = RepoInfo(repo_url, startDate, endDate)
+        if not repo_exists(repo_url):
+            print(f"\n\nMEGA WARNING: {repo_url} does not exist\n\n")
         else:
-            # slower, load every commit
-            repo_info = RepoInfo(repo_url)
+            if startDate and endDate:
+                # faster, doesn't load EVERY commit:
+                repo_info = RepoInfo(repo_url, startDate, endDate)
+            else:
+                # slower, load every commit
+                repo_info = RepoInfo(repo_url)
 
-        commits: List[Any] = repo_info.get_commits_by_date(startDate, endDate)
-        #repo_info.show_n_most_common_commit_messages(commits, n = 10)
+            commits: List[Any] = repo_info.get_commits_by_date(startDate, endDate)
+            #repo_info.show_n_most_common_commit_messages(commits, n = 10)
         
-        # store commits for this given repo in the dictionary
-        repos_commit_dictionary[repo_url] = commits
+            # store commits for this given repo in the dictionary
+            repos_commit_dictionary[repo_url] = commits
     return repos_commit_dictionary
 
 def gather_project_commits(repos_commit_dictionary):
