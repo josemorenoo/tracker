@@ -115,8 +115,12 @@ def get_commits_from_all_repos_into_dict(
     repos_commit_dictionary = defaultdict(list)
 
     for repo_url in project_repos:
-        if not repo_exists(repo_url):
+        if repo_url == '':
+            continue
+        elif not repo_exists(repo_url):
             print(f"\n\nMEGA WARNING: {repo_url} does not exist\n\n")
+            with open('missing_repos.txt', 'a') as f:
+                f.write(datetime.today().strftime('%Y-%m-%d') + '\t' + repo_url + '\n')
         else:
             if startDate and endDate:
                 # faster, doesn't load EVERY commit:

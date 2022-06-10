@@ -4,6 +4,8 @@
     "description": "",
     "available_on_coinbase": true,
     "repos": [
+      "https://github.com/fakerpoe/sofmdkfs",
+      "",
       "https://github.com/amptoken/snapshot-strategies",
       "https://github.com/amptoken/amp-token-contracts"
     ]
