@@ -4,6 +4,7 @@ import random
 import time
 import yaml
 import sys
+import traceback
 
 from scripts.paths import RUNTIME_PATHS
 import scripts.reporter.periodic_report as periodic_report
@@ -86,6 +87,7 @@ def send_text_alert_to_admin(job_failed: bool):
     try:
         from scripts.keys import KEYS
         
+        print("texting burner account")
         client = boto3.client('sns',
             aws_access_key_id=KEYS['key'],
             aws_secret_access_key=KEYS['secret'],
@@ -116,6 +118,7 @@ if __name__ == "__main__":
         delay_secs: int =config['delay_secs']
         make_raw_report: bool =config['make_raw_report']
         make_summary_report: bool =config['make_summary_report']
+        print(*config.items(), sep="\n")
 
     # run everything
     try:
@@ -126,6 +129,9 @@ if __name__ == "__main__":
             delay_secs=delay_secs,
             make_raw_report=make_raw_report, 
             make_summary_report=make_summary_report)
+        print("\n\nDONE, SUCCESS\n\n")
         send_text_alert_to_admin(job_failed=False)
-    except:
+    except Exception as e:
+        print(traceback.format_exc())
+        print(sys.exc_info()[2])
         send_text_alert_to_admin(job_failed=True)
