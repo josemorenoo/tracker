@@ -5,6 +5,7 @@ reports/weekly/**
 config/lockbox.py
 
 scripts/fresh_install_and_run.py
+scripts/keys.py
 
 __pycache__/
 *.py[cod]
