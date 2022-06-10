@@ -5,7 +5,7 @@ import time
 import yaml
 import sys
 
-from scripts.paths import RUNTIME_PATHS, KEYS
+from scripts.paths import RUNTIME_PATHS
 import scripts.reporter.periodic_report as periodic_report
 import scripts.twitter.post_to_twitter as post
 import scripts.twitter.twitter_graphs as graphs
@@ -83,15 +83,20 @@ def show_jobs(sched):
           job.name, job.trigger, job.next_run_time, job.func))
 
 def send_text_alert_to_admin(job_failed: bool):
-    client = boto3.client('sns',
-        aws_access_key_id=KEYS['key'],
-        aws_secret_access_key=KEYS['secret'],
-        region_name='us-west-1'
+    try:
+        from scripts.keys import KEYS
+        
+        client = boto3.client('sns',
+            aws_access_key_id=KEYS['key'],
+            aws_secret_access_key=KEYS['secret'],
+            region_name='us-west-1'
 
-    client.publish( 
-        PhoneNumber="+14152649114",
-        Message=f"coincommit twitter job {'failed, check ec2' if job_failed else 'succeeded, check twitter'}"
-    )
+        client.publish( 
+            PhoneNumber="+14152649114",
+            Message=f"coincommit twitter job {'failed, check ec2' if job_failed else 'succeeded, check twitter'}"
+        )
+    except ImportError:
+        print('no AWS keys, no text sent')
 
 if __name__ == "__main__":
 
