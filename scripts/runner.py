@@ -89,12 +89,12 @@ def send_text_alert_to_admin(job_failed: bool):
         client = boto3.client('sns',
             aws_access_key_id=KEYS['key'],
             aws_secret_access_key=KEYS['secret'],
-            region_name='us-west-1'
+            region_name='us-west-1')
 
         client.publish( 
             PhoneNumber="+14152649114",
-            Message=f"coincommit twitter job {'failed, check ec2' if job_failed else 'succeeded, check twitter'}"
-        )
+            Message=f"coincommit twitter job {'failed, check ec2' if job_failed else 'succeeded, check twitter'}")
+
     except ImportError:
         print('no AWS keys, no text sent')
 
