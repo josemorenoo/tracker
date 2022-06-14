@@ -81,10 +81,10 @@ def send_text_alert_to_admin(job_failed: bool, error: str):
     try:
         from scripts.keys import KEYS
        
-        session = boto3.Session(region_name='us-west-1', aws_secret_access_key=KEYS['key'], aws_access_key_id=KEYS['secret'])
-ses = session.client('ses')
+        session = boto3.Session(region_name='us-west-1', aws_secret_access_key=KEYS['secret'], aws_access_key_id=KEYS['key'])
+        ses = session.client('ses')
 
-response = ses.send_email(
+        response = ses.send_email(
             Source='coincommit@gmail.com',
             Destination={
                 'ToAddresses': [
