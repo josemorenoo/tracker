@@ -199,8 +199,8 @@ def generate_summary_report(report_date, mode="DAILY"):
     summary_report["top_by_num_distinct_authors"] = [{"token": token, "count": count, "active_ratio": active_ratio, "label": label} for token, count, active_ratio, label in by_distinct_authors]
 
     # generate file extension breakdown for all tokens represented
-    tokens_represented = summary_report["tokens_represented"].keys()
-    graphs.create_file_extension_base_img(tokens_represented, report_date, mode)
+    #tokens_represented = summary_report["tokens_represented"].keys()
+    #graphs.create_file_extension_base_img(tokens_represented, report_date, mode)
 
     if mode=="DAILY":
         with open(f'{PATHS["DAILY_REPORTS_PATH"]}/{report_date_str}/summary.json', 'w', encoding='utf-8') as f:

@@ -4,8 +4,6 @@
     "description": "",
     "available_on_coinbase": true,
     "repos": [
-      "https://github.com/fakerpoe/sofmdkfs",
-      "",
       "https://github.com/amptoken/snapshot-strategies",
       "https://github.com/amptoken/amp-token-contracts"
     ]
@@ -972,9 +970,7 @@
     "description": "Solutions for a trust-free world",
     "available_on_coinbase": true,
     "repos": [
-      "https://github.com/paritytech/substrate",
       "https://github.com/paritytech/ink",
-      "https://github.com/paritytech/polkadot",
       "https://github.com/paritytech/wasmi",
       "https://github.com/paritytech/cumulus",
       "https://github.com/paritytech/parity-zcash",
@@ -1564,8 +1560,7 @@
       "https://github.com/near/nearcore",
       "https://github.com/near/near-api-js",
       "https://github.com/near/docs",
-      "https://github.com/near/near-wallet",
-      ""
+      "https://github.com/near/near-wallet"
     ]
   },
   "QRDO": {
@@ -1635,8 +1630,7 @@
       "https://github.com/bosagora/crypto",
       "https://github.com/bosagora/boa-sdk-ts",
       "https://github.com/bosagora/bosagora-erc20",
-      "https://github.com/bosagora/faucet",
-      ""
+      "https://github.com/bosagora/faucet"
     ]
   },
   "NEST": {
@@ -1707,8 +1701,7 @@
       "https://github.com/trustwallet/wallet-core",
       "https://github.com/trustwallet/go-primitives",
       "https://github.com/trustwallet/go-libs",
-      "https://github.com/trustwallet/assets-go-libs",
-      ""
+      "https://github.com/trustwallet/assets-go-libs"
     ]
   },
   "CARD": {
