@@ -75,7 +75,7 @@ def get_most_active_by_author(report_date_str: str, n=10, mode="DAILY"):
         token_name,
         get_num_authors(token_data),
         get_active_dev_ratio(token_name, token_data),
-        f'{get_num_authors(token_data)}/{_get_all_authors_count(token_name)}👨‍💻'
+        f'{get_num_authors(token_data)}/{_get_all_authors_count(token_name)} devs'
     ) for token_name, token_data in report.items() if get_active_dev_ratio(token_name, token_data) and _get_all_authors_count(token_name) > 1]
     by_distinct_authors = sort_by_metric(report_by_most_authors)[:n]
  

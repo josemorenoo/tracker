@@ -77,26 +77,40 @@ def make_report_and_post_all_charts(run_report=True,
     day=day)
     
     
-def show_jobs(sched):
-    #print(f"\n\njobs: {len(sched.get_jobs())}\n")
-    for job in sched.get_jobs():
-        print("\nname: %s, trigger: %s, next run: %s, handler: %s" % (
-          job.name, job.trigger, job.next_run_time, job.func))
-
-def send_text_alert_to_admin(job_failed: bool):
+def send_text_alert_to_admin(job_failed: bool, error: str):
     try:
         from scripts.keys import KEYS
-        
-        print("texting burner account")
-        client = boto3.client('sns',
-            aws_access_key_id=KEYS['key'],
-            aws_secret_access_key=KEYS['secret'],
-            region_name='us-west-1')
+       
+        session = boto3.Session(region_name='us-west-1', aws_secret_access_key=KEYS['key'], aws_access_key_id=KEYS['secret'])
+ses = session.client('ses')
 
-        client.publish( 
-            PhoneNumber="+14152649114",
-            Message=f"coincommit twitter job {'failed, check ec2' if job_failed else 'succeeded, check twitter'}")
+response = ses.send_email(
+            Source='coincommit@gmail.com',
+            Destination={
+                'ToAddresses': [
+                    'coincommit@gmail.com',
+                ]
+            },
+            Message={
+                'Subject': {
+                    'Data': f"coincommit twitter job {'failed, check ec2' if job_failed else 'succeeded, check twitter'}",
+                    'Charset': 'UTF-8'
+                },
+                'Body': {
+                    'Text': {
+                        'Data': 'This is text mail',
+                        'Charset': 'UTF-8'
+                    },
+                    'Html': {
+                        'Data': f'<h1>{error}</h1>',
+                        'Charset': 'UTF-8'
+                    }
+                }
+            }
+        )
 
+
+        print("emailing burner account")
     except ImportError:
         print('no AWS keys, no text sent')
 
@@ -130,8 +144,7 @@ if __name__ == "__main__":
             make_raw_report=make_raw_report, 
             make_summary_report=make_summary_report)
         print("\n\nDONE, SUCCESS\n\n")
-        send_text_alert_to_admin(job_failed=False)
+        send_text_alert_to_admin(job_failed=False, error='you good my man')
     except Exception as e:
         print(traceback.format_exc())
-        print(sys.exc_info()[2])
-        send_text_alert_to_admin(job_failed=True)
+        send_text_alert_to_admin(job_failed=True, error=traceback.format_exc())
