@@ -1,3 +1,4 @@
+import boto3
 from datetime import datetime, timedelta
 import random
 import time
@@ -79,12 +80,42 @@ def make_report_and_post_all_charts(run_report=True,
     day=day)
     
     
-def show_jobs(sched):
-    #print(f"\n\njobs: {len(sched.get_jobs())}\n")
-    for job in sched.get_jobs():
-        print("\nname: %s, trigger: %s, next run: %s, handler: %s" % (
-          job.name, job.trigger, job.next_run_time, job.func))
+def send_text_alert_to_admin(job_failed: bool, error: str):
+    try:
+        from scripts.keys import KEYS
+       
+        session = boto3.Session(region_name='us-west-1', aws_secret_access_key=KEYS['secret'], aws_access_key_id=KEYS['key'])
+        ses = session.client('ses')
 
+        response = ses.send_email(
+            Source='coincommit@gmail.com',
+            Destination={
+                'ToAddresses': [
+                    'coincommit@gmail.com',
+                ]
+            },
+            Message={
+                'Subject': {
+                    'Data': f"coincommit twitter job {'failed, check ec2' if job_failed else 'succeeded, check twitter'}",
+                    'Charset': 'UTF-8'
+                },
+                'Body': {
+                    'Text': {
+                        'Data': 'This is text mail',
+                        'Charset': 'UTF-8'
+                    },
+                    'Html': {
+                        'Data': f'<h1>{error}</h1>',
+                        'Charset': 'UTF-8'
+                    }
+                }
+            }
+        )
+
+
+        print("emailing burner account")
+    except ImportError:
+        print('no AWS keys, no text sent')
 
 if __name__ == "__main__":
 
@@ -104,6 +135,7 @@ if __name__ == "__main__":
         delay_secs: int =config['delay_secs']
         make_raw_report: bool =config['make_raw_report']
         make_summary_report: bool =config['make_summary_report']
+        print(*config.items(), sep="\n")
 
     # run everything
     make_report_and_post_all_charts(
