@@ -3,6 +3,7 @@ import random
 import time
 import yaml
 import sys
+import os
 
 from scripts.paths import RUNTIME_PATHS
 import scripts.reporter.periodic_report as periodic_report
@@ -112,4 +113,6 @@ if __name__ == "__main__":
         delay_secs=delay_secs,
         make_raw_report=make_raw_report, 
         make_summary_report=make_summary_report)
+    
+    os.system("aws ec2 stop-instances --instance-ids i-093f3ffd4fc008b57")
     
