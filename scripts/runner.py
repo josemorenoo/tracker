@@ -51,10 +51,13 @@ def make_report_and_post_all_charts(run_report=True,
     """
     Creates daily report and posts all the graphs
     """
-    assert mode in ["WEEKLY", "DAILY"]
+    assert mode in ["WEEKLY", "DAILY", "QUARTERLY"]
 
     if mode=="WEEKLY":
         day = day - timedelta(days=7)
+
+    if mode=="QUARTERLY":
+        day = day - timedelta(days=90)
 
     if run_report:
         make_report(

@@ -16,6 +16,59 @@ import scripts.twitter.twitter_graphs as graphs
 from webapp import setup_data
 from webapp.token_prices import CryptoOracle
 
+def generate_quarterly_report(start_date: datetime):
+    start = time.time()
+    with open(PATHS['REPOS_FILE'], "r") as f:
+        tokens = json.load(f)
+
+    start_date = datetime.combine(start_date, datetime.min.time())
+    end_date = start_date + timedelta(days=90)
+    print(f"generating WEEKLY report, start: {start_date}, end: {end_date}")
+
+    quarterly_commits_data = {}
+
+    def create_commit_url(commit, token_repos):
+        git_org = token_repos[0].split('/')[3]
+        return f"https://github.com/{git_org}/{commit.project_name}/commit/{commit.hash}"
+
+    for token_name, token_data in tqdm(tokens.items()):
+        token_repos = token_data['repos']
+        if len(token_repos) == 0:
+            continue
+
+        # get quarterly commits
+        try:
+            project_commits = setup_data.get_list_of_project_commits(token_repos, start_date=start_date, end_date=end_date)
+
+            # populate daily report
+            quarterly_commits_data[token_name] = {
+                "commit_count": len(project_commits),
+                "lines_of_code": sum([c.insertions for c in project_commits]),
+                "commit_messages": [c.msg for c in project_commits],
+                "distinct_authors": list(set([c.committer.name for c in project_commits])),
+                "commit_urls": [create_commit_url(c, token_repos) for c in project_commits],
+                "file_extensions": report_util.get_file_extensions_and_lines_of_code_modified(project_commits),
+                "changed_methods": list(set(report_util.get_changed_methods(project_commits)))
+            }
+        except:
+            continue
+
+    report_date_str = start_date.strftime("%Y-%m-%d")
+
+    # create landing dir
+    if not os.path.exists(f"{PATHS['QUARTERLY_REPORTS_PATH']}/{report_date_str}"):
+        os.makedirs(f"{PATHS['QUARTERLY_REPORTS_PATH']}/{report_date_str}")
+
+    # dump daily report
+    with open(f"{PATHS['QUARTERLY_REPORTS_PATH']}/{report_date_str}/{report_date_str}.json", 'w', encoding='utf-8') as f:
+        json.dump(quarterly_commits_data, f, ensure_ascii=False, indent=2)
+
+    end = time.time()
+    duration = end-start
+    print(f"~~~ {report_date_str} daily report generated in {str(timedelta(seconds=duration))}~~~")
+
+    
+
 def generate_weekly_report(start_date: datetime):
     start = time.time()
     with open(PATHS['REPOS_FILE'], "r") as f:
@@ -137,6 +190,9 @@ def generate_summary_report(report_date, mode="DAILY"):
     if mode=="WEEKLY":
         end_of_date = report_date + timedelta(days = 7)
         report_date_str = report_date.strftime("%Y-%m-%d")
+    if mode=='QUARTERLY':
+        end_of_date = report_date + timedelta(days = 90)
+        report_date_str = report_date.strftime("%Y-%m-%d")
    
 
 
@@ -192,6 +248,12 @@ def generate_summary_report(report_date, mode="DAILY"):
                 "weekly_close": close_price[0],
                 "delta_percentage": delta_percentage
             }
+        if mode=="QUARTERLY":
+            summary_report['tokens_represented'][token] = {
+                "quarterly_open": open_price[0], # unpack single value tuple
+                "quarterly_close": close_price[0],
+                "delta_percentage": delta_percentage
+            }
 
 
     summary_report["top_by_num_commits"] = [{"token": token, "count": count} for token, count in by_commits]
@@ -199,14 +261,17 @@ def generate_summary_report(report_date, mode="DAILY"):
     summary_report["top_by_num_distinct_authors"] = [{"token": token, "count": count, "active_ratio": active_ratio, "label": label} for token, count, active_ratio, label in by_distinct_authors]
 
     # generate file extension breakdown for all tokens represented
-    tokens_represented = summary_report["tokens_represented"].keys()
-    graphs.create_file_extension_base_img(tokens_represented, report_date, mode)
+    #tokens_represented = summary_report["tokens_represented"].keys()
+    #graphs.create_file_extension_base_img(tokens_represented, report_date, mode)
 
     if mode=="DAILY":
         with open(f'{PATHS["DAILY_REPORTS_PATH"]}/{report_date_str}/summary.json', 'w', encoding='utf-8') as f:
             json.dump(summary_report, f, ensure_ascii=False, indent=2)
     if mode=="WEEKLY":
         with open(f'{PATHS["WEEKLY_REPORTS_PATH"]}/{report_date_str}/summary.json', 'w', encoding='utf-8') as f:
+            json.dump(summary_report, f, ensure_ascii=False, indent=2)
+    if mode=="QUARTERLY":
+        with open(f'{PATHS["QUARTERLY_REPORTS_PATH"]}/{report_date_str}/summary.json', 'w', encoding='utf-8') as f:
             json.dump(summary_report, f, ensure_ascii=False, indent=2)
 
 
@@ -216,6 +281,8 @@ def run(report_date, mode="DAILY", make_raw_report:bool=True, make_summary_repor
             generate_daily_report(report_date)
         if mode=="WEEKLY":
             generate_weekly_report(report_date)
+        if mode=="QUARTERLY":
+            generate_quarterly_report(report_date)
 
     if make_summary_report:
         # generate summary report, used by twitter graphs

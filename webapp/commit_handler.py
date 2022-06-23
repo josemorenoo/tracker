@@ -39,9 +39,6 @@ class Commit:
     insertions: int
     lines: int
     files: int
-    dmm_unit_size: float
-    dmm_unit_complexity: float
-    dmm_unit_interfacing: float
 
     # non pydriller.Commit custom attributes below
     rounded_commit_time_5min: str
@@ -90,9 +87,6 @@ class CommitHandler:
             insertions = insertions,
             lines = lines,
             files = commit.files,
-            dmm_unit_size = commit.dmm_unit_size,
-            dmm_unit_complexity = commit.dmm_unit_complexity,
-            dmm_unit_interfacing = commit.dmm_unit_interfacing,
             rounded_commit_time_5min = round_single_commit_by_time(commit.committer_date, granularity_min = 5),
             file_extensions = self.get_commit_file_extensions(commit),
             loc_changed_by_file_extension = self.get_loc_changed_by_file_extension(commit),

@@ -614,19 +614,6 @@
       "https://github.com/cardano-foundation/testnets-cardano-org"
     ]
   },
-  "ANKR": {
-    "name": "Ankr",
-    "description": "Web3 Infrastructure",
-    "available_on_coinbase": true,
-    "repos": [
-      "https://github.com/Ankr-network/dccn-common",
-      "https://github.com/Ankr-network/ankrctl",
-      "https://github.com/Ankr-network/ankrscan-proto-contract",
-      "https://github.com/Ankr-network/academy-api",
-      "https://github.com/Ankr-network/curve-assets",
-      "https://github.com/Ankr-network/erigon"
-    ]
-  },
   "ZRX": {
     "name": "0x",
     "description": "Exchange Infrastructure for the Internet",
@@ -1562,8 +1549,7 @@
       "https://github.com/near/nearcore",
       "https://github.com/near/near-api-js",
       "https://github.com/near/docs",
-      "https://github.com/near/near-wallet",
-      ""
+      "https://github.com/near/near-wallet"
     ]
   },
   "QRDO": {
@@ -1633,8 +1619,7 @@
       "https://github.com/bosagora/crypto",
       "https://github.com/bosagora/boa-sdk-ts",
       "https://github.com/bosagora/bosagora-erc20",
-      "https://github.com/bosagora/faucet",
-      ""
+      "https://github.com/bosagora/faucet"
     ]
   },
   "NEST": {
