@@ -118,33 +118,33 @@ def send_text_alert_to_admin(job_failed: bool, error: str):
         print('no AWS keys, no text sent')
 
 if __name__ == "__main__":
+    try:
+        args = sys.argv
+        if len(args) > 1:
+            runtime = args[1]
+            assert runtime in RUNTIME_PATHS
+        else:
+            runtime = 'DAILY_RUNTIME'
 
-    args = sys.argv
-    if len(args) > 1:
-        runtime = args[1]
-        assert runtime in RUNTIME_PATHS
-    else:
-        runtime = 'DAILY_RUNTIME'
+        # get config values for this runtime (daily, weekly, etc)
+        with open(RUNTIME_PATHS[runtime], 'r') as file:
+            config = yaml.safe_load(file)
+            run_report: bool = config['run_report']
+            post_to_twitter: bool = config['post_to_twitter']
+            mode: str = config['mode']
+            delay_secs: int =config['delay_secs']
+            make_raw_report: bool =config['make_raw_report']
+            make_summary_report: bool =config['make_summary_report']
+            print(*config.items(), sep="\n")
 
-    # get config values for this runtime (daily, weekly, etc)
-    with open(RUNTIME_PATHS[runtime], 'r') as file:
-        config = yaml.safe_load(file)
-        run_report: bool = config['run_report']
-        post_to_twitter: bool = config['post_to_twitter']
-        mode: str = config['mode']
-        delay_secs: int =config['delay_secs']
-        make_raw_report: bool =config['make_raw_report']
-        make_summary_report: bool =config['make_summary_report']
-        print(*config.items(), sep="\n")
-
-    # run everything
-    make_report_and_post_all_charts(
-        run_report=run_report,
-        post_to_twitter=post_to_twitter,
-        mode=mode,
-        delay_secs=delay_secs,
-        make_raw_report=make_raw_report, 
-        make_summary_report=make_summary_report)
-    
-    os.system("aws ec2 stop-instances --instance-ids i-093f3ffd4fc008b57")
+        # run everything
+        make_report_and_post_all_charts(
+            run_report=run_report,
+            post_to_twitter=post_to_twitter,
+            mode=mode,
+            delay_secs=delay_secs,
+            make_raw_report=make_raw_report, 
+            make_summary_report=make_summary_report)
+    except:
+        os.system("aws ec2 stop-instances --instance-ids i-093f3ffd4fc008b57")
     
