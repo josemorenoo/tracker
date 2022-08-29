@@ -1,5 +1,5 @@
 run_report: True
-post_to_twitter: False
+post_to_twitter: True
 mode: "DAILY"
 delay_secs: 31
 day: "YESTERDAY"

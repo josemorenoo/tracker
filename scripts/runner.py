@@ -2,6 +2,7 @@ import boto3
 from datetime import datetime, timedelta
 import random
 import time
+import traceback
 import yaml
 import sys
 import os
@@ -145,6 +146,8 @@ if __name__ == "__main__":
             delay_secs=delay_secs,
             make_raw_report=make_raw_report, 
             make_summary_report=make_summary_report)
-    except:
+    except Exception as ex:
+        with open('runtime_error_log.txt', 'w') as f:
+            f.write("".join(traceback.TracebackException.from_exception(ex).format()))
         os.system("aws ec2 stop-instances --instance-ids i-093f3ffd4fc008b57")
     

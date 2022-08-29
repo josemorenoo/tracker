@@ -9,10 +9,15 @@ from typing import Any, List, Optional
 from .token_prices import CryptoOracle
 from .repo_crawler import RepoInfo
 from .time_util import datetime_to_ms_timestamp
+from .creds import CREDS
 
 def repo_exists(repo: str) -> bool:
+    git_user=CREDS['GIT_USER']
+    git_token=CREDS['GIT_TOKEN']
+
     api_endpoint = repo.replace('github.com/', 'api.github.com/repos/')
-    response = requests.get(api_endpoint).json()
+    response = requests.get(api_endpoint, auth=(git_user, git_token)).json()
+    print(repo, response)
     return not ('message' in response and "Not Found" in response['message'])
 
 def create_token_data_directory(token):
